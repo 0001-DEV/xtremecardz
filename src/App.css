@@ -1,0 +1,8 @@
+/* Clean reset for App container */
+.app-wrapper {
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--bg-page);
+  display: flex;
+  flex-direction: column;
+}

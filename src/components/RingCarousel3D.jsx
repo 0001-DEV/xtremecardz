@@ -78,12 +78,15 @@ export default function RingCarousel3D({ onSelectCard }) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Continuous auto-rotation with GSAP ticker
+  // Continuous auto-rotation with GSAP ticker (reduced, elegant speed & frame-rate independent)
   useEffect(() => {
-    const speed = 0.22;
-    const tick = () => {
+    // Slower, graceful rotation: ~4.2 degrees per second (~86s for a full orbit)
+    const degreesPerSecond = 4.2;
+
+    const tick = (time, deltaTime) => {
       if (!isDragging.current) {
-        rotation.current = (rotation.current + speed) % 360;
+        const dt = (deltaTime || 16.6) / 1000;
+        rotation.current = (rotation.current + degreesPerSecond * dt) % 360;
         setRenderedRotation(rotation.current);
       }
     };

@@ -315,11 +315,11 @@ img, video {
 }
 
 .marquee-left {
-  animation: scrollLeft 35s linear infinite;
+  animation: scrollLeft 55s linear infinite;
 }
 
 .marquee-right {
-  animation: scrollRight 35s linear infinite;
+  animation: scrollRight 55s linear infinite;
 }
 
 .marquee-wrapper:hover .marquee-content {

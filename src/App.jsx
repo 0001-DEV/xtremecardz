@@ -1,28 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import MarqueeTickers from './components/MarqueeTickers';
-import Organizations from './components/Organizations';
-import MetalShowcase from './components/MetalShowcase';
-import FeaturesBento from './components/FeaturesBento';
-import DeliveryStreak from './components/DeliveryStreak';
-import SmartIdFormula from './components/SmartIdFormula';
-import PremiumPackages from './components/PremiumPackages';
-import WhatMakesItXtreme from './components/WhatMakesItXtreme';
-import ConnectAndIdentify from './components/ConnectAndIdentify';
-import ClientShowcase from './components/ClientShowcase';
-import OurServices from './components/OurServices';
-import MetalCardsDarkSection from './components/MetalCardsDarkSection';
-import FaqAccordion from './components/FaqAccordion';
-import ElevateCta from './components/ElevateCta';
 import Footer from './components/Footer';
 import QuoteModal from './components/QuoteModal';
+import HomePage from './pages/HomePage';
+import ProductsPage from './pages/ProductsPage';
 
 gsap.registerPlugin(ScrollTrigger);
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 export default function App() {
   const [quoteModalOpen, setQuoteModalOpen] = useState(false);
@@ -61,58 +59,22 @@ export default function App() {
 
   return (
     <div className="app-wrapper">
-      {/* Navigation */}
+      <ScrollToTop />
+
+      {/* Navigation Bar */}
       <Navbar onOpenQuote={handleOpenQuote} />
 
-      {/* Main Page Flow */}
+      {/* Main Routed Content */}
       <main>
-        {/* 1. Hero with 3D Ring Carousel */}
-        <Hero onOpenQuote={handleOpenQuote} />
-
-        {/* 2. Dual Horizontal Marquee Tickers */}
-        <MarqueeTickers onSelectType={(type) => handleOpenQuote(`Inquiry: ${type}`)} />
-
-        {/* 3. Organizations Social Proof */}
-        <Organizations onOpenQuote={handleOpenQuote} />
-
-        {/* 4. Interactive Metal Showcase & GT AI Assistant */}
-        <MetalShowcase onOpenQuote={handleOpenQuote} />
-
-        {/* 5. Features Bento Grid */}
-        <FeaturesBento onOpenQuote={handleOpenQuote} />
-
-        {/* 6. Delivery Streak Timeline */}
-        <DeliveryStreak onOpenQuote={handleOpenQuote} />
-
-        {/* 7. Smart ID Formula & Lifestyle Integration */}
-        <SmartIdFormula onOpenQuote={handleOpenQuote} />
-
-        {/* 8. Premium Packages Slider (Swiper) */}
-        <PremiumPackages onOpenQuote={handleOpenQuote} />
-
-        {/* 9. What Makes It Xtreme (Dark Section + Stats) */}
-        <WhatMakesItXtreme onOpenQuote={handleOpenQuote} />
-
-        {/* 10. Connect & Identify (Upgrade Feature Grid) */}
-        <ConnectAndIdentify onOpenQuote={handleOpenQuote} />
-
-        {/* 11. Clients Showcase & Testimonials */}
-        <ClientShowcase onOpenQuote={handleOpenQuote} />
-
-        {/* 12. Our Services */}
-        <OurServices onOpenQuote={handleOpenQuote} />
-
-        {/* 13. AI Suggestions & Dark Metal Cards Section */}
-        <MetalCardsDarkSection onOpenQuote={handleOpenQuote} />
-
-        {/* 14. FAQs Accordion */}
-        <FaqAccordion onOpenQuote={handleOpenQuote} />
-
-        {/* 15. Elevate Brand First Impression Banner & QR Connect */}
-        <ElevateCta onOpenQuote={handleOpenQuote} />
+        <Routes>
+          <Route path="/" element={<HomePage onOpenQuote={handleOpenQuote} />} />
+          <Route path="/products" element={<ProductsPage onOpenQuote={handleOpenQuote} />} />
+          {/* Fallback route */}
+          <Route path="*" element={<HomePage onOpenQuote={handleOpenQuote} />} />
+        </Routes>
       </main>
 
-      {/* 16. Footer with Newsletter & Quick Links */}
+      {/* Shared Footer */}
       <Footer onOpenQuote={handleOpenQuote} />
 
       {/* Interactive Quote Request Modal */}

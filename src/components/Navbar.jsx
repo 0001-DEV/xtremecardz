@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowUpRight, MessageCircle } from 'lucide-react';
 
 export default function Navbar({ onOpenQuote }) {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [btnHovered, setBtnHovered] = useState(false);
@@ -34,21 +38,22 @@ export default function Navbar({ onOpenQuote }) {
     let t1 = null;
     let t2 = null;
 
-    if (scrolled) {
-      // Step 1: Container shifts to the left first
-      setNavStage(1);
-
-      // Step 2: Smoothly expands outward to full width
-      t1 = setTimeout(() => {
-        setNavStage(2);
-      }, 350);
-
-      // Step 3: Features fall into place in an arranged cadence
-      t2 = setTimeout(() => {
+    if (scrolled || location.pathname === '/products') {
+      // Step 1: Container shifts to the left first (only on homepage)
+      if (location.pathname === '/') {
+        setNavStage(1);
+        t1 = setTimeout(() => {
+          setNavStage(2);
+        }, 350);
+        t2 = setTimeout(() => {
+          setNavStage(3);
+        }, 650);
+      } else {
+        // On /products, expand immediately and show features
         setNavStage(3);
-      }, 650);
+      }
     } else {
-      // Return to compact centered state
+      // Return to compact centered state on homepage top
       setNavStage(0);
     }
 
@@ -56,11 +61,11 @@ export default function Navbar({ onOpenQuote }) {
       if (t1) clearTimeout(t1);
       if (t2) clearTimeout(t2);
     };
-  }, [scrolled]);
+  }, [scrolled, location.pathname]);
 
   const navLinks = [
-    { label: 'Home', href: '#hero' },
-    { label: 'Products', href: '#products' },
+    { label: 'Home', href: '/' },
+    { label: 'Products', href: '/products' },
     { label: 'Elite Pass', href: '#metal-showcase' },
     { label: 'About us', href: '#features' },
     { label: 'Contact us', href: '#contact' },
@@ -70,18 +75,45 @@ export default function Navbar({ onOpenQuote }) {
   const handleNavClick = (e, href) => {
     e.preventDefault();
     setMobileMenuOpen(false);
+
     if (href === '#contact') {
       onOpenQuote('Navbar Link: Contact us');
       return;
     }
-    const elem = document.querySelector(href);
-    if (elem) {
-      elem.scrollIntoView({ behavior: 'smooth' });
+
+    if (href === '/products') {
+      if (location.pathname !== '/products') {
+        navigate('/products');
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      return;
+    }
+
+    if (href === '/' || href === '#hero') {
+      if (location.pathname !== '/') {
+        navigate('/');
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      return;
+    }
+
+    // Anchor link (e.g. #metal-showcase, #features, #services)
+    if (href.startsWith('#')) {
+      if (location.pathname !== '/') {
+        navigate('/' + href);
+      } else {
+        const elem = document.querySelector(href);
+        if (elem) {
+          elem.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
     }
   };
 
-  const isExpanded = navStage >= 2;
-  const isShifted = navStage === 1;
+  const isExpanded = navStage >= 2 || location.pathname === '/products';
+  const isShifted = navStage === 1 && location.pathname === '/';
 
   const currentTransform = isShifted ? 'translateX(-230.5px)' : 'translateX(0)';
   const currentWidth = isExpanded ? '871px' : '410px';

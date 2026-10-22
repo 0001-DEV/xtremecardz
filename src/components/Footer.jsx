@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Send } from 'lucide-react';
 
 export default function Footer({ onOpenQuote }) {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -14,17 +18,49 @@ export default function Footer({ onOpenQuote }) {
     }, 3000);
   };
 
+  const handleFooterNav = (e, href) => {
+    e.preventDefault();
+    if (href === '/products' || href === '#products') {
+      if (location.pathname !== '/products') {
+        navigate('/products');
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      return;
+    }
+
+    if (href === '/' || href === '#hero') {
+      if (location.pathname !== '/') {
+        navigate('/');
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      return;
+    }
+
+    if (href.startsWith('#')) {
+      if (location.pathname !== '/') {
+        navigate('/' + href);
+      } else {
+        const elem = document.querySelector(href);
+        if (elem) {
+          elem.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  };
+
   const quickLinks = [
-    { label: 'Home', href: '#hero' },
-    { label: 'Products', href: '#products' },
-    { label: 'Elite pass', href: '#products' },
-    { label: 'Blog', href: '#' },
+    { label: 'Home', href: '/' },
+    { label: 'Products', href: '/products' },
+    { label: 'Elite pass', href: '#metal-showcase' },
+    { label: 'Blog', href: '#services' },
     { label: 'Support', href: '#faq' }
   ];
 
   const companyLinks = [
     { label: 'About us', href: '#features' },
-    { label: 'Contact', href: '#hero' },
+    { label: 'Contact', href: '#contact' },
     { label: 'Privacy Policy', href: '#' },
     { label: 'Terms & Conditions', href: '#' }
   ];
@@ -138,7 +174,8 @@ export default function Footer({ onOpenQuote }) {
                 <a
                   key={link.label}
                   href={link.href}
-                  style={{ fontSize: '14px', color: '#595e5e', transition: 'color 0.2s ease' }}
+                  onClick={(e) => handleFooterNav(e, link.href)}
+                  style={{ fontSize: '14px', color: '#595e5e', transition: 'color 0.2s ease', cursor: 'pointer' }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = '#131515')}
                   onMouseLeave={(e) => (e.currentTarget.style.color = '#595e5e')}
                 >
@@ -158,7 +195,8 @@ export default function Footer({ onOpenQuote }) {
                 <a
                   key={link.label}
                   href={link.href}
-                  style={{ fontSize: '14px', color: '#595e5e', transition: 'color 0.2s ease' }}
+                  onClick={(e) => handleFooterNav(e, link.href)}
+                  style={{ fontSize: '14px', color: '#595e5e', transition: 'color 0.2s ease', cursor: 'pointer' }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = '#131515')}
                   onMouseLeave={(e) => (e.currentTarget.style.color = '#595e5e')}
                 >

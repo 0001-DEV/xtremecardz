@@ -106,7 +106,6 @@ export default function MetalCardsDarkSection({ onOpenQuote }) {
                 }}
               >
                 <span>Make enquiries</span>
-                <ArrowRight size={16} />
               </button>
 
               <button

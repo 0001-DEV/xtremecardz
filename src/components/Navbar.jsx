@@ -266,10 +266,7 @@ export default function Navbar({ onOpenQuote }) {
                   <span>Send a message</span>
                 </span>
               ) : (
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                  <span>Make enquiries</span>
-                  <ArrowUpRight size={15} />
-                </span>
+                <span>Make enquiries</span>
               )}
             </button>
 
@@ -392,7 +389,6 @@ export default function Navbar({ onOpenQuote }) {
                 }}
               >
                 <span>Make enquiries</span>
-                <ArrowUpRight size={15} />
               </button>
             </div>
           </div>

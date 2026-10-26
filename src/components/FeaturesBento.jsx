@@ -10,6 +10,8 @@ const CATEGORIES = [
 
 export default function FeaturesBento({ onOpenQuote }) {
   const [activeCategory, setActiveCategory] = useState('corporate');
+  const [hoveredCategory, setHoveredCategory] = useState(null);
+  const [topPillHovered, setTopPillHovered] = useState(false);
 
   const hashtags = [
     '#Corporate identity cards',
@@ -32,22 +34,26 @@ export default function FeaturesBento({ onOpenQuote }) {
         {/* Section Header */}
         <div style={{ textAlign: 'center', marginBottom: '45px' }}>
           <div
+            onMouseEnter={() => setTopPillHovered(true)}
+            onMouseLeave={() => setTopPillHovered(false)}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '6px',
-              padding: '6px 16px',
+              padding: '8px 20px',
               borderRadius: '50px',
-              backgroundColor: '#ffffff',
-              border: '1px solid rgba(19, 21, 21, 0.08)',
-              fontSize: '13px',
+              backgroundColor: topPillHovered ? '#e5e7eb' : 'rgba(255, 255, 255, 0.75)',
+              backdropFilter: 'blur(10px)',
+              WebkitBackdropFilter: 'blur(10px)',
+              border: topPillHovered ? '1px solid #d1d5db' : '1px solid rgba(19, 21, 21, 0.08)',
+              fontSize: '13.5px',
               fontWeight: 600,
-              color: '#0283a7',
+              color: '#000000',
               boxShadow: '0 4px 12px rgba(19, 21, 21, 0.03)',
-              marginBottom: '16px'
+              marginBottom: '16px',
+              transition: 'all 0.2s ease',
+              cursor: 'pointer'
             }}
           >
-            <Sparkles size={14} />
             <span>Fits every brand lifestyle</span>
           </div>
 
@@ -61,7 +67,7 @@ export default function FeaturesBento({ onOpenQuote }) {
               color: '#131515'
             }}
           >
-            Custom corporate card built around your organisation
+            Custom corporate card built first around your organisation
           </h2>
 
           {/* Interactive Category Selector */}
@@ -70,7 +76,7 @@ export default function FeaturesBento({ onOpenQuote }) {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '10px',
+              gap: '12px',
               flexWrap: 'wrap',
               marginTop: '24px'
             }}
@@ -78,26 +84,42 @@ export default function FeaturesBento({ onOpenQuote }) {
             {CATEGORIES.map((cat) => {
               const Icon = cat.icon;
               const isActive = activeCategory === cat.id;
+              const isHovered = hoveredCategory === cat.id;
+
+              const isDark = isActive || isHovered;
+              const bg = isDark ? '#4a4e51' : 'rgba(255, 255, 255, 0.65)';
+              const color = isDark ? '#ffffff' : '#131515';
+              const iconColor = isActive ? '#cfa34b' : (isHovered ? '#ffffff' : '#4b5563');
+
               return (
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
+                  onMouseEnter={() => setHoveredCategory(cat.id)}
+                  onMouseLeave={() => setHoveredCategory(null)}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '8px',
-                    padding: '9px 18px',
-                    borderRadius: '50px',
-                    fontSize: '13.5px',
+                    gap: '10px',
+                    height: '48px',
+                    padding: '0 24px',
+                    borderRadius: '10px',
+                    fontSize: '15.5px',
                     fontWeight: 600,
-                    transition: 'all 0.25s ease',
-                    backgroundColor: isActive ? '#131515' : '#ffffff',
-                    color: isActive ? '#ffffff' : '#595e5e',
-                    border: isActive ? '1px solid #131515' : '1px solid rgba(19, 21, 21, 0.08)',
-                    boxShadow: isActive ? '0 6px 16px rgba(19, 21, 21, 0.12)' : '0 2px 6px rgba(19, 21, 21, 0.02)'
+                    transition: 'all 0.2s ease',
+                    backgroundColor: bg,
+                    color: color,
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)',
+                    border: 'none',
+                    outline: 'none',
+                    boxShadow: isDark
+                      ? '0 6px 18px rgba(0, 0, 0, 0.14)'
+                      : '0 2px 8px rgba(19, 21, 21, 0.03)',
+                    cursor: 'pointer'
                   }}
                 >
-                  <Icon size={14} color={isActive ? '#cfa34b' : 'currentColor'} />
+                  <Icon size={16} color={iconColor} />
                   <span>{cat.label}</span>
                 </button>
               );

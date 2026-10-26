@@ -223,57 +223,77 @@ export default function Hero({ onOpenQuote }) {
           <RingCarousel3D onSelectCard={(cardTitle) => onOpenQuote(`Selected from Hero Ring: ${cardTitle}`)} />
         </div>
 
-        {/* Statement ticker box */}
+        {/* Statement text in four paragraphs */}
         <div
           className="hero-animate-up"
           style={{
-            maxWidth: '820px',
-            margin: '0 auto 18px',
-            padding: '0 16px'
+            maxWidth: '1080px',
+            margin: '44px auto 28px',
+            padding: '0 20px'
           }}
         >
+          <div
+            style={{
+              fontFamily: 'var(--font-heading)',
+              fontSize: 'clamp(28px, 4.8vw, 56px)',
+              fontWeight: 700,
+              color: '#131515',
+              lineHeight: 1.18,
+              letterSpacing: '-0.03em',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '6px'
+            }}
+          >
+            <p style={{ margin: 0 }}>Premium cards designed to make every</p>
+            <p style={{ margin: 0 }}>introduction, interaction, and</p>
+            <p style={{ margin: 0 }}>access points feel unmistakably</p>
+            <p style={{ margin: 0 }}>distinctive.</p>
+          </div>
+        </div>
+
+        {/* Audience Intro & Pill Tags */}
+        <div className="hero-animate-up" style={{ marginTop: '16px' }}>
           <p
             style={{
               fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(18px, 2.5vw, 24px)',
-              fontWeight: 600,
-              color: '#131515',
-              lineHeight: 1.45,
-              letterSpacing: '-0.02em'
+              fontSize: 'clamp(20px, 2.6vw, 28px)',
+              fontWeight: 400,
+              color: '#595e5e',
+              marginBottom: '16px',
+              letterSpacing: '-0.01em'
             }}
           >
-            Premium cards designed to make every introduction, interaction, and access points feel unmistakably distinctive.
+            Used by people to improve identity.
           </p>
-        </div>
 
-        {/* Audience Pill Tags */}
-        <div
-          className="hero-animate-up"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '10px',
-            flexWrap: 'wrap'
-          }}
-        >
-          {audienceTags.map((tag) => (
-            <span
-              key={tag}
-              style={{
-                display: 'inline-block',
-                fontSize: '13.5px',
-                fontWeight: 500,
-                color: '#686d6d',
-                backgroundColor: 'rgba(19, 21, 21, 0.04)',
-                padding: '6px 14px',
-                borderRadius: '50px',
-                border: '1px solid rgba(19, 21, 21, 0.06)'
-              }}
-            >
-              {tag}
-            </span>
-          ))}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '12px',
+              flexWrap: 'wrap'
+            }}
+          >
+            {audienceTags.map((tag) => (
+              <span
+                key={tag}
+                style={{
+                  display: 'inline-block',
+                  fontSize: '15px',
+                  fontWeight: 500,
+                  color: '#494d4d',
+                  backgroundColor: 'rgba(19, 21, 21, 0.05)',
+                  padding: '8px 18px',
+                  borderRadius: '50px',
+                  border: '1px solid rgba(19, 21, 21, 0.08)'
+                }}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import QuoteModal from './components/QuoteModal';
+import GtAiAssistant from './components/GtAiAssistant';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 
@@ -83,6 +84,9 @@ export default function App() {
         onClose={() => setQuoteModalOpen(false)}
         initialCardType={initialCardType}
       />
+
+      {/* Floating GT Assistant AI Concierge */}
+      <GtAiAssistant onOpenQuote={handleOpenQuote} />
     </div>
   );
 }

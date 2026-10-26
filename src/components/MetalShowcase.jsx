@@ -1,55 +1,93 @@
-import React, { useState } from 'react';
-import { ArrowRight, Sparkles, Check, Shield } from 'lucide-react';
-import GtAiAssistant from './GtAiAssistant';
+import React, { useState, useRef } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 
-const METAL_CARDS = [
+const SHOWCASE_VIDEOS = [
   {
-    id: 'gold',
-    name: 'Gold metal card',
-    subtitle: 'Business card',
-    tag: 'Prestige Tier',
-    desc: '24K mirror-polished gold plated stainless steel card. Built to make every handshake unforgettable.',
-    image: 'https://framerusercontent.com/images/WRAp8VzH00hxe4XxQqAqA2UuJ0.jpg?width=1200',
-    features: ['Real 24K gold electroplated finish', 'Precision laser cutout & etching', 'Optional NFC smart chip integrated', '0.8mm substantial heavy feel']
+    id: 'gold-metal',
+    title: '24K Mirror Gold Metal Card',
+    category: 'Prestige Tier',
+    desc: 'Real 24K gold electroplated stainless steel with mirror polish and precision laser cutouts.',
+    videoUrl: '/videos/metal-card-showcase.mp4',
+    poster: 'https://framerusercontent.com/images/WRAp8VzH00hxe4XxQqAqA2UuJ0.jpg?width=1200'
   },
   {
     id: 'black-matte',
-    name: 'Black matte',
-    subtitle: 'Metal VIP card',
-    tag: 'Stealth Series',
-    desc: 'Deep anodized matte black metal with tactical anti-fingerprint coating. Understated luxury for modern leaders.',
-    image: 'https://framerusercontent.com/images/SBijkNBC3TclRbWyps5E1TZAD4.png?width=1200',
-    features: ['Scratch-resistant matte coat', 'Sleek silver or gold edge contrast', 'Custom barcode / QR laser etching', 'Available in 0.5mm & 0.8mm']
+    title: 'Black Matte Stealth VIP Card',
+    category: 'Stealth Series',
+    desc: 'Deep anodized matte black metal with tactical anti-fingerprint coating and silver laser accents.',
+    videoUrl: '/videos/metal-card-showcase.mp4',
+    poster: 'https://framerusercontent.com/images/SBijkNBC3TclRbWyps5E1TZAD4.png?width=1200'
   },
   {
     id: 'gun-metal',
-    name: 'Gun metal card',
-    subtitle: 'Executive business card',
-    tag: 'Industrial Craft',
-    desc: 'Brushed titanium gunmetal with dark smoky luster. Engineered for unmatched durability and executive distinction.',
-    image: 'https://framerusercontent.com/images/m23rWmTC1t117pl0p0yuKgkA2vE.png?width=1200',
-    features: ['Brushed directional grain finish', 'Acid-etched tactile typography', 'RFID & NFC dual-frequency ready', 'Corrosion-proof 316L steel']
+    title: 'Gunmetal Titanium Business Card',
+    category: 'Industrial Craft',
+    desc: 'Brushed titanium gunmetal with dark smoky luster and tactile acid-etched typography.',
+    videoUrl: '/videos/metal-card-showcase.mp4',
+    poster: 'https://framerusercontent.com/images/m23rWmTC1t117pl0p0yuKgkA2vE.png?width=1200'
   },
   {
-    id: 'classic-metal',
-    name: 'Metal VIP card',
-    subtitle: 'Membership pass',
-    tag: 'Elite Access',
-    desc: 'Bespoke club & membership card featuring dual-tone cutouts and digital authentication.',
-    image: 'https://framerusercontent.com/images/noNpD2fR8Da0MQ0ehkSf8BFajA.png?width=1200',
-    features: ['Numbered serialized cards', 'Holographic security strip option', 'Digital access control integration', 'Custom luxury presentation sleeve']
+    id: 'metal-vip',
+    title: 'Dual-Tone Metal VIP Access Pass',
+    category: 'Elite Access',
+    desc: 'High-frequency RFID & NFC dual-chip embedded smart identity for bespoke executive access.',
+    videoUrl: '/videos/metal-card-showcase.mp4',
+    poster: 'https://framerusercontent.com/images/noNpD2fR8Da0MQ0ehkSf8BFajA.png?width=1200'
+  },
+  {
+    id: 'precision-craft',
+    title: 'Sub-Millimeter CNC Cutout & Finish',
+    category: 'Master Craft',
+    desc: 'Architectural-grade 316L solid stainless steel engineered to leave an indelible impression.',
+    videoUrl: '/videos/metal-card-showcase.mp4',
+    poster: 'https://framerusercontent.com/images/1ilKe6L6KbWv5xrI6p4uunW2Es.png?width=1200'
+  },
+  {
+    id: 'luxury-unboxing',
+    title: 'Signature Executive Packaging',
+    category: 'Signature Touch',
+    desc: 'Bespoke presentation sleeve with magnetic closure and certificate of authenticity.',
+    videoUrl: '/videos/metal-card-showcase.mp4',
+    poster: 'https://framerusercontent.com/images/yyE2pUgUrjBeDKRRIF0gWhZRuhM.jpg?width=1200'
   }
 ];
 
 export default function MetalShowcase({ onOpenQuote }) {
-  const [selectedCard, setSelectedCard] = useState(METAL_CARDS[0]);
+  const swiperRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeVideoPlaying, setActiveVideoPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef(null);
+
+  const toggleVideo = (e) => {
+    e.stopPropagation();
+    if (activeVideoPlaying) {
+      if (videoRef.current) videoRef.current.pause();
+      setActiveVideoPlaying(false);
+    } else {
+      setActiveVideoPlaying(true);
+      setTimeout(() => {
+        if (videoRef.current) videoRef.current.play();
+      }, 50);
+    }
+  };
+
+  const toggleMute = (e) => {
+    e.stopPropagation();
+    if (!videoRef.current) return;
+    videoRef.current.muted = !isMuted;
+    setIsMuted(!isMuted);
+  };
 
   return (
     <section
       style={{
         paddingTop: '60px',
         paddingBottom: '80px',
-        position: 'relative'
+        position: 'relative',
+        overflow: 'hidden'
       }}
     >
       <div className="container">
@@ -59,254 +97,346 @@ export default function MetalShowcase({ onOpenQuote }) {
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '8px',
-              padding: '6px 16px',
+              padding: '7px 18px',
               borderRadius: '50px',
               backgroundColor: '#ffffff',
               border: '1px solid rgba(19, 21, 21, 0.08)',
-              fontSize: '13px',
+              fontSize: '13.5px',
               fontWeight: 600,
-              color: '#cfa34b',
+              color: '#131515',
               boxShadow: '0 4px 12px rgba(19, 21, 21, 0.03)',
-              marginBottom: '16px'
+              marginBottom: '18px'
             }}
           >
-            <Sparkles size={14} />
             <span>Turn every introduction into an opportunity</span>
           </div>
 
           <h2
             style={{
-              fontSize: 'clamp(32px, 4.5vw, 52px)',
+              fontSize: 'clamp(28px, 4.4vw, 52px)',
               fontWeight: 700,
-              maxWidth: '850px',
-              margin: '0 auto 16px',
-              lineHeight: 1.12,
-              color: '#131515'
-            }}
-          >
-            Stand out, stay memorable, and leave a lasting impression
-          </h2>
-
-          <p
-            style={{
-              fontSize: '16.5px',
-              color: '#595e5e',
-              maxWidth: '620px',
+              maxWidth: '960px',
               margin: '0 auto',
-              lineHeight: 1.6
+              lineHeight: 1.18,
+              color: '#131515',
+              letterSpacing: '-0.03em'
             }}
           >
-            Xtreme metal business cards are engineered from solid stainless steel to communicate confidence before you even say a word.
-          </p>
+            <span style={{ display: 'block' }}>Stand out, stay memorable,</span>
+            <span style={{ display: 'block' }}>and leave a lasting impression</span>
+            <span style={{ display: 'block' }}>with a metal business</span>
+            <span style={{ display: 'block' }}>card built for your brand.</span>
+          </h2>
         </div>
 
-        {/* Tabs */}
+        {/* 3-Video Stage: 1 big card in the middle, 2 of same size beside, spaced a bit */}
+        <div
+          style={{
+            position: 'relative',
+            width: '100%',
+            maxWidth: '1240px',
+            margin: '0 auto',
+            overflow: 'hidden',
+            padding: '10px 0'
+          }}
+        >
+          <style>{`
+            .metal-video-swiper {
+              width: 100%;
+              overflow: visible !important;
+              padding: 24px 0 !important;
+            }
+            .metal-video-swiper .swiper-wrapper {
+              align-items: center;
+              display: flex;
+            }
+            .metal-video-swiper .swiper-slide {
+              width: clamp(290px, 36vw, 440px) !important;
+              height: 400px;
+              border-radius: 24px;
+              overflow: hidden;
+              background-color: #0a0b0b;
+              border: 1px solid rgba(19, 21, 21, 0.1);
+              transition: height 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+                          transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+                          opacity 0.5s ease,
+                          box-shadow 0.5s ease !important;
+              opacity: 0.78;
+              transform: scale(0.92);
+              cursor: pointer;
+              flex-shrink: 0;
+            }
+            .metal-video-swiper .swiper-slide-active {
+              height: 500px !important;
+              opacity: 1 !important;
+              transform: scale(1) !important;
+              border: 1px solid rgba(255, 255, 255, 0.16) !important;
+              box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35) !important;
+              cursor: pointer;
+              z-index: 10;
+            }
+            @media (max-width: 640px) {
+              .metal-video-swiper .swiper-slide {
+                width: 84vw !important;
+                height: 380px;
+              }
+              .metal-video-swiper .swiper-slide-active {
+                height: 440px !important;
+              }
+            }
+          `}</style>
+
+          <Swiper
+            modules={[Navigation]}
+            slidesPerView={'auto'}
+            centeredSlides={true}
+            loop={true}
+            spaceBetween={36}
+            speed={550}
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            onSlideChange={(swiper) => {
+              setActiveIndex(swiper.realIndex);
+              setActiveVideoPlaying(false);
+            }}
+            className="metal-video-swiper"
+          >
+            {SHOWCASE_VIDEOS.map((video, idx) => {
+              const isCenter = activeIndex === idx;
+
+              return (
+                <SwiperSlide
+                  key={video.id}
+                  onClick={() => {
+                    if (!isCenter && swiperRef.current) {
+                      swiperRef.current.slideToLoop(idx);
+                    } else if (isCenter) {
+                      toggleVideo({ stopPropagation: () => {} });
+                    }
+                  }}
+                  style={{ position: 'relative' }}
+                >
+                  {/* Distinct Picture for every card: visibly changes on every slide */}
+                  <img
+                    src={video.poster}
+                    alt={video.title}
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      filter: isCenter ? 'none' : 'brightness(0.75)',
+                      transition: 'filter 0.4s ease',
+                      zIndex: 1
+                    }}
+                  />
+
+                  {/* Active Center Video: only plays if user toggles play */}
+                  {isCenter && activeVideoPlaying && (
+                    <video
+                      ref={videoRef}
+                      src={video.videoUrl}
+                      playsInline
+                      muted={isMuted}
+                      loop
+                      autoPlay
+                      onClick={toggleVideo}
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        cursor: 'pointer',
+                        zIndex: 2
+                      }}
+                    />
+                  )}
+
+                  {/* Center Card Subtle Radial Glow */}
+                  {isCenter && (
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '-40px',
+                        right: '-40px',
+                        width: '180px',
+                        height: '180px',
+                        background: 'radial-gradient(circle, rgba(207, 163, 75, 0.35) 0%, transparent 70%)',
+                        filter: 'blur(30px)',
+                        pointerEvents: 'none',
+                        zIndex: 3
+                      }}
+                    />
+                  )}
+
+                  {/* Video Audio Control Overlay (when center video is active) */}
+                  {isCenter && activeVideoPlaying && (
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '18px',
+                        right: '18px',
+                        display: 'flex',
+                        gap: '8px',
+                        zIndex: 4
+                      }}
+                    >
+                      <button
+                        onClick={toggleVideo}
+                        aria-label="Pause video"
+                        style={{
+                          width: '38px',
+                          height: '38px',
+                          borderRadius: '50%',
+                          backgroundColor: 'rgba(19, 21, 21, 0.85)',
+                          backdropFilter: 'blur(14px)',
+                          border: '1px solid rgba(255, 255, 255, 0.15)',
+                          color: '#ffffff',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        <Pause size={15} />
+                      </button>
+
+                      <button
+                        onClick={toggleMute}
+                        aria-label={isMuted ? 'Unmute video' : 'Mute video'}
+                        style={{
+                          width: '38px',
+                          height: '38px',
+                          borderRadius: '50%',
+                          backgroundColor: 'rgba(19, 21, 21, 0.85)',
+                          backdropFilter: 'blur(14px)',
+                          border: '1px solid rgba(255, 255, 255, 0.15)',
+                          color: '#ffffff',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        {isMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
+                      </button>
+                    </div>
+                  )}
+
+                  {/* Center Play Button Overlay (when center video is not playing) */}
+                  {isCenter && !activeVideoPlaying && (
+                    <div
+                      onClick={toggleVideo}
+                      style={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        width: '64px',
+                        height: '64px',
+                        borderRadius: '50%',
+                        backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                        backdropFilter: 'blur(12px)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: '#131515',
+                        boxShadow: '0 10px 28px rgba(0, 0, 0, 0.25)',
+                        zIndex: 3,
+                        cursor: 'pointer',
+                        transition: 'transform 0.25s ease'
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1.1)')}
+                      onMouseLeave={(e) => (e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1)')}
+                    >
+                      <Play size={24} fill="#131515" style={{ marginLeft: '3px' }} />
+                    </div>
+                  )}
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </div>
+
+        {/* Navigation Controls: Two circular container buttons to move to next or go back */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            flexWrap: 'wrap',
-            gap: '8px',
-            marginBottom: '36px'
+            gap: '14px',
+            marginTop: '28px'
           }}
         >
-          {METAL_CARDS.map((card) => {
-            const isSelected = selectedCard.id === card.id;
-            return (
-              <button
-                key={card.id}
-                onClick={() => setSelectedCard(card)}
-                style={{
-                  padding: '10px 22px',
-                  borderRadius: '50px',
-                  fontSize: '14px',
-                  fontWeight: 600,
-                  transition: 'all 0.25s ease',
-                  backgroundColor: isSelected ? '#131515' : '#ffffff',
-                  color: isSelected ? '#ffffff' : '#595e5e',
-                  border: isSelected ? '1px solid #131515' : '1px solid rgba(19, 21, 21, 0.08)',
-                  boxShadow: isSelected ? '0 6px 18px rgba(19, 21, 21, 0.15)' : '0 2px 6px rgba(19, 21, 21, 0.02)'
-                }}
-              >
-                {card.name}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* 2-Column Showcase Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '30px',
-            alignItems: 'center',
-            marginBottom: '60px'
-          }}
-        >
-          {/* Card Preview Graphic */}
-          <div
+          {/* Left Circular Arrow Button */}
+          <button
+            onClick={() => swiperRef.current?.slidePrev()}
+            aria-label="Previous video"
             style={{
-              backgroundColor: '#131515',
-              borderRadius: '24px',
-              padding: '24px',
-              boxShadow: '0 20px 50px -10px rgba(19, 21, 21, 0.3)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              position: 'relative',
-              overflow: 'hidden',
-              minHeight: '380px',
+              width: '50px',
+              height: '50px',
+              borderRadius: '50%',
+              backgroundColor: '#ffffff',
+              border: '1px solid rgba(19, 21, 21, 0.12)',
+              boxShadow: '0 6px 18px rgba(19, 21, 21, 0.08)',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              color: '#131515',
+              cursor: 'pointer',
+              transition: 'all 0.25s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#131515';
+              e.currentTarget.style.color = '#ffffff';
+              e.currentTarget.style.transform = 'scale(1.08)';
+              e.currentTarget.style.boxShadow = '0 10px 24px rgba(19, 21, 21, 0.2)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#ffffff';
+              e.currentTarget.style.color = '#131515';
+              e.currentTarget.style.transform = 'none';
+              e.currentTarget.style.boxShadow = '0 6px 18px rgba(19, 21, 21, 0.08)';
             }}
           >
-            {/* Subtle glow backdrop */}
-            <div
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: '80%',
-                height: '80%',
-                background: 'radial-gradient(circle, rgba(207, 163, 75, 0.2) 0%, transparent 70%)',
-                filter: 'blur(30px)',
-                pointerEvents: 'none'
-              }}
-            ></div>
+            <ChevronLeft size={22} strokeWidth={2.2} />
+          </button>
 
-            <img
-              src={selectedCard.image}
-              alt={selectedCard.name}
-              style={{
-                width: '100%',
-                maxHeight: '340px',
-                objectFit: 'contain',
-                borderRadius: '16px',
-                position: 'relative',
-                zIndex: 2,
-                transition: 'transform 0.4s ease',
-                filter: 'drop-shadow(0 18px 30px rgba(0, 0, 0, 0.6))'
-              }}
-            />
-
-            <div
-              style={{
-                position: 'absolute',
-                top: '20px',
-                left: '20px',
-                zIndex: 3,
-                backgroundColor: 'rgba(255, 255, 255, 0.12)',
-                backdropFilter: 'blur(10px)',
-                padding: '4px 12px',
-                borderRadius: '50px',
-                color: '#ffffff',
-                fontSize: '12px',
-                fontWeight: 600,
-                border: '1px solid rgba(255, 255, 255, 0.15)'
-              }}
-            >
-              {selectedCard.tag}
-            </div>
-          </div>
-
-          {/* Details Column */}
-          <div
+          {/* Right Circular Arrow Button */}
+          <button
+            onClick={() => swiperRef.current?.slideNext()}
+            aria-label="Next video"
             style={{
+              width: '50px',
+              height: '50px',
+              borderRadius: '50%',
               backgroundColor: '#ffffff',
-              borderRadius: '24px',
-              padding: '36px',
-              border: '1px solid rgba(19, 21, 21, 0.08)',
-              boxShadow: 'var(--shadow-card)'
+              border: '1px solid rgba(19, 21, 21, 0.12)',
+              boxShadow: '0 6px 18px rgba(19, 21, 21, 0.08)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: '#131515',
+              cursor: 'pointer',
+              transition: 'all 0.25s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#131515';
+              e.currentTarget.style.color = '#ffffff';
+              e.currentTarget.style.transform = 'scale(1.08)';
+              e.currentTarget.style.boxShadow = '0 10px 24px rgba(19, 21, 21, 0.2)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#ffffff';
+              e.currentTarget.style.color = '#131515';
+              e.currentTarget.style.transform = 'none';
+              e.currentTarget.style.boxShadow = '0 6px 18px rgba(19, 21, 21, 0.08)';
             }}
           >
-            <div
-              style={{
-                display: 'inline-block',
-                fontSize: '13px',
-                fontWeight: 600,
-                color: '#cfa34b',
-                marginBottom: '6px',
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em'
-              }}
-            >
-              {selectedCard.subtitle}
-            </div>
-
-            <h3
-              style={{
-                fontSize: '28px',
-                fontWeight: 700,
-                color: '#131515',
-                marginBottom: '14px'
-              }}
-            >
-              {selectedCard.name}
-            </h3>
-
-            <p
-              style={{
-                fontSize: '15.5px',
-                color: '#595e5e',
-                lineHeight: 1.6,
-                marginBottom: '24px'
-              }}
-            >
-              {selectedCard.desc}
-            </p>
-
-            {/* Feature Checklist */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '28px' }}>
-              {selectedCard.features.map((feature, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <div
-                    style={{
-                      width: '20px',
-                      height: '20px',
-                      borderRadius: '50%',
-                      backgroundColor: 'rgba(18, 167, 10, 0.12)',
-                      color: '#12a70a',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0
-                    }}
-                  >
-                    <Check size={12} strokeWidth={3} />
-                  </div>
-                  <span style={{ fontSize: '14px', color: '#131515', fontWeight: 500 }}>
-                    {feature}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-              <button
-                onClick={() => onOpenQuote(`Metal Card: ${selectedCard.name}`)}
-                className="btn-primary"
-                style={{ padding: '12px 24px', fontSize: '14.5px' }}
-              >
-                <span>Order this finish</span>
-                <ArrowRight size={15} />
-              </button>
-
-              <button
-                onClick={() => onOpenQuote(`Sample Kit Request: ${selectedCard.name}`)}
-                className="btn-secondary"
-                style={{ padding: '12px 20px', fontSize: '14.5px' }}
-              >
-                Request physical sample
-              </button>
-            </div>
-          </div>
+            <ChevronRight size={22} strokeWidth={2.2} />
+          </button>
         </div>
-
-        {/* Embedded Interactive GT AI Assistant Widget */}
-        <GtAiAssistant onOpenQuote={onOpenQuote} />
       </div>
     </section>
   );

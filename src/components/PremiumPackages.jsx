@@ -1,240 +1,362 @@
 import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import { Sparkles, ArrowRight, ArrowLeft } from 'lucide-react';
-
-const PACKAGES = [
-  {
-    id: 1,
-    title: 'Executive Gold Suite',
-    tag: 'Prestige 24K',
-    desc: 'Mirror gold plated stainless steel with custom cutouts, laser engraving, and serialized member numbering.',
-    image: 'https://framerusercontent.com/images/1ilKe6L6KbWv5xrI6p4uunW2Es.png?width=1200',
-    specs: '0.8mm Stainless Steel • 24K Gold • Deep Acid Etch'
-  },
-  {
-    id: 2,
-    title: 'Stealth Gunmetal NFC',
-    tag: 'Tactical Luxe',
-    desc: 'Smoky brushed gunmetal finish with embedded high-capacity NTAG216 contactless microchip.',
-    image: 'https://framerusercontent.com/images/yyE2pUgUrjBeDKRRIF0gWhZRuhM.jpg?width=1200',
-    specs: '0.8mm Brushed Metal • Contactless NFC • Anti-Glare'
-  },
-  {
-    id: 3,
-    title: 'Du-Plex Classic Lustre',
-    tag: 'Corporate Standard',
-    desc: 'Dual-ply premium composite plastic with spot UV, foil stamping, and magnetic stripe or NFC inlay.',
-    image: 'https://framerusercontent.com/images/kmAong4xy6gvqhgzcssHKUFJnmA.jpg?width=1200',
-    specs: '0.76mm PVC Composite • Metallic Foil • Gloss Edge'
-  },
-  {
-    id: 4,
-    title: 'Frosted VIP Member Pass',
-    tag: 'Club Series',
-    desc: 'Translucent frosted matte polymer with raised UV gloss accents and holographic security verification.',
-    image: 'https://framerusercontent.com/images/LuRk2mi9PkL9qpq8u7aAhmN27dM.png?width=1200',
-    specs: 'Translucent Matte • Spot Raised UV • Barcode Ready'
-  }
-];
+import { Sparkles, ArrowRight, ShieldCheck, Cpu, Layers, Smartphone, Award } from 'lucide-react';
 
 export default function PremiumPackages({ onOpenQuote }) {
   return (
     <section
+      id="packages"
       style={{
         paddingTop: '80px',
         paddingBottom: '80px',
         position: 'relative'
       }}
     >
-      <div className="container">
-        {/* Header Block */}
+      <div className="container" style={{ position: 'relative' }}>
+
+        {/* Two Containers Side by Side */}
         <div
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
             gap: '30px',
-            alignItems: 'flex-end',
-            marginBottom: '40px'
+            alignItems: 'stretch'
           }}
         >
-          <div>
-            <div
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                padding: '6px 16px',
-                borderRadius: '50px',
-                backgroundColor: '#ffffff',
-                border: '1px solid rgba(19, 21, 21, 0.08)',
-                fontSize: '13px',
-                fontWeight: 600,
-                color: '#cfa34b',
-                boxShadow: '0 4px 12px rgba(19, 21, 21, 0.03)',
-                marginBottom: '14px'
-              }}
-            >
-              <Sparkles size={14} />
-              <span>Tailored Craftsmanship</span>
-            </div>
-
-            <h2
-              style={{
-                fontSize: 'clamp(32px, 4.2vw, 48px)',
-                fontWeight: 700,
-                color: '#131515',
-                lineHeight: 1.15
-              }}
-            >
-              Premium Packages
-            </h2>
-          </div>
-
-          <div>
-            <p
-              style={{
-                fontSize: '15.5px',
-                color: '#595e5e',
-                lineHeight: 1.6,
-                marginBottom: '10px'
-              }}
-            >
-              We believe a card should be more than something you hand over or wear. It should be thoughtfully designed, beautifully finished, and made to stand apart. From premium materials and crisp printing to refined finishes and personalised details, our card products bring together design and craftsmanship to create something worth noticing.
-            </p>
-            <p
-              style={{
-                fontSize: '14px',
-                fontWeight: 600,
-                color: '#131515'
-              }}
-            >
-              *Beautifully designed. Smartly connected. Built to represent you.
-            </p>
-          </div>
-        </div>
-
-        {/* Swiper Slider */}
-        <div style={{ position: 'relative' }}>
-          <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
-            spaceBetween={24}
-            slidesPerView={1}
-            breakpoints={{
-              640: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 }
+          {/* Container 1 (Left Container): Your corporate card at a glance */}
+          <div
+            style={{
+              backgroundColor: '#ffffff',
+              borderRadius: '26px',
+              border: '1px solid rgba(19, 21, 21, 0.08)',
+              boxShadow: '0 16px 40px rgba(19, 21, 21, 0.05)',
+              padding: '38px 32px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              transition: 'all 0.3s ease'
             }}
-            pagination={{ clickable: true, dynamicBullets: true }}
-            autoplay={{ delay: 4500, disableOnInteraction: false }}
-            style={{ paddingBottom: '48px' }}
           >
-            {PACKAGES.map((pkg) => (
-              <SwiperSlide key={pkg.id}>
-                <div
-                  style={{
-                    backgroundColor: '#ffffff',
-                    borderRadius: '24px',
-                    overflow: 'hidden',
-                    border: '1px solid rgba(19, 21, 21, 0.08)',
-                    boxShadow: 'var(--shadow-card)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: '100%',
-                    transition: 'transform 0.3s ease, box-shadow 0.3s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-4px)';
-                    e.currentTarget.style.boxShadow = 'var(--shadow-card-hover)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'none';
-                    e.currentTarget.style.boxShadow = 'var(--shadow-card)';
-                  }}
-                >
+            <div>
+              <div
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  backgroundColor: 'rgba(2, 131, 167, 0.1)',
+                  color: '#0283a7',
+                  padding: '5px 14px',
+                  borderRadius: '50px',
+                  fontSize: '12px',
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.06em',
+                  marginBottom: '16px'
+                }}
+              >
+                <span>At A Glance</span>
+              </div>
+
+              <h3
+                style={{
+                  fontSize: 'clamp(22px, 2.4vw, 28px)',
+                  fontWeight: 700,
+                  color: '#131515',
+                  lineHeight: 1.25,
+                  marginBottom: '12px'
+                }}
+              >
+                Your corporate card at a glance
+              </h3>
+
+              <p
+                style={{
+                  fontSize: '14.5px',
+                  color: '#595e5e',
+                  lineHeight: 1.6,
+                  marginBottom: '26px'
+                }}
+              >
+                A smarter way to represent your organization, combining premium design, exquisite finishes, and production excellence.
+              </p>
+
+              {/* 3 Value Pillars */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
                   <div
                     style={{
-                      height: '240px',
-                      backgroundColor: '#131515',
-                      position: 'relative',
-                      overflow: 'hidden',
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '10px',
+                      backgroundColor: 'rgba(2, 131, 167, 0.1)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      padding: '20px'
+                      flexShrink: 0
                     }}
                   >
-                    <img
-                      src={pkg.image}
-                      alt={pkg.title}
-                      style={{
-                        maxHeight: '100%',
-                        maxWidth: '100%',
-                        objectFit: 'contain',
-                        filter: 'drop-shadow(0 14px 25px rgba(0,0,0,0.5))'
-                      }}
-                    />
-                    <span
-                      style={{
-                        position: 'absolute',
-                        top: '14px',
-                        left: '14px',
-                        backgroundColor: 'rgba(255, 255, 255, 0.12)',
-                        backdropFilter: 'blur(8px)',
-                        padding: '4px 12px',
-                        borderRadius: '50px',
-                        color: '#ffffff',
-                        fontSize: '11.5px',
-                        fontWeight: 600,
-                        border: '1px solid rgba(255, 255, 255, 0.15)'
-                      }}
-                    >
-                      {pkg.tag}
-                    </span>
+                    <Layers size={18} color="#0283a7" />
                   </div>
-
-                  <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', flexGrow: 1, justifyContent: 'space-between' }}>
-                    <div>
-                      <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#131515', marginBottom: '8px' }}>
-                        {pkg.title}
-                      </h3>
-                      <p style={{ fontSize: '14px', color: '#595e5e', lineHeight: 1.55, marginBottom: '16px' }}>
-                        {pkg.desc}
-                      </p>
-                    </div>
-
-                    <div>
-                      <div
-                        style={{
-                          fontSize: '12px',
-                          color: '#0283a7',
-                          fontWeight: 600,
-                          backgroundColor: 'rgba(2, 131, 167, 0.08)',
-                          padding: '6px 12px',
-                          borderRadius: '8px',
-                          marginBottom: '16px'
-                        }}
-                      >
-                        {pkg.specs}
-                      </div>
-
-                      <button
-                        onClick={() => onOpenQuote(`Package: ${pkg.title}`)}
-                        className="btn-primary"
-                        style={{
-                          width: '100%',
-                          padding: '11px',
-                          fontSize: '13.5px'
-                        }}
-                      >
-                        <span>Choose this style</span>
-                        <ArrowRight size={14} />
-                      </button>
-                    </div>
+                  <div>
+                    <h4 style={{ fontSize: '15px', fontWeight: 600, color: '#131515', margin: '0 0 3px 0' }}>
+                      Structural Permanence
+                    </h4>
+                    <p style={{ fontSize: '13px', color: '#64748b', margin: 0, lineHeight: 1.45 }}>
+                      Marine-grade 316L stainless steel, aircraft titanium, and multi-layer carbon fiber composite.
+                    </p>
                   </div>
                 </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
+                  <div
+                    style={{
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '10px',
+                      backgroundColor: 'rgba(207, 163, 75, 0.15)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}
+                  >
+                    <Award size={18} color="#cfa34b" />
+                  </div>
+                  <div>
+                    <h4 style={{ fontSize: '15px', fontWeight: 600, color: '#131515', margin: '0 0 3px 0' }}>
+                      Finish Precision
+                    </h4>
+                    <p style={{ fontSize: '13px', color: '#64748b', margin: 0, lineHeight: 1.45 }}>
+                      24K gold mirror plating, matte vapor deposition, tactile chemical etching, and satin frosting.
+                    </p>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
+                  <div
+                    style={{
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '10px',
+                      backgroundColor: 'rgba(16, 185, 129, 0.12)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}
+                  >
+                    <Cpu size={18} color="#059669" />
+                  </div>
+                  <div>
+                    <h4 style={{ fontSize: '15px', fontWeight: 600, color: '#131515', margin: '0 0 3px 0' }}>
+                      Chip & Cloud Reliability
+                    </h4>
+                    <p style={{ fontSize: '13px', color: '#64748b', margin: 0, lineHeight: 1.45 }}>
+                      Instant contactless NFC tap integration and enterprise-ready cloud synchronized credential profiles.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button
+              onClick={() => onOpenQuote?.('Your corporate card at a glance')}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                padding: '13px 22px',
+                borderRadius: '12px',
+                backgroundColor: '#131515',
+                border: 'none',
+                color: '#ffffff',
+                fontSize: '14px',
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                width: '100%',
+                boxShadow: '0 4px 14px rgba(19, 21, 21, 0.12)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#2c3033';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#131515';
+              }}
+            >
+              <span>Explore card specifications</span>
+              <ArrowRight size={15} />
+            </button>
+          </div>
+
+          {/* Container 2 (Right Container Beside It): Identity, done differently. */}
+          <div
+            style={{
+              backgroundColor: '#ffffff',
+              borderRadius: '26px',
+              border: '1px solid rgba(207, 163, 75, 0.35)',
+              boxShadow: '0 16px 40px rgba(19, 21, 21, 0.05)',
+              padding: '38px 32px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              transition: 'all 0.3s ease'
+            }}
+          >
+            <div>
+              <div
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  backgroundColor: 'rgba(207, 163, 75, 0.15)',
+                  color: '#b88a32',
+                  padding: '5px 14px',
+                  borderRadius: '50px',
+                  fontSize: '12px',
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.06em',
+                  marginBottom: '16px'
+                }}
+              >
+                <span>The New Standard</span>
+              </div>
+
+              <h3
+                style={{
+                  fontSize: 'clamp(22px, 2.4vw, 28px)',
+                  fontWeight: 700,
+                  color: '#131515',
+                  lineHeight: 1.25,
+                  marginBottom: '12px'
+                }}
+              >
+                Identity, done differently.
+              </h3>
+
+              <p
+                style={{
+                  fontSize: '14.5px',
+                  color: '#595e5e',
+                  lineHeight: 1.6,
+                  marginBottom: '26px'
+                }}
+              >
+                Custom design. Premium materials. Smart technology. Transform a generic plastic badge into an executive brand asset.
+              </p>
+
+              {/* 3 Key Differentials */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
+                  <div
+                    style={{
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '10px',
+                      backgroundColor: 'rgba(207, 163, 75, 0.15)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}
+                  >
+                    <ShieldCheck size={18} color="#cfa34b" />
+                  </div>
+                  <div>
+                    <h4 style={{ fontSize: '15px', fontWeight: 600, color: '#131515', margin: '0 0 3px 0' }}>
+                      Identity Upgrade
+                    </h4>
+                    <p style={{ fontSize: '13px', color: '#64748b', margin: 0, lineHeight: 1.45 }}>
+                      Replace throwaway badges with executive metal & hybrid smart passes that team members carry with pride.
+                    </p>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
+                  <div
+                    style={{
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '10px',
+                      backgroundColor: 'rgba(207, 163, 75, 0.15)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}
+                  >
+                    <Sparkles size={18} color="#cfa34b" />
+                  </div>
+                  <div>
+                    <h4 style={{ fontSize: '15px', fontWeight: 600, color: '#131515', margin: '0 0 3px 0' }}>
+                      A Better First Impression
+                    </h4>
+                    <p style={{ fontSize: '13px', color: '#64748b', margin: 0, lineHeight: 1.45 }}>
+                      When meeting partners, attending summits, or greeting clients, a substantial card signals prestige immediately.
+                    </p>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
+                  <div
+                    style={{
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '10px',
+                      backgroundColor: 'rgba(2, 131, 167, 0.1)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}
+                  >
+                    <Smartphone size={18} color="#0283a7" />
+                  </div>
+                  <div>
+                    <h4 style={{ fontSize: '15px', fontWeight: 600, color: '#131515', margin: '0 0 3px 0' }}>
+                      Smarter Connectivity
+                    </h4>
+                    <p style={{ fontSize: '13px', color: '#64748b', margin: 0, lineHeight: 1.45 }}>
+                      Tap your card to any smartphone to share rich media, digital profiles, or verify facility access clearances.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button
+              onClick={() => onOpenQuote?.('Identity, done differently')}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                padding: '13px 22px',
+                borderRadius: '12px',
+                backgroundColor: '#cfa34b',
+                border: 'none',
+                color: '#131515',
+                fontSize: '14px',
+                fontWeight: 700,
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                width: '100%',
+                boxShadow: '0 6px 18px rgba(207, 163, 75, 0.25)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#e5b85d';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#cfa34b';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
+            >
+              <span>Get started with Xtremecardz</span>
+              <ArrowRight size={15} />
+            </button>
+          </div>
         </div>
       </div>
     </section>

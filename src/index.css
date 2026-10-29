@@ -309,21 +309,18 @@ img, video {
 .marquee-content {
   flex-shrink: 0;
   display: flex;
-  justify-content: space-around;
+  align-items: center;
   gap: 20px;
   min-width: 100%;
+  will-change: transform;
 }
 
 .marquee-left {
-  animation: scrollLeft 55s linear infinite;
+  animation: scrollLeft 95s linear infinite;
 }
 
 .marquee-right {
-  animation: scrollRight 55s linear infinite;
-}
-
-.marquee-wrapper:hover .marquee-content {
-  animation-play-state: paused;
+  animation: scrollRight 95s linear infinite;
 }
 
 @keyframes scrollLeft {

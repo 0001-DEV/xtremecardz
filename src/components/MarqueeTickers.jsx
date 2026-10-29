@@ -80,6 +80,120 @@ const TICKER_ITEMS_2 = [
 ];
 
 export default function MarqueeTickers({ onSelectType }) {
+  const renderCards = (items, prefix) =>
+    items.map((item, idx) => {
+      const Icon = item.icon;
+      return (
+        <div
+          key={`${prefix}-${idx}`}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '12px',
+            flexShrink: 0
+          }}
+        >
+          {/* Card 1: Standalone image card */}
+          <div
+            onClick={() => onSelectType && onSelectType(item.label)}
+            style={{
+              height: 'clamp(140px, 15vw, 170px)',
+              width: 'clamp(165px, 18vw, 205px)',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              border: '1px solid rgba(19, 21, 21, 0.08)',
+              boxShadow: '0 6px 20px rgba(19, 21, 21, 0.06)',
+              backgroundColor: '#ffffff',
+              cursor: 'pointer',
+              flexShrink: 0,
+              transition: 'all 0.25s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-4px)';
+              e.currentTarget.style.boxShadow = '0 12px 28px rgba(19, 21, 21, 0.12)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'none';
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(19, 21, 21, 0.06)';
+            }}
+          >
+            <img
+              src={item.image}
+              alt={item.label}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block'
+              }}
+            />
+          </div>
+
+          {/* Card 2: Description card */}
+          <div
+            onClick={() => onSelectType && onSelectType(item.label)}
+            style={{
+              height: 'clamp(140px, 15vw, 170px)',
+              minWidth: '160px',
+              backgroundColor: '#ffffff',
+              borderRadius: '16px',
+              padding: '20px 26px',
+              border: '1px solid rgba(19, 21, 21, 0.08)',
+              boxShadow: '0 6px 20px rgba(19, 21, 21, 0.06)',
+              display: 'inline-flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textAlign: 'center',
+              cursor: 'pointer',
+              flexShrink: 0,
+              transition: 'all 0.25s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-4px)';
+              e.currentTarget.style.boxShadow = '0 12px 28px rgba(19, 21, 21, 0.12)';
+              e.currentTarget.style.borderColor = 'rgba(19, 21, 21, 0.2)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'none';
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(19, 21, 21, 0.06)';
+              e.currentTarget.style.borderColor = 'rgba(19, 21, 21, 0.08)';
+            }}
+          >
+            <span
+              style={{
+                width: '46px',
+                height: '46px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(19, 21, 21, 0.04)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: item.color,
+                marginBottom: '14px',
+                transform: 'translateY(-4px)'
+              }}
+            >
+              <Icon size={24} />
+            </span>
+            <span
+              style={{
+                fontSize: '16px',
+                fontWeight: 600,
+                color: '#131515',
+                fontFamily: 'var(--font-heading)',
+                whiteSpace: 'nowrap',
+                textAlign: 'center',
+                lineHeight: 1.25
+              }}
+            >
+              {item.label}
+            </span>
+          </div>
+        </div>
+      );
+    });
+
   return (
     <section
       style={{
@@ -93,238 +207,20 @@ export default function MarqueeTickers({ onSelectType }) {
         {/* Top Ticker: Left Scroll */}
         <div className="marquee-wrapper">
           <div className="marquee-content marquee-left">
-            {[...TICKER_ITEMS_1, ...TICKER_ITEMS_1, ...TICKER_ITEMS_1].map((item, idx) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={`t1-${idx}`}
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                    flexShrink: 0
-                  }}
-                >
-                  {/* Card 1: Standalone image card (reduced width, responsive) */}
-                  <div
-                    onClick={() => onSelectType && onSelectType(item.label)}
-                    style={{
-                      height: 'clamp(140px, 15vw, 170px)',
-                      width: 'clamp(165px, 18vw, 205px)',
-                      borderRadius: '16px',
-                      overflow: 'hidden',
-                      border: '1px solid rgba(19, 21, 21, 0.08)',
-                      boxShadow: '0 6px 20px rgba(19, 21, 21, 0.06)',
-                      backgroundColor: '#ffffff',
-                      cursor: 'pointer',
-                      flexShrink: 0,
-                      transition: 'all 0.25s ease'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-4px)';
-                      e.currentTarget.style.boxShadow = '0 12px 28px rgba(19, 21, 21, 0.12)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'none';
-                      e.currentTarget.style.boxShadow = '0 6px 20px rgba(19, 21, 21, 0.06)';
-                    }}
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.label}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        display: 'block'
-                      }}
-                    />
-                  </div>
-
-                  {/* Card 2: Description card (icon centered and shifted up, name under) */}
-                  <div
-                    onClick={() => onSelectType && onSelectType(item.label)}
-                    style={{
-                      height: 'clamp(140px, 15vw, 170px)',
-                      minWidth: '160px',
-                      backgroundColor: '#ffffff',
-                      borderRadius: '16px',
-                      padding: '20px 26px',
-                      border: '1px solid rgba(19, 21, 21, 0.08)',
-                      boxShadow: '0 6px 20px rgba(19, 21, 21, 0.06)',
-                      display: 'inline-flex',
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      textAlign: 'center',
-                      cursor: 'pointer',
-                      flexShrink: 0,
-                      transition: 'all 0.25s ease'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-4px)';
-                      e.currentTarget.style.boxShadow = '0 12px 28px rgba(19, 21, 21, 0.12)';
-                      e.currentTarget.style.borderColor = 'rgba(19, 21, 21, 0.2)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'none';
-                      e.currentTarget.style.boxShadow = '0 6px 20px rgba(19, 21, 21, 0.06)';
-                      e.currentTarget.style.borderColor = 'rgba(19, 21, 21, 0.08)';
-                    }}
-                  >
-                    {/* Icon centered and shifted up */}
-                    <span
-                      style={{
-                        width: '46px',
-                        height: '46px',
-                        borderRadius: '50%',
-                        backgroundColor: 'rgba(19, 21, 21, 0.04)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: item.color,
-                        marginBottom: '14px',
-                        transform: 'translateY(-4px)'
-                      }}
-                    >
-                      <Icon size={24} />
-                    </span>
-                    <span
-                      style={{
-                        fontSize: '16px',
-                        fontWeight: 600,
-                        color: '#131515',
-                        fontFamily: 'var(--font-heading)',
-                        whiteSpace: 'nowrap',
-                        textAlign: 'center',
-                        lineHeight: 1.25
-                      }}
-                    >
-                      {item.label}
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
+            {renderCards(TICKER_ITEMS_1, 't1-a')}
+          </div>
+          <div className="marquee-content marquee-left" aria-hidden="true">
+            {renderCards(TICKER_ITEMS_1, 't1-b')}
           </div>
         </div>
 
         {/* Bottom Ticker: Right Scroll */}
         <div className="marquee-wrapper">
           <div className="marquee-content marquee-right">
-            {[...TICKER_ITEMS_2, ...TICKER_ITEMS_2, ...TICKER_ITEMS_2].map((item, idx) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={`t2-${idx}`}
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                    flexShrink: 0
-                  }}
-                >
-                  {/* Card 1: Standalone image card (reduced width, responsive) */}
-                  <div
-                    onClick={() => onSelectType && onSelectType(item.label)}
-                    style={{
-                      height: 'clamp(140px, 15vw, 170px)',
-                      width: 'clamp(165px, 18vw, 205px)',
-                      borderRadius: '16px',
-                      overflow: 'hidden',
-                      border: '1px solid rgba(19, 21, 21, 0.08)',
-                      boxShadow: '0 6px 20px rgba(19, 21, 21, 0.06)',
-                      backgroundColor: '#ffffff',
-                      cursor: 'pointer',
-                      flexShrink: 0,
-                      transition: 'all 0.25s ease'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-4px)';
-                      e.currentTarget.style.boxShadow = '0 12px 28px rgba(19, 21, 21, 0.12)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'none';
-                      e.currentTarget.style.boxShadow = '0 6px 20px rgba(19, 21, 21, 0.06)';
-                    }}
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.label}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        display: 'block'
-                      }}
-                    />
-                  </div>
-
-                  {/* Card 2: Description card (icon centered and shifted up, name under) */}
-                  <div
-                    onClick={() => onSelectType && onSelectType(item.label)}
-                    style={{
-                      height: 'clamp(140px, 15vw, 170px)',
-                      minWidth: '160px',
-                      backgroundColor: '#ffffff',
-                      borderRadius: '16px',
-                      padding: '20px 26px',
-                      border: '1px solid rgba(19, 21, 21, 0.08)',
-                      boxShadow: '0 6px 20px rgba(19, 21, 21, 0.06)',
-                      display: 'inline-flex',
-                      flexDirection: 'column',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      textAlign: 'center',
-                      cursor: 'pointer',
-                      flexShrink: 0,
-                      transition: 'all 0.25s ease'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-4px)';
-                      e.currentTarget.style.boxShadow = '0 12px 28px rgba(19, 21, 21, 0.12)';
-                      e.currentTarget.style.borderColor = 'rgba(19, 21, 21, 0.2)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'none';
-                      e.currentTarget.style.boxShadow = '0 6px 20px rgba(19, 21, 21, 0.06)';
-                      e.currentTarget.style.borderColor = 'rgba(19, 21, 21, 0.08)';
-                    }}
-                  >
-                    {/* Icon centered and shifted up */}
-                    <span
-                      style={{
-                        width: '46px',
-                        height: '46px',
-                        borderRadius: '50%',
-                        backgroundColor: 'rgba(19, 21, 21, 0.04)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: item.color,
-                        marginBottom: '14px',
-                        transform: 'translateY(-4px)'
-                      }}
-                    >
-                      <Icon size={24} />
-                    </span>
-                    <span
-                      style={{
-                        fontSize: '16px',
-                        fontWeight: 600,
-                        color: '#131515',
-                        fontFamily: 'var(--font-heading)',
-                        whiteSpace: 'nowrap',
-                        textAlign: 'center',
-                        lineHeight: 1.25
-                      }}
-                    >
-                      {item.label}
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
+            {renderCards(TICKER_ITEMS_2, 't2-a')}
+          </div>
+          <div className="marquee-content marquee-right" aria-hidden="true">
+            {renderCards(TICKER_ITEMS_2, 't2-b')}
           </div>
         </div>
       </div>

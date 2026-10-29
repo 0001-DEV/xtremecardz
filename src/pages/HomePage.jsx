@@ -5,11 +5,8 @@ import MarqueeTickers from '../components/MarqueeTickers';
 import Organizations from '../components/Organizations';
 import MetalShowcase from '../components/MetalShowcase';
 import FeaturesBento from '../components/FeaturesBento';
-import DeliveryStreak from '../components/DeliveryStreak';
-import SmartIdFormula from '../components/SmartIdFormula';
+import IdentifyStructure from '../components/IdentifyStructure';
 import PremiumPackages from '../components/PremiumPackages';
-import WhatMakesItXtreme from '../components/WhatMakesItXtreme';
-import ConnectAndIdentify from '../components/ConnectAndIdentify';
 import ClientShowcase from '../components/ClientShowcase';
 import OurServices from '../components/OurServices';
 import MetalCardsDarkSection from '../components/MetalCardsDarkSection';
@@ -34,25 +31,16 @@ export default function HomePage({ onOpenQuote }) {
       {/* 5. Features Bento Grid */}
       <FeaturesBento onOpenQuote={onOpenQuote} />
 
-      {/* 6. Delivery Streak Timeline */}
-      <DeliveryStreak onOpenQuote={onOpenQuote} />
+      {/* 6. Identify With Structure & Material Showcase */}
+      <IdentifyStructure onOpenQuote={onOpenQuote} />
 
-      {/* 7. Smart ID Formula & Lifestyle Integration */}
-      <SmartIdFormula onOpenQuote={onOpenQuote} />
-
-      {/* 8. Premium Packages Slider (Swiper) */}
+      {/* 7. Premium Packages (Unified with Card At A Glance & Identity Done Differently) */}
       <PremiumPackages onOpenQuote={onOpenQuote} />
 
-      {/* 9. What Makes It Xtreme (Dark Section + Stats) */}
-      <WhatMakesItXtreme onOpenQuote={onOpenQuote} />
-
-      {/* 10. Connect & Identify (Upgrade Feature Grid) */}
-      <ConnectAndIdentify onOpenQuote={onOpenQuote} />
-
-      {/* 11. Clients Showcase & Testimonials */}
+      {/* 8. Global Clients & Animated Counter */}
       <ClientShowcase onOpenQuote={onOpenQuote} />
 
-      {/* 12. Our Services */}
+      {/* 9. Our Services */}
       <OurServices onOpenQuote={onOpenQuote} />
 
       {/* 13. AI Suggestions & Dark Metal Cards Section */}

@@ -1,196 +1,259 @@
-import React from 'react';
-import { Star, Sparkles, Quote } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
 
-const REVIEWS = [
+const LOGOS = [
   {
-    quote: "The 24K gold mirror finish with laser micro-cutouts received immediate compliments at our international shareholder summit. Unrivaled distinction.",
-    author: "Tariq Al-Mansoor",
-    role: "Chief Strategy Officer, Global Energy",
-    avatar: "https://framerusercontent.com/images/blsE8ntgNC0myl9MVfRRUmf9o.jpg?width=120"
+    id: 'tariq',
+    name: 'Tariq Al-Mansoor',
+    avatar: 'https://framerusercontent.com/images/blsE8ntgNC0myl9MVfRRUmf9o.jpg?width=120'
   },
   {
-    quote: "Switching our corporate executive credentials to Xtreme's smart NFC metal cards transformed how our leadership represents the organization.",
-    author: "Elena Rostova",
-    role: "VP Brand & Communications, Horizon Group",
-    avatar: "https://framerusercontent.com/images/H7g08OdB1d2NhCmSTZz4iFHV2F4.png?width=120"
+    id: 'elena',
+    name: 'Elena Rostova',
+    avatar: 'https://framerusercontent.com/images/H7g08OdB1d2NhCmSTZz4iFHV2F4.png?width=120'
   },
   {
-    quote: "The weight and brushed gunmetal luster command authority immediately. Our clients frequently comment on the craftsmanship of the card.",
-    author: "Marcus Sterling",
-    role: "Managing Partner, Sterling Capital",
-    avatar: "https://framerusercontent.com/images/ljF2u5K5KRhABVThBcOFz5BdXKg.jpeg?width=120"
+    id: 'marcus',
+    name: 'Marcus Sterling',
+    avatar: 'https://framerusercontent.com/images/ljF2u5K5KRhABVThBcOFz5BdXKg.jpeg?width=120'
   }
 ];
 
-export default function ClientShowcase({ onOpenQuote }) {
+export default function ClientShowcase() {
+  // slots[0] = back (Slot 0), slots[1] = middle (Slot 1), slots[2] = front (Slot 2)
+  const [slots, setSlots] = useState(LOGOS);
+  const [count, setCount] = useState(51);
+  const [isGliding, setIsGliding] = useState(false);
+  const [isPulsing, setIsPulsing] = useState(false);
+
+  // The incoming logo that enters from behind at Slot -1 is identical to the one currently at Slot 2
+  const incomingLogo = slots[2];
+
+  useEffect(() => {
+    let glideTimer, pulseTimer;
+
+    const interval = setInterval(() => {
+      // 1. Trigger unified simultaneous glide for all 4 items
+      setIsGliding(true);
+
+      // 2. Exactly when glide finishes (600ms):
+      glideTimer = setTimeout(() => {
+        // Shift slots: the one entering the number becomes the first from behind (index 0)
+        setSlots(prev => [prev[2], prev[0], prev[1]]);
+
+        // Instant reset of transform without animation jump
+        setIsGliding(false);
+
+        // Increment number and pulse black box
+        setCount(c => (c >= 54 ? 51 : c + 1));
+        setIsPulsing(true);
+
+        pulseTimer = setTimeout(() => {
+          setIsPulsing(false);
+        }, 250);
+      }, 600);
+
+    }, 1800); // 600ms glide + 1200ms rest = buttery smooth rhythm
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(glideTimer);
+      clearTimeout(pulseTimer);
+    };
+  }, []);
+
   return (
     <section
-      id="metrics"
+      id="client-metrics"
       style={{
-        paddingTop: '60px',
-        paddingBottom: '80px',
+        paddingTop: '20px',
+        paddingBottom: '30px',
         position: 'relative'
       }}
     >
-      <div className="container">
-        {/* Header Block */}
-        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              padding: '6px 16px',
-              borderRadius: '50px',
-              backgroundColor: '#ffffff',
-              border: '1px solid rgba(19, 21, 21, 0.08)',
-              fontSize: '13px',
-              fontWeight: 600,
-              color: '#cfa34b',
-              boxShadow: '0 4px 12px rgba(19, 21, 21, 0.03)',
-              marginBottom: '16px'
-            }}
-          >
-            <Sparkles size={14} />
-            <span>Our Xtreme clients doing it the Xtreme way</span>
-          </div>
+      <style>{`
+        @keyframes digitTick {
+          0% { transform: translateY(-4px) scale(0.92); opacity: 0.4; }
+          100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+      `}</style>
 
-          <h2
-            style={{
-              fontSize: 'clamp(32px, 4.2vw, 48px)',
-              fontWeight: 700,
-              maxWidth: '820px',
-              margin: '0 auto 16px',
-              lineHeight: 1.15,
-              color: '#131515'
-            }}
-          >
-            Luxury corporate card design, real business impact
-          </h2>
-
-          <p
-            style={{
-              fontSize: '16.5px',
-              color: '#595e5e',
-              maxWidth: '640px',
-              margin: '0 auto 24px',
-              lineHeight: 1.6
-            }}
-          >
-            How modern brands leave a lasting impression with identity solutions built for prestige.
-          </p>
-
-          {/* Social Proof Badge Cluster */}
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '14px',
-              padding: '8px 20px',
-              backgroundColor: '#ffffff',
-              borderRadius: '50px',
-              border: '1px solid rgba(19, 21, 21, 0.08)',
-              boxShadow: 'var(--shadow-sm)'
-            }}
-          >
-            {/* Avatars */}
-            <div style={{ display: 'flex', marginLeft: '6px' }}>
-              {REVIEWS.map((r, i) => (
-                <img
-                  key={i}
-                  src={r.avatar}
-                  alt={r.author}
-                  style={{
-                    width: '32px',
-                    height: '32px',
-                    borderRadius: '50%',
-                    objectFit: 'cover',
-                    marginLeft: i > 0 ? '-10px' : '0',
-                    border: '2px solid #ffffff'
-                  }}
-                />
-              ))}
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <span style={{ fontWeight: 800, fontSize: '15px', color: '#131515' }}>+51</span>
-              <span style={{ fontSize: '13px', color: '#686d6d', fontWeight: 500 }}>Countries with active clients</span>
-            </div>
-
-            <div style={{ display: 'flex', gap: '2px', color: '#ff9803' }}>
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} size={13} fill="#ff9803" />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Reviews Grid */}
+      <div
+        className="container"
+        style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          alignItems: 'center'
+        }}
+      >
+        {/* Clean Pill with Logos before the Number - Aligned to right */}
         <div
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '24px'
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '12px',
+            padding: '7px 10px 7px 14px',
+            backgroundColor: '#ffffff',
+            borderRadius: '50px',
+            border: '1px solid rgba(19, 21, 21, 0.08)',
+            boxShadow: '0 6px 20px rgba(19, 21, 21, 0.05)',
+            overflow: 'hidden'
           }}
         >
-          {REVIEWS.map((rev, i) => (
+          {/* Continuous Conveyor Queue */}
+          <div
+            style={{
+              position: 'relative',
+              width: '82px',
+              height: '36px',
+              display: 'flex',
+              alignItems: 'center'
+            }}
+          >
+            {/* 1. Incoming Logo: Glides from offstage Slot -1 (-22px) into Slot 0 (0px) */}
             <div
-              key={i}
               style={{
-                backgroundColor: '#ffffff',
-                borderRadius: '24px',
-                padding: '32px',
-                border: '1px solid rgba(19, 21, 21, 0.08)',
-                boxShadow: 'var(--shadow-card)',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                transition: 'all 0.3s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-3px)';
-                e.currentTarget.style.boxShadow = 'var(--shadow-card-hover)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'none';
-                e.currentTarget.style.boxShadow = 'var(--shadow-card)';
+                position: 'absolute',
+                left: '-22px',
+                zIndex: 1,
+                transform: isGliding ? 'translateX(22px) scale(1)' : 'translateX(0) scale(0.6)',
+                opacity: isGliding ? 1 : 0,
+                transition: isGliding
+                  ? 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease'
+                  : 'none',
+                pointerEvents: 'none'
               }}
             >
-              <div>
-                <div style={{ color: '#cfa34b', marginBottom: '16px' }}>
-                  <Quote size={28} />
-                </div>
-                <p
-                  style={{
-                    fontSize: '15.5px',
-                    color: '#131515',
-                    lineHeight: 1.65,
-                    marginBottom: '24px',
-                    fontWeight: 450
-                  }}
-                >
-                  "{rev.quote}"
-                </p>
-              </div>
-
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', borderTop: '1px solid rgba(19, 21, 21, 0.06)', paddingTop: '16px' }}>
-                <img
-                  src={rev.avatar}
-                  alt={rev.author}
-                  style={{
-                    width: '42px',
-                    height: '42px',
-                    borderRadius: '50%',
-                    objectFit: 'cover'
-                  }}
-                />
-                <div>
-                  <h4 style={{ fontSize: '15px', fontWeight: 700, color: '#131515' }}>{rev.author}</h4>
-                  <span style={{ fontSize: '12.5px', color: '#686d6d' }}>{rev.role}</span>
-                </div>
-              </div>
+              <img
+                src={incomingLogo.avatar}
+                alt={incomingLogo.name}
+                style={{
+                  width: '34px',
+                  height: '34px',
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                  border: '2px solid #ffffff',
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.12)'
+                }}
+              />
             </div>
-          ))}
+
+            {/* 2. Slot 0 (left: 0px): Glides to Slot 1 (+22px) */}
+            <div
+              style={{
+                position: 'absolute',
+                left: '0px',
+                zIndex: 2,
+                transform: isGliding ? 'translateX(22px)' : 'translateX(0)',
+                transition: isGliding
+                  ? 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)'
+                  : 'none',
+                pointerEvents: 'none'
+              }}
+            >
+              <img
+                src={slots[0].avatar}
+                alt={slots[0].name}
+                style={{
+                  width: '34px',
+                  height: '34px',
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                  border: '2px solid #ffffff',
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.12)'
+                }}
+              />
+            </div>
+
+            {/* 3. Slot 1 (left: 22px): Glides to Slot 2 (+22px) */}
+            <div
+              style={{
+                position: 'absolute',
+                left: '22px',
+                zIndex: 3,
+                transform: isGliding ? 'translateX(22px)' : 'translateX(0)',
+                transition: isGliding
+                  ? 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)'
+                  : 'none',
+                pointerEvents: 'none'
+              }}
+            >
+              <img
+                src={slots[1].avatar}
+                alt={slots[1].name}
+                style={{
+                  width: '34px',
+                  height: '34px',
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                  border: '2px solid #ffffff',
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.12)'
+                }}
+              />
+            </div>
+
+            {/* 4. Slot 2 (left: 44px): Glides into the Black BG Number Box (+34px, shrinks & fades) */}
+            <div
+              style={{
+                position: 'absolute',
+                left: '44px',
+                zIndex: 4,
+                transform: isGliding ? 'translateX(34px) scale(0.2)' : 'translateX(0) scale(1)',
+                opacity: isGliding ? 0 : 1,
+                transition: isGliding
+                  ? 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.55s ease'
+                  : 'none',
+                pointerEvents: 'none'
+              }}
+            >
+              <img
+                src={slots[2].avatar}
+                alt={slots[2].name}
+                style={{
+                  width: '34px',
+                  height: '34px',
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                  border: '2px solid #ffffff',
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.12)'
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Black BG Number Container */}
+          <div
+            style={{
+              backgroundColor: '#131515',
+              color: '#ffffff',
+              padding: '6px 14px',
+              borderRadius: '12px',
+              fontWeight: 800,
+              fontSize: '16px',
+              letterSpacing: '-0.02em',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minWidth: '52px',
+              boxShadow: isPulsing
+                ? '0 0 20px rgba(207, 163, 75, 0.8), 0 4px 10px rgba(0,0,0,0.3)'
+                : '0 2px 8px rgba(19, 21, 21, 0.2)',
+              transform: isPulsing ? 'scale(1.14)' : 'scale(1)',
+              transition: 'all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)',
+              border: isPulsing ? '1px solid #cfa34b' : '1px solid rgba(255,255,255,0.12)',
+              position: 'relative',
+              zIndex: 10
+            }}
+          >
+            <span
+              key={count}
+              style={{
+                display: 'inline-block',
+                animation: 'digitTick 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) forwards'
+              }}
+            >
+              +{count}
+            </span>
+          </div>
         </div>
       </div>
     </section>

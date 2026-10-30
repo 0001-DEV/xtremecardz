@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Minus, HelpCircle, Sparkles, MessageCircle } from 'lucide-react';
+import { Plus, Minus, HelpCircle, MessageCircle, ArrowRight } from 'lucide-react';
 
 const FAQS = [
   {
@@ -35,140 +35,260 @@ export default function FaqAccordion({ onOpenQuote }) {
     <section
       id="faq"
       style={{
-        paddingTop: '80px',
-        paddingBottom: '80px',
+        paddingTop: '90px',
+        paddingBottom: '90px',
         position: 'relative'
       }}
     >
-      <div className="container" style={{ maxWidth: '860px' }}>
-        {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '45px' }}>
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              padding: '6px 16px',
-              borderRadius: '50px',
-              backgroundColor: '#ffffff',
-              border: '1px solid rgba(19, 21, 21, 0.08)',
-              fontSize: '13px',
-              fontWeight: 600,
-              color: '#0283a7',
-              boxShadow: '0 4px 12px rgba(19, 21, 21, 0.03)',
-              marginBottom: '16px'
-            }}
-          >
-            <HelpCircle size={14} />
-            <span>Common questions</span>
-          </div>
+      <style>{`
+        .faq-split-layout {
+          display: grid;
+          grid-template-columns: 380px 1fr;
+          gap: 60px;
+          align-items: start;
+        }
 
-          <h2
-            style={{
-              fontSize: 'clamp(32px, 4.2vw, 48px)',
-              fontWeight: 700,
-              color: '#131515',
-              lineHeight: 1.15,
-              marginBottom: '14px'
-            }}
-          >
-            Frequently asked questions
-          </h2>
+        .faq-left-col {
+          position: sticky;
+          top: 100px;
+        }
 
-          <p style={{ fontSize: '15.5px', color: '#595e5e' }}>
-            Can't find your answer?{' '}
-            <button
-              onClick={() => onOpenQuote('FAQ Support Inquiry')}
+        @keyframes faqExpandFade {
+          from {
+            opacity: 0;
+            transform: translateY(-6px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @media (max-width: 980px) {
+          .faq-split-layout {
+            grid-template-columns: 1fr;
+            gap: 40px;
+          }
+          .faq-left-col {
+            position: static;
+          }
+        }
+      `}</style>
+
+      <div className="container">
+        <div className="faq-split-layout">
+          {/* ============================================================== */}
+          {/* LEFT SIDE: Badge, Title & Can't find your answer CTA          */}
+          {/* ============================================================== */}
+          <div className="faq-left-col">
+            {/* Common questions Badge */}
+            <div
               style={{
-                color: '#131515',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '6px 16px',
+                borderRadius: '50px',
+                backgroundColor: '#ffffff',
+                border: '1px solid rgba(19, 21, 21, 0.08)',
+                fontSize: '13px',
                 fontWeight: 600,
-                textDecoration: 'underline',
-                cursor: 'pointer'
+                color: '#131515',
+                boxShadow: '0 2px 8px rgba(19, 21, 21, 0.03)',
+                marginBottom: '20px'
               }}
             >
-              Contact our card team
-            </button>
-          </p>
-        </div>
+              <HelpCircle size={14} color="#0283a7" />
+              <span>Common questions</span>
+            </div>
 
-        {/* Accordion List */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-          {FAQS.map((faq, i) => {
-            const isOpen = openIndex === i;
-            return (
+            {/* Frequently asked questions Headline */}
+            <h2
+              style={{
+                fontSize: 'clamp(32px, 3.8vw, 46px)',
+                fontWeight: 800,
+                color: '#131515',
+                lineHeight: 1.15,
+                letterSpacing: '-0.025em',
+                margin: '0 0 20px 0'
+              }}
+            >
+              Frequently asked questions
+            </h2>
+
+            {/* Can't find your answer? Contact our card team */}
+            <div
+              style={{
+                backgroundColor: '#ffffff',
+                borderRadius: '24px',
+                padding: '28px',
+                border: '1px solid rgba(19, 21, 21, 0.08)',
+                boxShadow: '0 8px 24px rgba(19, 21, 21, 0.04)',
+                marginTop: '32px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                gap: '16px'
+              }}
+            >
               <div
-                key={i}
                 style={{
-                  backgroundColor: '#ffffff',
-                  borderRadius: '20px',
-                  border: isOpen ? '1px solid rgba(19, 21, 21, 0.2)' : '1px solid rgba(19, 21, 21, 0.08)',
-                  boxShadow: isOpen ? '0 10px 30px -4px rgba(19, 21, 21, 0.08)' : '0 2px 8px rgba(19, 21, 21, 0.02)',
-                  overflow: 'hidden',
-                  transition: 'all 0.25s ease'
+                  width: '44px',
+                  height: '44px',
+                  borderRadius: '50%',
+                  backgroundColor: '#f4f2f0',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#131515'
                 }}
               >
-                <button
-                  onClick={() => toggle(i)}
-                  style={{
-                    width: '100%',
-                    padding: '24px 28px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    textAlign: 'left',
-                    gap: '16px',
-                    cursor: 'pointer'
-                  }}
-                  aria-expanded={isOpen}
-                >
-                  <span
-                    style={{
-                      fontSize: '17px',
-                      fontWeight: 700,
-                      color: '#131515',
-                      fontFamily: 'var(--font-heading)',
-                      lineHeight: 1.35
-                    }}
-                  >
-                    {faq.q}
-                  </span>
+                <MessageCircle size={20} />
+              </div>
 
-                  <div
+              <div>
+                <h3
+                  style={{
+                    fontSize: '18px',
+                    fontWeight: 700,
+                    color: '#131515',
+                    margin: '0 0 6px 0',
+                    letterSpacing: '-0.01em'
+                  }}
+                >
+                  Can't find your answer?
+                </h3>
+                <p
+                  style={{
+                    fontSize: '14px',
+                    color: '#595e5e',
+                    lineHeight: 1.55,
+                    margin: 0
+                  }}
+                >
+                  Have a custom inquiry, special finish request, or bulk timeline? Reach out to our specialist card team directly.
+                </p>
+              </div>
+
+              <button
+                onClick={() => onOpenQuote ? onOpenQuote('FAQ Support Inquiry') : null}
+                style={{
+                  backgroundColor: '#131515',
+                  color: '#ffffff',
+                  borderRadius: '100px',
+                  padding: '12px 24px',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  border: 'none',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  boxShadow: '0 4px 14px rgba(19, 21, 21, 0.2)',
+                  transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(19, 21, 21, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 14px rgba(19, 21, 21, 0.2)';
+                }}
+              >
+                <span>Contact our card team</span>
+                <ArrowRight size={15} />
+              </button>
+            </div>
+          </div>
+
+          {/* ============================================================== */}
+          {/* RIGHT SIDE: The Accordion Questions                            */}
+          {/* ============================================================== */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            {FAQS.map((faq, i) => {
+              const isOpen = openIndex === i;
+              return (
+                <div
+                  key={i}
+                  style={{
+                    backgroundColor: '#ffffff',
+                    borderRadius: '20px',
+                    border: isOpen ? '1px solid rgba(19, 21, 21, 0.2)' : '1px solid rgba(19, 21, 21, 0.08)',
+                    boxShadow: isOpen
+                      ? '0 12px 32px -4px rgba(19, 21, 21, 0.08)'
+                      : '0 2px 10px rgba(19, 21, 21, 0.02)',
+                    overflow: 'hidden',
+                    transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)'
+                  }}
+                >
+                  <button
+                    onClick={() => toggle(i)}
                     style={{
-                      width: '32px',
-                      height: '32px',
-                      borderRadius: '50%',
-                      backgroundColor: isOpen ? '#131515' : '#f3f2ef',
-                      color: isOpen ? '#ffffff' : '#131515',
+                      width: '100%',
+                      padding: '24px 28px',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0,
-                      transition: 'all 0.25s ease'
+                      justifyContent: 'space-between',
+                      textAlign: 'left',
+                      gap: '20px',
+                      cursor: 'pointer',
+                      background: 'transparent',
+                      border: 'none'
                     }}
+                    aria-expanded={isOpen}
                   >
-                    {isOpen ? <Minus size={16} /> : <Plus size={16} />}
-                  </div>
-                </button>
+                    <span
+                      style={{
+                        fontSize: '17px',
+                        fontWeight: 700,
+                        color: '#131515',
+                        fontFamily: 'var(--font-heading)',
+                        lineHeight: 1.35,
+                        letterSpacing: '-0.01em'
+                      }}
+                    >
+                      {faq.q}
+                    </span>
 
-                {isOpen && (
-                  <div
-                    style={{
-                      padding: '0 28px 24px 28px',
-                      color: '#595e5e',
-                      fontSize: '15px',
-                      lineHeight: 1.65,
-                      animation: 'fadeIn 0.2s ease',
-                      borderTop: '1px solid rgba(19, 21, 21, 0.04)',
-                      paddingTop: '16px'
-                    }}
-                  >
-                    {faq.a}
-                  </div>
-                )}
-              </div>
-            );
-          })}
+                    <div
+                      style={{
+                        width: '34px',
+                        height: '34px',
+                        borderRadius: '50%',
+                        backgroundColor: isOpen ? '#131515' : '#f3f2ef',
+                        color: isOpen ? '#ffffff' : '#131515',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0,
+                        transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+                        transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)'
+                      }}
+                    >
+                      {isOpen ? <Minus size={16} /> : <Plus size={16} />}
+                    </div>
+                  </button>
+
+                  {isOpen && (
+                    <div
+                      style={{
+                        padding: '0 28px 24px 28px',
+                        color: '#595e5e',
+                        fontSize: '15px',
+                        lineHeight: 1.65,
+                        borderTop: '1px solid rgba(19, 21, 21, 0.05)',
+                        paddingTop: '18px',
+                        animation: 'faqExpandFade 0.25s ease'
+                      }}
+                    >
+                      {faq.a}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

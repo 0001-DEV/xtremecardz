@@ -1,11 +1,29 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Send } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 
-export default function Footer({ onOpenQuote }) {
-  const navigate = useNavigate();
-  const location = useLocation();
+const InstagramIcon = () => (
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+  </svg>
+);
 
+const LinkedinIcon = () => (
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+    <rect width="4" height="12" x="2" y="9"/>
+    <circle cx="4" cy="4" r="2"/>
+  </svg>
+);
+
+const FacebookIcon = () => (
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+  </svg>
+);
+
+export default function Footer() {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -15,54 +33,27 @@ export default function Footer({ onOpenQuote }) {
     setSubscribed(true);
     setTimeout(() => {
       setEmail('');
-    }, 3000);
-  };
-
-  const handleFooterNav = (e, href) => {
-    e.preventDefault();
-    if (href === '/products' || href === '#products') {
-      if (location.pathname !== '/products') {
-        navigate('/products');
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-      return;
-    }
-
-    if (href === '/' || href === '#hero') {
-      if (location.pathname !== '/') {
-        navigate('/');
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-      return;
-    }
-
-    if (href.startsWith('#')) {
-      if (location.pathname !== '/') {
-        navigate('/' + href);
-      } else {
-        const elem = document.querySelector(href);
-        if (elem) {
-          elem.scrollIntoView({ behavior: 'smooth' });
-        }
-      }
-    }
+    }, 4000);
   };
 
   const quickLinks = [
-    { label: 'Home', href: '/' },
-    { label: 'Products', href: '/products' },
-    { label: 'Elite pass', href: '#metal-showcase' },
-    { label: 'Blog', href: '#services' },
-    { label: 'Support', href: '#faq' }
+    { label: 'Home', href: 'https://xtremecrdss.framer.website/' },
+    { label: 'Products', href: 'https://xtremecrdss.framer.website/' },
+    { label: 'Elite pass', href: 'https://xtremecrdss.framer.website/#metrics' },
+    { label: 'Blog', href: 'https://xtremecrdss.framer.website/#counter' }
   ];
 
-  const companyLinks = [
-    { label: 'About us', href: '#features' },
-    { label: 'Contact', href: '#contact' },
-    { label: 'Privacy Policy', href: '#' },
-    { label: 'Terms & Conditions', href: '#' }
+  const supportLinks = [
+    { label: 'About us', href: 'https://xtremecrdss.framer.website/' },
+    { label: 'Contact', href: 'https://xtremecrdss.framer.website/' },
+    { label: 'Privacy Policy', href: 'https://xtremecrdss.framer.website/legal-pages/privacy-policy' },
+    { label: 'Terms & Conditions', href: 'https://xtremecrdss.framer.website/legal-pages/terms-conditions' }
+  ];
+
+  const socials = [
+    { name: 'Instagram', href: 'https://www.instagram.com/', icon: <InstagramIcon /> },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/', icon: <LinkedinIcon /> },
+    { name: 'Facebook', href: 'https://www.facebook.com', icon: <FacebookIcon /> }
   ];
 
   return (
@@ -70,114 +61,218 @@ export default function Footer({ onOpenQuote }) {
       style={{
         backgroundColor: '#ffffff',
         borderTop: '1px solid rgba(19, 21, 21, 0.08)',
-        paddingTop: '70px',
-        paddingBottom: '40px',
-        position: 'relative'
+        paddingTop: '80px',
+        paddingBottom: '48px',
+        position: 'relative',
+        color: '#131515'
       }}
     >
+      <style>{`
+        .footer-grid-layout {
+          display: grid;
+          grid-template-columns: minmax(320px, 1.8fr) minmax(140px, 1fr) minmax(160px, 1fr);
+          gap: 60px;
+          margin-bottom: 64px;
+        }
+
+        @media (max-width: 900px) {
+          .footer-grid-layout {
+            grid-template-columns: 1fr;
+            gap: 40px;
+          }
+        }
+      `}</style>
+
       <div className="container">
-        {/* Top Newsletter & Brand Row */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '40px',
-            marginBottom: '60px'
-          }}
-        >
-          {/* Brand Col */}
+        {/* Main Columns Grid */}
+        <div className="footer-grid-layout">
+          {/* ------------------------------------------------------------ */}
+          {/* Left Column: Brand, Stay on top of your identity & Form      */}
+          {/* ------------------------------------------------------------ */}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+            {/* Brand Logo & Name */}
+            <a
+              href="https://xtremecrdss.framer.website/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '12px',
+                textDecoration: 'none',
+                color: '#131515',
+                marginBottom: '20px'
+              }}
+            >
               <div
                 style={{
-                  width: '32px',
-                  height: '32px',
-                  borderRadius: '8px',
+                  width: '36px',
+                  height: '36px',
+                  borderRadius: '10px',
                   background: 'linear-gradient(135deg, #131515 0%, #2b3030 100%)',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center'
+                  justifyContent: 'center',
+                  boxShadow: '0 4px 12px rgba(19, 21, 21, 0.15)'
                 }}
               >
-                <span style={{ color: '#cfa34b', fontWeight: 800, fontSize: '15px' }}>X</span>
+                <span style={{ color: '#cfa34b', fontWeight: 800, fontSize: '17px' }}>X</span>
               </div>
-              <span style={{ fontSize: '18px', fontWeight: 700, color: '#131515' }}>Xtreme cards</span>
-            </div>
+              <span
+                style={{
+                  fontSize: '20px',
+                  fontWeight: 800,
+                  letterSpacing: '-0.02em',
+                  color: '#131515'
+                }}
+              >
+                Xtreme cards.
+              </span>
+            </a>
 
-            <p style={{ fontSize: '15px', color: '#131515', fontWeight: 600, marginBottom: '6px' }}>
+            {/* Stay on top of your identity */}
+            <h3
+              style={{
+                fontSize: '18px',
+                fontWeight: 700,
+                color: '#131515',
+                lineHeight: 1.3,
+                margin: '0 0 8px 0',
+                letterSpacing: '-0.01em'
+              }}
+            >
               Stay on top of your identity.
-            </p>
-            <p style={{ fontSize: '13.5px', color: '#595e5e', lineHeight: 1.5, maxWidth: '320px' }}>
-              No spam. Just simple advice and insights for staying consistent with your executive ID.
-            </p>
-          </div>
+            </h3>
 
-          {/* Newsletter Box */}
-          <div>
-            <span style={{ fontSize: '13px', fontWeight: 700, color: '#131515', textTransform: 'uppercase', letterSpacing: '0.04em', display: 'block', marginBottom: '12px' }}>
-              Newsletter
-            </span>
+            {/* No spam. Just simple advice for staying consistent with your ID. */}
+            <p
+              style={{
+                fontSize: '14.5px',
+                color: '#494d4d',
+                lineHeight: 1.55,
+                maxWidth: '380px',
+                margin: '0 0 24px 0'
+              }}
+            >
+              No spam. Just simple advice for staying consistent with your ID.
+            </p>
 
+            {/* Newsletter input & subscribe button */}
             {subscribed ? (
               <div
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  backgroundColor: 'rgba(18, 167, 10, 0.08)',
+                  color: '#12a70a',
+                  padding: '12px 20px',
+                  borderRadius: '100px',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  border: '1px solid rgba(18, 167, 10, 0.2)'
+                }}
+              >
+                <CheckCircle2 size={16} />
+                <span>Thank you! You are subscribed.</span>
+              </div>
+            ) : (
+              <form
+                onSubmit={handleSubscribe}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
                   gap: '8px',
-                  backgroundColor: 'rgba(18, 167, 10, 0.1)',
-                  color: '#12a70a',
-                  padding: '12px 18px',
-                  borderRadius: '12px',
-                  fontSize: '14px',
-                  fontWeight: 600
+                  maxWidth: '400px',
+                  width: '100%'
                 }}
               >
-                <CheckCircle2 size={18} />
-                <span>Thank you! You are subscribed.</span>
-              </div>
-            ) : (
-              <form onSubmit={handleSubscribe} style={{ display: 'flex', gap: '8px', maxWidth: '420px' }}>
                 <input
                   type="email"
                   required
-                  placeholder="Enter your work email"
+                  placeholder="Enter email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   style={{
                     flex: 1,
-                    padding: '12px 16px',
-                    borderRadius: '50px',
-                    border: '1px solid rgba(19, 21, 21, 0.12)',
+                    padding: '13px 20px',
+                    borderRadius: '100px',
+                    border: '1px solid rgba(19, 21, 21, 0.1)',
+                    backgroundColor: '#f2f2f2',
                     fontSize: '14px',
+                    color: '#131515',
                     outline: 'none',
-                    backgroundColor: '#fbfbfb'
+                    transition: 'border-color 0.2s ease, background-color 0.2s ease'
+                  }}
+                  onFocus={(e) => {
+                    e.target.style.borderColor = 'rgba(19, 21, 21, 0.3)';
+                    e.target.style.backgroundColor = '#ffffff';
+                  }}
+                  onBlur={(e) => {
+                    e.target.style.borderColor = 'rgba(19, 21, 21, 0.1)';
+                    e.target.style.backgroundColor = '#f2f2f2';
                   }}
                 />
                 <button
                   type="submit"
-                  className="btn-primary"
-                  style={{ padding: '12px 22px', fontSize: '13.5px' }}
+                  style={{
+                    backgroundColor: '#131515',
+                    color: '#ffffff',
+                    border: 'none',
+                    borderRadius: '100px',
+                    padding: '13px 26px',
+                    fontSize: '14px',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    boxShadow: '0 4px 14px rgba(19, 21, 21, 0.25)',
+                    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                    whiteSpace: 'nowrap'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(19, 21, 21, 0.35)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 4px 14px rgba(19, 21, 21, 0.25)';
+                  }}
                 >
-                  <span>Subscribe</span>
+                  Subscribe
                 </button>
               </form>
             )}
           </div>
 
-          {/* Quick Links Column */}
+          {/* ------------------------------------------------------------ */}
+          {/* Middle Column: Quick links                                   */}
+          {/* ------------------------------------------------------------ */}
           <div>
-            <span style={{ fontSize: '13px', fontWeight: 700, color: '#131515', textTransform: 'uppercase', letterSpacing: '0.04em', display: 'block', marginBottom: '12px' }}>
+            <h4
+              style={{
+                fontSize: '14px',
+                fontWeight: 700,
+                color: '#131515',
+                margin: '0 0 20px 0',
+                letterSpacing: '-0.01em'
+              }}
+            >
               Quick links
-            </span>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            </h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               {quickLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  onClick={(e) => handleFooterNav(e, link.href)}
-                  style={{ fontSize: '14px', color: '#595e5e', transition: 'color 0.2s ease', cursor: 'pointer' }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontSize: '14.5px',
+                    color: '#494d4d',
+                    textDecoration: 'none',
+                    transition: 'color 0.2s ease'
+                  }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = '#131515')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = '#595e5e')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = '#494d4d')}
                 >
                   {link.label}
                 </a>
@@ -185,20 +280,36 @@ export default function Footer({ onOpenQuote }) {
             </div>
           </div>
 
-          {/* Company Column */}
+          {/* ------------------------------------------------------------ */}
+          {/* Right Column: Support                                        */}
+          {/* ------------------------------------------------------------ */}
           <div>
-            <span style={{ fontSize: '13px', fontWeight: 700, color: '#131515', textTransform: 'uppercase', letterSpacing: '0.04em', display: 'block', marginBottom: '12px' }}>
-              Company
-            </span>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              {companyLinks.map((link) => (
+            <h4
+              style={{
+                fontSize: '14px',
+                fontWeight: 700,
+                color: '#131515',
+                margin: '0 0 20px 0',
+                letterSpacing: '-0.01em'
+              }}
+            >
+              Support
+            </h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              {supportLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  onClick={(e) => handleFooterNav(e, link.href)}
-                  style={{ fontSize: '14px', color: '#595e5e', transition: 'color 0.2s ease', cursor: 'pointer' }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontSize: '14.5px',
+                    color: '#494d4d',
+                    textDecoration: 'none',
+                    transition: 'color 0.2s ease'
+                  }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = '#131515')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = '#595e5e')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = '#494d4d')}
                 >
                   {link.label}
                 </a>
@@ -207,34 +318,63 @@ export default function Footer({ onOpenQuote }) {
           </div>
         </div>
 
-        {/* Bottom Copyright & Legal Row */}
+        {/* ------------------------------------------------------------ */}
+        {/* Bottom Bar: Copyright & Socials                             */}
+        {/* ------------------------------------------------------------ */}
         <div
           style={{
-            borderTop: '1px solid rgba(19, 21, 21, 0.06)',
-            paddingTop: '24px',
+            borderTop: '1px solid rgba(19, 21, 21, 0.08)',
+            paddingTop: '28px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
-            gap: '14px',
-            fontSize: '13px',
-            color: '#8e9494'
+            gap: '20px'
           }}
         >
-          <div>
-            © 2026 Xtreme cards. All rights reserved.
+          <div
+            style={{
+              fontSize: '14px',
+              color: '#494d4d'
+            }}
+          >
+            ©2026 Xtreme cards. All rights reserved
           </div>
 
-          <div style={{ display: 'flex', gap: '18px' }}>
-            <a href="#" style={{ color: '#8e9494', transition: 'color 0.2s' }}>
-              Twitter / X
-            </a>
-            <a href="#" style={{ color: '#8e9494', transition: 'color 0.2s' }}>
-              LinkedIn
-            </a>
-            <a href="#" style={{ color: '#8e9494', transition: 'color 0.2s' }}>
-              Instagram
-            </a>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            {socials.map((s, idx) => (
+              <a
+                key={idx}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={s.name}
+                style={{
+                  width: '38px',
+                  height: '38px',
+                  borderRadius: '50%',
+                  backgroundColor: '#e8e8e8',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#131515',
+                  transition: 'background-color 0.2s ease, transform 0.2s ease, color 0.2s ease',
+                  textDecoration: 'none'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#131515';
+                  e.currentTarget.style.color = '#ffffff';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = '#e8e8e8';
+                  e.currentTarget.style.color = '#131515';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                {s.icon}
+              </a>
+            ))}
           </div>
         </div>
       </div>

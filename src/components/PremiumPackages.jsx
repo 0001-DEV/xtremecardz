@@ -6,7 +6,7 @@ export default function PremiumPackages({ onOpenQuote }) {
     <section
       id="packages"
       style={{
-        paddingTop: '80px',
+        paddingTop: '30px',
         paddingBottom: '80px',
         position: 'relative'
       }}

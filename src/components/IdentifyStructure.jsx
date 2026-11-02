@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Layers,
   Sparkles,
   Flame,
   Palette,
@@ -90,7 +89,6 @@ export default function IdentifyStructure({ onOpenQuote }) {
                 e.currentTarget.style.borderColor = 'rgba(19, 21, 21, 0.1)';
               }}
             >
-              <Layers size={15} color="#cfa34b" />
               <span>Identify with structure</span>
             </button>
 

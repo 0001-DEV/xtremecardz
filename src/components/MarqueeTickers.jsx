@@ -218,29 +218,31 @@ export default function MarqueeTickers({ onSelectType }) {
         position: 'relative'
       }}
     >
-      {/* 120px Left white gradient overlay */}
+      {/* 400px Left white gradient overlay */}
       <div
         style={{
           position: 'absolute',
           top: 0,
           bottom: 0,
           left: 0,
-          width: '120px',
-          background: 'linear-gradient(to right, #ffffff 25%, rgba(255, 255, 255, 0) 100%)',
+          width: '400px',
+          maxWidth: '38vw',
+          background: 'linear-gradient(to right, #ffffff 35%, rgba(255, 255, 255, 0.7) 65%, rgba(255, 255, 255, 0) 100%)',
           zIndex: 10,
           pointerEvents: 'none'
         }}
       />
 
-      {/* 120px Right white gradient overlay */}
+      {/* 400px Right white gradient overlay */}
       <div
         style={{
           position: 'absolute',
           top: 0,
           bottom: 0,
           right: 0,
-          width: '120px',
-          background: 'linear-gradient(to left, #ffffff 25%, rgba(255, 255, 255, 0) 100%)',
+          width: '400px',
+          maxWidth: '38vw',
+          background: 'linear-gradient(to left, #ffffff 35%, rgba(255, 255, 255, 0.7) 65%, rgba(255, 255, 255, 0) 100%)',
           zIndex: 10,
           pointerEvents: 'none'
         }}

@@ -159,8 +159,7 @@ export default function ElevateCta({ onOpenQuote }) {
             pointerEvents: 'none',
             zIndex: 4,
             animation: 'cloudFloatLeft 9s ease-in-out infinite',
-            opacity: 0.92,
-            filter: 'drop-shadow(0 15px 35px rgba(0,0,0,0.06))'
+            opacity: 0.95
           }}
         >
           <img
@@ -180,8 +179,7 @@ export default function ElevateCta({ onOpenQuote }) {
             pointerEvents: 'none',
             zIndex: 4,
             animation: 'cloudFloatRight 11s ease-in-out infinite',
-            opacity: 0.94,
-            filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.08))'
+            opacity: 0.95
           }}
         >
           <img
@@ -202,8 +200,7 @@ export default function ElevateCta({ onOpenQuote }) {
             pointerEvents: 'none',
             zIndex: 15, // Sits in front of the emerging base of the card
             animation: 'cloudFloatCenter 10s ease-in-out infinite',
-            opacity: 0.98,
-            filter: 'drop-shadow(0 20px 45px rgba(0,0,0,0.09)) drop-shadow(0 6px 16px rgba(0,0,0,0.05))'
+            opacity: 1
           }}
         >
           <img
@@ -212,20 +209,6 @@ export default function ElevateCta({ onOpenQuote }) {
             style={{ width: '100%', height: 'auto', display: 'block' }}
           />
         </div>
-
-        {/* Soft bottom edge blend */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: '110px',
-            background: 'linear-gradient(to top, rgba(251, 251, 251, 0.95) 15%, transparent 100%)',
-            pointerEvents: 'none',
-            zIndex: 18
-          }}
-        />
 
         {/* ============================================================== */}
         {/* 3 SEQUENTIAL CONTENTS EMERGING FROM THE CLOUD                 */}

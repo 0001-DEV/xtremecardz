@@ -687,19 +687,6 @@ export default function ClientShowcase() {
               display: 'block'
             }}
           />
-
-          {/* Smooth bottom blend into pure #ffffff page background */}
-          <div
-            style={{
-              position: 'absolute',
-              bottom: 0,
-              left: 0,
-              right: 0,
-              height: '40px',
-              background: 'linear-gradient(to bottom, transparent, #ffffff)',
-              pointerEvents: 'none'
-            }}
-          />
         </div>
       </div>
 

@@ -168,21 +168,7 @@ export default function Organizations({ onOpenQuote }) {
             height: 'clamp(240px, 30vw, 420px)',
             objectFit: 'cover',
             objectPosition: 'center bottom',
-            display: 'block',
-            filter: 'drop-shadow(0 20px 40px rgba(0, 0, 0, 0.09)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.05))'
-          }}
-        />
-
-        {/* Seamless bottom transition to white page background */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: '45px',
-            background: 'linear-gradient(to bottom, transparent, #ffffff)',
-            pointerEvents: 'none'
+            display: 'block'
           }}
         />
       </div>

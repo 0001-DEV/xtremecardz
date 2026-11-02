@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Star, Sparkles } from 'lucide-react';
 import globeImg from '../assets/globe.png';
+import cloudImg from '../assets/cloud.png';
 
 // Brand client pairs with real high-resolution brand logos from Framer
 const LOGO_PAIRS = [
@@ -116,13 +117,13 @@ export default function ClientShowcase() {
           }
         }
 
-        /* 3D Rotating & Evolving Map Globe */
+        /* 3D Rotating & Evolving Map Globe - Perfectly Centered */
         @keyframes globeMapFloat {
           0%, 100% {
-            transform: translateY(0px);
+            transform: translateX(-50%) translateY(0px);
           }
           50% {
-            transform: translateY(-12px);
+            transform: translateX(-50%) translateY(-10px);
           }
         }
 
@@ -672,7 +673,7 @@ export default function ClientShowcase() {
           />
         </div>
 
-        {/* Full-width Cloud Layer covering exactly half of the rotating globe */}
+        {/* Full-width Cloud Layer using the cloud image covering half of the rotating globe */}
         <div
           style={{
             position: 'absolute',
@@ -680,76 +681,43 @@ export default function ClientShowcase() {
             left: '0px',
             right: '0px',
             width: '100%',
-            height: 'clamp(300px, 36vw, 420px)',
+            height: 'clamp(280px, 34vw, 400px)',
             zIndex: 5,
             animation: 'cloudGentleFloat 5s ease-in-out infinite',
-            pointerEvents: 'none'
+            pointerEvents: 'none',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-end',
+            alignItems: 'center'
           }}
         >
-          <svg
-            width="100%"
-            height="100%"
-            viewBox="0 0 1440 340"
-            preserveAspectRatio="none"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            style={{ display: 'block', width: '100%', height: '100%' }}
-          >
-            <defs>
-              <linearGradient id="fullCloudBackGrad" x1="720" y1="20" x2="720" y2="340" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
-                <stop offset="35%" stopColor="#f1f5f9" stopOpacity="0.95" />
-                <stop offset="100%" stopColor="#ffffff" stopOpacity="1" />
-              </linearGradient>
+          {/* Panoramic Cloud Image stretching full width across the screen */}
+          <img
+            src={cloudImg}
+            alt="Atmospheric Cloud Horizon"
+            style={{
+              width: '100%',
+              maxWidth: 'none',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center top',
+              display: 'block',
+              filter: 'drop-shadow(0 -10px 25px rgba(2, 132, 199, 0.16))'
+            }}
+          />
 
-              <linearGradient id="fullCloudForeGrad" x1="720" y1="50" x2="720" y2="340" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stopColor="#ffffff" />
-                <stop offset="50%" stopColor="#f8fafc" />
-                <stop offset="100%" stopColor="#ffffff" />
-              </linearGradient>
-
-              {/* Azure Reflection from the Earth Globe bouncing onto the cloud center */}
-              <radialGradient id="fullCloudGlobeReflection" cx="50%" cy="15%" r="35%">
-                <stop offset="0%" stopColor="#bae6fd" stopOpacity="0.8" />
-                <stop offset="50%" stopColor="#e0f2fe" stopOpacity="0.3" />
-                <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
-              </radialGradient>
-            </defs>
-
-            {/* Layer 1: Back Cloud Crests spanning edge-to-edge across full screen */}
-            <path
-              d="M -60 170 C 60 120, 160 125, 260 150 C 350 110, 470 95, 570 125 C 650 70, 790 70, 870 125 C 970 95, 1090 110, 1180 150 C 1280 125, 1380 120, 1500 170 L 1500 340 L -60 340 Z"
-              fill="url(#fullCloudBackGrad)"
-              opacity="0.95"
-            />
-
-            {/* Layer 2: Main Fore Billowing Clouds across entire screen */}
-            <path
-              d="M -60 200 C 50 150, 150 145, 230 170 C 310 130, 410 115, 510 145 C 590 85, 720 50, 720 50 C 720 50, 850 85, 930 145 C 1030 115, 1130 130, 1210 170 C 1290 145, 1390 150, 1500 200 L 1500 340 L -60 340 Z"
-              fill="url(#fullCloudForeGrad)"
-            />
-
-            {/* Center cloud puffs rising to cover exactly half of the rotating globe */}
-            <circle cx="720" cy="130" r="115" fill="url(#fullCloudForeGrad)" />
-            <circle cx="625" cy="148" r="100" fill="url(#fullCloudForeGrad)" />
-            <circle cx="815" cy="148" r="100" fill="url(#fullCloudForeGrad)" />
-            <circle cx="530" cy="168" r="90" fill="url(#fullCloudForeGrad)" />
-            <circle cx="910" cy="168" r="90" fill="url(#fullCloudForeGrad)" />
-            <circle cx="440" cy="188" r="85" fill="url(#fullCloudForeGrad)" />
-            <circle cx="1000" cy="188" r="85" fill="url(#fullCloudForeGrad)" />
-
-            {/* Ambient Planetary Azure Light Bouncing onto the Center Cloud Crest */}
-            <ellipse cx="720" cy="125" rx="170" ry="60" fill="url(#fullCloudGlobeReflection)" />
-
-            {/* Soft Cloud Crest Highlights */}
-            <path
-              d="M 625 100 C 665 78, 775 78, 815 100"
-              stroke="#ffffff"
-              strokeWidth="4"
-              strokeLinecap="round"
-              opacity="0.9"
-            />
-          </svg>
+          {/* Smooth bottom blend into pure #ffffff page background */}
+          <div
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: '40px',
+              background: 'linear-gradient(to bottom, transparent, #ffffff)',
+              pointerEvents: 'none'
+            }}
+          />
         </div>
       </div>
 

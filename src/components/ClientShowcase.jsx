@@ -413,7 +413,7 @@ export default function ClientShowcase() {
             bottom: 0,
             left: 0,
             width: '120px',
-            background: 'linear-gradient(to right, var(--color-bg, #fbfbfb) 10%, transparent 100%)',
+            background: 'linear-gradient(to right, #ffffff 15%, transparent 100%)',
             zIndex: 3,
             pointerEvents: 'none'
           }}
@@ -425,7 +425,7 @@ export default function ClientShowcase() {
             bottom: 0,
             right: 0,
             width: '120px',
-            background: 'linear-gradient(to left, var(--color-bg, #fbfbfb) 10%, transparent 100%)',
+            background: 'linear-gradient(to left, #ffffff 15%, transparent 100%)',
             zIndex: 3,
             pointerEvents: 'none'
           }}
@@ -437,7 +437,7 @@ export default function ClientShowcase() {
             display: 'flex',
             width: 'max-content',
             animation: 'clientMarqueeStraight 32s linear infinite',
-            gap: '28px'
+            gap: '36px'
           }}
         >
           {/* Twin duplicated sets for zero-break seamless loop */}
@@ -449,14 +449,13 @@ export default function ClientShowcase() {
                 key={idx}
                 style={{
                   position: 'relative',
-                  width: '190px',
-                  height: '76px',
-                  backgroundColor: '#ffffff',
-                  borderRadius: '16px',
-                  border: '1px solid rgba(19, 21, 21, 0.08)',
-                  boxShadow: '0 4px 18px rgba(19, 21, 21, 0.04)',
+                  width: '180px',
+                  height: '60px',
                   overflow: 'hidden',
-                  flexShrink: 0
+                  flexShrink: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
                 }}
               >
                 {/* 3-Slot Vertical Roller: Slot 0 (Logo A) -> Slot 1 (Logo B) -> Slot 2 (Logo A) */}
@@ -473,12 +472,12 @@ export default function ClientShowcase() {
                   {/* Slot 0: Old Logo (from) */}
                   <div
                     style={{
-                      height: '76px',
+                      height: '60px',
                       width: '100%',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      padding: '0 20px',
+                      padding: '0 10px',
                       flexShrink: 0
                     }}
                   >
@@ -486,7 +485,7 @@ export default function ClientShowcase() {
                       src={pair.from.img}
                       alt={pair.from.name}
                       style={{
-                        maxWidth: '136px',
+                        maxWidth: '140px',
                         maxHeight: '38px',
                         width: 'auto',
                         height: 'auto',
@@ -498,12 +497,12 @@ export default function ClientShowcase() {
                   {/* Slot 1: New Logo (to) - Slides IN from below while old logo slides UP */}
                   <div
                     style={{
-                      height: '76px',
+                      height: '60px',
                       width: '100%',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      padding: '0 20px',
+                      padding: '0 10px',
                       flexShrink: 0
                     }}
                   >
@@ -511,7 +510,7 @@ export default function ClientShowcase() {
                       src={pair.to.img}
                       alt={pair.to.name}
                       style={{
-                        maxWidth: '136px',
+                        maxWidth: '140px',
                         maxHeight: '38px',
                         width: 'auto',
                         height: 'auto',
@@ -523,12 +522,12 @@ export default function ClientShowcase() {
                   {/* Slot 2: Duplicate Old Logo (from) - Slides IN from below to close the loop smoothly */}
                   <div
                     style={{
-                      height: '76px',
+                      height: '60px',
                       width: '100%',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      padding: '0 20px',
+                      padding: '0 10px',
                       flexShrink: 0
                     }}
                   >
@@ -536,7 +535,7 @@ export default function ClientShowcase() {
                       src={pair.from.img}
                       alt={pair.from.name}
                       style={{
-                        maxWidth: '136px',
+                        maxWidth: '140px',
                         maxHeight: '38px',
                         width: 'auto',
                         height: 'auto',
@@ -608,137 +607,156 @@ export default function ClientShowcase() {
             300,000+
           </div>
         </div>
+      </div>
 
-        {/* ============================================================== */}
-        {/* 4. MAP GLOBE EVOLVING / ROTATING WITH HALF SITTED IN A CLOUD    */}
-        {/* ============================================================== */}
+      {/* ============================================================== */}
+      {/* 4. VERY BIG ROTATING GLOBE WITH FULL-WIDTH CLOUD COVERING HALF */}
+      {/* ============================================================== */}
+      <div
+        style={{
+          position: 'relative',
+          width: '100%',
+          height: 'clamp(520px, 60vw, 680px)',
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+          margin: '20px 0 0',
+          pointerEvents: 'none'
+        }}
+      >
+        {/* Ambient Azure & Gold Planetary Atmosphere Glow behind the Map Globe */}
         <div
           style={{
-            position: 'relative',
-            width: '100%',
-            maxWidth: '560px',
-            height: 'clamp(360px, 48vw, 460px)',
-            margin: '0 auto 40px',
+            position: 'absolute',
+            top: '20px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: 'clamp(480px, 56vw, 660px)',
+            height: 'clamp(480px, 56vw, 660px)',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(2, 132, 199, 0.45) 0%, rgba(207, 163, 75, 0.16) 50%, transparent 72%)',
+            filter: 'blur(55px)',
+            pointerEvents: 'none',
+            zIndex: 1
+          }}
+        />
+
+        {/* 3D Rotating & Floating Map Globe Image - Increased to very big size */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '15px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 2,
+            animation: 'globeMapFloat 6s ease-in-out infinite, globeAtmosphereAura 4s ease-in-out infinite',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           }}
         >
-          {/* Ambient Azure & Gold Planetary Atmosphere Glow behind the Map Globe */}
-          <div
+          <img
+            src={globeImg}
+            alt="Global Client Network"
             style={{
-              position: 'absolute',
-              top: '20px',
-              width: 'clamp(300px, 42vw, 420px)',
-              height: 'clamp(300px, 42vw, 420px)',
-              borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(2, 132, 199, 0.45) 0%, rgba(207, 163, 75, 0.18) 55%, transparent 75%)',
-              filter: 'blur(45px)',
-              pointerEvents: 'none'
+              width: 'clamp(480px, 56vw, 660px)',
+              height: 'clamp(480px, 56vw, 660px)',
+              objectFit: 'contain',
+              filter: 'drop-shadow(0 20px 50px rgba(2, 132, 199, 0.45))',
+              userSelect: 'none',
+              pointerEvents: 'none',
+              animation: 'globeContinuousSpin 32s linear infinite'
             }}
           />
-
-          {/* 3D Rotating & Floating Map Globe Image */}
-          <div
-            style={{
-              position: 'absolute',
-              top: '12px',
-              zIndex: 1,
-              animation: 'globeMapFloat 6s ease-in-out infinite, globeAtmosphereAura 4s ease-in-out infinite',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
-            <img
-              src={globeImg}
-              alt="Global Client Network"
-              style={{
-                width: 'clamp(280px, 38vw, 380px)',
-                height: 'clamp(280px, 38vw, 380px)',
-                objectFit: 'contain',
-                filter: 'drop-shadow(0 20px 45px rgba(2, 132, 199, 0.4))',
-                userSelect: 'none',
-                pointerEvents: 'none',
-                animation: 'globeContinuousSpin 35s linear infinite'
-              }}
-            />
-          </div>
-
-          {/* The Cloud Nestling / Covering the Lower Half of the Map Globe */}
-          <div
-            style={{
-              position: 'absolute',
-              bottom: '0px',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: 'clamp(340px, 48vw, 520px)',
-              zIndex: 3,
-              animation: 'cloudGentleFloat 5s ease-in-out infinite',
-              filter: 'drop-shadow(0 18px 36px rgba(19, 21, 21, 0.1)) drop-shadow(0 6px 18px rgba(2, 132, 199, 0.22))',
-              pointerEvents: 'none'
-            }}
-          >
-            <svg
-              width="100%"
-              height="auto"
-              viewBox="0 0 270 120"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              style={{ display: 'block' }}
-            >
-              <defs>
-                {/* Back Cloud Puff Gradient */}
-                <linearGradient id="cloudBackGrad" x1="135" y1="10" x2="135" y2="120" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
-                  <stop offset="40%" stopColor="#f8fafc" stopOpacity="0.95" />
-                  <stop offset="100%" stopColor="#e2e8f0" stopOpacity="0.95" />
-                </linearGradient>
-
-                {/* Fore Cloud Puff Gradient */}
-                <linearGradient id="cloudForeGrad" x1="135" y1="30" x2="135" y2="120" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stopColor="#ffffff" />
-                  <stop offset="60%" stopColor="#f8fafc" />
-                  <stop offset="100%" stopColor="#edf2f7" />
-                </linearGradient>
-
-                {/* Azure Reflection from the Map Globe bouncing on the Cloud */}
-                <radialGradient id="cloudGlobeReflection" cx="50%" cy="10%" r="55%">
-                  <stop offset="0%" stopColor="#bae6fd" stopOpacity="0.75" />
-                  <stop offset="60%" stopColor="#e0f2fe" stopOpacity="0.25" />
-                  <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
-                </radialGradient>
-              </defs>
-
-              {/* Layer 1: Back Cloud Crests */}
-              <circle cx="90" cy="58" r="40" fill="url(#cloudBackGrad)" />
-              <circle cx="180" cy="58" r="40" fill="url(#cloudBackGrad)" />
-              <circle cx="135" cy="48" r="46" fill="url(#cloudBackGrad)" />
-
-              {/* Layer 2: Main Fore Cumulus Cloudscape (nestling the globe lower half) */}
-              <path
-                d="M42 98 C26 98 15 86 15 72 C15 58 25 48 38 47 C43 33 56 23 72 23 C80 23 88 27 94 32 C101 19 117 10 135 10 C154 10 170 20 177 34 C182 30 190 27 198 27 C215 27 228 38 231 54 C244 55 255 66 255 80 C255 94 242 106 226 106 L42 106 Z"
-                fill="url(#cloudForeGrad)"
-              />
-
-              {/* Ambient Planetary Azure Light Bouncing onto the Cloud Crest */}
-              <ellipse cx="135" cy="38" rx="58" ry="26" fill="url(#cloudGlobeReflection)" />
-
-              {/* Gentle Cloud Crest Highlights */}
-              <path
-                d="M74 34 C85 31 114 25 135 25 C158 25 182 33 192 36"
-                stroke="#ffffff"
-                strokeWidth="3.5"
-                strokeLinecap="round"
-                opacity="0.9"
-              />
-            </svg>
-          </div>
         </div>
 
-        {/* ============================================================== */}
-        {/* 5. 3 COLUMNS STATS BLOCK: + and % in red color, big font size  */}
-        {/* ============================================================== */}
+        {/* Full-width Cloud Layer covering exactly half of the rotating globe */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '0px',
+            left: '0px',
+            right: '0px',
+            width: '100%',
+            height: 'clamp(300px, 36vw, 420px)',
+            zIndex: 5,
+            animation: 'cloudGentleFloat 5s ease-in-out infinite',
+            pointerEvents: 'none'
+          }}
+        >
+          <svg
+            width="100%"
+            height="100%"
+            viewBox="0 0 1440 340"
+            preserveAspectRatio="none"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style={{ display: 'block', width: '100%', height: '100%' }}
+          >
+            <defs>
+              <linearGradient id="fullCloudBackGrad" x1="720" y1="20" x2="720" y2="340" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
+                <stop offset="35%" stopColor="#f1f5f9" stopOpacity="0.95" />
+                <stop offset="100%" stopColor="#ffffff" stopOpacity="1" />
+              </linearGradient>
+
+              <linearGradient id="fullCloudForeGrad" x1="720" y1="50" x2="720" y2="340" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stopColor="#ffffff" />
+                <stop offset="50%" stopColor="#f8fafc" />
+                <stop offset="100%" stopColor="#ffffff" />
+              </linearGradient>
+
+              {/* Azure Reflection from the Earth Globe bouncing onto the cloud center */}
+              <radialGradient id="fullCloudGlobeReflection" cx="50%" cy="15%" r="35%">
+                <stop offset="0%" stopColor="#bae6fd" stopOpacity="0.8" />
+                <stop offset="50%" stopColor="#e0f2fe" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+              </radialGradient>
+            </defs>
+
+            {/* Layer 1: Back Cloud Crests spanning edge-to-edge across full screen */}
+            <path
+              d="M -60 170 C 60 120, 160 125, 260 150 C 350 110, 470 95, 570 125 C 650 70, 790 70, 870 125 C 970 95, 1090 110, 1180 150 C 1280 125, 1380 120, 1500 170 L 1500 340 L -60 340 Z"
+              fill="url(#fullCloudBackGrad)"
+              opacity="0.95"
+            />
+
+            {/* Layer 2: Main Fore Billowing Clouds across entire screen */}
+            <path
+              d="M -60 200 C 50 150, 150 145, 230 170 C 310 130, 410 115, 510 145 C 590 85, 720 50, 720 50 C 720 50, 850 85, 930 145 C 1030 115, 1130 130, 1210 170 C 1290 145, 1390 150, 1500 200 L 1500 340 L -60 340 Z"
+              fill="url(#fullCloudForeGrad)"
+            />
+
+            {/* Center cloud puffs rising to cover exactly half of the rotating globe */}
+            <circle cx="720" cy="130" r="115" fill="url(#fullCloudForeGrad)" />
+            <circle cx="625" cy="148" r="100" fill="url(#fullCloudForeGrad)" />
+            <circle cx="815" cy="148" r="100" fill="url(#fullCloudForeGrad)" />
+            <circle cx="530" cy="168" r="90" fill="url(#fullCloudForeGrad)" />
+            <circle cx="910" cy="168" r="90" fill="url(#fullCloudForeGrad)" />
+            <circle cx="440" cy="188" r="85" fill="url(#fullCloudForeGrad)" />
+            <circle cx="1000" cy="188" r="85" fill="url(#fullCloudForeGrad)" />
+
+            {/* Ambient Planetary Azure Light Bouncing onto the Center Cloud Crest */}
+            <ellipse cx="720" cy="125" rx="170" ry="60" fill="url(#fullCloudGlobeReflection)" />
+
+            {/* Soft Cloud Crest Highlights */}
+            <path
+              d="M 625 100 C 665 78, 775 78, 815 100"
+              stroke="#ffffff"
+              strokeWidth="4"
+              strokeLinecap="round"
+              opacity="0.9"
+            />
+          </svg>
+        </div>
+      </div>
+
+      {/* ============================================================== */}
+      {/* 5. 3 COLUMNS STATS BLOCK: + and % in red color, big font size  */}
+      {/* ============================================================== */}
+      <div className="container" style={{ textAlign: 'center', marginTop: '30px' }}>
         <div
           style={{
             maxWidth: '920px',

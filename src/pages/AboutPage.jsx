@@ -206,7 +206,10 @@ export default function AboutPage({ onOpenQuote }) {
               overflow: 'hidden',
               whiteSpace: 'nowrap',
               position: 'relative',
-              padding: '16px 0'
+              padding: '16px 0',
+              backgroundColor: '#fbfbfb',
+              borderRadius: '16px',
+              border: '1px solid rgba(0,0,0,0.04)'
             }}
           >
             <div

@@ -147,10 +147,10 @@ export default function ClientShowcase() {
 
         @keyframes globeAtmosphereAura {
           0%, 100% {
-            filter: drop-shadow(0 0 25px rgba(2, 132, 199, 0.5)) drop-shadow(0 18px 36px rgba(0, 0, 0, 0.25));
+            filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.07));
           }
           50% {
-            filter: drop-shadow(0 0 45px rgba(2, 132, 199, 0.75)) drop-shadow(0 24px 48px rgba(0, 0, 0, 0.35));
+            filter: drop-shadow(0 22px 45px rgba(0, 0, 0, 0.1));
           }
         }
 
@@ -627,23 +627,6 @@ export default function ClientShowcase() {
           pointerEvents: 'none'
         }}
       >
-        {/* Ambient Azure & Gold Planetary Atmosphere Glow behind the Map Globe */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '20px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: 'clamp(480px, 56vw, 660px)',
-            height: 'clamp(480px, 56vw, 660px)',
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(2, 132, 199, 0.45) 0%, rgba(207, 163, 75, 0.16) 50%, transparent 72%)',
-            filter: 'blur(55px)',
-            pointerEvents: 'none',
-            zIndex: 1
-          }}
-        />
-
         {/* 3D Rotating & Floating Map Globe Image - Increased to very big size */}
         <div
           style={{
@@ -665,7 +648,7 @@ export default function ClientShowcase() {
               width: 'clamp(480px, 56vw, 660px)',
               height: 'clamp(480px, 56vw, 660px)',
               objectFit: 'contain',
-              filter: 'drop-shadow(0 20px 50px rgba(2, 132, 199, 0.45))',
+              filter: 'drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1))',
               userSelect: 'none',
               pointerEvents: 'none',
               animation: 'globeContinuousSpin 32s linear infinite'
@@ -701,8 +684,7 @@ export default function ClientShowcase() {
               height: '100%',
               objectFit: 'cover',
               objectPosition: 'center top',
-              display: 'block',
-              filter: 'drop-shadow(0 -10px 25px rgba(2, 132, 199, 0.16))'
+              display: 'block'
             }}
           />
 

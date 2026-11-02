@@ -10,6 +10,10 @@ import QuoteModal from './components/QuoteModal';
 import GtAiAssistant from './components/GtAiAssistant';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
+import ElitePassPage from './pages/ElitePassPage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+import BlogPage from './pages/BlogPage';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -70,6 +74,11 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage onOpenQuote={handleOpenQuote} />} />
           <Route path="/products" element={<ProductsPage onOpenQuote={handleOpenQuote} />} />
+          <Route path="/elitepass" element={<ElitePassPage onOpenQuote={handleOpenQuote} />} />
+          <Route path="/about" element={<AboutPage onOpenQuote={handleOpenQuote} />} />
+          <Route path="/contact" element={<ContactPage onOpenQuote={handleOpenQuote} />} />
+          <Route path="/blog" element={<BlogPage onOpenQuote={handleOpenQuote} />} />
+          <Route path="/article-1" element={<BlogPage onOpenQuote={handleOpenQuote} />} />
           {/* Fallback route */}
           <Route path="*" element={<HomePage onOpenQuote={handleOpenQuote} />} />
         </Routes>

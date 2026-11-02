@@ -38,7 +38,9 @@ export default function Navbar({ onOpenQuote }) {
     let t1 = null;
     let t2 = null;
 
-    if (scrolled || location.pathname === '/products') {
+    const isInteriorPage = location.pathname !== '/';
+
+    if (scrolled || isInteriorPage) {
       // Step 1: Container shifts to the left first (only on homepage)
       if (location.pathname === '/') {
         setNavStage(1);
@@ -49,7 +51,7 @@ export default function Navbar({ onOpenQuote }) {
           setNavStage(3);
         }, 650);
       } else {
-        // On /products, expand immediately and show features
+        // On interior pages, expand immediately and show features
         setNavStage(3);
       }
     } else {
@@ -66,40 +68,26 @@ export default function Navbar({ onOpenQuote }) {
   const navLinks = [
     { label: 'Home', href: '/' },
     { label: 'Products', href: '/products' },
-    { label: 'Elite Pass', href: '#metal-showcase' },
-    { label: 'About us', href: '#features' },
-    { label: 'Contact us', href: '#contact' },
-    { label: 'Blog', href: '#services' }
+    { label: 'Elite Pass', href: '/elitepass' },
+    { label: 'About us', href: '/about' },
+    { label: 'Contact us', href: '/contact' },
+    { label: 'Blog', href: '/blog' }
   ];
 
   const handleNavClick = (e, href) => {
     e.preventDefault();
     setMobileMenuOpen(false);
 
-    if (href === '#contact') {
-      onOpenQuote('Navbar Link: Contact us');
-      return;
-    }
-
-    if (href === '/products') {
-      if (location.pathname !== '/products') {
-        navigate('/products');
+    if (href.startsWith('/')) {
+      if (location.pathname !== href) {
+        navigate(href);
       } else {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
       return;
     }
 
-    if (href === '/' || href === '#hero') {
-      if (location.pathname !== '/') {
-        navigate('/');
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-      return;
-    }
-
-    // Anchor link (e.g. #metal-showcase, #features, #services)
+    // Anchor link fallback
     if (href.startsWith('#')) {
       if (location.pathname !== '/') {
         navigate('/' + href);
@@ -112,7 +100,8 @@ export default function Navbar({ onOpenQuote }) {
     }
   };
 
-  const isExpanded = navStage >= 2 || location.pathname === '/products';
+  const isInteriorPage = location.pathname !== '/';
+  const isExpanded = navStage >= 2 || isInteriorPage;
   const isShifted = navStage === 1 && location.pathname === '/';
 
   const currentTransform = isShifted ? 'translateX(-230.5px)' : 'translateX(0)';

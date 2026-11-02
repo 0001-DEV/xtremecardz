@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { CheckCircle2 } from 'lucide-react';
 
 const InstagramIcon = () => (
@@ -23,7 +24,8 @@ const FacebookIcon = () => (
   </svg>
 );
 
-export default function Footer() {
+export default function Footer({ onOpenQuote }) {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -37,17 +39,17 @@ export default function Footer() {
   };
 
   const quickLinks = [
-    { label: 'Home', href: 'https://xtremecrdss.framer.website/' },
-    { label: 'Products', href: 'https://xtremecrdss.framer.website/' },
-    { label: 'Elite pass', href: 'https://xtremecrdss.framer.website/#metrics' },
-    { label: 'Blog', href: 'https://xtremecrdss.framer.website/#counter' }
+    { label: 'Home', href: '/' },
+    { label: 'Products', href: '/products' },
+    { label: 'Elite pass', href: '/elitepass' },
+    { label: 'Blog', href: '/blog' }
   ];
 
   const supportLinks = [
-    { label: 'About us', href: 'https://xtremecrdss.framer.website/' },
-    { label: 'Contact', href: 'https://xtremecrdss.framer.website/' },
-    { label: 'Privacy Policy', href: 'https://xtremecrdss.framer.website/legal-pages/privacy-policy' },
-    { label: 'Terms & Conditions', href: 'https://xtremecrdss.framer.website/legal-pages/terms-conditions' }
+    { label: 'About us', href: '/about' },
+    { label: 'Contact', href: '/contact' },
+    { label: 'Privacy Policy', href: '/about' },
+    { label: 'Terms & Conditions', href: '/about' }
   ];
 
   const socials = [
@@ -260,11 +262,10 @@ export default function Footer() {
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               {quickLinks.map((link) => (
-                <a
+                <Link
                   key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  to={link.href}
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                   style={{
                     fontSize: '14.5px',
                     color: '#494d4d',
@@ -275,7 +276,7 @@ export default function Footer() {
                   onMouseLeave={(e) => (e.currentTarget.style.color = '#494d4d')}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -297,11 +298,10 @@ export default function Footer() {
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               {supportLinks.map((link) => (
-                <a
+                <Link
                   key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  to={link.href}
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                   style={{
                     fontSize: '14.5px',
                     color: '#494d4d',
@@ -312,7 +312,7 @@ export default function Footer() {
                   onMouseLeave={(e) => (e.currentTarget.style.color = '#494d4d')}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

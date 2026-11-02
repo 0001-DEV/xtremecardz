@@ -79,7 +79,7 @@ export default function ProductsPage({ onOpenQuote }) {
     : PRODUCTS.filter((p) => p.category === selectedCategory);
 
   return (
-    <div style={{ backgroundColor: 'var(--bg-page)', minHeight: '100vh', paddingTop: '150px', paddingBottom: '90px' }}>
+    <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', paddingTop: '150px', paddingBottom: '90px' }}>
       <div className="container" style={{ maxWidth: '1360px', margin: '0 auto', padding: '0 20px' }}>
         
         {/* Header Block matching Framer Products */}

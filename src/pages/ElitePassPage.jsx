@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, ShieldCheck, Sparkles, CheckCircle2, Cpu, PackageCheck, Layers } from 'lucide-react';
+import { ArrowUpRight, ShieldCheck, Sparkles, CheckCircle2, Cpu, PackageCheck } from 'lucide-react';
 
 const ELITE_PASSES = [
   {
@@ -9,19 +9,13 @@ const ELITE_PASSES = [
     badge: 'Flagship Aerospace Grade',
     image: '/Xtreme cardz asset/ELITE_PASS_BLACK_MATTE_2.webp',
     fallbackImage: 'https://framerusercontent.com/images/wlGihJYpWqbIZpHT1ClDFDgUmk.png?width=1800&height=2200',
-    colorScheme: {
-      accent: '#71717a',
-      gradient: 'linear-gradient(135deg, #27272a 0%, #09090b 100%)',
-      glow: 'rgba(113, 113, 122, 0.25)',
-      chipColor: '#d4d4d8'
-    },
+    accentColor: '#131515',
     overview:
-      'The Gun Metal Elite Pass was designed for organizations that prefer sophistication over spectacle. Its deep metallic tone, contemporary character, and refined finish create an identity that feels modern, professional, and effortlessly distinguished. It does not compete for attention; it earns it. Whether carried in a wallet or worn on a lanyard, every detail communicates precision and purpose. Because sometimes, the strongest statement is the one made without saying a word.',
+      'The Gun Metal Elite Pass was designed for organizations that prefer sophistication over spectacle. Its deep metallic tone, contemporary character, and refined finish create an identity that feels modern, professional, and effortlessly distinguished. It doesn’t compete for attention; it earns it. Whether carried in a wallet or worn on a lanyard, every detail communicates precision and purpose. Because sometimes, the strongest statement is the one made without saying a word.',
     features: [
       'Grade 5 Titanium + precious-metal detailing',
-      'Dual-frequency NFC + high-density dynamic QR code access',
-      'Bespoke velvet-lined presentation luxury casing with magnetic closure',
-      '0.8mm ultra-dense hand-weighted tactile feel'
+      'NFC+QR, Access.',
+      'Exclusive packaging.'
     ],
     specs: {
       material: 'Grade 5 Titanium Alloy',
@@ -38,19 +32,13 @@ const ELITE_PASSES = [
     badge: '24K Polished Distinction',
     image: '/Xtreme cardz asset/ELITE_PASS_GOLD_2.webp',
     fallbackImage: 'https://framerusercontent.com/images/38hQqx2XpWVtVAMCUrp8MllUU.jpg?width=4000&height=2250',
-    colorScheme: {
-      accent: '#cfa34b',
-      gradient: 'linear-gradient(135deg, #573e16 0%, #1c150b 100%)',
-      glow: 'rgba(207, 163, 75, 0.28)',
-      chipColor: '#fef08a'
-    },
+    accentColor: '#cfa34b',
     overview:
       'The Elite Gold Pass was created for organizations that understand that true distinction is found in the details. Its rich gold finish, refined presence, and premium craftsmanship transform an everyday Business ID into something worthy of attention. It carries a sense of achievement without needing to demand it. From the first glance to the moment it rests in a wallet or hangs from a lanyard, it communicates confidence, recognition, and belonging. Because when your organization represents excellence, the identity you give your people should reflect it.',
     features: [
-      '316L Marine-grade stainless steel with 24K electroplated finish',
-      'Precision chemical acid-etched monogram and mirror chamfered borders',
-      'NFC + QR Access protocols with multi-gate building authorization',
-      'Exclusive collector showcase packaging'
+      '316L stainless steel, Higher finish, enhanced personalization',
+      'NFC+QR, Access.',
+      'Exclusive packaging.'
     ],
     specs: {
       material: '316L Stainless Steel + 24K Gold PVD',
@@ -67,19 +55,13 @@ const ELITE_PASSES = [
     badge: 'Stealth Executive Edition',
     image: '/Xtreme cardz asset/ELITE_PASS_BLACK_MATTE.webp',
     fallbackImage: 'https://framerusercontent.com/images/o68ySUGItelO001iABjXqy2SM.png?width=1080&height=1080',
-    colorScheme: {
-      accent: '#38bdf8',
-      gradient: 'linear-gradient(135deg, #18181b 0%, #040404 100%)',
-      glow: 'rgba(56, 189, 248, 0.2)',
-      chipColor: '#38bdf8'
-    },
+    accentColor: '#0283a7',
     overview:
       'Engineered for modern tech leaders, venture founders, and private club directors who demand uncompromising durability paired with non-reflective stealth aesthetics. Deep PVD ceramic matte coat resists fingerprints and everyday wear while transmitting NFC digital profiles in 0.1 seconds.',
     features: [
       'PVD Ceramic Stealth coating with micro-textured matte touch',
-      'Laser-ablated serial numbering and personalized cardholder credentials',
       'Contactless NFC bio-link & dynamic tap cloud directory',
-      'Waterproof, scratch-resistant and bend-proof for lifetime utility'
+      'Exclusive collector showcase packaging'
     ],
     specs: {
       material: 'Tempered 304 Stainless Steel with PVD Coating',
@@ -97,64 +79,44 @@ export default function ElitePassPage({ onOpenQuote }) {
   return (
     <div
       style={{
-        backgroundColor: '#090a0a',
-        color: '#ffffff',
+        backgroundColor: '#ffffff',
+        color: '#131515',
         minHeight: '100vh',
         paddingTop: '130px',
-        paddingBottom: '100px',
-        position: 'relative',
-        overflow: 'hidden'
+        paddingBottom: '100px'
       }}
     >
-      {/* Background Ambience Glow */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '-150px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: '900px',
-          height: '500px',
-          background: 'radial-gradient(circle, rgba(207, 163, 75, 0.15) 0%, rgba(2, 131, 167, 0.08) 50%, transparent 70%)',
-          pointerEvents: 'none',
-          filter: 'blur(70px)',
-          zIndex: 0
-        }}
-      />
-
-      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        {/* Page Hero Header */}
-        <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 60px' }}>
+      <div className="container">
+        {/* Page Hero Header matching Framer */}
+        <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 50px' }}>
           <div
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '8px',
+              gap: '6px',
               padding: '6px 16px',
               borderRadius: '100px',
-              backgroundColor: 'rgba(255, 255, 255, 0.08)',
-              border: '1px solid rgba(255, 255, 255, 0.18)',
+              backgroundColor: 'rgba(19, 21, 21, 0.05)',
+              border: '1px solid rgba(19, 21, 21, 0.1)',
               fontSize: '13px',
               fontWeight: 600,
-              letterSpacing: '0.04em',
-              textTransform: 'uppercase',
-              color: '#cfa34b',
+              color: '#131515',
               marginBottom: '20px'
             }}
           >
-            <Sparkles size={14} />
-            <span>Elite Pass</span>
+            <Sparkles size={13} color="#cfa34b" />
+            <span>Elite pass</span>
           </div>
 
           <h1
             style={{
               fontFamily: 'var(--font-heading)',
-              fontSize: 'clamp(36px, 5.5vw, 64px)',
+              fontSize: 'clamp(38px, 5.5vw, 64px)',
               fontWeight: 700,
               lineHeight: 1.08,
               letterSpacing: '-0.03em',
-              color: '#ffffff',
-              marginBottom: '20px'
+              color: '#131515',
+              marginBottom: '18px'
             }}
           >
             A card made for those who belong at the top.
@@ -164,7 +126,7 @@ export default function ElitePassPage({ onOpenQuote }) {
             style={{
               fontSize: 'clamp(16px, 1.8vw, 19px)',
               lineHeight: 1.6,
-              color: '#a1a1aa',
+              color: '#494d4d',
               margin: '0 auto 36px',
               maxWidth: '680px'
             }}
@@ -177,12 +139,12 @@ export default function ElitePassPage({ onOpenQuote }) {
             style={{
               display: 'inline-flex',
               flexWrap: 'wrap',
-              gap: '10px',
+              gap: '8px',
               justifyContent: 'center',
-              backgroundColor: 'rgba(24, 24, 27, 0.8)',
+              backgroundColor: '#f7f7f7',
               padding: '6px',
               borderRadius: '50px',
-              border: '1px solid rgba(255, 255, 255, 0.12)'
+              border: '1px solid rgba(19, 21, 21, 0.08)'
             }}
           >
             {ELITE_PASSES.map((pass) => {
@@ -199,10 +161,10 @@ export default function ElitePassPage({ onOpenQuote }) {
                     fontFamily: 'var(--font-heading)',
                     border: 'none',
                     cursor: 'pointer',
-                    transition: 'all 0.3s ease',
-                    backgroundColor: isSelected ? '#ffffff' : 'transparent',
-                    color: isSelected ? '#000000' : '#a1a1aa',
-                    boxShadow: isSelected ? '0 4px 18px rgba(0, 0, 0, 0.3)' : 'none'
+                    transition: 'all 0.25s ease',
+                    backgroundColor: isSelected ? '#000000' : 'transparent',
+                    color: isSelected ? '#ffffff' : '#494d4d',
+                    boxShadow: isSelected ? '0 4px 14px rgba(0, 0, 0, 0.15)' : 'none'
                   }}
                 >
                   {pass.title}
@@ -215,15 +177,13 @@ export default function ElitePassPage({ onOpenQuote }) {
         {/* Spotlight Showcase of Selected Elite Pass */}
         <div
           style={{
-            backgroundColor: 'rgba(18, 18, 20, 0.85)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
+            backgroundColor: '#f7f7f7',
+            border: '1px solid rgba(19, 21, 21, 0.08)',
             borderRadius: '28px',
             padding: 'clamp(28px, 4vw, 56px)',
             marginBottom: '72px',
-            boxShadow: `0 24px 70px -15px ${activePass.colorScheme.glow}`,
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-            transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)'
+            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.04)',
+            transition: 'all 0.4s ease'
           }}
         >
           <div
@@ -244,9 +204,8 @@ export default function ElitePassPage({ onOpenQuote }) {
                   aspectRatio: '1.586',
                   borderRadius: '20px',
                   overflow: 'hidden',
-                  boxShadow: '0 30px 60px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.25)',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  transition: 'transform 0.4s ease'
+                  boxShadow: '0 24px 50px rgba(19, 21, 21, 0.15)',
+                  border: '1px solid rgba(19, 21, 21, 0.1)'
                 }}
               >
                 <img
@@ -263,23 +222,13 @@ export default function ElitePassPage({ onOpenQuote }) {
                   }}
                 />
 
-                {/* Metallic Sheen Overlay */}
-                <div
-                  style={{
-                    position: 'absolute',
-                    inset: 0,
-                    background: 'linear-gradient(105deg, rgba(255,255,255,0.12) 0%, transparent 40%, rgba(255,255,255,0.06) 60%, transparent 100%)',
-                    pointerEvents: 'none'
-                  }}
-                />
-
                 {/* Smart NFC Indicator Badge */}
                 <div
                   style={{
                     position: 'absolute',
                     bottom: '16px',
                     right: '16px',
-                    backgroundColor: 'rgba(0, 0, 0, 0.65)',
+                    backgroundColor: 'rgba(0, 0, 0, 0.75)',
                     backdropFilter: 'blur(8px)',
                     border: '1px solid rgba(255, 255, 255, 0.2)',
                     borderRadius: '30px',
@@ -292,14 +241,14 @@ export default function ElitePassPage({ onOpenQuote }) {
                     fontWeight: 600
                   }}
                 >
-                  <Cpu size={13} color={activePass.colorScheme.chipColor} />
-                  <span>NFC Enabled</span>
+                  <Cpu size={13} color="#fef08a" />
+                  <span>NFC + RFID</span>
                 </div>
               </div>
 
               {/* Caption */}
               <div style={{ marginTop: '16px', fontSize: '13px', color: '#71717a', textAlign: 'center' }}>
-                Hand-inspected aerospace metal specimen · Weight: {activePass.specs.weight}
+                Hand-weighted precision metal specimen · Weight: {activePass.specs.weight}
               </div>
             </div>
 
@@ -312,11 +261,11 @@ export default function ElitePassPage({ onOpenQuote }) {
                   fontWeight: 700,
                   textTransform: 'uppercase',
                   letterSpacing: '0.06em',
-                  color: activePass.colorScheme.accent,
-                  marginBottom: '8px'
+                  color: '#71717a',
+                  marginBottom: '6px'
                 }}
               >
-                {activePass.subtitle} · {activePass.badge}
+                {activePass.subtitle}
               </div>
 
               <h2
@@ -324,7 +273,7 @@ export default function ElitePassPage({ onOpenQuote }) {
                   fontFamily: 'var(--font-heading)',
                   fontSize: 'clamp(28px, 3.2vw, 42px)',
                   fontWeight: 700,
-                  color: '#ffffff',
+                  color: '#131515',
                   letterSpacing: '-0.02em',
                   marginBottom: '18px'
                 }}
@@ -332,37 +281,46 @@ export default function ElitePassPage({ onOpenQuote }) {
                 {activePass.title}
               </h2>
 
-              <p
-                style={{
-                  fontSize: '15.5px',
-                  lineHeight: 1.7,
-                  color: '#d4d4d8',
-                  marginBottom: '28px'
-                }}
-              >
-                {activePass.overview}
-              </p>
+              <div style={{ marginBottom: '24px' }}>
+                <div
+                  style={{
+                    fontSize: '13px',
+                    fontWeight: 700,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.04em',
+                    color: '#131515',
+                    marginBottom: '8px'
+                  }}
+                >
+                  ⚙️ Overview
+                </div>
+                <p
+                  style={{
+                    fontSize: '15.5px',
+                    lineHeight: 1.75,
+                    color: '#494d4d'
+                  }}
+                >
+                  • {activePass.overview}
+                </p>
+              </div>
 
-              {/* Key Features Bullet List */}
+              {/* Key Features Bullet List matching Framer */}
               <div style={{ marginBottom: '32px' }}>
                 <div
                   style={{
                     fontSize: '13px',
                     fontWeight: 700,
                     textTransform: 'uppercase',
-                    letterSpacing: '0.05em',
-                    color: '#a1a1aa',
-                    marginBottom: '12px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px'
+                    letterSpacing: '0.04em',
+                    color: '#131515',
+                    marginBottom: '10px'
                   }}
                 >
-                  <Sparkles size={14} color={activePass.colorScheme.accent} />
-                  <span>Distinguished Features</span>
+                  🚀 Features
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {activePass.features.map((feat, idx) => (
                     <div
                       key={idx}
@@ -370,11 +328,11 @@ export default function ElitePassPage({ onOpenQuote }) {
                         display: 'flex',
                         alignItems: 'flex-start',
                         gap: '10px',
-                        fontSize: '14.5px',
-                        color: '#f4f4f5'
+                        fontSize: '15px',
+                        color: '#131515'
                       }}
                     >
-                      <CheckCircle2 size={17} color={activePass.colorScheme.accent} style={{ flexShrink: 0, marginTop: '2px' }} />
+                      <CheckCircle2 size={16} color="#059669" style={{ flexShrink: 0, marginTop: '3px' }} />
                       <span>{feat}</span>
                     </div>
                   ))}
@@ -386,8 +344,8 @@ export default function ElitePassPage({ onOpenQuote }) {
                 <button
                   onClick={() => onOpenQuote(`Elite Pass: ${activePass.title} (${activePass.subtitle})`)}
                   style={{
-                    backgroundColor: '#ffffff',
-                    color: '#000000',
+                    backgroundColor: '#000000',
+                    color: '#ffffff',
                     padding: '14px 28px',
                     borderRadius: '50px',
                     fontSize: '15px',
@@ -398,16 +356,16 @@ export default function ElitePassPage({ onOpenQuote }) {
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '8px',
-                    boxShadow: '0 8px 24px rgba(255, 255, 255, 0.2)',
+                    boxShadow: '0 4px 14px rgba(0, 0, 0, 0.2)',
                     transition: 'transform 0.2s ease, box-shadow 0.2s ease'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-2px)';
-                    e.currentTarget.style.boxShadow = '0 12px 30px rgba(255, 255, 255, 0.3)';
+                    e.currentTarget.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.25)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 255, 255, 0.2)';
+                    e.currentTarget.style.boxShadow = '0 4px 14px rgba(0, 0, 0, 0.2)';
                   }}
                 >
                   <span>Make enquiries</span>
@@ -417,14 +375,14 @@ export default function ElitePassPage({ onOpenQuote }) {
                 <button
                   onClick={() => onOpenQuote(`Elite Pass Specimen Request - ${activePass.title}`)}
                   style={{
-                    backgroundColor: 'rgba(255, 255, 255, 0.08)',
-                    color: '#ffffff',
+                    backgroundColor: '#ffffff',
+                    color: '#131515',
                     padding: '14px 24px',
                     borderRadius: '50px',
                     fontSize: '15px',
                     fontWeight: 500,
                     fontFamily: 'var(--font-heading)',
-                    border: '1px solid rgba(255, 255, 255, 0.18)',
+                    border: '1px solid rgba(19, 21, 21, 0.15)',
                     cursor: 'pointer',
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -432,10 +390,10 @@ export default function ElitePassPage({ onOpenQuote }) {
                     transition: 'all 0.2s ease'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+                    e.currentTarget.style.borderColor = '#000000';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+                    e.currentTarget.style.borderColor = 'rgba(19, 21, 21, 0.15)';
                   }}
                 >
                   <PackageCheck size={16} />
@@ -446,22 +404,22 @@ export default function ElitePassPage({ onOpenQuote }) {
           </div>
         </div>
 
-        {/* All Elite Models Grid Comparison */}
-        <div style={{ marginTop: '80px' }}>
-          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
+        {/* All Elite Models Grid */}
+        <div style={{ marginTop: '60px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '36px' }}>
             <h3
               style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: '28px',
+                fontSize: '26px',
                 fontWeight: 700,
-                color: '#ffffff',
-                marginBottom: '10px'
+                color: '#131515',
+                marginBottom: '8px'
               }}
             >
               The Elite Pass Collection
             </h3>
-            <p style={{ color: '#a1a1aa', fontSize: '15px' }}>
-              Select any piece to inspect technical craftsmanship and material architecture
+            <p style={{ color: '#595e5e', fontSize: '15px' }}>
+              Select any tier to inspect specifications and material architecture
             </p>
           </div>
 
@@ -477,27 +435,23 @@ export default function ElitePassPage({ onOpenQuote }) {
                 key={pass.id}
                 onClick={() => {
                   setActivePass(pass);
-                  window.scrollTo({ top: 350, behavior: 'smooth' });
+                  window.scrollTo({ top: 320, behavior: 'smooth' });
                 }}
                 style={{
-                  backgroundColor: 'rgba(24, 24, 27, 0.65)',
-                  border: activePass.id === pass.id ? `1px solid ${pass.colorScheme.accent}` : '1px solid rgba(255, 255, 255, 0.08)',
+                  backgroundColor: '#f7f7f7',
+                  border: activePass.id === pass.id ? '1px solid #000000' : '1px solid rgba(19, 21, 21, 0.08)',
                   borderRadius: '20px',
                   padding: '24px',
                   cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  position: 'relative',
-                  overflow: 'hidden'
+                  transition: 'all 0.25s ease'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = pass.colorScheme.accent;
                   e.currentTarget.style.transform = 'translateY(-4px)';
+                  e.currentTarget.style.boxShadow = '0 12px 24px rgba(0, 0, 0, 0.06)';
                 }}
                 onMouseLeave={(e) => {
-                  if (activePass.id !== pass.id) {
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                  }
                   e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
                 }}
               >
                 <div style={{ width: '100%', height: '170px', borderRadius: '12px', overflow: 'hidden', marginBottom: '18px' }}>
@@ -511,13 +465,13 @@ export default function ElitePassPage({ onOpenQuote }) {
                   />
                 </div>
 
-                <div style={{ fontSize: '12px', fontWeight: 600, color: pass.colorScheme.accent, marginBottom: '4px' }}>
+                <div style={{ fontSize: '12px', fontWeight: 600, color: '#71717a', marginBottom: '4px' }}>
                   {pass.subtitle}
                 </div>
-                <h4 style={{ fontSize: '20px', fontWeight: 700, color: '#ffffff', marginBottom: '8px' }}>
+                <h4 style={{ fontSize: '20px', fontWeight: 700, color: '#131515', marginBottom: '8px' }}>
                   {pass.title}
                 </h4>
-                <p style={{ fontSize: '13.5px', color: '#a1a1aa', lineHeight: 1.5, marginBottom: '16px' }}>
+                <p style={{ fontSize: '13.5px', color: '#595e5e', lineHeight: 1.5, marginBottom: '16px' }}>
                   {pass.overview.slice(0, 115)}...
                 </p>
 
@@ -527,14 +481,14 @@ export default function ElitePassPage({ onOpenQuote }) {
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     paddingTop: '12px',
-                    borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+                    borderTop: '1px solid rgba(19, 21, 21, 0.08)',
                     fontSize: '13px',
-                    color: '#ffffff',
+                    color: '#131515',
                     fontWeight: 600
                   }}
                 >
                   <span>{pass.specs.material}</span>
-                  <span style={{ color: pass.colorScheme.accent }}>View Details →</span>
+                  <span style={{ color: '#0283a7' }}>View Details →</span>
                 </div>
               </div>
             ))}

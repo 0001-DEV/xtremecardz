@@ -119,10 +119,19 @@ export default function ClientShowcase() {
         /* 3D Rotating & Evolving Map Globe */
         @keyframes globeMapFloat {
           0%, 100% {
-            transform: translateY(0px) rotate(0deg);
+            transform: translateY(0px);
           }
           50% {
-            transform: translateY(-8px) rotate(1.5deg);
+            transform: translateY(-12px);
+          }
+        }
+
+        @keyframes globeContinuousSpin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
           }
         }
 
@@ -137,10 +146,10 @@ export default function ClientShowcase() {
 
         @keyframes globeAtmosphereAura {
           0%, 100% {
-            filter: drop-shadow(0 0 20px rgba(2, 132, 199, 0.5)) drop-shadow(0 14px 28px rgba(0, 0, 0, 0.25));
+            filter: drop-shadow(0 0 25px rgba(2, 132, 199, 0.5)) drop-shadow(0 18px 36px rgba(0, 0, 0, 0.25));
           }
           50% {
-            filter: drop-shadow(0 0 35px rgba(2, 132, 199, 0.75)) drop-shadow(0 18px 36px rgba(0, 0, 0, 0.35));
+            filter: drop-shadow(0 0 45px rgba(2, 132, 199, 0.75)) drop-shadow(0 24px 48px rgba(0, 0, 0, 0.35));
           }
         }
 
@@ -606,9 +615,10 @@ export default function ClientShowcase() {
         <div
           style={{
             position: 'relative',
-            width: '320px',
-            height: '290px',
-            margin: '0 auto 50px',
+            width: '100%',
+            maxWidth: '560px',
+            height: 'clamp(360px, 48vw, 460px)',
+            margin: '0 auto 40px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
@@ -618,12 +628,12 @@ export default function ClientShowcase() {
           <div
             style={{
               position: 'absolute',
-              top: '10px',
-              width: '200px',
-              height: '200px',
+              top: '20px',
+              width: 'clamp(300px, 42vw, 420px)',
+              height: 'clamp(300px, 42vw, 420px)',
               borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(2, 132, 199, 0.4) 0%, rgba(207, 163, 75, 0.15) 55%, transparent 75%)',
-              filter: 'blur(30px)',
+              background: 'radial-gradient(circle, rgba(2, 132, 199, 0.45) 0%, rgba(207, 163, 75, 0.18) 55%, transparent 75%)',
+              filter: 'blur(45px)',
               pointerEvents: 'none'
             }}
           />
@@ -632,7 +642,7 @@ export default function ClientShowcase() {
           <div
             style={{
               position: 'absolute',
-              top: '8px',
+              top: '12px',
               zIndex: 1,
               animation: 'globeMapFloat 6s ease-in-out infinite, globeAtmosphereAura 4s ease-in-out infinite',
               display: 'flex',
@@ -644,12 +654,13 @@ export default function ClientShowcase() {
               src={globeImg}
               alt="Global Client Network"
               style={{
-                width: '185px',
-                height: '185px',
+                width: 'clamp(280px, 38vw, 380px)',
+                height: 'clamp(280px, 38vw, 380px)',
                 objectFit: 'contain',
-                filter: 'drop-shadow(0 15px 35px rgba(2, 132, 199, 0.45))',
+                filter: 'drop-shadow(0 20px 45px rgba(2, 132, 199, 0.4))',
                 userSelect: 'none',
-                pointerEvents: 'none'
+                pointerEvents: 'none',
+                animation: 'globeContinuousSpin 35s linear infinite'
               }}
             />
           </div>
@@ -658,22 +669,23 @@ export default function ClientShowcase() {
           <div
             style={{
               position: 'absolute',
-              bottom: '8px',
+              bottom: '0px',
               left: '50%',
               transform: 'translateX(-50%)',
-              width: '270px',
-              height: '120px',
+              width: 'clamp(340px, 48vw, 520px)',
               zIndex: 3,
               animation: 'cloudGentleFloat 5s ease-in-out infinite',
-              filter: 'drop-shadow(0 16px 32px rgba(19, 21, 21, 0.09)) drop-shadow(0 4px 14px rgba(2, 132, 199, 0.22))'
+              filter: 'drop-shadow(0 18px 36px rgba(19, 21, 21, 0.1)) drop-shadow(0 6px 18px rgba(2, 132, 199, 0.22))',
+              pointerEvents: 'none'
             }}
           >
             <svg
-              width="270"
-              height="120"
+              width="100%"
+              height="auto"
               viewBox="0 0 270 120"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              style={{ display: 'block' }}
             >
               <defs>
                 {/* Back Cloud Puff Gradient */}

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Shield, Sparkles, Users, Key, Award } from 'lucide-react';
+import greenImg from '../assets/green.jpg';
 
 const CATEGORIES = [
   {
     id: 'corporate',
     label: 'Corporate ID',
     icon: Shield,
-    image: 'https://framerusercontent.com/images/38hQqx2XpWVtVAMCUrp8MllUU.jpg?width=2000'
+    image: greenImg
   },
   {
     id: 'staff',
@@ -24,7 +25,7 @@ const CATEGORIES = [
     id: 'membership',
     label: 'Membership',
     icon: Award,
-    image: 'https://framerusercontent.com/images/CUgTBF7cbByxZQwWFMDNfXIz3P0.jpg?width=1600'
+    image: greenImg
   }
 ];
 
@@ -123,10 +124,10 @@ export default function FeaturesBento({ onOpenQuote }) {
                 const isActive = activeCategory === cat.id;
                 const isHovered = hoveredCategory === cat.id;
 
-                const isDark = isActive || isHovered;
-                const bg = isDark ? '#3d4246' : 'rgba(255, 255, 255, 0.75)';
-                const color = isDark ? '#ffffff' : '#131515';
-                const iconColor = isActive ? '#cfa34b' : (isHovered ? '#ffffff' : '#4b5563');
+                const bg = isActive ? '#e2e6ea' : isHovered ? '#eaeef2' : '#f1f3f5';
+                const color = '#131515';
+                const iconColor = isActive ? '#cfa34b' : isHovered ? '#131515' : '#595e5e';
+                const borderColor = isActive ? 'rgba(19, 21, 21, 0.22)' : 'rgba(19, 21, 21, 0.08)';
 
                 return (
                   <button
@@ -148,11 +149,11 @@ export default function FeaturesBento({ onOpenQuote }) {
                       color: color,
                       backdropFilter: 'blur(12px)',
                       WebkitBackdropFilter: 'blur(12px)',
-                      border: '1px solid rgba(255, 255, 255, 0.4)',
+                      border: `1px solid ${borderColor}`,
                       outline: 'none',
-                      boxShadow: isDark
-                        ? '0 6px 18px rgba(0, 0, 0, 0.16)'
-                        : '0 2px 8px rgba(19, 21, 21, 0.03)',
+                      boxShadow: isActive
+                        ? '0 4px 14px rgba(0, 0, 0, 0.07)'
+                        : '0 2px 6px rgba(19, 21, 21, 0.02)',
                       cursor: 'pointer'
                     }}
                   >

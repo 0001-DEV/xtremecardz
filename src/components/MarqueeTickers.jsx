@@ -1,42 +1,57 @@
 import React from 'react';
 import { CreditCard, Sparkles, Shield, Cpu, Award, Layers } from 'lucide-react';
 
+// 12 User-provided card showcase images distributed across ticker slides
+import premiumEggshellImg from '../assets/slides/premium-eggshell.webp';
+import eliteBlackMatteImg from '../assets/slides/elite-black-matte.webp';
+import eliteGoldImg from '../assets/slides/elite-gold.webp';
+import smartEggshellIdImg from '../assets/slides/smart-eggshell-id.webp';
+import goldMembershipImg from '../assets/slides/gold-membership.webp';
+import frostFinishImg from '../assets/slides/frost-finish.webp';
+
+import duplexCardImg from '../assets/slides/duplex-card.webp';
+import classicCard21Img from '../assets/slides/classic-card21.webp';
+import eliteSilverImg from '../assets/slides/elite-silver.webp';
+import eliteBlackMatte2Img from '../assets/slides/elite-black-matte2.webp';
+import goldMetalInviteImg from '../assets/slides/gold-metal-invite.webp';
+import eliteGold2Img from '../assets/slides/elite-gold2.webp';
+
 const TICKER_ITEMS_1 = [
   {
     label: 'Premium business card',
     icon: CreditCard,
     color: '#cfa34b',
-    image: 'https://framerusercontent.com/images/wlGihJYpWqbIZpHT1ClDFDgUmk.png?width=400'
+    image: premiumEggshellImg
   },
   {
     label: 'Executive business card',
     icon: Award,
     color: '#0283a7',
-    image: 'https://framerusercontent.com/images/1ilKe6L6KbWv5xrI6p4uunW2Es.png?width=400'
+    image: eliteBlackMatteImg
   },
   {
     label: 'Metal business card',
     icon: Sparkles,
     color: '#d4af37',
-    image: 'https://framerusercontent.com/images/WRAp8VzH00hxe4XxQqAqA2UuJ0.jpg?width=400'
+    image: eliteGoldImg
   },
   {
     label: 'Smart business card',
     icon: Cpu,
     color: '#12a70a',
-    image: 'https://framerusercontent.com/images/J4rNvZKvbrN2dGnk6QWrdshukM.jpg?width=400'
+    image: smartEggshellIdImg
   },
   {
     label: 'VIP/membership card',
     icon: Shield,
     color: '#ff4c00',
-    image: 'https://framerusercontent.com/images/LuRk2mi9PkL9qpq8u7aAhmN27dM.png?width=400'
+    image: goldMembershipImg
   },
   {
     label: 'Custom card finishes',
     icon: Layers,
     color: '#9000ff',
-    image: 'https://framerusercontent.com/images/SBijkNBC3TclRbWyps5E1TZAD4.png?width=400'
+    image: frostFinishImg
   }
 ];
 
@@ -45,37 +60,37 @@ const TICKER_ITEMS_2 = [
     label: 'Du-plex smart card',
     icon: Cpu,
     color: '#0059ff',
-    image: 'https://framerusercontent.com/images/38hQqx2XpWVtVAMCUrp8MllUU.jpg?width=400'
+    image: duplexCardImg
   },
   {
     label: 'Classic lustre card',
     icon: Sparkles,
     color: '#cfa34b',
-    image: 'https://framerusercontent.com/images/kmAong4xy6gvqhgzcssHKUFJnmA.jpg?width=400'
+    image: classicCard21Img
   },
   {
     label: 'Brushed metal finish',
     icon: CreditCard,
     color: '#686d6d',
-    image: 'https://framerusercontent.com/images/VfPcVMbua1hRofTVGKZLXlg4k.jpg?width=400'
+    image: eliteSilverImg
   },
   {
     label: 'NFC Contactless ID',
     icon: Shield,
     color: '#0283a7',
-    image: 'https://framerusercontent.com/images/yyE2pUgUrjBeDKRRIF0gWhZRuhM.jpg?width=400'
+    image: eliteBlackMatte2Img
   },
   {
     label: '24K Gold Plated pass',
     icon: Award,
     color: '#d4af37',
-    image: 'https://framerusercontent.com/images/NpFjo55ZAEbQNkN0qv3ycj4Yt4.jpg?width=400'
+    image: goldMetalInviteImg
   },
   {
     label: 'Matte Gunmetal black',
     icon: Layers,
     color: '#131515',
-    image: 'https://framerusercontent.com/images/cruV4sTOrLcmDG4xvwqyxbri1w.jpg?width=400'
+    image: eliteGold2Img
   }
 ];
 

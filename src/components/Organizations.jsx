@@ -60,8 +60,16 @@ export default function Organizations({ onOpenQuote }) {
             flexWrap: 'wrap'
           }}
         >
-          <button
-            onClick={() => onOpenQuote('Get a quote')}
+          <a
+            href="https://www.apple.com/in/app-store/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => {
+              if (onOpenQuote) {
+                e.preventDefault();
+                onOpenQuote('Get a quote');
+              }
+            }}
             style={{
               padding: '13px 28px',
               fontSize: '15px',
@@ -75,6 +83,7 @@ export default function Organizations({ onOpenQuote }) {
               transition: 'all 0.25s ease',
               display: 'inline-flex',
               alignItems: 'center',
+              textDecoration: 'none',
               fontFamily: 'var(--font-heading)'
             }}
             onMouseEnter={(e) => {
@@ -87,10 +96,18 @@ export default function Organizations({ onOpenQuote }) {
             }}
           >
             <span>Get a quote</span>
-          </button>
+          </a>
 
-          <button
-            onClick={() => onOpenQuote('Make enquiries')}
+          <a
+            href="https://play.google.com/store/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => {
+              if (onOpenQuote) {
+                e.preventDefault();
+                onOpenQuote('Make enquiries');
+              }
+            }}
             style={{
               padding: '13px 28px',
               fontSize: '15px',
@@ -106,6 +123,7 @@ export default function Organizations({ onOpenQuote }) {
               transition: 'all 0.25s ease',
               display: 'inline-flex',
               alignItems: 'center',
+              textDecoration: 'none',
               fontFamily: 'var(--font-heading)'
             }}
             onMouseEnter={(e) => {
@@ -122,7 +140,7 @@ export default function Organizations({ onOpenQuote }) {
             }}
           >
             <span>Make enquiries</span>
-          </button>
+          </a>
         </div>
       </div>
 
@@ -132,8 +150,7 @@ export default function Organizations({ onOpenQuote }) {
         style={{
           position: 'relative',
           width: '100%',
-          height: 'clamp(260px, 32vw, 420px)',
-          marginTop: '36px',
+          marginTop: '40px',
           display: 'flex',
           alignItems: 'flex-end',
           justifyContent: 'center',
@@ -147,10 +164,12 @@ export default function Organizations({ onOpenQuote }) {
           alt="Atmospheric Cloud Horizon"
           style={{
             width: '100%',
-            height: '100%',
+            maxWidth: '100%',
+            height: 'clamp(240px, 30vw, 420px)',
             objectFit: 'cover',
-            objectPosition: 'center top',
-            display: 'block'
+            objectPosition: 'center bottom',
+            display: 'block',
+            filter: 'drop-shadow(0 20px 40px rgba(0, 0, 0, 0.09)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.05))'
           }}
         />
 
@@ -161,7 +180,7 @@ export default function Organizations({ onOpenQuote }) {
             bottom: 0,
             left: 0,
             right: 0,
-            height: '40px',
+            height: '45px',
             background: 'linear-gradient(to bottom, transparent, #ffffff)',
             pointerEvents: 'none'
           }}

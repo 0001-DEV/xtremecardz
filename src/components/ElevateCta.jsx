@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Sparkles, QrCode } from 'lucide-react';
+import cloudImg from '../assets/cloud.png';
 
 export default function ElevateCta({ onOpenQuote }) {
   const sectionRef = useRef(null);
@@ -163,9 +164,9 @@ export default function ElevateCta({ onOpenQuote }) {
           }}
         >
           <img
-            src="https://framerusercontent.com/images/Z13RlvdoTurS0rPL8TlEtyXaTWA.png?width=575&height=191"
+            src={cloudImg}
             alt="Atmospheric Cloud"
-            style={{ width: '100%', height: 'auto', display: 'block' }}
+            style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }}
           />
         </div>
 
@@ -184,29 +185,29 @@ export default function ElevateCta({ onOpenQuote }) {
           }}
         >
           <img
-            src="https://framerusercontent.com/images/7AeCYMcqGCsC65f7s3s7l9eKk4.png?width=823&height=476"
+            src={cloudImg}
             alt="Atmospheric Cloud"
-            style={{ width: '100%', height: 'auto', display: 'block' }}
+            style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain', transform: 'scaleX(-1)' }}
           />
         </div>
 
-        {/* Cloud Layer 3: Center Bottom Horizon Cloud (Framing the card emergence) */}
+        {/* Cloud Layer 3: Center Bottom Horizon Cloud using image named cloud */}
         <div
           style={{
             position: 'absolute',
-            bottom: '-70px',
+            bottom: '-50px',
             left: '50%',
             transform: 'translateX(-50%)',
-            width: 'clamp(520px, 62vw, 920px)',
+            width: 'clamp(580px, 72vw, 1100px)',
             pointerEvents: 'none',
             zIndex: 15, // Sits in front of the emerging base of the card
             animation: 'cloudFloatCenter 10s ease-in-out infinite',
-            opacity: 0.96,
-            filter: 'drop-shadow(0 -10px 30px rgba(0,0,0,0.05))'
+            opacity: 0.98,
+            filter: 'drop-shadow(0 20px 45px rgba(0,0,0,0.09)) drop-shadow(0 6px 16px rgba(0,0,0,0.05))'
           }}
         >
           <img
-            src="https://framerusercontent.com/images/vK1naOOAfBeOfzjSqlloxH7w.png?width=749&height=448"
+            src={cloudImg}
             alt="Foreground Cumulus Cloud"
             style={{ width: '100%', height: 'auto', display: 'block' }}
           />
@@ -278,7 +279,7 @@ export default function ElevateCta({ onOpenQuote }) {
                 flexWrap: 'wrap'
               }}
             >
-              {/* Black button: Request a quote */}
+              {/* Black button: Get a quote */}
               <a
                 href="https://www.apple.com/in/app-store/"
                 target="_blank"
@@ -286,7 +287,7 @@ export default function ElevateCta({ onOpenQuote }) {
                 onClick={(e) => {
                   if (onOpenQuote) {
                     e.preventDefault();
-                    onOpenQuote('Elevate CTA - Request a quote');
+                    onOpenQuote('Get a quote');
                   }
                 }}
                 style={{
@@ -313,15 +314,21 @@ export default function ElevateCta({ onOpenQuote }) {
                   e.currentTarget.style.boxShadow = '0 4px 16px rgba(19, 21, 21, 0.3)';
                 }}
               >
-                <span>Request a quote</span>
+                <span>Get a quote</span>
                 <ArrowRight size={16} />
               </a>
 
-              {/* Glassmorphism button: View card gallery */}
+              {/* Glassmorphism button: Make enquiries */}
               <a
                 href="https://play.google.com/store/"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={(e) => {
+                  if (onOpenQuote) {
+                    e.preventDefault();
+                    onOpenQuote('Make enquiries');
+                  }
+                }}
                 style={{
                   backgroundColor: 'rgba(255, 255, 255, 0.65)',
                   backdropFilter: 'blur(16px)',
@@ -349,7 +356,7 @@ export default function ElevateCta({ onOpenQuote }) {
                   e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.65)';
                 }}
               >
-                <span>View card gallery</span>
+                <span>Make enquiries</span>
               </a>
             </div>
           </div>

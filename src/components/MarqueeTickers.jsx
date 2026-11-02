@@ -215,10 +215,11 @@ export default function MarqueeTickers({ onSelectType }) {
         paddingTop: '20px',
         paddingBottom: '30px',
         overflow: 'hidden',
-        position: 'relative'
+        position: 'relative',
+        backgroundColor: '#f9f8f6'
       }}
     >
-      {/* 400px Left white gradient overlay */}
+      {/* 400px Left gradient overlay using the main body bg */}
       <div
         style={{
           position: 'absolute',
@@ -227,13 +228,13 @@ export default function MarqueeTickers({ onSelectType }) {
           left: 0,
           width: '400px',
           maxWidth: '38vw',
-          background: 'linear-gradient(to right, #ffffff 35%, rgba(255, 255, 255, 0.7) 65%, rgba(255, 255, 255, 0) 100%)',
+          background: 'linear-gradient(to right, #f9f8f6 35%, rgba(249, 248, 246, 0.7) 65%, rgba(249, 248, 246, 0) 100%)',
           zIndex: 10,
           pointerEvents: 'none'
         }}
       />
 
-      {/* 400px Right white gradient overlay */}
+      {/* 400px Right gradient overlay using the main body bg */}
       <div
         style={{
           position: 'absolute',
@@ -242,7 +243,7 @@ export default function MarqueeTickers({ onSelectType }) {
           right: 0,
           width: '400px',
           maxWidth: '38vw',
-          background: 'linear-gradient(to left, #ffffff 35%, rgba(255, 255, 255, 0.7) 65%, rgba(255, 255, 255, 0) 100%)',
+          background: 'linear-gradient(to left, #f9f8f6 35%, rgba(249, 248, 246, 0.7) 65%, rgba(249, 248, 246, 0) 100%)',
           zIndex: 10,
           pointerEvents: 'none'
         }}

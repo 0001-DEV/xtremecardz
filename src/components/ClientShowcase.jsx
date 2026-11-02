@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Star, Sparkles } from 'lucide-react';
+import globeImg from '../assets/globe.png';
 
 // Brand client pairs with real high-resolution brand logos from Framer
 const LOGO_PAIRS = [
@@ -118,10 +119,10 @@ export default function ClientShowcase() {
         /* 3D Rotating & Evolving Map Globe */
         @keyframes globeMapFloat {
           0%, 100% {
-            transform: rotate(18deg) translateY(0px);
+            transform: translateY(0px) rotate(0deg);
           }
           50% {
-            transform: rotate(18deg) translateY(-8px);
+            transform: translateY(-8px) rotate(1.5deg);
           }
         }
 
@@ -627,154 +628,30 @@ export default function ClientShowcase() {
             }}
           />
 
-          {/* 3D Rotating & Floating Map Globe */}
+          {/* 3D Rotating & Floating Map Globe Image */}
           <div
             style={{
               position: 'absolute',
               top: '8px',
               zIndex: 1,
-              animation: 'globeMapFloat 6s ease-in-out infinite, globeAtmosphereAura 4s ease-in-out infinite'
+              animation: 'globeMapFloat 6s ease-in-out infinite, globeAtmosphereAura 4s ease-in-out infinite',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}
           >
-            <svg
-              width="170"
-              height="170"
-              viewBox="0 0 170 170"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              style={{ overflow: 'visible' }}
-            >
-              <defs>
-                {/* Spherical Clip for the 3D Map Globe */}
-                <clipPath id="globeSphereClip">
-                  <circle cx="85" cy="85" r="78" />
-                </clipPath>
-
-                {/* Ocean Deep Blue/Teal Gradient */}
-                <radialGradient id="globeOceanGrad" cx="35%" cy="30%" r="72%">
-                  <stop offset="0%" stopColor="#0369a1" />
-                  <stop offset="45%" stopColor="#0f172a" />
-                  <stop offset="85%" stopColor="#090d16" />
-                  <stop offset="100%" stopColor="#020617" />
-                </radialGradient>
-
-                {/* 3D Sphere Shading Mask (Creates spherical optical curvature) */}
-                <radialGradient id="sphere3DShade" cx="30%" cy="25%" r="75%">
-                  <stop offset="0%" stopColor="#ffffff" stopOpacity="0.45" />
-                  <stop offset="40%" stopColor="#ffffff" stopOpacity="0" />
-                  <stop offset="70%" stopColor="#000000" stopOpacity="0.35" />
-                  <stop offset="100%" stopColor="#000000" stopOpacity="0.85" />
-                </radialGradient>
-
-                {/* Atmosphere Rim Glow */}
-                <linearGradient id="globeRimLight" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.9" />
-                  <stop offset="40%" stopColor="#0284c7" stopOpacity="0.4" />
-                  <stop offset="100%" stopColor="#cfa34b" stopOpacity="0.2" />
-                </linearGradient>
-
-                {/* Continental Landmass Gradient */}
-                <linearGradient id="continentLandGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#34d399" />
-                  <stop offset="40%" stopColor="#10b981" />
-                  <stop offset="100%" stopColor="#059669" />
-                </linearGradient>
-              </defs>
-
-              {/* Atmosphere Outer Ring Glow */}
-              <circle cx="85" cy="85" r="80" stroke="url(#globeRimLight)" strokeWidth="3" opacity="0.8" />
-
-              {/* Clipped Globe Sphere Content */}
-              <g clipPath="url(#globeSphereClip)">
-                {/* 1. Deep Ocean Globe Sphere Base */}
-                <circle cx="85" cy="85" r="78" fill="url(#globeOceanGrad)" />
-
-                {/* 2. Map Latitude & Longitude Gridlines (Parallels & Meridians) */}
-                <g stroke="rgba(56, 189, 248, 0.22)" strokeWidth="1" fill="none">
-                  <line x1="7" y1="85" x2="163" y2="85" stroke="rgba(56, 189, 248, 0.4)" strokeDasharray="3 3" />
-                  <ellipse cx="85" cy="85" rx="78" ry="46" />
-                  <ellipse cx="85" cy="85" rx="78" ry="22" />
-                  <ellipse cx="85" cy="85" rx="46" ry="78" />
-                  <ellipse cx="85" cy="85" rx="22" ry="78" />
-                  <line x1="85" y1="7" x2="85" y2="163" stroke="rgba(56, 189, 248, 0.35)" />
-                </g>
-
-                {/* 3. Scrolling Map Continents (Americas, Europe, Africa, Asia, Australia) */}
-                <g style={{ animation: 'mapContinentsScroll 16s linear infinite' }}>
-                  {/* Map Pattern Sequence 1 */}
-                  <g fill="url(#continentLandGrad)" opacity="0.9">
-                    {/* North America */}
-                    <path d="M25 40 Q 40 32 55 42 Q 62 50 50 62 Q 42 75 32 72 Q 22 60 25 40 Z" />
-                    {/* Greenland */}
-                    <path d="M52 24 Q 62 20 68 28 Q 62 34 54 32 Z" />
-                    {/* South America */}
-                    <path d="M42 80 Q 56 86 52 108 Q 46 128 40 134 Q 34 116 38 94 Z" />
-                    {/* Europe */}
-                    <path d="M102 36 Q 115 32 122 42 Q 116 52 108 50 Q 98 44 102 36 Z" />
-                    {/* United Kingdom */}
-                    <circle cx="98" cy="38" r="3.5" />
-                    {/* Africa */}
-                    <path d="M104 56 Q 128 58 132 80 Q 128 106 116 124 Q 106 112 102 88 Q 98 68 104 56 Z" />
-                    {/* Madagascar */}
-                    <ellipse cx="134" cy="106" rx="3.5" ry="8" />
-                    {/* Asia */}
-                    <path d="M125 32 Q 155 26 182 40 Q 188 64 172 74 Q 155 68 142 56 Q 132 46 125 32 Z" />
-                    {/* India */}
-                    <path d="M148 64 L 158 84 L 140 76 Z" />
-                    {/* Australia */}
-                    <path d="M174 98 Q 192 92 195 110 Q 188 122 172 118 Q 166 106 174 98 Z" />
-                  </g>
-
-                  {/* Active Client Hub Pulsing Beacons on Continents */}
-                  <g fill="#fbbf24">
-                    <circle cx="48" cy="54" r="2.5" />
-                    <circle cx="106" cy="40" r="2.5" />
-                    <circle cx="114" cy="74" r="3" fill="#f59e0b" />
-                    <circle cx="152" cy="52" r="2.5" />
-                    <circle cx="180" cy="104" r="2.5" />
-                  </g>
-
-                  {/* Map Pattern Sequence 2 (Offset by 340px for seamless loop) */}
-                  <g transform="translate(340, 0)" fill="url(#continentLandGrad)" opacity="0.9">
-                    {/* North America */}
-                    <path d="M25 40 Q 40 32 55 42 Q 62 50 50 62 Q 42 75 32 72 Q 22 60 25 40 Z" />
-                    {/* Greenland */}
-                    <path d="M52 24 Q 62 20 68 28 Q 62 34 54 32 Z" />
-                    {/* South America */}
-                    <path d="M42 80 Q 56 86 52 108 Q 46 128 40 134 Q 34 116 38 94 Z" />
-                    {/* Europe */}
-                    <path d="M102 36 Q 115 32 122 42 Q 116 52 108 50 Q 98 44 102 36 Z" />
-                    {/* United Kingdom */}
-                    <circle cx="98" cy="38" r="3.5" />
-                    {/* Africa */}
-                    <path d="M104 56 Q 128 58 132 80 Q 128 106 116 124 Q 106 112 102 88 Q 98 68 104 56 Z" />
-                    {/* Madagascar */}
-                    <ellipse cx="134" cy="106" rx="3.5" ry="8" />
-                    {/* Asia */}
-                    <path d="M125 32 Q 155 26 182 40 Q 188 64 172 74 Q 155 68 142 56 Q 132 46 125 32 Z" />
-                    {/* India */}
-                    <path d="M148 64 L 158 84 L 140 76 Z" />
-                    {/* Australia */}
-                    <path d="M174 98 Q 192 92 195 110 Q 188 122 172 118 Q 166 106 174 98 Z" />
-
-                    {/* Active Client Hub Pulsing Beacons */}
-                    <g fill="#fbbf24">
-                      <circle cx="48" cy="54" r="2.5" />
-                      <circle cx="106" cy="40" r="2.5" />
-                      <circle cx="114" cy="74" r="3" fill="#f59e0b" />
-                      <circle cx="152" cy="52" r="2.5" />
-                      <circle cx="180" cy="104" r="2.5" />
-                    </g>
-                  </g>
-                </g>
-
-                {/* 4. 3D Spherical Curvature Shading (Shadow & Light depth) */}
-                <circle cx="85" cy="85" r="78" fill="url(#sphere3DShade)" pointerEvents="none" />
-
-                {/* 5. Specular Glint on Top-Left Hemisphere */}
-                <ellipse cx="58" cy="48" rx="28" ry="16" fill="#ffffff" opacity="0.32" transform="rotate(-28 58 48)" pointerEvents="none" />
-              </g>
-            </svg>
+            <img
+              src={globeImg}
+              alt="Global Client Network"
+              style={{
+                width: '185px',
+                height: '185px',
+                objectFit: 'contain',
+                filter: 'drop-shadow(0 15px 35px rgba(2, 132, 199, 0.45))',
+                userSelect: 'none',
+                pointerEvents: 'none'
+              }}
+            />
           </div>
 
           {/* The Cloud Nestling / Covering the Lower Half of the Map Globe */}

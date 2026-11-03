@@ -1,12 +1,6 @@
 import React from 'react';
-import { Sparkles, ArrowRight } from 'lucide-react';
 
-export default function XtremeMetalSection({ onOpenQuote }) {
-  const handleEnquiry = (e) => {
-    // Navigate or open the user's Framer link
-    window.open('https://xtremecrdss.framer.website/', '_blank', 'noopener,noreferrer');
-  };
-
+export default function XtremeMetalSection() {
   return (
     <section
       id="metal-cards"
@@ -33,7 +27,6 @@ export default function XtremeMetalSection({ onOpenQuote }) {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '8px',
                 padding: '8px 20px',
                 borderRadius: '50px',
                 backgroundColor: 'rgba(255, 255, 255, 0.75)',
@@ -43,12 +36,11 @@ export default function XtremeMetalSection({ onOpenQuote }) {
                 boxShadow: '0 4px 16px rgba(19, 21, 21, 0.04)',
                 fontSize: '13px',
                 fontWeight: 650,
-                color: '#cfa34b',
+                color: '#131515',
                 letterSpacing: '0.02em',
                 marginBottom: '22px'
               }}
             >
-              <Sparkles size={14} color="#cfa34b" />
               <span>Premium identity, elevated prestige</span>
             </div>
 
@@ -63,7 +55,15 @@ export default function XtremeMetalSection({ onOpenQuote }) {
                 marginBottom: '20px'
               }}
             >
-              Xtreme Metal business cards that make a lasting impression
+              Xtreme Metal
+              <br />
+              business
+              <br />
+              cards that
+              <br />
+              make a lasting
+              <br />
+              impression.
             </h2>
 
             {/* Paragraph */}
@@ -77,7 +77,13 @@ export default function XtremeMetalSection({ onOpenQuote }) {
                 maxWidth: '580px'
               }}
             >
-              Xtreme metal cards are precision-engineered for unmatched durability and a sophisticated, professional feel. Define your brand with a premium access solution.
+              Xtreme metal cards are precision
+              <br />
+              -engineered for unmatched durability and
+              <br />
+              a sophisticated, professional feel. Define
+              <br />
+              your brand with a premium access solution.
             </p>
 
             {/* Button with black bg: Make enquiries */}
@@ -88,7 +94,6 @@ export default function XtremeMetalSection({ onOpenQuote }) {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '10px',
                 padding: '14px 32px',
                 borderRadius: '50px',
                 backgroundColor: '#131515',
@@ -110,7 +115,6 @@ export default function XtremeMetalSection({ onOpenQuote }) {
               }}
             >
               <span>Make enquiries</span>
-              <ArrowRight size={16} />
             </a>
           </div>
 

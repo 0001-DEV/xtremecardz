@@ -1,5 +1,4 @@
 import React from 'react';
-import { Sparkles, ArrowRight } from 'lucide-react';
 
 export default function PremiumPackages({ onOpenQuote }) {
   return (
@@ -24,10 +23,10 @@ export default function PremiumPackages({ onOpenQuote }) {
           {/* Container 1 (Left Container): Your corporate card at a glance */}
           <div
             style={{
-              backgroundColor: '#ffffff',
+              backgroundColor: '#1a1d1f',
               borderRadius: '26px',
-              border: '1px solid rgba(19, 21, 21, 0.08)',
-              boxShadow: '0 16px 40px rgba(19, 21, 21, 0.05)',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              boxShadow: '0 16px 40px rgba(0, 0, 0, 0.25)',
               padding: '38px 32px',
               display: 'flex',
               flexDirection: 'column',
@@ -41,7 +40,7 @@ export default function PremiumPackages({ onOpenQuote }) {
                 style={{
                   fontSize: 'clamp(22px, 2.4vw, 28px)',
                   fontWeight: 700,
-                  color: '#131515',
+                  color: '#ffffff',
                   lineHeight: 1.25,
                   marginBottom: '12px'
                 }}
@@ -52,7 +51,7 @@ export default function PremiumPackages({ onOpenQuote }) {
               <p
                 style={{
                   fontSize: '14.5px',
-                  color: '#595e5e',
+                  color: 'rgba(255, 255, 255, 0.72)',
                   lineHeight: 1.6,
                   marginBottom: '26px'
                 }}
@@ -348,42 +347,24 @@ export default function PremiumPackages({ onOpenQuote }) {
           {/* Container 2 (Right Container Beside It): Identity, done differently. */}
           <div
             style={{
-              backgroundColor: '#ffffff',
+              backgroundColor: '#1a1d1f',
               borderRadius: '26px',
-              border: '1px solid rgba(207, 163, 75, 0.35)',
-              boxShadow: '0 16px 40px rgba(19, 21, 21, 0.05)',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              boxShadow: '0 16px 40px rgba(0, 0, 0, 0.25)',
               padding: '38px 32px',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
+              gap: '22px',
               transition: 'all 0.3s ease'
             }}
           >
             <div>
-              <div
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  backgroundColor: 'rgba(207, 163, 75, 0.15)',
-                  color: '#b88a32',
-                  padding: '5px 14px',
-                  borderRadius: '50px',
-                  fontSize: '12px',
-                  fontWeight: 600,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.06em',
-                  marginBottom: '16px'
-                }}
-              >
-                <span>The New Standard</span>
-              </div>
-
               <h3
                 style={{
                   fontSize: 'clamp(22px, 2.4vw, 28px)',
                   fontWeight: 700,
-                  color: '#131515',
+                  color: '#ffffff',
                   lineHeight: 1.25,
                   marginBottom: '12px'
                 }}
@@ -394,124 +375,271 @@ export default function PremiumPackages({ onOpenQuote }) {
               <p
                 style={{
                   fontSize: '14.5px',
-                  color: '#595e5e',
+                  color: 'rgba(255, 255, 255, 0.72)',
                   lineHeight: 1.6,
                   marginBottom: '26px'
                 }}
               >
-                Custom design. Premium materials. Smart technology. Transform a generic plastic badge into an executive brand asset.
+                Premium material cards designed to look, feel and
+                <br />
+                function like your organization means business.
               </p>
+            </div>
 
-              {/* 3 Key Differentials */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
-                  <div
-                    style={{
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: '10px',
-                      backgroundColor: 'rgba(207, 163, 75, 0.15)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0
-                    }}
-                  >
-                    <Sparkles size={18} color="#cfa34b" />
-                  </div>
-                  <div>
-                    <h4 style={{ fontSize: '15px', fontWeight: 600, color: '#131515', margin: '0 0 3px 0' }}>
-                      Identity Upgrade
-                    </h4>
-                    <p style={{ fontSize: '13px', color: '#64748b', margin: 0, lineHeight: 1.45 }}>
-                      Replace throwaway badges with executive metal &amp; hybrid smart passes that team members carry with pride.
-                    </p>
+            {/* Inner Showcase Stage: 2 Moving Background Text Container Rows + Centered Dark Glassmorphism Card */}
+            <div
+              style={{
+                position: 'relative',
+                flex: 1,
+                minHeight: '420px',
+                borderRadius: '22px',
+                backgroundColor: '#0c0e0e',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                overflow: 'hidden',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '28px 20px'
+              }}
+            >
+              {/* Background Two Moving Rows of Text Containers */}
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  gap: '22px',
+                  pointerEvents: 'none',
+                  zIndex: 1,
+                  opacity: 0.55
+                }}
+              >
+                {/* Row 1: Moving Right */}
+                <div style={{ overflow: 'hidden', width: '100%' }}>
+                  <div className="identity-marquee-track identity-marquee-right">
+                    {[
+                      'Executive Metal Cards',
+                      '24K Gold Finish',
+                      'Smart NFC Tap',
+                      'Laser Engraving',
+                      'Custom Brand Identity',
+                      'VIP Access Pass',
+                      'Brushed Titanium',
+                      'Executive Metal Cards',
+                      '24K Gold Finish',
+                      'Smart NFC Tap',
+                      'Laser Engraving',
+                      'Custom Brand Identity',
+                      'VIP Access Pass',
+                      'Brushed Titanium'
+                    ].map((txt, idx) => (
+                      <div
+                        key={`r1-${idx}`}
+                        style={{
+                          padding: '14px 22px',
+                          borderRadius: '14px',
+                          backgroundColor: 'rgba(255, 255, 255, 0.06)',
+                          border: '1px solid rgba(255, 255, 255, 0.1)',
+                          color: 'rgba(255, 255, 255, 0.78)',
+                          fontSize: '13.5px',
+                          fontWeight: 500,
+                          whiteSpace: 'nowrap',
+                          flexShrink: 0
+                        }}
+                      >
+                        {txt}
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
-                  <div
-                    style={{
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: '10px',
-                      backgroundColor: 'rgba(207, 163, 75, 0.15)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0
-                    }}
-                  >
-                    <Sparkles size={18} color="#cfa34b" />
-                  </div>
-                  <div>
-                    <h4 style={{ fontSize: '15px', fontWeight: 600, color: '#131515', margin: '0 0 3px 0' }}>
-                      A Better First Impression
-                    </h4>
-                    <p style={{ fontSize: '13px', color: '#64748b', margin: 0, lineHeight: 1.45 }}>
-                      When meeting partners, attending summits, or greeting clients, a substantial card signals prestige immediately.
-                    </p>
-                  </div>
-                </div>
-
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '14px' }}>
-                  <div
-                    style={{
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: '10px',
-                      backgroundColor: 'rgba(2, 131, 167, 0.1)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0
-                    }}
-                  >
-                    <Sparkles size={18} color="#0283a7" />
-                  </div>
-                  <div>
-                    <h4 style={{ fontSize: '15px', fontWeight: 600, color: '#131515', margin: '0 0 3px 0' }}>
-                      Smarter Connectivity
-                    </h4>
-                    <p style={{ fontSize: '13px', color: '#64748b', margin: 0, lineHeight: 1.45 }}>
-                      Tap your card to any smartphone to share rich media, digital profiles, or verify facility access clearances.
-                    </p>
+                {/* Row 2: Moving Left */}
+                <div style={{ overflow: 'hidden', width: '100%' }}>
+                  <div className="identity-marquee-track identity-marquee-left">
+                    {[
+                      'Contactless Sharing',
+                      'Precision Cutouts',
+                      'Matte Stealth Black',
+                      'Corporate Prestige',
+                      'Encrypted Credentials',
+                      'Signature Luster',
+                      'Hybrid Smart Pass',
+                      'Contactless Sharing',
+                      'Precision Cutouts',
+                      'Matte Stealth Black',
+                      'Corporate Prestige',
+                      'Encrypted Credentials',
+                      'Signature Luster',
+                      'Hybrid Smart Pass'
+                    ].map((txt, idx) => (
+                      <div
+                        key={`r2-${idx}`}
+                        style={{
+                          padding: '14px 22px',
+                          borderRadius: '14px',
+                          backgroundColor: 'rgba(255, 255, 255, 0.06)',
+                          border: '1px solid rgba(255, 255, 255, 0.1)',
+                          color: 'rgba(255, 255, 255, 0.78)',
+                          fontSize: '13.5px',
+                          fontWeight: 500,
+                          whiteSpace: 'nowrap',
+                          flexShrink: 0
+                        }}
+                      >
+                        {txt}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
-            </div>
 
-            <button
-              onClick={() => onOpenQuote?.('Identity, done differently')}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px',
-                padding: '13px 22px',
-                borderRadius: '12px',
-                backgroundColor: '#cfa34b',
-                border: 'none',
-                color: '#131515',
-                fontSize: '14px',
-                fontWeight: 700,
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                width: '100%',
-                boxShadow: '0 6px 18px rgba(207, 163, 75, 0.25)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#e5b85d';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#cfa34b';
-                e.currentTarget.style.transform = 'translateY(0)';
-              }}
-            >
-              <span>Get started with Xtremecardz</span>
-              <ArrowRight size={15} />
-            </button>
+              {/* Foreground Centered Dark Glassmorphism Card */}
+              <div
+                style={{
+                  position: 'relative',
+                  zIndex: 2,
+                  width: '100%',
+                  maxWidth: '400px',
+                  backgroundColor: 'rgba(20, 23, 25, 0.72)',
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  borderRadius: '22px',
+                  border: '1px solid rgba(255, 255, 255, 0.14)',
+                  boxShadow: '0 20px 45px rgba(0, 0, 0, 0.45)',
+                  padding: '32px 26px',
+                  textAlign: 'center',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center'
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: '11.5px',
+                    fontWeight: 600,
+                    color: '#cfa34b',
+                    letterSpacing: '0.08em',
+                    textTransform: 'uppercase',
+                    marginBottom: '12px'
+                  }}
+                >
+                  IDENTITY UPGRADE
+                </span>
+
+                <h4
+                  style={{
+                    fontSize: 'clamp(20px, 2.2vw, 24px)',
+                    fontWeight: 700,
+                    color: '#ffffff',
+                    lineHeight: 1.25,
+                    marginBottom: '12px'
+                  }}
+                >
+                  It&apos;s time for better Identity cards
+                </h4>
+
+                <p
+                  style={{
+                    fontSize: '14px',
+                    color: 'rgba(255, 255, 255, 0.75)',
+                    lineHeight: 1.55,
+                    margin: '0 0 24px 0'
+                  }}
+                >
+                  Custom design. Premium
+                  <br />
+                  materials. Smart technology
+                </p>
+
+                {/* Two Buttons Side by Side: Get a quote (white) & Upgrade ID (black) */}
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '12px',
+                    flexWrap: 'wrap',
+                    width: '100%'
+                  }}
+                >
+                  <button
+                    onClick={() => onOpenQuote?.('Get a quote - Identity Upgrade')}
+                    style={{
+                      padding: '11px 22px',
+                      borderRadius: '50px',
+                      backgroundColor: '#ffffff',
+                      color: '#131515',
+                      border: '1px solid #ffffff',
+                      fontSize: '13.5px',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease',
+                      boxShadow: '0 4px 14px rgba(255, 255, 255, 0.12)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#f1f3f5';
+                      e.currentTarget.style.transform = 'translateY(-1px)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = '#ffffff';
+                      e.currentTarget.style.transform = 'translateY(0)';
+                    }}
+                  >
+                    Get a quote
+                  </button>
+
+                  <button
+                    onClick={() => onOpenQuote?.('Upgrade ID')}
+                    style={{
+                      padding: '11px 22px',
+                      borderRadius: '50px',
+                      backgroundColor: '#0c0e0e',
+                      color: '#ffffff',
+                      border: '1px solid rgba(255, 255, 255, 0.18)',
+                      fontSize: '13.5px',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease',
+                      boxShadow: '0 4px 14px rgba(0, 0, 0, 0.35)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.backgroundColor = '#1c2022';
+                      e.currentTarget.style.transform = 'translateY(-1px)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.backgroundColor = '#0c0e0e';
+                      e.currentTarget.style.transform = 'translateY(0)';
+                    }}
+                  >
+                    Upgrade ID
+                  </button>
+                </div>
+              </div>
+
+              <style>{`
+                @keyframes identityScrollLeft {
+                  0% { transform: translateX(0); }
+                  100% { transform: translateX(-50%); }
+                }
+                @keyframes identityScrollRight {
+                  0% { transform: translateX(-50%); }
+                  100% { transform: translateX(0); }
+                }
+                .identity-marquee-track {
+                  display: flex;
+                  gap: 14px;
+                  width: max-content;
+                }
+                .identity-marquee-right {
+                  animation: identityScrollRight 28s linear infinite;
+                }
+                .identity-marquee-left {
+                  animation: identityScrollLeft 28s linear infinite;
+                }
+              `}</style>
+            </div>
           </div>
         </div>
       </div>

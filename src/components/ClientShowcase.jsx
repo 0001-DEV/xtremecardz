@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Star, Sparkles } from 'lucide-react';
-import globeImg from '../assets/Bottom.png';
+import globeImg from '../assets/globe.png';
 import cloudImg from '../assets/cloud.png';
 
 // Brand client pairs with real high-resolution brand logos from Framer
@@ -46,11 +46,13 @@ const AVATAR_SLOTS = [
 ];
 
 export default function ClientShowcase() {
-  // Top right counter ticker: rolls through 50, 51, 52 ... 59 (0123456789)
-  const [digit, setDigit] = useState(0);
+  // Top right counter ticker: rolls 51 -> 52 -> 53 -> 54, then 1 rolls back from top and continues
+  const [digit, setDigit] = useState(1);
   const [slots, setSlots] = useState(AVATAR_SLOTS);
   const [isGliding, setIsGliding] = useState(false);
   const [isPulsing, setIsPulsing] = useState(false);
+  const statsRef = useRef(null);
+  const [statsVisible, setStatsVisible] = useState(false);
 
   const incomingLogo = slots[2];
 
@@ -61,9 +63,9 @@ export default function ClientShowcase() {
       setIsGliding(true);
 
       glideTimer = setTimeout(() => {
-        setSlots(prev => [prev[2], prev[0], prev[1]]);
+        setSlots((prev) => [prev[2], prev[0], prev[1]]);
         setIsGliding(false);
-        setDigit(d => (d + 1) % 10);
+        setDigit((d) => (d >= 4 ? 1 : d + 1));
         setIsPulsing(true);
 
         pulseTimer = setTimeout(() => {
@@ -77,6 +79,23 @@ export default function ClientShowcase() {
       clearTimeout(glideTimer);
       clearTimeout(pulseTimer);
     };
+  }, []);
+
+  // Trigger number slot/reveal animation once when scrolled into view
+  useEffect(() => {
+    const el = statsRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setStatsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.25 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -127,24 +146,14 @@ export default function ClientShowcase() {
           }
         }
 
-        @keyframes globeContinuousSpin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-
-        @keyframes mapContinentsScroll {
+        @keyframes globeWestToEastScroll {
           0% {
-            transform: translateX(0);
+            background-position: 0px center;
           }
           100% {
-            transform: translateX(-340px);
+            background-position: 200% center;
           }
         }
-
         @keyframes globeAtmosphereAura {
           0%, 100% {
             filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.07));
@@ -159,9 +168,14 @@ export default function ClientShowcase() {
           50% { transform: translateY(-3px) scale(1.015); }
         }
 
-        @keyframes digitTickRoll {
-          0% { transform: translateY(-5px); opacity: 0.3; }
-          100% { transform: translateY(0); opacity: 1; }
+        @keyframes digitTickRollUp {
+          0% { transform: translateY(100%); opacity: 0.2; }
+          100% { transform: translateY(0%); opacity: 1; }
+        }
+
+        @keyframes digitTickRollDown {
+          0% { transform: translateY(-100%); opacity: 0.2; }
+          100% { transform: translateY(0%); opacity: 1; }
         }
       `}</style>
 
@@ -204,26 +218,21 @@ export default function ClientShowcase() {
               gap: '8px'
             }}
           >
-            {/* Pill with Logos + Black BG rolling counter */}
+            {/* Unboxed Overlapping Circles Cluster (3 Avatars + Circular +50..54 Counter) */}
             <div
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '12px',
-                padding: '7px 10px 7px 14px',
-                backgroundColor: '#ffffff',
-                borderRadius: '50px',
-                border: '1px solid rgba(19, 21, 21, 0.08)',
-                boxShadow: '0 6px 20px rgba(19, 21, 21, 0.05)',
-                overflow: 'hidden'
+                position: 'relative',
+                padding: '4px 0'
               }}
             >
-              {/* Conveyor of Logos */}
+              {/* Conveyor of 3 Overlapping Avatar Circles + Circular Number Circle */}
               <div
                 style={{
                   position: 'relative',
-                  width: '82px',
-                  height: '36px',
+                  width: '146px',
+                  height: '48px',
                   display: 'flex',
                   alignItems: 'center'
                 }}
@@ -232,9 +241,9 @@ export default function ClientShowcase() {
                 <div
                   style={{
                     position: 'absolute',
-                    left: '-22px',
+                    left: '-32px',
                     zIndex: 1,
-                    transform: isGliding ? 'translateX(22px) scale(1)' : 'translateX(0) scale(0.6)',
+                    transform: isGliding ? 'translateX(32px) scale(1)' : 'translateX(0) scale(0.6)',
                     opacity: isGliding ? 1 : 0,
                     transition: isGliding
                       ? 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease'
@@ -246,12 +255,13 @@ export default function ClientShowcase() {
                     src={incomingLogo.avatar}
                     alt={incomingLogo.name}
                     style={{
-                      width: '34px',
-                      height: '34px',
+                      width: '46px',
+                      height: '46px',
                       borderRadius: '50%',
                       objectFit: 'cover',
-                      border: '2px solid #ffffff',
-                      boxShadow: '0 2px 6px rgba(0,0,0,0.12)'
+                      border: '2px solid #131515',
+                      boxShadow: '0 4px 10px rgba(0,0,0,0.14)',
+                      display: 'block'
                     }}
                   />
                 </div>
@@ -262,7 +272,7 @@ export default function ClientShowcase() {
                     position: 'absolute',
                     left: '0px',
                     zIndex: 2,
-                    transform: isGliding ? 'translateX(22px)' : 'translateX(0)',
+                    transform: isGliding ? 'translateX(32px)' : 'translateX(0)',
                     transition: isGliding ? 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)' : 'none',
                     pointerEvents: 'none'
                   }}
@@ -271,23 +281,24 @@ export default function ClientShowcase() {
                     src={slots[0].avatar}
                     alt={slots[0].name}
                     style={{
-                      width: '34px',
-                      height: '34px',
+                      width: '46px',
+                      height: '46px',
                       borderRadius: '50%',
                       objectFit: 'cover',
-                      border: '2px solid #ffffff',
-                      boxShadow: '0 2px 6px rgba(0,0,0,0.12)'
+                      border: '2px solid #131515',
+                      boxShadow: '0 4px 10px rgba(0,0,0,0.14)',
+                      display: 'block'
                     }}
                   />
                 </div>
 
-                {/* Slot 1 (left: 22px) */}
+                {/* Slot 1 (left: 32px) */}
                 <div
                   style={{
                     position: 'absolute',
-                    left: '22px',
+                    left: '32px',
                     zIndex: 3,
-                    transform: isGliding ? 'translateX(22px)' : 'translateX(0)',
+                    transform: isGliding ? 'translateX(32px)' : 'translateX(0)',
                     transition: isGliding ? 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)' : 'none',
                     pointerEvents: 'none'
                   }}
@@ -296,23 +307,24 @@ export default function ClientShowcase() {
                     src={slots[1].avatar}
                     alt={slots[1].name}
                     style={{
-                      width: '34px',
-                      height: '34px',
+                      width: '46px',
+                      height: '46px',
                       borderRadius: '50%',
                       objectFit: 'cover',
-                      border: '2px solid #ffffff',
-                      boxShadow: '0 2px 6px rgba(0,0,0,0.12)'
+                      border: '2px solid #131515',
+                      boxShadow: '0 4px 10px rgba(0,0,0,0.14)',
+                      display: 'block'
                     }}
                   />
                 </div>
 
-                {/* Slot 2 (left: 44px) -> enters black bg box */}
+                {/* Slot 2 (left: 64px) -> glides into the circular counter */}
                 <div
                   style={{
                     position: 'absolute',
-                    left: '44px',
+                    left: '64px',
                     zIndex: 4,
-                    transform: isGliding ? 'translateX(34px) scale(0.2)' : 'translateX(0) scale(1)',
+                    transform: isGliding ? 'translateX(32px) scale(0.3)' : 'translateX(0) scale(1)',
                     opacity: isGliding ? 0 : 1,
                     transition: isGliding
                       ? 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.55s ease'
@@ -324,65 +336,75 @@ export default function ClientShowcase() {
                     src={slots[2].avatar}
                     alt={slots[2].name}
                     style={{
-                      width: '34px',
-                      height: '34px',
+                      width: '46px',
+                      height: '46px',
                       borderRadius: '50%',
                       objectFit: 'cover',
-                      border: '2px solid #ffffff',
-                      boxShadow: '0 2px 6px rgba(0,0,0,0.12)'
+                      border: '2px solid #131515',
+                      boxShadow: '0 4px 10px rgba(0,0,0,0.14)',
+                      display: 'block'
                     }}
                   />
                 </div>
-              </div>
 
-              {/* Black BG Number Container with rolling digit (0-9) */}
-              <div
-                style={{
-                  backgroundColor: '#131515',
-                  color: '#ffffff',
-                  padding: '6px 14px',
-                  borderRadius: '12px',
-                  fontWeight: 800,
-                  fontSize: '16px',
-                  letterSpacing: '-0.02em',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  minWidth: '54px',
-                  boxShadow: isPulsing
-                    ? '0 0 20px rgba(207, 163, 75, 0.8), 0 4px 10px rgba(0,0,0,0.3)'
-                    : '0 2px 8px rgba(19, 21, 21, 0.2)',
-                  transform: isPulsing ? 'scale(1.14)' : 'scale(1)',
-                  transition: 'all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                  border: isPulsing ? '1px solid #cfa34b' : '1px solid rgba(255,255,255,0.12)',
-                  position: 'relative',
-                  zIndex: 10
-                }}
-              >
-                <span>+5</span>
-                <span
-                  key={digit}
+                {/* Overlapping Circular Counter Badge (+50 to +54) at left: 96px */}
+                <div
                   style={{
-                    display: 'inline-block',
-                    animation: 'digitTickRoll 0.24s cubic-bezier(0.34, 1.56, 0.64, 1) forwards'
+                    position: 'absolute',
+                    left: '96px',
+                    zIndex: 10,
+                    width: '46px',
+                    height: '46px',
+                    borderRadius: '50%',
+                    backgroundColor: '#131515',
+                    color: '#ffffff',
+                    border: '2px solid #131515',
+                    fontWeight: 700,
+                    fontSize: '15px',
+                    letterSpacing: '-0.02em',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    boxShadow: '0 4px 12px rgba(19, 21, 21, 0.22)',
+                    transform: isPulsing ? 'scale(1.08)' : 'scale(1)',
+                    transition: 'transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                    overflow: 'hidden'
                   }}
                 >
-                  {digit}
-                </span>
+                  <span>+5</span>
+                  <span
+                    style={{
+                      display: 'inline-flex',
+                      overflow: 'hidden',
+                      height: '18px',
+                      alignItems: 'center'
+                    }}
+                  >
+                    <span
+                      key={digit}
+                      style={{
+                        display: 'inline-block',
+                        lineHeight: '18px',
+                        animation: `${digit === 1 ? 'digitTickRollDown' : 'digitTickRollUp'} 0.36s cubic-bezier(0.22, 1, 0.36, 1) forwards`
+                      }}
+                    >
+                      {digit}
+                    </span>
+                  </span>
+                </div>
               </div>
             </div>
-
-            {/* Under it: 5 gold Stars */}
-            <div style={{ display: 'flex', gap: '3px', color: '#ff9803', marginTop: '2px' }}>
+            {/* Under it: 5 gold Stars (Increased size) */}
+            <div style={{ display: 'flex', gap: '4px', color: '#ff9803', marginTop: '4px' }}>
               {[...Array(5)].map((_, i) => (
-                <Star key={i} size={15} fill="#ff9803" color="#ff9803" />
+                <Star key={i} size={20} fill="#ff9803" color="#ff9803" />
               ))}
             </div>
 
-            {/* Under this: Trusted worldwide */}
+            {/* Under this: Trusted worldwide (Increased size) */}
             <span
               style={{
-                fontSize: '13.5px',
+                fontSize: '17px',
                 fontWeight: 600,
                 color: '#595e5e',
                 letterSpacing: '0.01em'
@@ -627,7 +649,7 @@ export default function ClientShowcase() {
           pointerEvents: 'none'
         }}
       >
-        {/* 3D Rotating & Floating Map Globe Image - Increased to very big size */}
+        {/* 3D Spherical Globe rotating West-to-East while keeping a perfectly circular sphere outline */}
         <div
           style={{
             position: 'absolute',
@@ -641,22 +663,40 @@ export default function ClientShowcase() {
             justifyContent: 'center'
           }}
         >
-          <img
-            src={globeImg}
-            alt="Global Client Network"
+          <div
+            role="img"
+            aria-label="Global Client Network"
             style={{
               width: 'clamp(480px, 56vw, 660px)',
               height: 'clamp(480px, 56vw, 660px)',
-              objectFit: 'contain',
-              filter: 'drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1))',
-              userSelect: 'none',
-              pointerEvents: 'none',
-              animation: 'globeContinuousSpin 32s linear infinite'
+              borderRadius: '50%',
+              overflow: 'hidden',
+              position: 'relative',
+              backgroundColor: '#034c8c',
+              backgroundImage: `url(${globeImg})`,
+              backgroundRepeat: 'repeat-x',
+              backgroundSize: '115% 115%',
+              animation: 'globeWestToEastScroll 28s linear infinite',
+              boxShadow:
+                'inset -42px -28px 80px rgba(0, 12, 32, 0.72), inset 28px 24px 60px rgba(255, 255, 255, 0.35), 0 20px 40px rgba(0, 0, 0, 0.1)'
             }}
           />
         </div>
+        {/* Solid Body Background Block covering exactly the bottom 50% (half) of the globe */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: '50%',
+            backgroundColor: 'var(--bg-page, #f9f8f6)',
+            zIndex: 4,
+            pointerEvents: 'none'
+          }}
+        />
 
-        {/* Full-width Cloud Layer using the cloud image covering half of the rotating globe */}
+        {/* Full-width Cloud Layer sitting across the halfway horizon line */}
         <div
           style={{
             position: 'absolute',
@@ -664,7 +704,7 @@ export default function ClientShowcase() {
             left: '0px',
             right: '0px',
             width: '100%',
-            height: 'clamp(280px, 34vw, 400px)',
+            height: '62%',
             zIndex: 5,
             animation: 'cloudGentleFloat 5s ease-in-out infinite',
             pointerEvents: 'none',
@@ -679,6 +719,8 @@ export default function ClientShowcase() {
             src={cloudImg}
             alt="Atmospheric Cloud Horizon"
             style={{
+              position: 'relative',
+              zIndex: 2,
               width: '100%',
               maxWidth: 'none',
               height: '100%',
@@ -689,14 +731,17 @@ export default function ClientShowcase() {
           />
         </div>
       </div>
-
       {/* ============================================================== */}
-      {/* 5. 3 COLUMNS STATS BLOCK: + and % in red color, big font size  */}
+      {/* 5. 3 COLUMNS STATS BLOCK: No container, numbers emerge & stay  */}
       {/* ============================================================== */}
-      <div className="container" style={{ textAlign: 'center', marginTop: '30px' }}>
+      <div
+        ref={statsRef}
+        className="container"
+        style={{ textAlign: 'center', marginTop: '-160px', position: 'relative', zIndex: 10 }}
+      >
         <div
           style={{
-            maxWidth: '920px',
+            maxWidth: '1080px',
             margin: '0 auto',
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
@@ -705,30 +750,38 @@ export default function ClientShowcase() {
           }}
         >
           {/* Column 1: 98% with % in red */}
-          <div
-            style={{
-              padding: '24px 20px',
-              backgroundColor: '#ffffff',
-              borderRadius: '24px',
-              border: '1px solid rgba(19, 21, 21, 0.08)',
-              boxShadow: '0 10px 30px rgba(19, 21, 21, 0.04)'
-            }}
-          >
+          <div style={{ padding: '12px 10px' }}>
             <div
               style={{
-                fontSize: 'clamp(44px, 4.8vw, 62px)',
-                fontWeight: 850,
-                color: '#131515',
-                letterSpacing: '-0.03em',
-                lineHeight: 1,
-                marginBottom: '14px'
+                overflow: 'hidden',
+                display: 'inline-flex',
+                alignItems: 'baseline',
+                justifyContent: 'center',
+                marginBottom: '14px',
+                padding: '4px 2px'
               }}
             >
-              98<span style={{ color: '#e53935', marginLeft: '2px' }}>%</span>
+              <span
+                style={{
+                  display: 'inline-block',
+                  fontSize: 'clamp(59px, 6vw, 77px)',
+                  fontWeight: 850,
+                  color: '#131515',
+                  letterSpacing: '-0.03em',
+                  lineHeight: 1,
+                  transform: statsVisible ? 'translateY(0%)' : 'translateY(115%)',
+                  opacity: statsVisible ? 1 : 0,
+                  transition:
+                    'transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.05s, opacity 0.65s ease 0.05s',
+                  willChange: 'transform, opacity'
+                }}
+              >
+                98<span style={{ color: '#e53935', marginLeft: '2px' }}>%</span>
+              </span>
             </div>
             <p
               style={{
-                fontSize: '15.5px',
+                fontSize: '30.5px',
                 lineHeight: 1.5,
                 color: '#595e5e',
                 fontWeight: 600,
@@ -740,30 +793,38 @@ export default function ClientShowcase() {
           </div>
 
           {/* Column 2: 3.5 with bigger font size */}
-          <div
-            style={{
-              padding: '24px 20px',
-              backgroundColor: '#ffffff',
-              borderRadius: '24px',
-              border: '1px solid rgba(19, 21, 21, 0.08)',
-              boxShadow: '0 10px 30px rgba(19, 21, 21, 0.04)'
-            }}
-          >
+          <div style={{ padding: '12px 10px' }}>
             <div
               style={{
-                fontSize: 'clamp(44px, 4.8vw, 62px)',
-                fontWeight: 850,
-                color: '#131515',
-                letterSpacing: '-0.03em',
-                lineHeight: 1,
-                marginBottom: '14px'
+                overflow: 'hidden',
+                display: 'inline-flex',
+                alignItems: 'baseline',
+                justifyContent: 'center',
+                marginBottom: '14px',
+                padding: '4px 2px'
               }}
             >
-              3.5
+              <span
+                style={{
+                  display: 'inline-block',
+                  fontSize: 'clamp(59px, 6vw, 77px)',
+                  fontWeight: 850,
+                  color: '#131515',
+                  letterSpacing: '-0.03em',
+                  lineHeight: 1,
+                  transform: statsVisible ? 'translateY(0%)' : 'translateY(115%)',
+                  opacity: statsVisible ? 1 : 0,
+                  transition:
+                    'transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, opacity 0.65s ease 0.2s',
+                  willChange: 'transform, opacity'
+                }}
+              >
+                3.5
+              </span>
             </div>
             <p
               style={{
-                fontSize: '15.5px',
+                fontSize: '30.5px',
                 lineHeight: 1.5,
                 color: '#595e5e',
                 fontWeight: 600,
@@ -775,30 +836,38 @@ export default function ClientShowcase() {
           </div>
 
           {/* Column 3: 15+ with + in red */}
-          <div
-            style={{
-              padding: '24px 20px',
-              backgroundColor: '#ffffff',
-              borderRadius: '24px',
-              border: '1px solid rgba(19, 21, 21, 0.08)',
-              boxShadow: '0 10px 30px rgba(19, 21, 21, 0.04)'
-            }}
-          >
+          <div style={{ padding: '12px 10px' }}>
             <div
               style={{
-                fontSize: 'clamp(44px, 4.8vw, 62px)',
-                fontWeight: 850,
-                color: '#131515',
-                letterSpacing: '-0.03em',
-                lineHeight: 1,
-                marginBottom: '14px'
+                overflow: 'hidden',
+                display: 'inline-flex',
+                alignItems: 'baseline',
+                justifyContent: 'center',
+                marginBottom: '14px',
+                padding: '4px 2px'
               }}
             >
-              15<span style={{ color: '#e53935', marginLeft: '2px' }}>+</span>
+              <span
+                style={{
+                  display: 'inline-block',
+                  fontSize: 'clamp(59px, 6vw, 77px)',
+                  fontWeight: 850,
+                  color: '#131515',
+                  letterSpacing: '-0.03em',
+                  lineHeight: 1,
+                  transform: statsVisible ? 'translateY(0%)' : 'translateY(115%)',
+                  opacity: statsVisible ? 1 : 0,
+                  transition:
+                    'transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.35s, opacity 0.65s ease 0.35s',
+                  willChange: 'transform, opacity'
+                }}
+              >
+                15<span style={{ color: '#e53935', marginLeft: '2px' }}>+</span>
+              </span>
             </div>
             <p
               style={{
-                fontSize: '15.5px',
+                fontSize: '30.5px',
                 lineHeight: 1.5,
                 color: '#595e5e',
                 fontWeight: 600,

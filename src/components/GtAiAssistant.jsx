@@ -352,7 +352,7 @@ export default function GtAiAssistant({ onOpenQuote }) {
                       border: '1px solid rgba(19, 21, 21, 0.06)'
                     }}
                   >
-                    <span style={{ fontStyle: 'italic' }}>GT is typing...</span>
+                    <span>GT is typing...</span>
                   </div>
                 </div>
               )}

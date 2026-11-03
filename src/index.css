@@ -4,92 +4,18 @@
 @import 'swiper/css/pagination';
 @import 'swiper/css/effect-coverflow';
 
-/* Haas Grot Display Trial (Medium) Web Font */
-@font-face {
-  font-family: 'Haas Grot Display Trial';
-  src: local('Haas Grot Display Trial Medium'),
-       local('HaasGrotDispTrial-Medium'),
-       url('/fonts/HaasGrotDispTrial-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Haas Grot Display Trial';
-  src: local('Haas Grot Display Trial Medium'),
-       local('HaasGrotDispTrial-Medium'),
-       url('/fonts/HaasGrotDispTrial-Medium.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Haas Grot Display Trial';
-  src: local('Haas Grot Display Trial Medium'),
-       local('HaasGrotDispTrial-Medium'),
-       url('/fonts/HaasGrotDispTrial-Medium.woff2') format('woff2');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Haas Grot Display Trial';
-  src: local('Haas Grot Display Trial Medium'),
-       local('HaasGrotDispTrial-Medium'),
-       url('/fonts/HaasGrotDispTrial-Medium.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'HaasGrot Disp Trial';
-  src: local('Haas Grot Display Trial Medium'),
-       local('HaasGrotDispTrial-Medium'),
-       url('/fonts/HaasGrotDispTrial-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'HaasGrot Disp Trial';
-  src: local('Haas Grot Display Trial Medium'),
-       local('HaasGrotDispTrial-Medium'),
-       url('/fonts/HaasGrotDispTrial-Medium.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'HaasGrot Disp Trial';
-  src: local('Haas Grot Display Trial Medium'),
-       local('HaasGrotDispTrial-Medium'),
-       url('/fonts/HaasGrotDispTrial-Medium.woff2') format('woff2');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'HaasGrot Disp Trial';
-  src: local('Haas Grot Display Trial Medium'),
-       local('HaasGrotDispTrial-Medium'),
-       url('/fonts/HaasGrotDispTrial-Medium.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
+/* ==========================================================================
+   STRICT TYPOGRAPHY - Inter only, in exactly two weights:
+   1. Inter Medium (500)  - header text (h1-h6, buttons, badges, nav)
+   2. Inter Regular (400) - body copy text
+   Only these two weights are loaded; font-synthesis is disabled, so any other
+   requested weight snaps to the nearest of the two (>=500 Medium, <=400 Regular).
+   ========================================================================== */
 :root {
-  --font-heading: 'Haas Grot Display Trial', 'HaasGrot Disp Trial', 'Neue Haas Grotesk Display Pro', 'Neue Haas Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-display: 'Haas Grot Display Trial', 'HaasGrot Disp Trial', 'Neue Haas Grotesk Display Pro', -apple-system, sans-serif;
-  --font-mono: 'Space Grotesk', monospace;
+  --font-heading: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-display: var(--font-heading);
+  --font-mono: var(--font-body);
 
   /* Colors */
   --bg-page: #f9f8f6;
@@ -134,10 +60,17 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-style: normal !important;
+}
+
+em, i, cite {
+  font-style: normal !important;
 }
 
 html {
   font-family: var(--font-body);
+  font-weight: 400;
+  font-synthesis: none; /* never fake bold/italic - keep the exact Medium / Regular faces */
   background-color: var(--bg-page);
   color: var(--text-dark);
   text-rendering: optimizeLegibility;
@@ -174,7 +107,7 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
-/* Typography: Haas Grot Display Trial (Medium 500) for headers, Inter (Regular 400) for body copy */
+/* Typography: Inter Medium (500) for headers, Inter Regular (400) for body copy */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading) !important;
   font-weight: 500 !important;
@@ -197,6 +130,16 @@ p {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+input, textarea, select, option, label, li, td, th, blockquote, figcaption, small {
+  font-family: var(--font-body);
+  font-weight: 400;
+}
+
+input::placeholder, textarea::placeholder {
+  font-family: var(--font-body);
+  font-weight: 400;
 }
 
 button {
@@ -238,7 +181,7 @@ img, video {
   border-radius: var(--radius-pill);
   font-family: var(--font-heading);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
   transition: all 0.25s ease;
 }
@@ -274,7 +217,7 @@ img, video {
   border-radius: var(--radius-pill);
   font-family: var(--font-heading);
   font-size: 14.5px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 6px 20px rgba(19, 21, 21, 0.15);
@@ -298,7 +241,7 @@ img, video {
   border-radius: var(--radius-pill);
   font-family: var(--font-heading);
   font-size: 14.5px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
   border: 1px solid var(--border-light);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);

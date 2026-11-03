@@ -1,4 +1,5 @@
 import React from 'react';
+import woodBg from '../assets/wood.jpg';
 
 export default function PremiumShowcaseBanner({ onOpenQuote }) {
   return (
@@ -11,7 +12,7 @@ export default function PremiumShowcaseBanner({ onOpenQuote }) {
       }}
     >
       <div className="container">
-        {/* The Picture Showcase Banner (Prestige 24K) */}
+        {/* The Picture Showcase Banner (Wood Background) */}
         <div
           style={{
             position: 'relative',
@@ -25,17 +26,17 @@ export default function PremiumShowcaseBanner({ onOpenQuote }) {
             alignItems: 'stretch'
           }}
         >
-          {/* Background Photograph: Prestige 24K Gold Card */}
+          {/* Background Photograph: Wood */}
           <img
-            src="https://framerusercontent.com/images/WRAp8VzH00hxe4XxQqAqA2UuJ0.jpg?width=2000"
-            alt="Xtremecardz Prestige 24K Gold Card"
+            src={woodBg}
+            alt="Xtremecardz Premium Packages"
             style={{
               position: 'absolute',
               inset: 0,
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              objectPosition: 'center right',
+              objectPosition: 'center',
               display: 'block',
               transition: 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1)'
             }}
@@ -96,18 +97,28 @@ export default function PremiumShowcaseBanner({ onOpenQuote }) {
                 <span
                   onClick={() => onOpenQuote && onOpenQuote('Inquiry: Choose a Style')}
                   style={{
-                    color: '#38bdf8',
-                    fontWeight: 650,
-                    cursor: 'pointer',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '4px',
-                    textDecoration: 'underline',
-                    textUnderlineOffset: '3px'
+                    color: 'inherit',
+                    fontWeight: 'inherit',
+                    cursor: 'pointer'
                   }}
                 >
                   Choose a style.
                 </span>
+              </p>
+
+              {/* Subtitle directly under Choose a style */}
+              <p
+                style={{
+                  fontSize: 'clamp(15px, 1.5vw, 17px)',
+                  lineHeight: 1.5,
+                  color: '#ffffff',
+                  fontWeight: 500,
+                  marginTop: '14px',
+                  marginBottom: 0,
+                  textShadow: '0 1px 4px rgba(0, 0, 0, 0.5)'
+                }}
+              >
+                Make it yours. Make it Xtreme.
               </p>
             </div>
 

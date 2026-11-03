@@ -179,7 +179,7 @@ export default function AboutPage({ onOpenQuote }) {
             <p>
               For us, it is not about making just another card. It is about creating something that looks good, feels premium, and represents the identity behind it.
             </p>
-            <p style={{ fontStyle: 'italic', color: '#131515', fontWeight: 500 }}>
+            <p style={{ color: '#131515', fontWeight: 500 }}>
               Because sometimes, the smallest details can make the biggest impression.
             </p>
             <div style={{ marginTop: '12px', borderTop: '1px solid rgba(19, 21, 21, 0.1)', paddingTop: '18px' }}>

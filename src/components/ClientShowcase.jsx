@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Star, Sparkles } from 'lucide-react';
-import globeImg from '../assets/globe.png';
+import globeImg from '../assets/Bottom.png';
 import cloudImg from '../assets/cloud.png';
 
 // Brand client pairs with real high-resolution brand logos from Framer

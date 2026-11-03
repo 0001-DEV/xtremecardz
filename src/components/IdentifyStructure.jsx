@@ -1,17 +1,5 @@
-import React, { useState } from 'react';
-import {
-  Sparkles,
-  Flame,
-  Palette,
-  Cpu,
-  CheckCircle2,
-  Package,
-  Truck,
-  ShoppingBag,
-  FileSpreadsheet,
-  ShieldCheck,
-  Fingerprint
-} from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Sparkles, Flame, Palette, Cpu, Check, CheckCircle2, Package, Truck, ShoppingBag, FileSpreadsheet } from 'lucide-react';
 
 const DELIVERY_STEPS = [
   { name: 'Design & Proof', icon: Palette },
@@ -23,15 +11,30 @@ const DELIVERY_STEPS = [
   { name: 'Data Submission', icon: FileSpreadsheet }
 ];
 
-const FORMULA_PILLARS = [
-  { label: 'Material', detail: 'Solid Foundation', icon: Layers, color: '#cfa34b' },
-  { label: 'Design', detail: 'Executive Layouts', icon: Palette, color: '#0283a7' },
-  { label: 'Finish', detail: 'Signature Luster', icon: Sparkles, color: '#ff9803' },
-  { label: 'Identity', detail: 'Smart Connectivity', icon: Fingerprint, color: '#059669' }
-];
+const FORMULA_ITEMS = ['Material', 'Design', 'Finish', 'Identity', 'Security', 'Smart', 'Experience'];
+const FORMULA_ROW_HEIGHT = 60;
 
 export default function IdentifyStructure({ onOpenQuote }) {
-  const [activePillar, setActivePillar] = useState(FORMULA_PILLARS[0].label);
+  const [stepIndex, setStepIndex] = useState(0);
+  const [enableTransition, setEnableTransition] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setEnableTransition(true);
+      setStepIndex((prev) => prev + 1);
+    }, 2200);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (stepIndex === FORMULA_ITEMS.length) {
+      const timeout = setTimeout(() => {
+        setEnableTransition(false);
+        setStepIndex(0);
+      }, 650);
+      return () => clearTimeout(timeout);
+    }
+  }, [stepIndex]);
 
   return (
     <section
@@ -94,29 +97,37 @@ export default function IdentifyStructure({ onOpenQuote }) {
 
             {/* Bold Text Under It */}
             <h2
+              className="identify-bold-heading"
               style={{
                 fontSize: 'clamp(28px, 3.6vw, 42px)',
-                fontWeight: 700,
                 lineHeight: 1.2,
                 color: '#131515',
                 margin: 0
               }}
             >
-              Premium material cards that preserves your prestige.
+              Premium material
+              <br />
+              cards that preserves
+              <br />
+              your prestige.
             </h2>
           </div>
 
           {/* Right Column */}
-          <div style={{ flex: '1 1 360px', maxWidth: '480px' }}>
+          <div style={{ flex: '1 1 360px', maxWidth: '520px' }}>
             <p
               style={{
-                fontSize: 'clamp(15px, 1.5vw, 17px)',
+                fontSize: 'clamp(19px, 1.8vw, 21px)',
                 lineHeight: 1.65,
                 color: '#52575c',
                 margin: 0
               }}
             >
-              Xtremecardz brings clarity to your identity with clean cards, realistic personality, and prestige that adapts to your day.
+              Xtremecardz brings clarity to your identity
+              <br />
+              with clean cards, realistic personality,
+              <br />
+              and prestige that adapts to your day.
             </p>
           </div>
         </div>
@@ -138,7 +149,7 @@ export default function IdentifyStructure({ onOpenQuote }) {
               maxWidth: '100%',
               height: '800px',
               minHeight: '800px',
-              backgroundColor: '#f8f9fa',
+              backgroundColor: '#e4e6e8',
               borderRadius: '28px',
               border: '1px solid rgba(19, 21, 21, 0.08)',
               boxShadow: '0 16px 40px rgba(19, 21, 21, 0.05)',
@@ -175,12 +186,13 @@ export default function IdentifyStructure({ onOpenQuote }) {
               </p>
             </div>
 
-            {/* Container with white bg and border radius: Streak Fire Icon & Text */}
+            {/* Container with light gray bg and border radius: Streak Fire Icon & Text */}
             <div
               style={{
-                backgroundColor: '#ffffff',
+                backgroundColor: '#f4f5f6',
                 borderRadius: '24px',
-                padding: '36px 28px',
+                padding: '64px 28px',
+                minHeight: '320px',
                 border: '1px solid rgba(19, 21, 21, 0.06)',
                 boxShadow: '0 8px 24px rgba(19, 21, 21, 0.04)',
                 display: 'flex',
@@ -257,7 +269,7 @@ export default function IdentifyStructure({ onOpenQuote }) {
             </div>
           </div>
 
-          {/* CARD 2: Smart ID Formula Card (Real Grass Picture Background) */}
+          {/* CARD 2: Smart ID Formula Card (Grass Footmat Color Background) */}
           <div
             style={{
               width: '580px',
@@ -265,59 +277,44 @@ export default function IdentifyStructure({ onOpenQuote }) {
               height: '800px',
               minHeight: '800px',
               borderRadius: '28px',
-              border: '1px solid rgba(255, 255, 255, 0.4)',
-              boxShadow: '0 16px 40px rgba(0, 0, 0, 0.12)',
-              padding: '40px 32px',
+              background:
+                'radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.04) 0%, transparent 50%), linear-gradient(145deg, #2d4c2b 0%, #1e351d 55%, #162815 100%)',
+              border: '1px solid rgba(255, 255, 255, 0.14)',
+              boxShadow: '0 16px 40px rgba(0, 0, 0, 0.18)',
+              padding: '44px 36px',
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'space-between',
+              justifyContent: 'flex-start',
+              gap: '24px',
               position: 'relative',
               overflow: 'hidden'
             }}
           >
-            {/* Real Grass Picture Background */}
-            <img
-              src="/grass-bg.jpg"
-              alt="Lush green grass"
-              style={{
-                position: 'absolute',
-                inset: 0,
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                pointerEvents: 'none'
-              }}
-            />
-
-            {/* Subtle Vignette Overlay for Depth & High Readability */}
+            {/* Subtle Turf Footmat Texture Pattern Overlay */}
             <div
               style={{
                 position: 'absolute',
                 inset: 0,
-                background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.25) 100%)',
+                backgroundImage:
+                  'radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px), radial-gradient(rgba(0, 0, 0, 0.18) 1px, transparent 1px)',
+                backgroundSize: '6px 6px',
+                backgroundPosition: '0 0, 3px 3px',
                 pointerEvents: 'none'
               }}
             />
 
-            {/* Top Part in the Container */}
+            {/* Top Part (no container): heading + description directly on the grass footmat background */}
             <div
               style={{
                 position: 'relative',
-                zIndex: 2,
-                backgroundColor: 'rgba(255, 255, 255, 0.88)',
-                backdropFilter: 'blur(16px)',
-                WebkitBackdropFilter: 'blur(16px)',
-                borderRadius: '20px',
-                padding: '24px 26px',
-                border: '1px solid rgba(255, 255, 255, 0.95)',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)'
+                zIndex: 2
               }}
             >
               <h3
                 style={{
                   fontSize: 'clamp(22px, 2.3vw, 26px)',
                   fontWeight: 700,
-                  color: '#131515',
+                  color: '#ffffff',
                   marginBottom: '10px',
                   lineHeight: 1.2
                 }}
@@ -327,140 +324,129 @@ export default function IdentifyStructure({ onOpenQuote }) {
               <p
                 style={{
                   fontSize: '14.5px',
-                  color: '#475569',
+                  color: 'rgba(255, 255, 255, 0.85)',
                   lineHeight: 1.55,
-                  margin: 0
+                  margin: 0,
+                  maxWidth: '440px'
                 }}
               >
-                A simple view that shows how we structure corporate cards to match your organization's prestige and personality
+                A simple view that shows how we structure corporate cards to match your organization's prestige and personality.
               </p>
             </div>
 
-            {/* The Xtremecardz Premium Formula! Badge */}
+            {/* Dark Glassmorphism Container: Premium Formula header + formula items, separated by lines */}
             <div
               style={{
                 position: 'relative',
                 zIndex: 2,
-                backgroundColor: 'rgba(255, 255, 255, 0.92)',
-                backdropFilter: 'blur(14px)',
-                WebkitBackdropFilter: 'blur(14px)',
+                backgroundColor: 'rgba(15, 20, 16, 0.62)',
+                backdropFilter: 'blur(18px)',
+                WebkitBackdropFilter: 'blur(18px)',
                 borderRadius: '20px',
-                padding: '18px 24px',
-                border: '1px solid rgba(255, 255, 255, 0.95)',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-                margin: '18px 0'
-              }}
-            >
-              <div
-                style={{
-                  width: '42px',
-                  height: '42px',
-                  borderRadius: '50%',
-                  backgroundColor: 'rgba(207, 163, 75, 0.18)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0
-                }}
-              >
-                <Sparkles size={22} color="#cfa34b" />
-              </div>
-              <span
-                style={{
-                  fontSize: '16px',
-                  fontWeight: 700,
-                  color: '#131515'
-                }}
-              >
-                The Xtremecardz Premium Formula!
-              </span>
-            </div>
-
-            {/* 4 Pillars Interactive Detail Cards */}
-            <div
-              style={{
-                position: 'relative',
-                zIndex: 2,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '12px',
+                border: '1px solid rgba(255, 255, 255, 0.14)',
+                boxShadow: '0 16px 36px rgba(0, 0, 0, 0.32)',
+                overflow: 'hidden',
                 width: '100%'
               }}
             >
-              {FORMULA_PILLARS.map((p) => {
-                const Icon = p.icon;
-                const isSelected = activePillar === p.label;
+              {/* The Xtremecardz Premium Formula! header row */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  padding: '18px 24px',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.12)',
+                  position: 'relative',
+                  zIndex: 2
+                }}
+              >
+                <div
+                  style={{
+                    width: '42px',
+                    height: '42px',
+                    borderRadius: '50%',
+                    backgroundColor: 'rgba(207, 163, 75, 0.22)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0
+                  }}
+                >
+                  <Sparkles size={22} color="#cfa34b" />
+                </div>
+                <span
+                  style={{
+                    fontSize: '16px',
+                    fontWeight: 700,
+                    color: '#ffffff'
+                  }}
+                >
+                  The Xtremecardz Premium Formula!
+                </span>
+              </div>
 
-                return (
-                  <div
-                    key={p.label}
-                    onClick={() => setActivePillar(p.label)}
-                    style={{
-                      padding: '15px 22px',
-                      borderRadius: '16px',
-                      backgroundColor: isSelected ? '#131515' : 'rgba(255, 255, 255, 0.88)',
-                      color: isSelected ? '#ffffff' : '#131515',
-                      backdropFilter: 'blur(12px)',
-                      WebkitBackdropFilter: 'blur(12px)',
-                      border: isSelected ? '1px solid #131515' : '1px solid rgba(255, 255, 255, 0.9)',
-                      boxShadow: isSelected
-                        ? '0 8px 20px rgba(0, 0, 0, 0.25)'
-                        : '0 4px 14px rgba(0, 0, 0, 0.08)',
-                      cursor: 'pointer',
-                      transition: 'all 0.25s ease',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between'
-                    }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+              {/* Animated step-by-step vertical ticker of formula rows */}
+              <div
+                style={{
+                  height: `${FORMULA_ROW_HEIGHT * FORMULA_ITEMS.length}px`,
+                  overflow: 'hidden',
+                  position: 'relative'
+                }}
+              >
+                <div
+                  style={{
+                    transform: `translateY(-${stepIndex * FORMULA_ROW_HEIGHT}px)`,
+                    transition: enableTransition
+                      ? 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)'
+                      : 'none',
+                    willChange: 'transform'
+                  }}
+                >
+                  {[...FORMULA_ITEMS, ...FORMULA_ITEMS].map((item, idx) => {
+                    const isActiveUp =
+                      idx === stepIndex ||
+                      (stepIndex === FORMULA_ITEMS.length && idx === 0);
+                    return (
                       <div
+                        key={`${item}-${idx}`}
                         style={{
-                          width: '36px',
-                          height: '36px',
-                          borderRadius: '10px',
-                          backgroundColor: isSelected
-                            ? 'rgba(255, 255, 255, 0.15)'
-                            : 'rgba(16, 185, 129, 0.15)',
+                          height: `${FORMULA_ROW_HEIGHT}px`,
+                          padding: '0 24px',
+                          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+                          backgroundColor: isActiveUp
+                            ? 'rgba(34, 197, 94, 0.24)'
+                            : 'transparent',
+                          transition: 'background-color 0.35s ease',
                           display: 'flex',
                           alignItems: 'center',
-                          justifyContent: 'center'
+                          gap: '12px',
+                          color: '#ffffff',
+                          boxSizing: 'border-box'
                         }}
                       >
-                        <Icon size={18} color={isSelected ? '#cfa34b' : p.color} />
-                      </div>
-                      <div>
-                        <div style={{ fontSize: '15px', fontWeight: 700 }}>{p.label}</div>
-                        <div
+                        {/* Solid full-green check circle */}
+                        <span
                           style={{
-                            fontSize: '12.5px',
-                            color: isSelected ? 'rgba(255, 255, 255, 0.7)' : '#475569',
-                            marginTop: '2px'
+                            width: '22px',
+                            height: '22px',
+                            borderRadius: '50%',
+                            backgroundColor: '#22c55e',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            flexShrink: 0,
+                            boxShadow: '0 2px 8px rgba(34, 197, 94, 0.35)'
                           }}
                         >
-                          {p.detail}
-                        </div>
+                          <Check size={13} color="#ffffff" strokeWidth={3} />
+                        </span>
+                        <span style={{ fontSize: '15px', fontWeight: 500 }}>{item}</span>
                       </div>
-                    </div>
-
-                    <div
-                      style={{
-                        fontSize: '12px',
-                        fontWeight: 600,
-                        color: isSelected ? '#cfa34b' : '#059669',
-                        padding: '4px 10px',
-                        borderRadius: '20px',
-                        backgroundColor: isSelected ? 'rgba(207, 163, 75, 0.2)' : 'rgba(16, 185, 129, 0.15)'
-                      }}
-                    >
-                      Pillar
-                    </div>
-                  </div>
-                );
-              })}
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -480,6 +466,10 @@ export default function IdentifyStructure({ onOpenQuote }) {
             gap: 12px;
             width: max-content;
             animation: deliveryMarquee 24s linear infinite;
+          }
+          .identify-bold-heading {
+            font-weight: 700 !important;
+            font-synthesis: weight;
           }
           .delivery-ticker-track:hover {
             animation-play-state: paused;

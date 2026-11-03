@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Sparkles, QrCode } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import cloudImg from '../assets/cloud.png';
 
 export default function ElevateCta({ onOpenQuote }) {
@@ -38,13 +38,16 @@ export default function ElevateCta({ onOpenQuote }) {
     };
   }, []);
 
-  // Compute staggered emergence progress for the 3 sequential contents
-  // 1st comes out first (0.05 -> 0.35)
-  const p1 = Math.min(Math.max((scrollProgress - 0.05) / 0.30, 0), 1);
-  // 2nd comes out second (0.35 -> 0.65)
-  const p2 = Math.min(Math.max((scrollProgress - 0.35) / 0.30, 0), 1);
-  // 3rd comes out third (0.65 -> 0.95)
-  const p3 = Math.min(Math.max((scrollProgress - 0.65) / 0.30, 0), 1);
+  // Compute cloud parting progress (0 = closed curtain, 1 = fully parted open)
+  const openAmount = Math.min(Math.max(scrollProgress / 0.65, 0), 1);
+
+  // Compute staggered emergence progress for the 3 sequential contents as the clouds part
+  // 1st comes out first (0.08 -> 0.42)
+  const p1 = Math.min(Math.max((scrollProgress - 0.08) / 0.34, 0), 1);
+  // 2nd comes out second (0.26 -> 0.64)
+  const p2 = Math.min(Math.max((scrollProgress - 0.26) / 0.38, 0), 1);
+  // 3rd comes out third (0.46 -> 0.86)
+  const p3 = Math.min(Math.max((scrollProgress - 0.46) / 0.40, 0), 1);
 
   return (
     <section
@@ -52,8 +55,8 @@ export default function ElevateCta({ onOpenQuote }) {
       id="elevate-cta"
       style={{
         position: 'relative',
-        height: '280vh', // Provides the scrolling runway to freeze the section
-        backgroundColor: '#fbfbfb',
+        height: '240vh', // Provides the scrolling runway to freeze the section
+        backgroundColor: 'var(--bg-page)',
         overflow: 'visible'
       }}
     >
@@ -126,7 +129,8 @@ export default function ElevateCta({ onOpenQuote }) {
         style={{
           position: 'sticky',
           top: 0,
-          height: '100vh',
+          height: '82vh',
+          minHeight: '560px',
           width: '100%',
           overflow: 'hidden',
           display: 'flex',
@@ -147,59 +151,77 @@ export default function ElevateCta({ onOpenQuote }) {
         />
 
         {/* ============================================================== */}
-        {/* CLOUD LAYERS (Animated Clouds framing the bottom & sides)     */}
+        {/* CLOUD LAYERS (Clouds part open on scroll down, close on scroll up) */}
         {/* ============================================================== */}
-        {/* Cloud Layer 1: Left Background Cloud */}
+        {/* Cloud Layer 1: Left Curtain Cloud (starts covering left-center, parts to the left) */}
         <div
           style={{
             position: 'absolute',
-            bottom: '-40px',
-            left: '-60px',
-            width: 'clamp(360px, 42vw, 620px)',
+            bottom: `${40 - openAmount * 95}px`,
+            left: '-6%',
+            width: 'clamp(520px, 68vw, 1020px)',
             pointerEvents: 'none',
-            zIndex: 4,
-            animation: 'cloudFloatLeft 9s ease-in-out infinite',
-            opacity: 0.95
+            zIndex: 16,
+            transform: `translate3d(${-openAmount * 42}vw, ${openAmount * 70}px, 0) scale(${1.18 - openAmount * 0.18})`,
+            transition: 'transform 0.12s ease-out, bottom 0.12s ease-out',
+            willChange: 'transform',
+            opacity: 0.98
           }}
         >
           <img
             src={cloudImg}
-            alt="Atmospheric Cloud"
-            style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain' }}
+            alt="Atmospheric Cloud Left Curtain"
+            style={{
+              width: '100%',
+              height: 'auto',
+              display: 'block',
+              objectFit: 'contain',
+              animation: 'cloudFloatLeft 9s ease-in-out infinite'
+            }}
           />
         </div>
 
-        {/* Cloud Layer 2: Right Background Cloud */}
+        {/* Cloud Layer 2: Right Curtain Cloud (starts covering right-center, parts to the right) */}
         <div
           style={{
             position: 'absolute',
-            bottom: '-50px',
-            right: '-60px',
-            width: 'clamp(400px, 46vw, 750px)',
+            bottom: `${35 - openAmount * 95}px`,
+            right: '-6%',
+            width: 'clamp(520px, 68vw, 1020px)',
             pointerEvents: 'none',
-            zIndex: 4,
-            animation: 'cloudFloatRight 11s ease-in-out infinite',
-            opacity: 0.95
+            zIndex: 16,
+            transform: `translate3d(${openAmount * 42}vw, ${openAmount * 70}px, 0) scale(${1.18 - openAmount * 0.18})`,
+            transition: 'transform 0.12s ease-out, bottom 0.12s ease-out',
+            willChange: 'transform',
+            opacity: 0.98
           }}
         >
           <img
             src={cloudImg}
-            alt="Atmospheric Cloud"
-            style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'contain', transform: 'scaleX(-1)' }}
+            alt="Atmospheric Cloud Right Curtain"
+            style={{
+              width: '100%',
+              height: 'auto',
+              display: 'block',
+              objectFit: 'contain',
+              transform: 'scaleX(-1)',
+              animation: 'cloudFloatRight 11s ease-in-out infinite'
+            }}
           />
         </div>
 
-        {/* Cloud Layer 3: Center Bottom Horizon Cloud using image named cloud */}
+        {/* Cloud Layer 3: Center Horizon Cloud (starts high covering the stage, settles down to the bottom horizon) */}
         <div
           style={{
             position: 'absolute',
-            bottom: '-50px',
+            bottom: `${90 - openAmount * 145}px`,
             left: '50%',
-            transform: 'translateX(-50%)',
-            width: 'clamp(580px, 72vw, 1100px)',
+            width: 'clamp(680px, 90vw, 1360px)',
             pointerEvents: 'none',
-            zIndex: 15, // Sits in front of the emerging base of the card
-            animation: 'cloudFloatCenter 10s ease-in-out infinite',
+            zIndex: 15,
+            transform: `translate3d(-50%, ${openAmount * 55}px, 0) scale(${1.24 - openAmount * 0.24})`,
+            transition: 'transform 0.12s ease-out, bottom 0.12s ease-out',
+            willChange: 'transform',
             opacity: 1
           }}
         >
@@ -253,16 +275,16 @@ export default function ElevateCta({ onOpenQuote }) {
               Upgrade to premium metal business cards. Create lasting connection effortlessly
             </p>
 
-            {/* Buttons Row */}
+            {/* Buttons Column: Request a Quote on top, View card gallery right under it */}
             <div
               style={{
                 display: 'flex',
-                alignItems: 'center',
-                gap: '14px',
-                flexWrap: 'wrap'
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                gap: '14px'
               }}
             >
-              {/* Black button: Get a quote */}
+              {/* Black button: Request a Quote (without arrow) */}
               <a
                 href="https://www.apple.com/in/app-store/"
                 target="_blank"
@@ -270,7 +292,7 @@ export default function ElevateCta({ onOpenQuote }) {
                 onClick={(e) => {
                   if (onOpenQuote) {
                     e.preventDefault();
-                    onOpenQuote('Get a quote');
+                    onOpenQuote('Request a Quote');
                   }
                 }}
                 style={{
@@ -282,7 +304,7 @@ export default function ElevateCta({ onOpenQuote }) {
                   fontWeight: 600,
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '8px',
+                  justifyContent: 'center',
                   textDecoration: 'none',
                   boxShadow: '0 4px 16px rgba(19, 21, 21, 0.3), 0 10px 30px rgba(19, 21, 21, 0.15)',
                   transition: 'transform 0.2s ease, box-shadow 0.2s ease',
@@ -297,11 +319,10 @@ export default function ElevateCta({ onOpenQuote }) {
                   e.currentTarget.style.boxShadow = '0 4px 16px rgba(19, 21, 21, 0.3)';
                 }}
               >
-                <span>Get a quote</span>
-                <ArrowRight size={16} />
+                <span>Request a Quote</span>
               </a>
 
-              {/* Glassmorphism button: Make enquiries */}
+              {/* Glassmorphism button right under it: View card gallery */}
               <a
                 href="https://play.google.com/store/"
                 target="_blank"
@@ -309,7 +330,7 @@ export default function ElevateCta({ onOpenQuote }) {
                 onClick={(e) => {
                   if (onOpenQuote) {
                     e.preventDefault();
-                    onOpenQuote('Make enquiries');
+                    onOpenQuote('View card gallery');
                   }
                 }}
                 style={{
@@ -324,7 +345,7 @@ export default function ElevateCta({ onOpenQuote }) {
                   fontWeight: 600,
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '8px',
+                  justifyContent: 'center',
                   textDecoration: 'none',
                   boxShadow: '0 4px 16px rgba(0, 0, 0, 0.05)',
                   transition: 'transform 0.2s ease, background-color 0.2s ease',
@@ -339,7 +360,7 @@ export default function ElevateCta({ onOpenQuote }) {
                   e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.65)';
                 }}
               >
-                <span>Make enquiries</span>
+                <span>View card gallery</span>
               </a>
             </div>
           </div>

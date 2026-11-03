@@ -8,7 +8,7 @@ export default function XtremeMetalSection() {
         paddingTop: '80px',
         paddingBottom: '80px',
         position: 'relative',
-        backgroundColor: '#fbfbfb'
+        backgroundColor: 'var(--bg-page)'
       }}
     >
       <div className="container">

@@ -61,7 +61,7 @@ export default function Footer({ onOpenQuote }) {
   return (
     <footer
       style={{
-        backgroundColor: '#ffffff',
+        backgroundColor: 'var(--bg-page)',
         borderTop: '1px solid rgba(19, 21, 21, 0.08)',
         paddingTop: '80px',
         paddingBottom: '48px',

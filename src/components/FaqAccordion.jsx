@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Minus, HelpCircle, MessageCircle, ArrowRight } from 'lucide-react';
+import { Plus, Minus, MessageCircle } from 'lucide-react';
 
 const FAQS = [
   {
@@ -35,17 +35,22 @@ export default function FaqAccordion({ onOpenQuote }) {
     <section
       id="faq"
       style={{
-        paddingTop: '90px',
-        paddingBottom: '90px',
+        paddingTop: '55px',
+        paddingBottom: '20px',
         position: 'relative'
       }}
     >
       <style>{`
         .faq-split-layout {
           display: grid;
-          grid-template-columns: 380px 1fr;
+          grid-template-columns: 400px 1fr;
           gap: 60px;
           align-items: start;
+        }
+
+        .faq-bold-heading {
+          font-weight: 700 !important;
+          font-synthesis: weight;
         }
 
         .faq-left-col {
@@ -86,7 +91,6 @@ export default function FaqAccordion({ onOpenQuote }) {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '8px',
                 padding: '6px 16px',
                 borderRadius: '50px',
                 backgroundColor: '#ffffff',
@@ -98,25 +102,26 @@ export default function FaqAccordion({ onOpenQuote }) {
                 marginBottom: '20px'
               }}
             >
-              <HelpCircle size={14} color="#0283a7" />
               <span>Common questions</span>
             </div>
 
             {/* Frequently asked questions Headline */}
             <h2
+              className="faq-bold-heading"
               style={{
-                fontSize: 'clamp(32px, 3.8vw, 46px)',
-                fontWeight: 800,
+                fontSize: 'clamp(38px, 4.4vw, 54px)',
                 color: '#131515',
                 lineHeight: 1.15,
                 letterSpacing: '-0.025em',
                 margin: '0 0 20px 0'
               }}
             >
-              Frequently asked questions
+              Frequently
+              <br />
+              asked questions
             </h2>
 
-            {/* Can't find your answer? Contact our card team */}
+            {/* Can't find your answer? Contact us */}
             <div
               style={{
                 backgroundColor: '#ffffff',
@@ -149,20 +154,20 @@ export default function FaqAccordion({ onOpenQuote }) {
               <div>
                 <h3
                   style={{
-                    fontSize: '18px',
+                    fontSize: '20px',
                     fontWeight: 700,
                     color: '#131515',
-                    margin: '0 0 6px 0',
+                    margin: '0 0 8px 0',
                     letterSpacing: '-0.01em'
                   }}
                 >
-                  Can't find your answer?
+                  Can&apos;t find your answer?
                 </h3>
                 <p
                   style={{
-                    fontSize: '14px',
+                    fontSize: '16px',
                     color: '#595e5e',
-                    lineHeight: 1.55,
+                    lineHeight: 1.6,
                     margin: 0
                   }}
                 >
@@ -171,19 +176,18 @@ export default function FaqAccordion({ onOpenQuote }) {
               </div>
 
               <button
-                onClick={() => onOpenQuote ? onOpenQuote('FAQ Support Inquiry') : null}
+                onClick={() => (onOpenQuote ? onOpenQuote('FAQ Support Inquiry') : null)}
                 style={{
                   backgroundColor: '#131515',
                   color: '#ffffff',
                   borderRadius: '100px',
-                  padding: '12px 24px',
-                  fontSize: '14px',
+                  padding: '13px 28px',
+                  fontSize: '15.5px',
                   fontWeight: 600,
                   border: 'none',
                   cursor: 'pointer',
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '8px',
                   boxShadow: '0 4px 14px rgba(19, 21, 21, 0.2)',
                   transition: 'transform 0.2s ease, box-shadow 0.2s ease'
                 }}
@@ -196,8 +200,7 @@ export default function FaqAccordion({ onOpenQuote }) {
                   e.currentTarget.style.boxShadow = '0 4px 14px rgba(19, 21, 21, 0.2)';
                 }}
               >
-                <span>Contact our card team</span>
-                <ArrowRight size={15} />
+                <span>Contact us</span>
               </button>
             </div>
           </div>

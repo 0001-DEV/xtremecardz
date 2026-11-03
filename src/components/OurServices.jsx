@@ -41,10 +41,10 @@ export default function OurServices({ onOpenQuote }) {
     <section
       id="services"
       style={{
-        paddingTop: '80px',
-        paddingBottom: '80px',
+        paddingTop: '70px',
+        paddingBottom: '55px',
         position: 'relative',
-        backgroundColor: '#ffffff'
+        backgroundColor: 'var(--bg-page)'
       }}
     >
       <div className="container">
@@ -68,8 +68,8 @@ export default function OurServices({ onOpenQuote }) {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: '24px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(275px, 1fr))',
+            gap: '26px',
             alignItems: 'stretch'
           }}
         >
@@ -81,9 +81,10 @@ export default function OurServices({ onOpenQuote }) {
                 key={srv.id}
                 style={{
                   backgroundColor: '#ffffff',
-                  borderRadius: '24px',
+                  borderRadius: '26px',
                   border: '1px solid rgba(19, 21, 21, 0.08)',
-                  padding: '36px 28px',
+                  padding: '44px 32px',
+                  minHeight: '300px',
                   boxShadow: '0 10px 30px rgba(19, 21, 21, 0.04)',
                   display: 'flex',
                   flexDirection: 'column',
@@ -107,29 +108,29 @@ export default function OurServices({ onOpenQuote }) {
                 {/* Icon on the top left in the card */}
                 <div
                   style={{
-                    width: '48px',
-                    height: '48px',
-                    borderRadius: '14px',
+                    width: '54px',
+                    height: '54px',
+                    borderRadius: '16px',
                     backgroundColor: srv.bg,
                     color: srv.color,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    marginBottom: '28px'
+                    marginBottom: '32px'
                   }}
                 >
-                  <IconComponent size={24} />
+                  <IconComponent size={26} />
                 </div>
 
                 {/* Card Title */}
                 <h3
+                  className="service-card-bold-heading"
                   style={{
-                    fontSize: '19px',
-                    fontWeight: 750,
+                    fontSize: '21px',
                     color: '#131515',
                     letterSpacing: '-0.02em',
                     lineHeight: 1.3,
-                    marginBottom: '12px'
+                    marginBottom: '14px'
                   }}
                 >
                   {srv.title}
@@ -138,10 +139,10 @@ export default function OurServices({ onOpenQuote }) {
                 {/* Card Description */}
                 <p
                   style={{
-                    fontSize: '15px',
-                    lineHeight: 1.6,
+                    fontSize: '17px',
+                    lineHeight: 1.62,
                     color: '#595e5e',
-                    fontWeight: 450,
+                    fontWeight: 400,
                     margin: 0
                   }}
                 >
@@ -151,6 +152,13 @@ export default function OurServices({ onOpenQuote }) {
             );
           })}
         </div>
+
+        <style>{`
+          .service-card-bold-heading {
+            font-weight: 700 !important;
+            font-synthesis: weight;
+          }
+        `}</style>
       </div>
     </section>
   );

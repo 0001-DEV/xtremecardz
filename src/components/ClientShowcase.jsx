@@ -741,7 +741,7 @@ export default function ClientShowcase() {
       >
         <div
           style={{
-            maxWidth: '1080px',
+            maxWidth: '1000px',
             margin: '0 auto',
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
@@ -764,7 +764,7 @@ export default function ClientShowcase() {
               <span
                 style={{
                   display: 'inline-block',
-                  fontSize: 'clamp(59px, 6vw, 77px)',
+                  fontSize: 'clamp(50px, 5.2vw, 68px)',
                   fontWeight: 850,
                   color: '#131515',
                   letterSpacing: '-0.03em',
@@ -781,7 +781,7 @@ export default function ClientShowcase() {
             </div>
             <p
               style={{
-                fontSize: '30.5px',
+                fontSize: '21px',
                 lineHeight: 1.5,
                 color: '#595e5e',
                 fontWeight: 600,
@@ -807,7 +807,7 @@ export default function ClientShowcase() {
               <span
                 style={{
                   display: 'inline-block',
-                  fontSize: 'clamp(59px, 6vw, 77px)',
+                  fontSize: 'clamp(50px, 5.2vw, 68px)',
                   fontWeight: 850,
                   color: '#131515',
                   letterSpacing: '-0.03em',
@@ -824,7 +824,7 @@ export default function ClientShowcase() {
             </div>
             <p
               style={{
-                fontSize: '30.5px',
+                fontSize: '21px',
                 lineHeight: 1.5,
                 color: '#595e5e',
                 fontWeight: 600,
@@ -850,7 +850,7 @@ export default function ClientShowcase() {
               <span
                 style={{
                   display: 'inline-block',
-                  fontSize: 'clamp(59px, 6vw, 77px)',
+                  fontSize: 'clamp(50px, 5.2vw, 68px)',
                   fontWeight: 850,
                   color: '#131515',
                   letterSpacing: '-0.03em',
@@ -867,7 +867,7 @@ export default function ClientShowcase() {
             </div>
             <p
               style={{
-                fontSize: '30.5px',
+                fontSize: '21px',
                 lineHeight: 1.5,
                 color: '#595e5e',
                 fontWeight: 600,

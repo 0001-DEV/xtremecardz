@@ -114,8 +114,8 @@ export default function GtAiAssistant({ onOpenQuote }) {
       <div
         style={{
           position: 'fixed',
-          bottom: '24px',
-          right: '24px',
+          bottom: 'max(16px, env(safe-area-inset-bottom, 16px))',
+          right: 'max(16px, env(safe-area-inset-right, 16px))',
           zIndex: 9999,
           display: 'flex',
           flexDirection: 'column',
@@ -129,7 +129,7 @@ export default function GtAiAssistant({ onOpenQuote }) {
             style={{
               pointerEvents: 'auto',
               width: 'min(390px, calc(100vw - 32px))',
-              height: 'min(560px, calc(100vh - 120px))',
+              height: 'min(560px, calc(100dvh - 100px))',
               marginBottom: '14px',
               backgroundColor: '#ffffff',
               borderRadius: '24px',

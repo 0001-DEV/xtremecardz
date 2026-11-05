@@ -1,3 +1,4 @@
+import { getAsset } from '../assets/assetUrl';
 import React, { useEffect, useRef, useState } from 'react';
 
 const PRODUCTS = [
@@ -5,7 +6,7 @@ const PRODUCTS = [
     id: 'metal-business-cards',
     title: 'Metal Business Cards',
     description: 'Built for professionals and brands that want their identity to make a lasting impression.',
-    image: 'https://framerusercontent.com/images/wlGihJYpWqbIZpHT1ClDFDgUmk.png?width=1800&height=2200',
+    image: getAsset('card-metal-business-front.png'),
     stats: [
       { value: '100%', label: 'Premium finish' },
       { value: '2x', label: 'More distinctive' },
@@ -16,7 +17,7 @@ const PRODUCTS = [
     id: 'corporate-id',
     title: 'Corporate ID',
     description: 'Reliable, versatile cards designed for everyday staff, access, and organizational needs.',
-    image: 'https://framerusercontent.com/images/o68ySUGItelO001iABjXqy2SM.png?width=1080&height=1080',
+    image: getAsset('card-corporate-id-system.png'),
     stats: [
       { value: '100%', label: 'Brand ready' },
       { value: '4+', label: 'Card applications' },
@@ -27,7 +28,7 @@ const PRODUCTS = [
     id: 'access-smart-cards',
     title: 'Access & Smart Cards',
     description: 'Technology-enabled cards that bring convenience, connectivity and modern identity experiences together.',
-    image: 'https://framerusercontent.com/images/38hQqx2XpWVtVAMCUrp8MllUU.jpg?width=4000&height=2250',
+    image: getAsset('card-access-smart-nfc.jpg'),
     stats: [
       { value: '1-Tap', label: 'Easy interaction' },
       { value: '100%', label: 'Brand customized' },
@@ -38,7 +39,7 @@ const PRODUCTS = [
     id: 'accessories',
     title: 'Accessories',
     description: 'Complete your identity system with premium accessories designed for everyday use.',
-    image: 'https://framerusercontent.com/images/UfQB7tO8pjiN1b0SOhPXtAtkT0.jpg?width=2000&height=2992',
+    image: getAsset('card-accessories-lanyard.jpg'),
     stats: [
       { value: '5+', label: 'Accessory options' },
       { value: '100%', label: 'Brand matched' },
@@ -49,7 +50,7 @@ const PRODUCTS = [
     id: 'membership-special',
     title: 'Membership & Special Purpose Cards',
     description: 'echnology-enabled cards that bring convenience, connectivity and modern identity experiences together.',
-    image: 'https://framerusercontent.com/images/3A40A4v52WoGH879ZyjpCtgSHI.png?width=1920&height=1080',
+    image: getAsset('card-membership-special.png'),
     stats: [
       { value: '+70%', label: 'Sleekness' },
       { value: '1 unified', label: 'Identity package' },
@@ -365,13 +366,24 @@ export default function ProductsPage({ onOpenQuote }) {
           transform: scale(1.03);
         }
 
+        .products-header-wrapper {
+          padding: 200px 0 60px;
+        }
+
         @media (max-width: 1199px) and (min-width: 810px) {
           .product-image-wrapper {
             height: 650px !important;
           }
+          .products-header-wrapper {
+            padding: 160px 0 50px !important;
+          }
         }
 
         @media (max-width: 809px) {
+          .products-header-wrapper {
+            padding: 130px 0 40px !important;
+            gap: 24px !important;
+          }
           .product-image-wrapper {
             flex-direction: column !important;
             height: auto !important;
@@ -390,6 +402,13 @@ export default function ProductsPage({ onOpenQuote }) {
           }
           .product-stat-cell {
             padding: 16px 14px !important;
+          }
+        }
+
+        @media (max-height: 550px) {
+          .products-header-wrapper {
+            padding: 95px 0 30px !important;
+            gap: 20px !important;
           }
         }
       `}</style>
@@ -419,14 +438,14 @@ export default function ProductsPage({ onOpenQuote }) {
         >
           {/* Header Text Wrapper (.framer-10srk) */}
           <div
+            className="products-header-wrapper"
             style={{
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'flex-start',
               gap: '43px',
-              width: '100%',
-              padding: '241px 0 60px'
+              width: '100%'
             }}
           >
             {/* Products Pill */}

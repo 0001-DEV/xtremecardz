@@ -78,7 +78,9 @@ export default function App() {
           <Route path="/about" element={<AboutPage onOpenQuote={handleOpenQuote} />} />
           <Route path="/contact" element={<ContactPage onOpenQuote={handleOpenQuote} />} />
           <Route path="/blog" element={<BlogPage onOpenQuote={handleOpenQuote} />} />
+          <Route path="/blog/:slug" element={<BlogPage onOpenQuote={handleOpenQuote} />} />
           <Route path="/article-1" element={<BlogPage onOpenQuote={handleOpenQuote} />} />
+          <Route path="/article-1/:slug" element={<BlogPage onOpenQuote={handleOpenQuote} />} />
           {/* Fallback route */}
           <Route path="*" element={<HomePage onOpenQuote={handleOpenQuote} />} />
         </Routes>

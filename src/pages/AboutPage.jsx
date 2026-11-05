@@ -1,38 +1,39 @@
+import { getAsset } from '../assets/assetUrl';
 import React, { useState, useEffect, useRef } from 'react';
 import ElevateCta from '../components/ElevateCta';
 
 const LOGO_PAIRS = [
   {
-    from: { name: 'Seplat Energy', img: 'https://framerusercontent.com/images/GCV570Tb0ZmpDoHGXAY3N5Vh2r8.png?width=537&height=337' },
-    to: { name: 'Nova Bank', img: 'https://framerusercontent.com/images/8tmvtGfhOVVmIrVAUqs9waQExg.png?width=412&height=146' }
+    from: { name: 'Seplat Energy', img: getAsset('logo-seplat-energy.png') },
+    to: { name: 'Nova Bank', img: getAsset('logo-nova-bank.png') }
   },
   {
-    from: { name: 'Invera Energy', img: 'https://framerusercontent.com/images/0XbuTevuBnHJYx9DKL1GRkOBUUk.png?width=495&height=407' },
-    to: { name: 'Optiva Capital', img: 'https://framerusercontent.com/images/iQfFipkw27K0IjyZCHm5vGnKvEU.png?width=1025&height=116' }
+    from: { name: 'Invera Energy', img: getAsset('logo-invera-energy.png') },
+    to: { name: 'Optiva Capital', img: getAsset('logo-optiva-capital.png') }
   },
   {
-    from: { name: 'Guinness Nigeria', img: 'https://framerusercontent.com/images/8pDoOBBJyHWiSaN0gG2rWYKGH0Y.png?width=513&height=388' },
-    to: { name: 'Rainoil Limited', img: 'https://framerusercontent.com/images/RU1WIInwLchX3hRsYaT6E9XkvtU.png?width=447&height=177' }
+    from: { name: 'Guinness Nigeria', img: getAsset('logo-guinness-nigeria.png') },
+    to: { name: 'Rainoil Limited', img: getAsset('logo-rainoil.png') }
   },
   {
-    from: { name: 'Ikeja Electric', img: 'https://framerusercontent.com/images/os1wVdf5rrzlyBNvLKxIACOR7ro.png?width=542&height=128' },
-    to: { name: 'Sapetro Oil', img: 'https://framerusercontent.com/images/e0aRnbXw3kKmPWRS3NxYiBsxF5Y.webp?width=2501&height=759' }
+    from: { name: 'Ikeja Electric', img: getAsset('logo-ikeja-electric.png') },
+    to: { name: 'Sapetro Oil', img: getAsset('logo-sapetro-oil.webp') }
   },
   {
-    from: { name: 'TVC Communications', img: 'https://framerusercontent.com/images/q1yIUKqwDkzVb854iBSHW4lZ6P8.png?width=3178&height=864' },
-    to: { name: 'IOGC Petroleum', img: 'https://framerusercontent.com/images/GSIRRGf14EqnjS1zcX49ww1I.png?width=306&height=306' }
+    from: { name: 'TVC Communications', img: getAsset('logo-tvc-communications.png') },
+    to: { name: 'IOGC Petroleum', img: getAsset('logo-iogc-petroleum.png') }
   },
   {
-    from: { name: 'Sterling Capital', img: 'https://framerusercontent.com/images/itQitqLAZDWH9DHhSPoPvVF5kO8.png?width=270&height=136' },
-    to: { name: 'Horizon Group', img: 'https://framerusercontent.com/images/9F5Oaz0bZ86BRoJu0YMQjUtGo.svg?width=904&height=243' }
+    from: { name: 'Sterling Capital', img: getAsset('logo-sterling-capital.png') },
+    to: { name: 'Horizon Group', img: getAsset('logo-horizon-group.svg') }
   },
   {
-    from: { name: 'NECA Nigeria', img: 'https://framerusercontent.com/images/9JkqgOhzgaW97POoV3QJBN6OKhw.png?width=362&height=128' },
-    to: { name: 'Apex Synergy', img: 'https://framerusercontent.com/images/Hc2wclYvwfkHy84Cgubp1aCMUM.png?width=720&height=362' }
+    from: { name: 'NECA Nigeria', img: getAsset('logo-neca-nigeria.png') },
+    to: { name: 'Apex Synergy', img: getAsset('logo-apex-synergy.png') }
   },
   {
-    from: { name: 'Falcon Oil', img: 'https://framerusercontent.com/images/JyVElSfsuVxHhfLB88jM9BNonk.png?width=396&height=224' },
-    to: { name: 'Credit Direct', img: 'https://framerusercontent.com/images/dtEewob0v5vfGEgiK3rQ5sytVk.png?width=482&height=118' }
+    from: { name: 'Falcon Oil', img: getAsset('logo-falcon-oil.png') },
+    to: { name: 'Credit Direct', img: getAsset('logo-credit-direct.png') }
   }
 ];
 
@@ -83,21 +84,21 @@ const TEAM_MEMBERS = [
   {
     name: 'Joy Akosa',
     position: 'Brand communications',
-    image: 'https://framerusercontent.com/images/PIWQDqE3mZVxdwrIZvc8VQdMaOo.jpeg?width=720&height=740',
+    image: getAsset('team-joy-akosa.jpeg'),
     aspectRatio: '720 / 740',
     href: 'https://x.com/'
   },
   {
     name: 'Love Olaoye',
-    position: 'Marketer',
-    image: 'https://framerusercontent.com/images/zTJqZZB8GsOFELbFZvLwRLasDus.jpeg?width=747&height=740',
+    position: 'IT & Operation',
+    image: getAsset('team-love-olaoye.jpeg'),
     aspectRatio: '747 / 740',
     href: 'https://x.com/'
   },
   {
-    name: 'Olabisi',
+    name: 'Olabisi Olaleye',
     position: 'Marketer',
-    image: 'https://framerusercontent.com/images/xoH0PgrlSQG1BzGGpmB16ZjkV2I.jpg?width=500&height=500',
+    image: getAsset('team-olabisi-olaleye.jpg'),
     aspectRatio: '1 / 1',
     href: 'https://x.com/'
   }
@@ -109,19 +110,19 @@ const TESTIMONIAL_COLUMNS = [
       quote: 'Our staff IDs finally look as professional as the people wearing them. The finish is impressive.',
       name: 'Maya Zong',
       role: 'HR Manager',
-      avatar: 'https://framerusercontent.com/images/hYfCvJ3IVdEznEOwIQiiAxWOsPY.jpg?width=150&height=150'
+      avatar: getAsset('avatar-maya-zong.jpg')
     },
     {
       quote: 'The quality is excellent, and the process from design to delivery was smooth from start to finish.',
       name: 'Daniel Perez',
       role: 'Operations Manager',
-      avatar: 'https://framerusercontent.com/images/E0DlVQ4cHxgNCHBSHOdAc7mG7w.jpg?width=150&height=150'
+      avatar: getAsset('avatar-daniel-perez.jpg')
     },
     {
       quote: 'Everything from the design to the finishing feels intentional. Our staff genuinely love their new IDs.',
       name: 'Andre Lewis',
       role: 'Admin Manager',
-      avatar: 'https://framerusercontent.com/images/pfX9Sn5qRme6iCFMisneY4YIt7I.jpg?width=150&height=150'
+      avatar: getAsset('avatar-siddharth-rao.jpg')
     }
   ],
   [
@@ -129,19 +130,19 @@ const TESTIMONIAL_COLUMNS = [
       quote: 'Xtreme Cardz helped us turn a simple business card into something people actually remember.',
       name: 'Ethan Miller',
       role: 'Business Owner',
-      avatar: 'https://framerusercontent.com/images/X0ECJ5xGgYrCVgHB8RYd3RABTQ.jpg?width=150&height=150'
+      avatar: getAsset('avatar-sarah-jenkins.jpg')
     },
     {
       quote: 'We wanted cards that felt different from the usual. Xtreme Cardz understood the vision immediately.',
       name: 'Laura Kim',
       role: 'Brand Manager',
-      avatar: 'https://framerusercontent.com/images/bphS41hVtvFCNiuHkZkxk8imJk.jpg?width=150&height=150'
+      avatar: getAsset('avatar-kemi-adebayo.jpg')
     },
     {
       quote: 'The VIP cards added the perfect touch of exclusivity to our guest experience.',
       name: 'Kevin Brooks',
       role: 'Event Manager',
-      avatar: 'https://framerusercontent.com/images/gDcaZH5xt6hqSU2VbK2snAw.jpg?width=150&height=150'
+      avatar: getAsset('avatar-ahmed-al-hassan.jpg')
     }
   ],
   [
@@ -149,19 +150,19 @@ const TESTIMONIAL_COLUMNS = [
       quote: 'Our membership cards feel premium, professional, and perfectly aligned with our brand.',
       name: 'Hannah Lee',
       role: 'Membership Manager',
-      avatar: 'https://framerusercontent.com/images/P0sSNnMlhW7adaGkZFmKHL828bY.jpg?width=150&height=150'
+      avatar: getAsset('avatar-chinedu-okonkwo.jpg')
     },
     {
       quote: 'The cards gave our team a more polished identity. They look and feel like a proper corporate brand.',
       name: 'Priya Shah',
       role: 'Corporate Executive',
-      avatar: 'https://framerusercontent.com/images/W13V3WO2YwDah4yBxCcZc70Es.jpg?width=150&height=150'
+      avatar: getAsset('avatar-fatima-bello.jpg')
     },
     {
       quote: 'Having a professional ID system makes verification easier with stronger sense of identity.',
       name: 'Sofia Martinez',
       role: 'Security Manager',
-      avatar: 'https://framerusercontent.com/images/CYC5VQ0ZcK8uEE5jBbm51FTJq0.jpg?width=150&height=150'
+      avatar: getAsset('avatar-amara-nwosu.jpg')
     }
   ]
 ];
@@ -453,7 +454,7 @@ function TeamMemberCard({ member, index }) {
               }}
             >
               <img
-                src="https://framerusercontent.com/images/xA3haEWkHhpeiKLMxOQGOu5jeY.svg?width=20&height=20"
+                src={getAsset('icon-globe-badge.svg')}
                 alt="Social Icon"
                 width="20"
                 height="20"
@@ -1086,6 +1087,32 @@ export default function AboutPage({ onOpenQuote }) {
             gap: 20px;
           }
         }
+
+        @media (max-width: 480px) {
+          .about-hero-title,
+          .about-section-h2,
+          .about-counter-big-num {
+            font-size: clamp(28px, 8vw, 36px) !important;
+          }
+          .about-counter-list {
+            grid-template-columns: 1fr !important;
+          }
+          .about-team-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .about-team-item {
+            align-items: center !important;
+          }
+        }
+
+        @media (max-height: 550px) {
+          .about-hero-section {
+            padding: 95px 0 0 !important;
+          }
+          .about-hero-container {
+            gap: 24px !important;
+          }
+        }
       `}</style>
 
       {/* ============================================================== */}
@@ -1130,7 +1157,7 @@ export default function AboutPage({ onOpenQuote }) {
               }}
             >
               <img
-                src="https://framerusercontent.com/images/vKLA5noqez4ivqTZhi1pVCsC0.jpg?width=1200&height=670"
+                src={getAsset('about-story-hero-left.jpg')}
                 alt="BG Image"
                 style={{
                   display: 'block',
@@ -1153,7 +1180,7 @@ export default function AboutPage({ onOpenQuote }) {
                 }}
               >
                 <img
-                  src="https://framerusercontent.com/images/OYjbGFeFtRaK5xxouRxEn3zMtfA.jpg?width=5041&height=5041"
+                  src={getAsset('about-story-hero-right.jpg')}
                   alt="BG Image"
                   style={{
                     display: 'block',
@@ -1312,7 +1339,7 @@ export default function AboutPage({ onOpenQuote }) {
         {/* Hero Atmospheric Clouds */}
         <div className="about-hero-cloud-02">
           <img
-            src="https://framerusercontent.com/images/bWh0pVd78Am5KRfPjOhMoF5Ddk.png?width=894&height=297"
+            src={getAsset('badge-certified-craft.png')}
             alt="Cloud"
             loading="lazy"
             style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
@@ -1320,7 +1347,7 @@ export default function AboutPage({ onOpenQuote }) {
         </div>
         <div className="about-hero-cloud-03">
           <img
-            src="https://framerusercontent.com/images/vK1naOOAfBeOfzjSqlloxH7w.png?width=749&height=448"
+            src={getAsset('badge-100-percent-metal.png')}
             alt="Cloud"
             loading="lazy"
             style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
@@ -1328,7 +1355,7 @@ export default function AboutPage({ onOpenQuote }) {
         </div>
         <div className="about-hero-cloud-01">
           <img
-            src="https://framerusercontent.com/images/c5yKOUxAULPtn3CoxX5b92vgJ8U.png?width=2994&height=589"
+            src={getAsset('badge-precision-engineered.png')}
             alt="Cloud"
             loading="lazy"
             style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
@@ -1363,7 +1390,7 @@ export default function AboutPage({ onOpenQuote }) {
                   }}
                 />
                 <img
-                  src="https://framerusercontent.com/images/MDc8e866Fs6chT3px99iqkoyo.jpg?width=1200&height=1070"
+                  src={getAsset('about-craft-materials.jpg')}
                   alt="BG Image"
                   loading="lazy"
                   style={{
@@ -1389,7 +1416,7 @@ export default function AboutPage({ onOpenQuote }) {
                 }}
               >
                 <img
-                  src="https://framerusercontent.com/images/zFRvUTUggY7JssaqPWiRNdxCuFE.png?width=139&height=137"
+                  src={getAsset('about-craft-sparkle.png')}
                   alt="Phone"
                   loading="lazy"
                   style={{
@@ -1510,7 +1537,7 @@ export default function AboutPage({ onOpenQuote }) {
               <div className="about-counter-right-bottom">
                 <div className="about-counter-earth">
                   <img
-                    src="https://framerusercontent.com/images/jZ4gDm8VvvBuQI1lWsnRMTu4.png?width=1081&height=477"
+                    src={getAsset('about-craft-badge.png')}
                     alt="Earth"
                     loading="lazy"
                     style={{
@@ -1525,7 +1552,7 @@ export default function AboutPage({ onOpenQuote }) {
 
                 <div className="about-counter-cloud-01">
                   <img
-                    src="https://framerusercontent.com/images/vK1naOOAfBeOfzjSqlloxH7w.png?width=749&height=448"
+                    src={getAsset('badge-100-percent-metal.png')}
                     alt="Cloud"
                     loading="lazy"
                     style={{
@@ -1539,7 +1566,7 @@ export default function AboutPage({ onOpenQuote }) {
 
                 <div className="about-counter-cloud-02">
                   <img
-                    src="https://framerusercontent.com/images/7AeCYMcqGCsC65f7s3s7l9eKk4.png?width=823&height=476"
+                    src={getAsset('about-craft-star.png')}
                     alt="Cloud"
                     loading="lazy"
                     style={{
@@ -1572,7 +1599,7 @@ export default function AboutPage({ onOpenQuote }) {
                 zIndex: 1,
                 pointerEvents: 'none',
                 backgroundImage:
-                  'url(https://framerusercontent.com/images/7LHrHtfQE6CEvh827HEXAxs3Ya8.png?width=1000&height=50)',
+                  `url(${getAsset('about-earth-map.png')})`,
                 backgroundRepeat: 'repeat',
                 backgroundPosition: 'left top',
                 backgroundSize: '1000px auto'

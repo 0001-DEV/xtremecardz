@@ -144,11 +144,8 @@ export default function IdentifyStructure({ onOpenQuote }) {
         >
           {/* CARD 1: Delivery Streak Card */}
           <div
+            className="identify-card"
             style={{
-              width: '580px',
-              maxWidth: '100%',
-              height: '800px',
-              minHeight: '800px',
               backgroundColor: '#e4e6e8',
               borderRadius: '28px',
               border: '1px solid rgba(19, 21, 21, 0.08)',
@@ -188,6 +185,7 @@ export default function IdentifyStructure({ onOpenQuote }) {
 
             {/* Container with light gray bg and border radius: Streak Fire Icon & Text */}
             <div
+              className="identify-streak-box"
               style={{
                 backgroundColor: '#f4f5f6',
                 borderRadius: '24px',
@@ -271,11 +269,8 @@ export default function IdentifyStructure({ onOpenQuote }) {
 
           {/* CARD 2: Smart ID Formula Card (Grass Footmat Color Background) */}
           <div
+            className="identify-card"
             style={{
-              width: '580px',
-              maxWidth: '100%',
-              height: '800px',
-              minHeight: '800px',
               borderRadius: '28px',
               background:
                 'radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.04) 0%, transparent 50%), linear-gradient(145deg, #2d4c2b 0%, #1e351d 55%, #162815 100%)',
@@ -473,6 +468,24 @@ export default function IdentifyStructure({ onOpenQuote }) {
           }
           .delivery-ticker-track:hover {
             animation-play-state: paused;
+          }
+          .identify-card {
+            width: 580px;
+            max-width: 100%;
+            min-height: 760px;
+          }
+          @media (max-width: 991px), (max-height: 750px) {
+            .identify-card {
+              width: 100% !important;
+              min-height: auto !important;
+              height: auto !important;
+              padding: 32px 20px !important;
+            }
+            .identify-streak-box {
+              padding: 36px 20px !important;
+              min-height: 200px !important;
+              margin: 24px 0 !important;
+            }
           }
         `}</style>
       </div>

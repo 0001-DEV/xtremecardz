@@ -1,3 +1,4 @@
+import { getAsset } from '../assets/assetUrl';
 import React, { useState, useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
@@ -10,7 +11,7 @@ const SHOWCASE_VIDEOS = [
     category: 'Prestige Tier',
     desc: 'Real 24K gold electroplated stainless steel with mirror polish and precision laser cutouts.',
     videoUrl: '/videos/metal-card-showcase.mp4',
-    poster: 'https://framerusercontent.com/images/WRAp8VzH00hxe4XxQqAqA2UuJ0.jpg?width=1200'
+    poster: getAsset('card-24k-mirror-gold.jpg')
   },
   {
     id: 'black-matte',
@@ -18,7 +19,7 @@ const SHOWCASE_VIDEOS = [
     category: 'Stealth Series',
     desc: 'Deep anodized matte black metal with tactical anti-fingerprint coating and silver laser accents.',
     videoUrl: '/videos/metal-card-showcase.mp4',
-    poster: 'https://framerusercontent.com/images/SBijkNBC3TclRbWyps5E1TZAD4.png?width=1200'
+    poster: getAsset('card-black-matte-stealth.png')
   },
   {
     id: 'gun-metal',
@@ -26,7 +27,7 @@ const SHOWCASE_VIDEOS = [
     category: 'Industrial Craft',
     desc: 'Brushed titanium gunmetal with dark smoky luster and tactile acid-etched typography.',
     videoUrl: '/videos/metal-card-showcase.mp4',
-    poster: 'https://framerusercontent.com/images/m23rWmTC1t117pl0p0yuKgkA2vE.png?width=1200'
+    poster: getAsset('card-gunmetal-titanium.png')
   },
   {
     id: 'metal-vip',
@@ -34,7 +35,7 @@ const SHOWCASE_VIDEOS = [
     category: 'Elite Access',
     desc: 'High-frequency RFID & NFC dual-chip embedded smart identity for bespoke executive access.',
     videoUrl: '/videos/metal-card-showcase.mp4',
-    poster: 'https://framerusercontent.com/images/noNpD2fR8Da0MQ0ehkSf8BFajA.png?width=1200'
+    poster: getAsset('card-metal-vip-access.png')
   },
   {
     id: 'precision-craft',
@@ -42,7 +43,7 @@ const SHOWCASE_VIDEOS = [
     category: 'Master Craft',
     desc: 'Architectural-grade 316L solid stainless steel engineered to leave an indelible impression.',
     videoUrl: '/videos/metal-card-showcase.mp4',
-    poster: 'https://framerusercontent.com/images/1ilKe6L6KbWv5xrI6p4uunW2Es.png?width=1200'
+    poster: getAsset('card-submillimeter-cnc.png')
   },
   {
     id: 'luxury-unboxing',
@@ -50,7 +51,7 @@ const SHOWCASE_VIDEOS = [
     category: 'Signature Touch',
     desc: 'Bespoke presentation sleeve with magnetic closure and certificate of authenticity.',
     videoUrl: '/videos/metal-card-showcase.mp4',
-    poster: 'https://framerusercontent.com/images/yyE2pUgUrjBeDKRRIF0gWhZRuhM.jpg?width=1200'
+    poster: getAsset('card-luxury-unboxing.jpg')
   }
 ];
 
@@ -182,6 +183,14 @@ export default function MetalShowcase({ onOpenQuote }) {
               }
               .metal-video-swiper .swiper-slide-active {
                 height: 440px !important;
+              }
+            }
+            @media (max-height: 520px) {
+              .metal-video-swiper .swiper-slide {
+                height: 250px !important;
+              }
+              .metal-video-swiper .swiper-slide-active {
+                height: 290px !important;
               }
             }
           `}</style>

@@ -1,3 +1,4 @@
+import { getAsset } from '../assets/assetUrl';
 import React, { useEffect, useRef, useState } from 'react';
 
 const ELITE_ITEMS = [
@@ -5,7 +6,7 @@ const ELITE_ITEMS = [
     id: 'gun-metal',
     title: 'Gun Metal',
     subtitle: 'Titan Chairman',
-    image: 'https://framerusercontent.com/images/Vjf97vYKt0bpNIS1sLdjmOxD4o.jpg?width=1080&height=1350',
+    image: getAsset('blog-stainless-steel-longevity.jpg'),
     overview:
       "•  The Gun Metal Elite Pass was designed for organizations that prefer sophistication over spectacle. Its deep metallic tone, contemporary character, and refined finish create an identity that feels modern, professional, and effortlessly distinguished. It doesn't compete for attention; it earns it. Whether carried in a wallet or worn on a lanyard, every detail communicates precision and purpose. Because sometimes, the strongest statement is the one made without saying a word.",
     features: [
@@ -18,7 +19,7 @@ const ELITE_ITEMS = [
     id: 'elite-gold-pass',
     title: 'Elite Gold Pass',
     subtitle: 'Titan Prestige',
-    image: 'https://framerusercontent.com/images/noNpD2fR8Da0MQ0ehkSf8BFajA.png?width=2700&height=2160',
+    image: getAsset('card-metal-vip-access.png'),
     overview:
       '•  The Elite Gold Pass was created for organizations that understand that true distinction is found in the details. Its rich gold finish, refined presence, and premium craftsmanship transform an everyday Business ID into something worthy of attention. It carries a sense of achievement without needing to demand it. From the first glance to the moment it rests in a wallet or hangs from a lanyard, it communicates confidence, recognition, and belonging. Because when your organization represents excellence, the identity you give your people should reflect it.',
     features: [
@@ -362,6 +363,12 @@ export default function ElitePassPage() {
             font-size: 16px !important;
           }
         }
+
+        @media (max-height: 550px) {
+          .elitepass-hero-section {
+            padding: 95px 0 40px !important;
+          }
+        }
       `}</style>
 
       {/* Hero Section (.framer-1tatbds) */}
@@ -464,7 +471,7 @@ export default function ElitePassPage() {
             decoding="async"
             width="894"
             height="297"
-            src="https://framerusercontent.com/images/bWh0pVd78Am5KRfPjOhMoF5Ddk.png?width=894&height=297"
+            src={getAsset('badge-certified-craft.png')}
             alt="Cloud"
             style={{
               display: 'block',
@@ -495,7 +502,7 @@ export default function ElitePassPage() {
             decoding="async"
             width="749"
             height="448"
-            src="https://framerusercontent.com/images/vK1naOOAfBeOfzjSqlloxH7w.png?width=749&height=448"
+            src={getAsset('badge-100-percent-metal.png')}
             alt="Cloud"
             style={{
               display: 'block',
@@ -526,7 +533,7 @@ export default function ElitePassPage() {
             decoding="async"
             width="2994"
             height="589"
-            src="https://framerusercontent.com/images/c5yKOUxAULPtn3CoxX5b92vgJ8U.png?width=2994&height=589"
+            src={getAsset('badge-precision-engineered.png')}
             alt="Cloud"
             style={{
               display: 'block',

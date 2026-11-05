@@ -36,7 +36,7 @@ export default function QuoteModal({ isOpen, onClose, initialCardType = 'Metal B
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '20px',
+        padding: 'max(12px, env(safe-area-inset-top, 12px)) max(12px, env(safe-area-inset-right, 12px)) max(12px, env(safe-area-inset-bottom, 12px)) max(12px, env(safe-area-inset-left, 12px))',
         backgroundColor: 'rgba(19, 21, 21, 0.65)',
         backdropFilter: 'blur(8px)',
         WebkitBackdropFilter: 'blur(8px)',
@@ -44,7 +44,25 @@ export default function QuoteModal({ isOpen, onClose, initialCardType = 'Metal B
       }}
       onClick={onClose}
     >
+      <style>{`
+        .quote-grid-2col {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 14px;
+        }
+        @media (max-width: 480px) {
+          .quote-modal-card {
+            padding: 24px 18px !important;
+            border-radius: 18px !important;
+          }
+          .quote-grid-2col {
+            grid-template-columns: 1fr !important;
+            gap: 12px !important;
+          }
+        }
+      `}</style>
       <div
+        className="quote-modal-card"
         style={{
           backgroundColor: '#ffffff',
           borderRadius: '24px',
@@ -54,8 +72,10 @@ export default function QuoteModal({ isOpen, onClose, initialCardType = 'Metal B
           boxShadow: '0 25px 60px -10px rgba(0, 0, 0, 0.35)',
           position: 'relative',
           border: '1px solid rgba(19, 21, 21, 0.08)',
-          maxHeight: '90vh',
-          overflowY: 'auto'
+          maxHeight: 'min(92vh, 92dvh)',
+          overflowY: 'auto',
+          overscrollBehavior: 'contain',
+          WebkitOverflowScrolling: 'touch'
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -130,7 +150,7 @@ export default function QuoteModal({ isOpen, onClose, initialCardType = 'Metal B
             </div>
 
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
+              <div className="quote-grid-2col">
                 <div>
                   <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: '#131515' }}>
                     Full Name *
@@ -175,7 +195,7 @@ export default function QuoteModal({ isOpen, onClose, initialCardType = 'Metal B
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
+              <div className="quote-grid-2col">
                 <div>
                   <label style={{ display: 'block', fontSize: '13px', fontWeight: 600, marginBottom: '6px', color: '#131515' }}>
                     Organization / Brand

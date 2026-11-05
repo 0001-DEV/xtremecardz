@@ -1,3 +1,4 @@
+import { getAsset } from '../assets/assetUrl';
 import React, { useState } from 'react';
 import { Shield, Sparkles, Users, Key, Award } from 'lucide-react';
 import greenImg from '../assets/green.jpg';
@@ -13,13 +14,13 @@ const CATEGORIES = [
     id: 'staff',
     label: 'Staff IDs',
     icon: Users,
-    image: 'https://framerusercontent.com/images/wlGihJYpWqbIZpHT1ClDFDgUmk.png?width=1800'
+    image: getAsset('card-metal-business-front.png')
   },
   {
     id: 'access',
     label: 'Access cards',
     icon: Key,
-    image: 'https://framerusercontent.com/images/WRAp8VzH00hxe4XxQqAqA2UuJ0.jpg?width=1600'
+    image: getAsset('card-24k-mirror-gold.jpg')
   },
   {
     id: 'membership',

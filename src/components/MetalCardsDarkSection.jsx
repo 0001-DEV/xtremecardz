@@ -1,3 +1,4 @@
+import { getAsset } from '../assets/assetUrl';
 import React from 'react';
 import { ArrowRight, Sparkles, Shield, Cpu, Award } from 'lucide-react';
 
@@ -30,7 +31,7 @@ export default function MetalCardsDarkSection({ onOpenQuote }) {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))',
             gap: '50px',
             alignItems: 'center'
           }}
@@ -150,7 +151,7 @@ export default function MetalCardsDarkSection({ onOpenQuote }) {
               }}
             >
               <img
-                src="https://framerusercontent.com/images/oUscxluBetLnso5wtiCRMM5TpDE.png?width=1000"
+                src={getAsset('card-metal-dark-preview.png')}
                 alt="Xtreme Metal Card"
                 style={{
                   width: '100%',

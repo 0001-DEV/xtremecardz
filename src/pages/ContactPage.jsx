@@ -1,3 +1,4 @@
+import { getAsset } from '../assets/assetUrl';
 import React, { useEffect, useState } from 'react';
 
 const FAQS = [
@@ -605,7 +606,7 @@ export default function ContactPage() {
             gap: 30px;
           }
           .xc-contact-hero-title {
-            font-size: 44px;
+            font-size: clamp(32px, 8vw, 44px);
           }
           .xc-contact-hero-desc {
             font-size: 18px;
@@ -686,6 +687,15 @@ export default function ContactPage() {
             font-size: 16px;
           }
         }
+
+        @media (max-height: 550px) {
+          .xc-contact-hero-section {
+            padding: 95px 0 0 !important;
+          }
+          .xc-contact-hero-container {
+            gap: 20px !important;
+          }
+        }
       `}</style>
 
       <main>
@@ -710,13 +720,13 @@ export default function ContactPage() {
               <div className="xc-contact-visual-panel">
                 <div className="xc-contact-visual-bg">
                   <img
-                    src="https://framerusercontent.com/images/Rv0laiDKXOihHcLCHZslTO1KGbI.jpg?width=1200&height=1600"
+                    src={getAsset('contact-visual-bg.jpg')}
                     alt=""
                   />
                 </div>
                 <div className="xc-contact-visual-graphic">
                   <img
-                    src="https://framerusercontent.com/images/k1ZnZrxbA7yzw3gEgyzNFfUu31w.png?width=1500&height=1500"
+                    src={getAsset('contact-card-graphic.png')}
                     alt=""
                   />
                 </div>
@@ -799,7 +809,7 @@ export default function ContactPage() {
               >
                 <div className="xc-contact-reach-icon-circle blue">
                   <img
-                    src="https://framerusercontent.com/images/tLK0vd89o1TNNFSzF5qXoI9SVU.svg?width=24&height=24"
+                    src={getAsset('icon-whatsapp-contact.svg')}
                     alt=""
                   />
                 </div>
@@ -818,7 +828,7 @@ export default function ContactPage() {
               >
                 <div className="xc-contact-reach-icon-circle teal">
                   <img
-                    src="https://framerusercontent.com/images/UMQT61btnTYqLG4O8gklKle0U8.png?width=56&height=51"
+                    src={getAsset('icon-mail-contact.png')}
                     alt=""
                   />
                 </div>

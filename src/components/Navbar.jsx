@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowUpRight, MessageCircle } from 'lucide-react';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 export default function Navbar({ onOpenQuote }) {
   const navigate = useNavigate();
@@ -151,7 +151,7 @@ export default function Navbar({ onOpenQuote }) {
       <header
         style={{
           position: 'fixed',
-          top: '24px',
+          top: 'calc(env(safe-area-inset-top, 0px) + 16px)',
           left: 0,
           right: 0,
           zIndex: 1000,
@@ -201,7 +201,7 @@ export default function Navbar({ onOpenQuote }) {
               style={{
                 fontFamily: 'var(--font-heading)',
                 fontWeight: 700,
-                fontSize: '22px',
+                fontSize: 'clamp(17px, 4.5vw, 22px)',
                 color: '#000000',
                 letterSpacing: '-0.03em',
                 lineHeight: 1,
@@ -268,33 +268,31 @@ export default function Navbar({ onOpenQuote }) {
               onMouseEnter={() => setBtnHovered(true)}
               onMouseLeave={() => setBtnHovered(false)}
               style={{
-                backgroundColor: '#000000',
+                background: btnHovered
+                  ? 'linear-gradient(90deg, rgb(25, 163, 255) 0%, rgb(215, 64, 223) 51.4991554054054%, rgb(255, 174, 74) 100%)'
+                  : 'linear-gradient(90deg, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 51.4991554054054%, rgb(0, 0, 0) 100%)',
                 color: '#ffffff',
-                padding: '8px 16px',
+                padding: '10px 24px 8px',
+                minWidth: '96px',
                 borderRadius: '66px',
-                fontSize: '14px',
-                fontWeight: 600,
+                fontSize: '16px',
+                fontWeight: 500,
+                letterSpacing: '-0.01em',
+                lineHeight: '1.6em',
                 fontFamily: 'var(--font-heading)',
                 display: 'inline-flex',
+                flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '6px',
-                transition: 'all 0.25s ease',
-                border: '1px solid rgba(255, 255, 255, 0.25)',
-                boxShadow: '0 4px 14px rgba(0, 0, 0, 0.15)',
-                height: '38px',
+                transition: 'background 0.3s ease, box-shadow 0.3s ease',
+                border: 'none',
+                boxShadow: btnHovered ? '0px 4px 16px 0px rgba(0, 0, 0, 0.12)' : 'none',
                 cursor: 'pointer',
-                whiteSpace: 'nowrap'
+                whiteSpace: 'nowrap',
+                overflow: 'clip'
               }}
             >
-              {btnHovered ? (
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', animation: 'fadeIn 0.2s ease' }}>
-                  <MessageCircle size={15} />
-                  <span>Send a message</span>
-                </span>
-              ) : (
-                <span>Make enquiries</span>
-              )}
+              <span>{btnHovered ? 'Send a message' : 'Make enquiries'}</span>
             </button>
 
             {/* Mobile Hamburger Button */}
@@ -342,10 +340,14 @@ export default function Navbar({ onOpenQuote }) {
           <div
             style={{
               position: 'fixed',
-              top: '76px',
+              top: 'calc(env(safe-area-inset-top, 0px) + 72px)',
               left: '16px',
               right: '16px',
               maxWidth: '420px',
+              maxHeight: 'calc(100dvh - env(safe-area-inset-top, 0px) - 86px)',
+              overflowY: 'auto',
+              WebkitOverflowScrolling: 'touch',
+              overscrollBehavior: 'contain',
               margin: '0 auto',
               backgroundColor: '#ffffff',
               borderRadius: '20px',

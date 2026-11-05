@@ -1,3 +1,4 @@
+import { getAsset } from '../assets/assetUrl';
 import React, { useState, useEffect, useRef } from 'react';
 import { Star, Sparkles } from 'lucide-react';
 import globeImg from '../assets/globe.png';
@@ -6,43 +7,43 @@ import cloudImg from '../assets/cloud.png';
 // Brand client pairs with real high-resolution brand logos from Framer
 const LOGO_PAIRS = [
   {
-    from: { name: 'Seplat Energy', img: 'https://framerusercontent.com/images/GCV570Tb0ZmpDoHGXAY3N5Vh2r8.png?width=537&height=337' },
-    to: { name: 'Nova Bank', img: 'https://framerusercontent.com/images/8tmvtGfhOVVmIrVAUqs9waQExg.png?width=412&height=146' }
+    from: { name: 'Seplat Energy', img: getAsset('logo-seplat-energy.png') },
+    to: { name: 'Nova Bank', img: getAsset('logo-nova-bank.png') }
   },
   {
-    from: { name: 'Invera Energy', img: 'https://framerusercontent.com/images/0XbuTevuBnHJYx9DKL1GRkOBUUk.png?width=495&height=407' },
-    to: { name: 'Optiva Capital', img: 'https://framerusercontent.com/images/iQfFipkw27K0IjyZCHm5vGnKvEU.png?width=1025&height=116' }
+    from: { name: 'Invera Energy', img: getAsset('logo-invera-energy.png') },
+    to: { name: 'Optiva Capital', img: getAsset('logo-optiva-capital.png') }
   },
   {
-    from: { name: 'Guinness Nigeria', img: 'https://framerusercontent.com/images/8pDoOBBJyHWiSaN0gG2rWYKGH0Y.png?width=513&height=388' },
-    to: { name: 'Rainoil Limited', img: 'https://framerusercontent.com/images/RU1WIInwLchX3hRsYaT6E9XkvtU.png?width=447&height=177' }
+    from: { name: 'Guinness Nigeria', img: getAsset('logo-guinness-nigeria.png') },
+    to: { name: 'Rainoil Limited', img: getAsset('logo-rainoil.png') }
   },
   {
-    from: { name: 'Ikeja Electric', img: 'https://framerusercontent.com/images/os1wVdf5rrzlyBNvLKxIACOR7ro.png?width=542&height=128' },
-    to: { name: 'Sapetro Oil', img: 'https://framerusercontent.com/images/e0aRnbXw3kKmPWRS3NxYiBsxF5Y.webp?width=2501&height=759' }
+    from: { name: 'Ikeja Electric', img: getAsset('logo-ikeja-electric.png') },
+    to: { name: 'Sapetro Oil', img: getAsset('logo-sapetro-oil.webp') }
   },
   {
-    from: { name: 'TVC Communications', img: 'https://framerusercontent.com/images/q1yIUKqwDkzVb854iBSHW4lZ6P8.png?width=3178&height=864' },
-    to: { name: 'IOGC Petroleum', img: 'https://framerusercontent.com/images/GSIRRGf14EqnjS1zcX49ww1I.png?width=306&height=306' }
+    from: { name: 'TVC Communications', img: getAsset('logo-tvc-communications.png') },
+    to: { name: 'IOGC Petroleum', img: getAsset('logo-iogc-petroleum.png') }
   },
   {
-    from: { name: 'Sterling Capital', img: 'https://framerusercontent.com/images/itQitqLAZDWH9DHhSPoPvVF5kO8.png?width=270&height=136' },
-    to: { name: 'Horizon Group', img: 'https://framerusercontent.com/images/9F5Oaz0bZ86BRoJu0YMQjUtGo.svg?width=904&height=243' }
+    from: { name: 'Sterling Capital', img: getAsset('logo-sterling-capital.png') },
+    to: { name: 'Horizon Group', img: getAsset('logo-horizon-group.svg') }
   },
   {
-    from: { name: 'NECA Nigeria', img: 'https://framerusercontent.com/images/9JkqgOhzgaW97POoV3QJBN6OKhw.png?width=362&height=128' },
-    to: { name: 'Apex Synergy', img: 'https://framerusercontent.com/images/Hc2wclYvwfkHy84Cgubp1aCMUM.png?width=720&height=362' }
+    from: { name: 'NECA Nigeria', img: getAsset('logo-neca-nigeria.png') },
+    to: { name: 'Apex Synergy', img: getAsset('logo-apex-synergy.png') }
   },
   {
-    from: { name: 'Falcon Oil', img: 'https://framerusercontent.com/images/JyVElSfsuVxHhfLB88jM9BNonk.png?width=396&height=224' },
-    to: { name: 'Credit Direct', img: 'https://framerusercontent.com/images/dtEewob0v5vfGEgiK3rQ5sytVk.png?width=482&height=118' }
+    from: { name: 'Falcon Oil', img: getAsset('logo-falcon-oil.png') },
+    to: { name: 'Credit Direct', img: getAsset('logo-credit-direct.png') }
   }
 ];
 
 const AVATAR_SLOTS = [
-  { id: 'tariq', name: 'Tariq Al-Mansoor', avatar: 'https://framerusercontent.com/images/blsE8ntgNC0myl9MVfRRUmf9o.jpg?width=120' },
-  { id: 'elena', name: 'Elena Rostova', avatar: 'https://framerusercontent.com/images/H7g08OdB1d2NhCmSTZz4iFHV2F4.png?width=120' },
-  { id: 'marcus', name: 'Marcus Sterling', avatar: 'https://framerusercontent.com/images/ljF2u5K5KRhABVThBcOFz5BdXKg.jpeg?width=120' }
+  { id: 'tariq', name: 'Tariq Al-Mansoor', avatar: getAsset('avatar-tariq-al-mansoor.jpg') },
+  { id: 'elena', name: 'Elena Rostova', avatar: getAsset('avatar-elena-rostova.png') },
+  { id: 'marcus', name: 'Marcus Sterling', avatar: getAsset('avatar-marcus-sterling.jpeg') }
 ];
 
 export default function ClientShowcase() {

@@ -1,18 +1,19 @@
+import { getAsset } from '../assets/assetUrl';
 import React, { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 
 const CARDS = [
-  { id: 0, title: 'Nova', img: 'https://framerusercontent.com/images/VfPcVMbua1hRofTVGKZLXlg4k.jpg?width=1080&height=1350' },
-  { id: 1, title: 'Seplat', img: 'https://framerusercontent.com/images/CUgTBF7cbByxZQwWFMDNfXIz3P0.jpg?width=1080&height=1350' },
-  { id: 2, title: 'Invera Energy', img: 'https://framerusercontent.com/images/J4rNvZKvbrN2dGnk6QWrdshukM.jpg?width=1080&height=1350' },
-  { id: 3, title: 'Neca', img: 'https://framerusercontent.com/images/wlGihJYpWqbIZpHT1ClDFDgUmk.png?width=1800&height=2200' },
-  { id: 4, title: 'Ikeja Electric', img: 'https://framerusercontent.com/images/VILreelej6FJF9afHUpDst42A.jpg?width=1080&height=1080' },
-  { id: 5, title: 'Rainoil', img: 'https://framerusercontent.com/images/KbC32uNkRogiHgIDhEAgdcpcVM.jpg?width=1080&height=1080' },
-  { id: 6, title: 'Optiva Capital', img: 'https://framerusercontent.com/images/NpFjo55ZAEbQNkN0qv3ycj4Yt4.jpg?width=1080&height=1080' },
-  { id: 7, title: 'IOGC', img: 'https://framerusercontent.com/images/bsnXpVxiTZRCi1WNX88kRJ5zw.png?width=1080&height=1080' },
-  { id: 8, title: 'TVC', img: 'https://framerusercontent.com/images/r0DPyi62oGifYQcTojJdd5XRb8.png?width=1080&height=1080' },
-  { id: 9, title: 'Sapetro', img: 'https://framerusercontent.com/images/cruV4sTOrLcmDG4xvwqyxbri1w.jpg?width=1080&height=1080' },
-  { id: 10, title: 'Guinness Nigeria', img: 'https://framerusercontent.com/images/lKRhEofMwZNBLJNUophq5OfQg.png?width=1080&height=1080' }
+  { id: 0, title: 'Nova', img: getAsset('ring-card-nova.jpg') },
+  { id: 1, title: 'Seplat', img: getAsset('ring-card-seplat.jpg') },
+  { id: 2, title: 'Invera Energy', img: getAsset('ring-card-invera.jpg') },
+  { id: 3, title: 'Neca', img: getAsset('card-metal-business-front.png') },
+  { id: 4, title: 'Ikeja Electric', img: getAsset('ring-card-ikeja-electric.jpg') },
+  { id: 5, title: 'Rainoil', img: getAsset('ring-card-rainoil.jpg') },
+  { id: 6, title: 'Optiva Capital', img: getAsset('ring-card-optiva.jpg') },
+  { id: 7, title: 'IOGC', img: getAsset('ring-card-iogc.png') },
+  { id: 8, title: 'TVC', img: getAsset('ring-card-tvc.png') },
+  { id: 9, title: 'Sapetro', img: getAsset('ring-card-sapetro.jpg') },
+  { id: 10, title: 'Guinness Nigeria', img: getAsset('ring-card-guinness.png') }
 ];
 
 export default function RingCarousel3D({ onSelectCard }) {
@@ -41,7 +42,17 @@ export default function RingCarousel3D({ onSelectCard }) {
   useEffect(() => {
     const handleResize = () => {
       const w = window.innerWidth;
-      if (w < 600) {
+      if (w < 440) {
+        setDims({
+          radius: Math.min(160, Math.floor((w - 40) / 2)),
+          ellipseHeight: 36,
+          itemWidth: 72,
+          itemHeight: 100,
+          previewWidth: Math.min(230, w - 50),
+          previewHeight: 310,
+          perspective: 500
+        });
+      } else if (w < 600) {
         setDims({
           radius: 250,
           ellipseHeight: 50,
@@ -192,7 +203,7 @@ export default function RingCarousel3D({ onSelectCard }) {
         alignItems: 'center',
         justifyContent: 'center',
         userSelect: 'none',
-        touchAction: 'none',
+        touchAction: 'pan-y',
         cursor: 'grab'
       }}
       onPointerDown={handlePointerDown}

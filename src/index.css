@@ -54,6 +54,12 @@
   --radius-pill: 9999px;
 
   --container-max: 1260px;
+
+  /* iOS Safe Area Inset Variables */
+  --sat: env(safe-area-inset-top, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
 }
 
 *, *::before, *::after {
@@ -76,6 +82,8 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -84,6 +92,8 @@ body {
   overflow-x: hidden;
   background-color: var(--bg-page);
   color: var(--text-dark);
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 /* Lenis smooth scrolling recommendations */
@@ -169,6 +179,28 @@ img, video {
   .container {
     padding-left: 16px;
     padding-right: 16px;
+  }
+
+  /* Prevent iOS Safari from auto-zooming into inputs when focused (requires >= 16px font-size) */
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/* Small-height screen optimizations (landscape phones, small browser windows) */
+@media (max-height: 550px) {
+  .badge-pill {
+    padding: 4px 14px;
+    font-size: 12px;
   }
 }
 

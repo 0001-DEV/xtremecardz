@@ -1,3 +1,4 @@
+import { getAsset } from '../assets/assetUrl';
 import React, { useState, useEffect, useRef } from 'react';
 import { Sparkles } from 'lucide-react';
 import cloudImg from '../assets/cloud.png';
@@ -120,12 +121,41 @@ export default function ElevateCta({ onOpenQuote }) {
             padding: 20px 0;
           }
         }
+
+        /* Seamless mobile and small-height responsive layout: unpin sticky and flow naturally without traps */
+        @media (max-width: 900px), (max-height: 650px) {
+          #elevate-cta {
+            height: auto !important;
+            padding: 50px 0 60px !important;
+          }
+          .elevate-sticky-viewport {
+            position: relative !important;
+            top: auto !important;
+            height: auto !important;
+            min-height: auto !important;
+            padding: 0 16px !important;
+          }
+          .elevate-content-grid {
+            grid-template-columns: 1fr !important;
+            max-height: none !important;
+            overflow-y: visible !important;
+            gap: 48px !important;
+          }
+          .elevate-part {
+            opacity: 1 !important;
+            transform: none !important;
+          }
+          .elevate-cloud-layer {
+            opacity: 0.3 !important;
+          }
+        }
       `}</style>
 
       {/* ============================================================== */}
       {/* STICKY FROZEN VIEWPORT: Stays locked in view while scrolling   */}
       {/* ============================================================== */}
       <div
+        className="elevate-sticky-viewport"
         style={{
           position: 'sticky',
           top: 0,
@@ -155,6 +185,7 @@ export default function ElevateCta({ onOpenQuote }) {
         {/* ============================================================== */}
         {/* Cloud Layer 1: Left Curtain Cloud (starts covering left-center, parts to the left) */}
         <div
+          className="elevate-cloud-layer"
           style={{
             position: 'absolute',
             bottom: `${40 - openAmount * 95}px`,
@@ -183,6 +214,7 @@ export default function ElevateCta({ onOpenQuote }) {
 
         {/* Cloud Layer 2: Right Curtain Cloud (starts covering right-center, parts to the right) */}
         <div
+          className="elevate-cloud-layer"
           style={{
             position: 'absolute',
             bottom: `${35 - openAmount * 95}px`,
@@ -212,6 +244,7 @@ export default function ElevateCta({ onOpenQuote }) {
 
         {/* Cloud Layer 3: Center Horizon Cloud (starts high covering the stage, settles down to the bottom horizon) */}
         <div
+          className="elevate-cloud-layer"
           style={{
             position: 'absolute',
             bottom: `${90 - openAmount * 145}px`,
@@ -241,6 +274,7 @@ export default function ElevateCta({ onOpenQuote }) {
           {/* Comes out first                                              */}
           {/* ------------------------------------------------------------ */}
           <div
+            className="elevate-part elevate-part-1"
             style={{
               opacity: p1,
               transform: `translateY(${(1 - p1) * 80}px) scale(${0.92 + p1 * 0.08})`,
@@ -370,6 +404,7 @@ export default function ElevateCta({ onOpenQuote }) {
           {/* Comes out second, rising up from inside the cloud            */}
           {/* ------------------------------------------------------------ */}
           <div
+            className="elevate-part elevate-part-2"
             style={{
               opacity: p2,
               transform: `translateY(${(1 - p2) * 140}px) scale(${0.86 + p2 * 0.14})`,
@@ -392,7 +427,7 @@ export default function ElevateCta({ onOpenQuote }) {
               }}
             >
               <img
-                src="https://framerusercontent.com/images/zC4jLN8Gl7PEI1dnMBZtqihqGI.png?width=1127&height=1025"
+                src={getAsset('card-elevate-cta-floating.png')}
                 alt="Xtreme Premium Metal Business Card"
                 style={{
                   width: '100%',
@@ -409,6 +444,7 @@ export default function ElevateCta({ onOpenQuote }) {
           {/* Comes out third                                              */}
           {/* ------------------------------------------------------------ */}
           <div
+            className="elevate-part elevate-part-3"
             style={{
               opacity: p3,
               transform: `translateY(${(1 - p3) * 80}px) scale(${0.92 + p3 * 0.08})`,
@@ -465,7 +501,7 @@ export default function ElevateCta({ onOpenQuote }) {
                 }}
               >
                 <img
-                  src="https://framerusercontent.com/images/xMdWyxvX8jT2RJqub8GPYlnweA.png?width=480&height=480"
+                  src={getAsset('qr-code-quote-scanner.png')}
                   alt="Instant Quote QR Code"
                   style={{
                     width: '100%',

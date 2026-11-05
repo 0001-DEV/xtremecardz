@@ -1,4 +1,132 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+
+function CircularProgress({
+  size = 80,
+  strokeWidth = 8,
+  percentage = 100,
+  barColor = 'rgb(255, 152, 3)',
+  fontSize = '18px',
+  animationDelay = 0.25
+}) {
+  const containerRef = useRef(null);
+  const [inView, setInView] = useState(false);
+  const [strokeProgress, setStrokeProgress] = useState(0);
+  const [displayValue, setDisplayValue] = useState(0);
+
+  const radius = (size - strokeWidth) / 2;
+  const center = size / 2;
+  const circumference = 2 * Math.PI * radius;
+  const dashOffset = circumference - (strokeProgress / 100) * circumference;
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+        } else {
+          setInView(false);
+          setStrokeProgress(0);
+          setDisplayValue(0);
+        }
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!inView) return undefined;
+
+    let intervalId = null;
+    const timeoutId = setTimeout(() => {
+      setStrokeProgress(percentage);
+
+      const totalSteps = 60;
+      const stepValue = percentage / totalSteps;
+      let currentStep = 0;
+
+      intervalId = setInterval(() => {
+        currentStep += 1;
+        const nextVal = Math.min(stepValue * currentStep, percentage);
+        setDisplayValue(Math.round(nextVal));
+        if (currentStep >= totalSteps || nextVal >= percentage) {
+          clearInterval(intervalId);
+          setDisplayValue(Math.round(percentage));
+        }
+      }, 25);
+    }, animationDelay * 1000);
+
+    return () => {
+      clearTimeout(timeoutId);
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [inView, percentage, animationDelay]);
+
+  return (
+    <div
+      ref={containerRef}
+      style={{
+        position: 'relative',
+        width: `${size}px`,
+        height: `${size}px`,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: '50%',
+        marginBottom: '12px'
+      }}
+    >
+      <svg
+        width="100%"
+        height="100%"
+        viewBox={`0 0 ${size} ${size}`}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          transform: 'rotate(-90deg)'
+        }}
+      >
+        <circle
+          cx={center}
+          cy={center}
+          r={radius}
+          fill="none"
+          stroke={barColor}
+          strokeWidth={strokeWidth}
+          strokeLinecap="round"
+          strokeDasharray={circumference}
+          strokeDashoffset={dashOffset}
+          style={{
+            transition: inView ? 'stroke-dashoffset 1.5s ease-in-out' : 'none'
+          }}
+        />
+      </svg>
+      <span
+        style={{
+          position: 'relative',
+          zIndex: 1,
+          fontFamily: 'var(--font-heading)',
+          fontSize,
+          fontWeight: 500,
+          letterSpacing: '-0.01em',
+          lineHeight: '1em',
+          color: '#ffffff',
+          opacity: inView ? 1 : 0.4,
+          transform: inView ? 'scale(1)' : 'scale(0.85)',
+          transition: 'opacity 0.5s ease-out, transform 0.5s ease-out'
+        }}
+      >
+        {displayValue}%
+      </span>
+    </div>
+  );
+}
 
 export default function PremiumPackages({ onOpenQuote }) {
   return (
@@ -15,7 +143,7 @@ export default function PremiumPackages({ onOpenQuote }) {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))',
             gap: '30px',
             alignItems: 'stretch'
           }}
@@ -87,6 +215,7 @@ export default function PremiumPackages({ onOpenQuote }) {
 
                 {/* 3 Circles Row: Yellow, Wider Purple, Orange */}
                 <div
+                  className="xtreme-circles-row"
                   style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(3, 1fr)',
@@ -95,7 +224,7 @@ export default function PremiumPackages({ onOpenQuote }) {
                     justifyItems: 'center'
                   }}
                 >
-                  {/* 1. Smart Cards — Yellow Circle */}
+                  {/* 1. Smart Cards — Amber/Yellow Clockwise Circle */}
                   <div
                     style={{
                       display: 'flex',
@@ -104,30 +233,14 @@ export default function PremiumPackages({ onOpenQuote }) {
                       textAlign: 'center'
                     }}
                   >
-                    <div
-                      style={{
-                        width: '88px',
-                        height: '88px',
-                        borderRadius: '50%',
-                        border: '3px solid #eab308',
-                        backgroundColor: 'rgba(234, 179, 8, 0.08)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginBottom: '12px',
-                        boxShadow: '0 0 20px rgba(234, 179, 8, 0.15)'
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontSize: '19px',
-                          fontWeight: 700,
-                          color: '#ffffff'
-                        }}
-                      >
-                        100%
-                      </span>
-                    </div>
+                    <CircularProgress
+                      size={80}
+                      strokeWidth={8}
+                      percentage={100}
+                      barColor="rgb(255, 152, 3)"
+                      fontSize="18px"
+                      animationDelay={0.2}
+                    />
                     <span
                       style={{
                         fontSize: '13px',
@@ -139,7 +252,7 @@ export default function PremiumPackages({ onOpenQuote }) {
                     </span>
                   </div>
 
-                  {/* 2. Premium Quality — Wider Purple Circle */}
+                  {/* 2. Premium Quality — Wider Purple Clockwise Circle */}
                   <div
                     style={{
                       display: 'flex',
@@ -148,30 +261,14 @@ export default function PremiumPackages({ onOpenQuote }) {
                       textAlign: 'center'
                     }}
                   >
-                    <div
-                      style={{
-                        width: '112px',
-                        height: '112px',
-                        borderRadius: '50%',
-                        border: '4px solid #a855f7',
-                        backgroundColor: 'rgba(168, 85, 247, 0.1)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginBottom: '12px',
-                        boxShadow: '0 0 26px rgba(168, 85, 247, 0.25)'
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontSize: '22px',
-                          fontWeight: 700,
-                          color: '#ffffff'
-                        }}
-                      >
-                        100%
-                      </span>
-                    </div>
+                    <CircularProgress
+                      size={120}
+                      strokeWidth={8}
+                      percentage={100}
+                      barColor="rgb(144, 0, 255)"
+                      fontSize="22px"
+                      animationDelay={0.3}
+                    />
                     <span
                       style={{
                         fontSize: '13px',
@@ -183,7 +280,7 @@ export default function PremiumPackages({ onOpenQuote }) {
                     </span>
                   </div>
 
-                  {/* 3. Precision Finish — Orange Circle */}
+                  {/* 3. Precision Finish — Orange Clockwise Circle */}
                   <div
                     style={{
                       display: 'flex',
@@ -192,30 +289,14 @@ export default function PremiumPackages({ onOpenQuote }) {
                       textAlign: 'center'
                     }}
                   >
-                    <div
-                      style={{
-                        width: '88px',
-                        height: '88px',
-                        borderRadius: '50%',
-                        border: '3px solid #f97316',
-                        backgroundColor: 'rgba(249, 115, 22, 0.08)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginBottom: '12px',
-                        boxShadow: '0 0 20px rgba(249, 115, 22, 0.15)'
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontSize: '19px',
-                          fontWeight: 700,
-                          color: '#ffffff'
-                        }}
-                      >
-                        100%
-                      </span>
-                    </div>
+                    <CircularProgress
+                      size={80}
+                      strokeWidth={8}
+                      percentage={100}
+                      barColor="rgb(255, 76, 0)"
+                      fontSize="18px"
+                      animationDelay={0.4}
+                    />
                     <span
                       style={{
                         fontSize: '13px',
@@ -229,115 +310,146 @@ export default function PremiumPackages({ onOpenQuote }) {
                 </div>
               </div>
 
-              {/* Two Deep Gray Glassmorphism Containers */}
+              {/* Two Deep Gray Glassmorphism Containers arranged in columns */}
               <div
+                className="xtreme-stats-grid"
                 style={{
-                  display: 'flex',
-                  flexDirection: 'column',
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
                   gap: '14px'
                 }}
               >
-                {/* Deep Gray Glass Container 1: Cards delivered ... 10K+ / Organisations equipped */}
+                {/* Deep Gray Glass Container 1: Cards delivered / 10K+ / Organisations equipped */}
                 <div
                   style={{
                     backgroundColor: 'rgba(28, 31, 33, 0.86)',
-                    backdropFilter: 'blur(16px)',
-                    WebkitBackdropFilter: 'blur(16px)',
+                    backdropFilter: 'blur(20px)',
+                    WebkitBackdropFilter: 'blur(20px)',
                     borderRadius: '20px',
-                    padding: '22px 26px',
-                    border: '1px solid rgba(255, 255, 255, 0.12)',
+                    padding: '22px 22px 20px',
+                    border: '1px solid rgba(255, 255, 255, 0.14)',
                     boxShadow: '0 10px 28px rgba(0, 0, 0, 0.16)',
                     display: 'flex',
-                    alignItems: 'center',
+                    flexDirection: 'column',
                     justifyContent: 'space-between',
-                    gap: '16px',
+                    minHeight: '144px',
                     color: '#ffffff'
                   }}
                 >
-                  <div>
+                  {/* Top Row: Cards delivered on left, 10K+ on right */}
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      justifyContent: 'space-between',
+                      gap: '10px',
+                      width: '100%',
+                      marginBottom: '16px'
+                    }}
+                  >
                     <div
                       style={{
-                        fontSize: '16px',
-                        fontWeight: 600,
+                        fontSize: '15px',
+                        fontWeight: 500,
                         color: '#ffffff',
-                        marginBottom: '4px'
+                        lineHeight: 1.3,
+                        fontFamily: 'var(--font-heading)'
                       }}
                     >
                       Cards delivered
                     </div>
                     <div
                       style={{
-                        fontSize: '13.5px',
-                        color: 'rgba(255, 255, 255, 0.68)'
+                        fontSize: 'clamp(24px, 2.4vw, 30px)',
+                        fontWeight: 700,
+                        color: '#ffffff',
+                        letterSpacing: '-0.02em',
+                        lineHeight: 1,
+                        fontFamily: 'var(--font-heading)',
+                        flexShrink: 0
                       }}
                     >
-                      Organisations equipped
+                      10K+
                     </div>
                   </div>
 
+                  {/* Bottom Row: Organisations equipped */}
                   <div
                     style={{
-                      fontSize: 'clamp(28px, 3.2vw, 38px)',
-                      fontWeight: 700,
-                      color: '#ffffff',
-                      letterSpacing: '-0.03em',
-                      lineHeight: 1,
-                      flexShrink: 0
+                      fontSize: '13.5px',
+                      color: 'rgba(255, 255, 255, 0.68)',
+                      lineHeight: 1.4,
+                      fontFamily: 'var(--font-body)'
                     }}
                   >
-                    10K+
+                    Organisations equipped
                   </div>
                 </div>
 
-                {/* Deep Gray Glass Container 2: Premium ... 100% / Connect & identify */}
+                {/* Deep Gray Glass Container 2: Premium / 100% / Connect & identify */}
                 <div
                   style={{
                     backgroundColor: 'rgba(28, 31, 33, 0.86)',
-                    backdropFilter: 'blur(16px)',
-                    WebkitBackdropFilter: 'blur(16px)',
+                    backdropFilter: 'blur(20px)',
+                    WebkitBackdropFilter: 'blur(20px)',
                     borderRadius: '20px',
-                    padding: '22px 26px',
-                    border: '1px solid rgba(255, 255, 255, 0.12)',
+                    padding: '22px 22px 20px',
+                    border: '1px solid rgba(255, 255, 255, 0.14)',
                     boxShadow: '0 10px 28px rgba(0, 0, 0, 0.16)',
                     display: 'flex',
-                    alignItems: 'center',
+                    flexDirection: 'column',
                     justifyContent: 'space-between',
-                    gap: '16px',
+                    minHeight: '144px',
                     color: '#ffffff'
                   }}
                 >
-                  <div>
+                  {/* Top Row: Premium on left, 100% on right */}
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      justifyContent: 'space-between',
+                      gap: '10px',
+                      width: '100%',
+                      marginBottom: '16px'
+                    }}
+                  >
                     <div
                       style={{
-                        fontSize: '16px',
-                        fontWeight: 600,
+                        fontSize: '15px',
+                        fontWeight: 500,
                         color: '#ffffff',
-                        marginBottom: '4px'
+                        lineHeight: 1.3,
+                        fontFamily: 'var(--font-heading)'
                       }}
                     >
                       Premium
                     </div>
                     <div
                       style={{
-                        fontSize: '13.5px',
-                        color: 'rgba(255, 255, 255, 0.68)'
+                        fontSize: 'clamp(24px, 2.4vw, 30px)',
+                        fontWeight: 700,
+                        color: '#ffffff',
+                        letterSpacing: '-0.02em',
+                        lineHeight: 1,
+                        fontFamily: 'var(--font-heading)',
+                        flexShrink: 0
                       }}
                     >
-                      Connect &amp; identify
+                      100%
                     </div>
                   </div>
 
+                  {/* Bottom Row: Connect & identify */}
                   <div
                     style={{
-                      fontSize: 'clamp(28px, 3.2vw, 38px)',
-                      fontWeight: 700,
-                      color: '#ffffff',
-                      letterSpacing: '-0.03em',
-                      lineHeight: 1,
-                      flexShrink: 0
+                      fontSize: '13.5px',
+                      color: 'rgba(255, 255, 255, 0.68)',
+                      lineHeight: 1.4,
+                      fontFamily: 'var(--font-body)'
                     }}
                   >
-                    100%
+                    Connect &amp; identify
                   </div>
                 </div>
               </div>
@@ -637,6 +749,20 @@ export default function PremiumPackages({ onOpenQuote }) {
                 }
                 .identity-marquee-left {
                   animation: identityScrollLeft 28s linear infinite;
+                }
+                @media (max-width: 400px) {
+                  .xtreme-circles-row {
+                    gap: 6px !important;
+                    transform: scale(0.85);
+                    transform-origin: center;
+                    margin: -10px 0;
+                  }
+                }
+                @media (max-width: 480px) {
+                  .xtreme-stats-grid {
+                    grid-template-columns: 1fr !important;
+                    gap: 12px !important;
+                  }
                 }
               `}</style>
             </div>

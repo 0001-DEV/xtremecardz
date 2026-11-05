@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowUpRight, MessageCircle } from 'lucide-react';
 
@@ -6,64 +6,100 @@ export default function Navbar({ onOpenQuote }) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [btnHovered, setBtnHovered] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   // Staged animation state:
-  // 0 = Initial compact pill (centered, contains Xtreme cards & Make enquiries)
-  // 1 = Shifts to the left (left edge aligns with the 'E' in 'Every')
-  // 2 = Expands width to 871px to the right (middle opens)
-  // 3 = Features glide gracefully into place in an arranged staggered sequence
+  // 0 = Compact folded pill (410px, contains only Xtreme cards & Make enquiries)
+  // 1 = Shifts to the left (left edge aligns with main container)
+  // 2 = Expanded width (871px) with empty middle (only Xtreme cards & Make enquiries visible)
+  // 3 = Expanded width (871px) with features dropping in from above one after the other
   const [navStage, setNavStage] = useState(0);
 
-  useEffect(() => {
-    // Initial entrance from above on newly loading the website
-    const timer = setTimeout(() => setMounted(true), 80);
+  const isExpandedRef = useRef(false);
+  const foldCooldownUntilRef = useRef(0);
+  const stageTimersRef = useRef([]);
 
+  const clearStageTimers = useCallback(() => {
+    stageTimersRef.current.forEach((id) => clearTimeout(id));
+    stageTimersRef.current = [];
+  }, []);
+
+  // Trigger the fold sequence:
+  // Starts expanded (871px) with only 'Xtreme cards' and 'Make enquiries' (middle empty),
+  // then folds to 410px so 'Make enquiries' moves toward 'Xtreme cards'.
+  const triggerFoldToTwoHeaders = useCallback(() => {
+    clearStageTimers();
+    isExpandedRef.current = false;
+    foldCooldownUntilRef.current = Date.now() + 800;
+
+    setNavStage(2);
+    const tFold = setTimeout(() => {
+      setNavStage(0);
+    }, 420);
+    stageTimersRef.current.push(tFold);
+  }, [clearStageTimers]);
+
+  // Trigger the scroll expansion sequence:
+  // Shifts left -> expands to 871px -> features drop in from above one after the other,
+  // and remains expanded until a feature in the top bar is clicked.
+  const triggerExpandOnScroll = useCallback(() => {
+    if (isExpandedRef.current) return;
+    if (Date.now() < foldCooldownUntilRef.current) return;
+
+    clearStageTimers();
+    isExpandedRef.current = true;
+
+    setNavStage(1);
+    const tExpand = setTimeout(() => {
+      setNavStage(2);
+    }, 320);
+    const tDropIn = setTimeout(() => {
+      setNavStage(3);
+    }, 680);
+
+    stageTimersRef.current.push(tExpand, tDropIn);
+  }, [clearStageTimers]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setMounted(true), 80);
+    return () => {
+      clearTimeout(timer);
+      clearStageTimers();
+    };
+  }, [clearStageTimers]);
+
+  // Fold to the two headers whenever route changes (e.g. browser back/forward)
+  useEffect(() => {
+    const tRoute = setTimeout(() => {
+      triggerFoldToTwoHeaders();
+    }, 0);
+    return () => clearTimeout(tRoute);
+  }, [location.pathname, triggerFoldToTwoHeaders]);
+
+  // Expand and drop in features one by one when the user scrolls (and remain expanded)
+  useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 25);
+      if (window.scrollY > 10) {
+        triggerExpandOnScroll();
+      }
+    };
+
+    const handleWheelOrTouch = () => {
+      triggerExpandOnScroll();
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('wheel', handleWheelOrTouch, { passive: true });
+    window.addEventListener('touchmove', handleWheelOrTouch, { passive: true });
+
     return () => {
-      clearTimeout(timer);
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('wheel', handleWheelOrTouch);
+      window.removeEventListener('touchmove', handleWheelOrTouch);
     };
-  }, []);
-
-  // Orchestrate the multi-phase scroll choreography matching the sample
-  useEffect(() => {
-    let t1 = null;
-    let t2 = null;
-
-    const isInteriorPage = location.pathname !== '/';
-
-    if (scrolled || isInteriorPage) {
-      // Step 1: Container shifts to the left first (only on homepage)
-      if (location.pathname === '/') {
-        setNavStage(1);
-        t1 = setTimeout(() => {
-          setNavStage(2);
-        }, 350);
-        t2 = setTimeout(() => {
-          setNavStage(3);
-        }, 650);
-      } else {
-        // On interior pages, expand immediately and show features
-        setNavStage(3);
-      }
-    } else {
-      // Return to compact centered state on homepage top
-      setNavStage(0);
-    }
-
-    return () => {
-      if (t1) clearTimeout(t1);
-      if (t2) clearTimeout(t2);
-    };
-  }, [scrolled, location.pathname]);
+  }, [triggerExpandOnScroll]);
 
   const navLinks = [
     { label: 'Home', href: '/' },
@@ -77,6 +113,9 @@ export default function Navbar({ onOpenQuote }) {
   const handleNavClick = (e, href) => {
     e.preventDefault();
     setMobileMenuOpen(false);
+
+    // Fold the top bar down to the two headers (Xtreme cards & Make enquiries) on feature click
+    triggerFoldToTwoHeaders();
 
     if (href.startsWith('/')) {
       if (location.pathname !== href) {
@@ -100,9 +139,9 @@ export default function Navbar({ onOpenQuote }) {
     }
   };
 
-  const isInteriorPage = location.pathname !== '/';
-  const isExpanded = navStage >= 2 || isInteriorPage;
-  const isShifted = navStage === 1 && location.pathname === '/';
+  const isExpanded = navStage >= 2;
+  const isRevealed = navStage === 3;
+  const isShifted = navStage === 1;
 
   const currentTransform = isShifted ? 'translateX(-230.5px)' : 'translateX(0)';
   const currentWidth = isExpanded ? '871px' : '410px';
@@ -148,8 +187,8 @@ export default function Navbar({ onOpenQuote }) {
         >
           {/* Brand Logo: Xtreme cards */}
           <a
-            href="#hero"
-            onClick={(e) => handleNavClick(e, '#hero')}
+            href="/"
+            onClick={(e) => handleNavClick(e, '/')}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -178,49 +217,48 @@ export default function Navbar({ onOpenQuote }) {
             style={{
               alignItems: 'center',
               gap: '24px',
-              margin: '0 16px'
+              margin: '0 16px',
+              pointerEvents: isRevealed ? 'auto' : 'none'
             }}
             className="desktop-nav"
           >
-            {navLinks.map((link, idx) => {
-              const isRevealed = navStage === 3;
-              return (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className="nav-feature-item"
-                  style={{
-                    fontSize: '15px',
-                    fontWeight: 500,
-                    fontFamily: 'var(--font-heading)',
-                    color: '#494d4d',
-                    textDecoration: 'underline',
-                    textDecorationColor: 'transparent',
-                    textUnderlineOffset: '4px',
-                    textDecorationThickness: '1.5px',
-                    padding: '4px 2px',
-                    whiteSpace: 'nowrap',
-                    display: 'inline-block',
-                    transform: isRevealed ? 'translateY(0)' : 'translateY(-14px)',
-                    opacity: isRevealed ? 1 : 0,
-                    transition:
-                      'color 0.3s ease, text-decoration-color 0.3s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease',
-                    transitionDelay: isRevealed ? `${idx * 0.05}s` : '0s'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = '#131515';
-                    e.currentTarget.style.textDecorationColor = '#131515';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = '#494d4d';
-                    e.currentTarget.style.textDecorationColor = 'transparent';
-                  }}
-                >
-                  {link.label}
-                </a>
-              );
-            })}
+            {navLinks.map((link, idx) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="nav-feature-item"
+                style={{
+                  fontSize: '15px',
+                  fontWeight: 500,
+                  fontFamily: 'var(--font-heading)',
+                  color: '#494d4d',
+                  textDecoration: 'underline',
+                  textDecorationColor: 'transparent',
+                  textUnderlineOffset: '4px',
+                  textDecorationThickness: '1.5px',
+                  padding: '4px 2px',
+                  whiteSpace: 'nowrap',
+                  display: 'inline-block',
+                  transform: isRevealed ? 'translateY(0)' : 'translateY(-24px)',
+                  opacity: isRevealed ? 1 : 0,
+                  transition: isRevealed
+                    ? 'color 0.3s ease, text-decoration-color 0.3s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease'
+                    : 'none',
+                  transitionDelay: isRevealed ? `${idx * 0.07}s` : '0s'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = '#131515';
+                  e.currentTarget.style.textDecorationColor = '#131515';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = '#494d4d';
+                  e.currentTarget.style.textDecorationColor = 'transparent';
+                }}
+              >
+                {link.label}
+              </a>
+            ))}
           </nav>
 
           {/* Right CTA Button & Hamburger */}

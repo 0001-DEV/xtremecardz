@@ -1,4 +1,5 @@
 import React from 'react';
+import bcardImg from '../assets/bcard.jpg';
 
 export default function XtremeMetalSection() {
   return (
@@ -17,7 +18,7 @@ export default function XtremeMetalSection() {
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
             gap: '50px',
-            alignItems: 'center'
+            alignItems: 'stretch'
           }}
         >
           {/* Left Text Column */}
@@ -118,41 +119,27 @@ export default function XtremeMetalSection() {
             </a>
           </div>
 
-          {/* Right Picture Column */}
+          {/* Right Picture Column: Follows the height of the section */}
           <div
             style={{
               position: 'relative',
               display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
+              alignItems: 'stretch',
+              justifyContent: 'center',
+              height: '100%',
+              minHeight: '420px'
             }}
           >
-            {/* Ambient subtle warm glow behind picture */}
-            <div
-              style={{
-                position: 'absolute',
-                width: '80%',
-                height: '80%',
-                background: 'radial-gradient(circle, rgba(207, 163, 75, 0.12) 0%, transparent 70%)',
-                filter: 'blur(40px)',
-                pointerEvents: 'none'
-              }}
-            />
-
             <div
               style={{
                 position: 'relative',
                 width: '100%',
-                maxWidth: '540px',
+                height: '100%',
                 borderRadius: '26px',
                 overflow: 'hidden',
-                backgroundColor: '#ffffff',
                 border: '1px solid rgba(19, 21, 21, 0.08)',
                 boxShadow: '0 20px 50px rgba(19, 21, 21, 0.08)',
-                padding: '24px',
                 display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
                 transition: 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)'
               }}
               onMouseEnter={(e) => {
@@ -163,14 +150,14 @@ export default function XtremeMetalSection() {
               }}
             >
               <img
-                src="https://framerusercontent.com/images/oUscxluBetLnso5wtiCRMM5TpDE.png?width=1000"
+                src={bcardImg}
                 alt="Xtreme Metal Business Card"
                 style={{
                   width: '100%',
-                  height: 'auto',
-                  objectFit: 'contain',
-                  display: 'block',
-                  filter: 'drop-shadow(0 14px 28px rgba(19, 21, 21, 0.16))'
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                  display: 'block'
                 }}
               />
             </div>

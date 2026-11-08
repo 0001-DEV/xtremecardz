@@ -113,7 +113,7 @@ export default function ClientShowcase() {
         /* Infinite Marquee Track */
         @keyframes clientMarqueeStraight {
           0% { transform: translateX(0); }
-          100% { transform: translateX(calc(-50% - 14px)); }
+          100% { transform: translateX(-50%); }
         }
 
         /* Vertical Slide-Up Roller Twist:
@@ -420,48 +420,49 @@ export default function ClientShowcase() {
       {/* ============================================================== */}
       {/* 2. THE CLIENT LOGOS MOVING ON A STRAIGHT LINE (WITH TWIST)      */}
       {/* ============================================================== */}
-      <div
-        style={{
-          width: '100%',
-          overflow: 'hidden',
-          padding: '20px 0',
-          position: 'relative',
-          marginBottom: '56px'
-        }}
-      >
-        {/* Soft edge gradient fades */}
+      <div className="container" style={{ position: 'relative', marginBottom: '56px' }}>
         <div
           style={{
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            left: 0,
-            width: '120px',
-            background: 'linear-gradient(to right, #ffffff 15%, transparent 100%)',
-            zIndex: 3,
-            pointerEvents: 'none'
+            width: '100%',
+            overflow: 'hidden',
+            padding: '20px 0',
+            position: 'relative'
           }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            right: 0,
-            width: '120px',
-            background: 'linear-gradient(to left, #ffffff 15%, transparent 100%)',
-            zIndex: 3,
-            pointerEvents: 'none'
-          }}
-        />
+        >
+          {/* Soft edge gradient fades - seamlessly emerging from and fading into page background */}
+          <div
+            style={{
+              position: 'absolute',
+              top: '-10px',
+              bottom: '-10px',
+              left: '-10px',
+              width: 'clamp(100px, 12vw, 160px)',
+              background: 'linear-gradient(90deg, #f9f8f6 0%, rgba(249, 248, 246, 0.85) 40%, rgba(249, 248, 246, 0) 100%)',
+              zIndex: 3,
+              pointerEvents: 'none'
+            }}
+          />
+          <div
+            style={{
+              position: 'absolute',
+              top: '-10px',
+              bottom: '-10px',
+              right: '-10px',
+              width: 'clamp(100px, 12vw, 160px)',
+              background: 'linear-gradient(270deg, #f9f8f6 0%, rgba(249, 248, 246, 0.85) 40%, rgba(249, 248, 246, 0) 100%)',
+              zIndex: 3,
+              pointerEvents: 'none'
+            }}
+          />
 
-        {/* Straight Line Infinite Marquee Track */}
+        {/* Straight Line Infinite Marquee Track matching About Us page */}
         <div
           style={{
             display: 'flex',
             width: 'max-content',
+            gap: '64px',
             animation: 'clientMarqueeStraight 32s linear infinite',
-            gap: '36px'
+            alignItems: 'center'
           }}
         >
           {/* Twin duplicated sets for zero-break seamless loop */}
@@ -472,105 +473,67 @@ export default function ClientShowcase() {
               <div
                 key={idx}
                 style={{
-                  position: 'relative',
-                  width: '180px',
-                  height: '60px',
-                  overflow: 'hidden',
-                  flexShrink: 0,
+                  width: '182px',
+                  padding: '36px 24px',
+                  borderRadius: '16px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.03)',
+                  backdropFilter: 'blur(6px)',
+                  WebkitBackdropFilter: 'blur(6px)',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center'
+                  justifyContent: 'center',
+                  flexShrink: 0
                 }}
               >
-                {/* 3-Slot Vertical Roller: Slot 0 (Logo A) -> Slot 1 (Logo B) -> Slot 2 (Logo A) */}
                 <div
                   style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    width: '100%',
-                    height: '300%',
-                    animation: 'clientLogoSlideUp 4.8s cubic-bezier(0.77, 0, 0.175, 1) infinite',
-                    animationDelay: `${staggerDelay}s`
+                    width: '134px',
+                    height: '36px',
+                    overflow: 'hidden',
+                    position: 'relative'
                   }}
                 >
-                  {/* Slot 0: Old Logo (from) */}
+                  {/* 3-Slot Vertical Roller: Slot 0 (Logo A) -> Slot 1 (Logo B) -> Slot 2 (Logo A) */}
                   <div
                     style={{
-                      height: '60px',
-                      width: '100%',
                       display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      padding: '0 10px',
-                      flexShrink: 0
+                      flexDirection: 'column',
+                      width: '100%',
+                      height: '300%',
+                      animation: 'clientLogoSlideUp 4.8s cubic-bezier(0.77, 0, 0.175, 1) infinite',
+                      animationDelay: `${staggerDelay}s`
                     }}
                   >
-                    <img
-                      src={pair.from.img}
-                      alt={pair.from.name}
-                      style={{
-                        maxWidth: '140px',
-                        maxHeight: '38px',
-                        width: 'auto',
-                        height: 'auto',
-                        objectFit: 'contain'
-                      }}
-                    />
-                  </div>
-
-                  {/* Slot 1: New Logo (to) - Slides IN from below while old logo slides UP */}
-                  <div
-                    style={{
-                      height: '60px',
-                      width: '100%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      padding: '0 10px',
-                      flexShrink: 0
-                    }}
-                  >
-                    <img
-                      src={pair.to.img}
-                      alt={pair.to.name}
-                      style={{
-                        maxWidth: '140px',
-                        maxHeight: '38px',
-                        width: 'auto',
-                        height: 'auto',
-                        objectFit: 'contain'
-                      }}
-                    />
-                  </div>
-
-                  {/* Slot 2: Duplicate Old Logo (from) - Slides IN from below to close the loop smoothly */}
-                  <div
-                    style={{
-                      height: '60px',
-                      width: '100%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      padding: '0 10px',
-                      flexShrink: 0
-                    }}
-                  >
-                    <img
-                      src={pair.from.img}
-                      alt={pair.from.name}
-                      style={{
-                        maxWidth: '140px',
-                        maxHeight: '38px',
-                        width: 'auto',
-                        height: 'auto',
-                        objectFit: 'contain'
-                      }}
-                    />
+                    {[pair.from, pair.to, pair.from].map((logo, lIdx) => (
+                      <div
+                        key={lIdx}
+                        style={{
+                          width: '134px',
+                          height: '36px',
+                          flexShrink: 0,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center'
+                        }}
+                      >
+                        <img
+                          src={logo.img}
+                          alt={logo.name}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'contain',
+                            display: 'block'
+                          }}
+                        />
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
             );
           })}
+        </div>
         </div>
       </div>
 

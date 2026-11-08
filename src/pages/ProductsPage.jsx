@@ -1,12 +1,15 @@
 import { getAsset } from '../assets/assetUrl';
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const PRODUCTS = [
   {
     id: 'metal-business-cards',
+    slug: 'metal-cards-website',
     title: 'Metal Business Cards',
     description: 'Built for professionals and brands that want their identity to make a lasting impression.',
     image: getAsset('card-metal-business-front.png'),
+    url: '/products/metal-cards-website',
     stats: [
       { value: '100%', label: 'Premium finish' },
       { value: '2x', label: 'More distinctive' },
@@ -15,9 +18,11 @@ const PRODUCTS = [
   },
   {
     id: 'corporate-id',
+    slug: 'plastic-cards',
     title: 'Corporate ID',
     description: 'Reliable, versatile cards designed for everyday staff, access, and organizational needs.',
     image: getAsset('card-corporate-id-system.png'),
+    url: '/products/plastic-cards',
     stats: [
       { value: '100%', label: 'Brand ready' },
       { value: '4+', label: 'Card applications' },
@@ -26,9 +31,11 @@ const PRODUCTS = [
   },
   {
     id: 'access-smart-cards',
+    slug: 'smart-cards',
     title: 'Access & Smart Cards',
     description: 'Technology-enabled cards that bring convenience, connectivity and modern identity experiences together.',
     image: getAsset('card-access-smart-nfc.jpg'),
+    url: '/products/smart-cards',
     stats: [
       { value: '1-Tap', label: 'Easy interaction' },
       { value: '100%', label: 'Brand customized' },
@@ -37,9 +44,11 @@ const PRODUCTS = [
   },
   {
     id: 'accessories',
+    slug: 'accessories',
     title: 'Accessories',
     description: 'Complete your identity system with premium accessories designed for everyday use.',
     image: getAsset('card-accessories-lanyard.jpg'),
+    url: '/products/accessories',
     stats: [
       { value: '5+', label: 'Accessory options' },
       { value: '100%', label: 'Brand matched' },
@@ -48,9 +57,11 @@ const PRODUCTS = [
   },
   {
     id: 'membership-special',
+    slug: 'corporate-id',
     title: 'Membership & Special Purpose Cards',
-    description: 'echnology-enabled cards that bring convenience, connectivity and modern identity experiences together.',
+    description: 'Technology-enabled cards that bring convenience, connectivity and modern identity experiences together.',
     image: getAsset('card-membership-special.png'),
+    url: '/products/corporate-id',
     stats: [
       { value: '+70%', label: 'Sleekness' },
       { value: '1 unified', label: 'Identity package' },
@@ -130,7 +141,7 @@ function PixelCutout({ style }) {
   );
 }
 
-function ProductShowcaseCard({ product, onOpenQuote }) {
+function ProductShowcaseCard({ product }) {
   const cardRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -159,6 +170,187 @@ function ProductShowcaseCard({ product, onOpenQuote }) {
     return () => observer.disconnect();
   }, []);
 
+  const isExternal = product.url?.startsWith('http://') || product.url?.startsWith('https://');
+
+  const cardContent = (
+    <>
+      {/* Background Image Slide */}
+      <div
+        className="product-image-bg"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 0,
+          overflow: 'hidden',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        <img
+          src={product.image}
+          alt={product.title}
+          decoding="async"
+          loading="lazy"
+          style={{
+            display: 'block',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center',
+            transition: 'transform 0.65s cubic-bezier(0.16, 1, 0.3, 1)'
+          }}
+        />
+      </div>
+
+      {/* Top-Left Pixel Cutout */}
+      <PixelCutout className="pixel-cutout-tl" style={{ top: 0, left: 0 }} />
+
+      {/* Top-Right Pixel Cutout (Rotated 90deg) */}
+      <PixelCutout
+        className="pixel-cutout-tr"
+        style={{
+          top: '18px',
+          right: '-19px',
+          opacity: 0.9,
+          transform: 'rotate(90deg)'
+        }}
+      />
+
+      {/* Bottom-Left Overlay Box (Framer .framer-1nkrtgz) */}
+      <div
+        className="product-info-overlay"
+        style={{
+          position: 'relative',
+          zIndex: 2,
+          maxWidth: '595px',
+          width: '100%',
+          height: 'min-content',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          backdropFilter: 'blur(80px)',
+          WebkitBackdropFilter: 'blur(80px)',
+          background: 'linear-gradient(180deg, rgb(26, 26, 26) 0%, rgba(26, 26, 26, 0.84) 99.5%)',
+          borderRight: '1px solid rgba(255, 255, 255, 0.3)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.3)'
+        }}
+      >
+        {/* Top wrapper: Title + Description */}
+        <div
+          className="product-info-top"
+          style={{
+            width: '100%',
+            padding: '40px 32px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: '4px',
+            borderTop: '1px solid rgba(255, 255, 255, 0.3)',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.3)'
+          }}
+        >
+          <h3
+            style={{
+              fontFamily: 'var(--font-heading)',
+              fontSize: 'clamp(30px, 3.4vw, 48px)',
+              fontWeight: 500,
+              letterSpacing: '-0.03em',
+              lineHeight: '1.25',
+              color: 'rgb(243, 244, 246)',
+              margin: 0,
+              textAlign: 'left'
+            }}
+          >
+            {product.title}
+          </h3>
+          <p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '16px',
+              fontWeight: 400,
+              lineHeight: '24px',
+              color: 'rgb(255, 255, 255)',
+              margin: 0,
+              textAlign: 'left'
+            }}
+          >
+            {product.description}
+          </p>
+        </div>
+
+        {/* Grid 3x: Stats */}
+        <div
+          className="product-stats-grid"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, minmax(50px, 1fr))',
+            width: '100%'
+          }}
+        >
+          {product.stats.map((st, idx) => (
+            <div
+              key={idx}
+              className="product-stat-cell"
+              style={{
+                padding: '24px 32px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                gap: '2px',
+                borderRight: '1px solid rgba(255, 255, 255, 0.3)',
+                width: '100%'
+              }}
+            >
+              <h5
+                style={{
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: 'clamp(24px, 2.3vw, 32px)',
+                  fontWeight: 500,
+                  letterSpacing: '0.01em',
+                  lineHeight: '40px',
+                  color: 'rgb(249, 250, 251)',
+                  margin: 0,
+                  textAlign: 'left'
+                }}
+              >
+                {st.value}
+              </h5>
+              <p
+                style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '14px',
+                  fontWeight: 400,
+                  lineHeight: '20px',
+                  color: 'rgb(255, 255, 255)',
+                  margin: 0,
+                  textAlign: 'left'
+                }}
+              >
+                {st.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+
+  const cardStyle = {
+    position: 'relative',
+    width: '100%',
+    height: '780px',
+    overflow: 'clip',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    cursor: 'pointer',
+    backgroundColor: '#131515',
+    textDecoration: 'none',
+    color: 'inherit'
+  };
+
   return (
     <div
       ref={cardRef}
@@ -171,182 +363,25 @@ function ProductShowcaseCard({ product, onOpenQuote }) {
         transition: 'opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1)'
       }}
     >
-      <div
-        onClick={() => onOpenQuote && onOpenQuote(`Product Inquiry: ${product.title}`)}
-        className="product-image-wrapper"
-        style={{
-          position: 'relative',
-          width: '100%',
-          height: '780px',
-          overflow: 'clip',
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'flex-end',
-          cursor: 'pointer',
-          backgroundColor: '#131515'
-        }}
-      >
-        {/* Background Image Slide */}
-        <div
-          className="product-image-bg"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            zIndex: 0,
-            overflow: 'hidden',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
+      {isExternal ? (
+        <a
+          href={product.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="product-image-wrapper"
+          style={cardStyle}
         >
-          <img
-            src={product.image}
-            alt={product.title}
-            decoding="async"
-            loading="lazy"
-            style={{
-              display: 'block',
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center',
-              transition: 'transform 0.65s cubic-bezier(0.16, 1, 0.3, 1)'
-            }}
-          />
-        </div>
-
-        {/* Top-Left Pixel Cutout */}
-        <PixelCutout className="pixel-cutout-tl" style={{ top: 0, left: 0 }} />
-
-        {/* Top-Right Pixel Cutout (Rotated 90deg) */}
-        <PixelCutout
-          className="pixel-cutout-tr"
-          style={{
-            top: '18px',
-            right: '-19px',
-            opacity: 0.9,
-            transform: 'rotate(90deg)'
-          }}
-        />
-
-        {/* Bottom-Left Overlay Box (Framer .framer-1nkrtgz) */}
-        <div
-          className="product-info-overlay"
-          style={{
-            position: 'relative',
-            zIndex: 2,
-            maxWidth: '595px',
-            width: '100%',
-            height: 'min-content',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            backdropFilter: 'blur(80px)',
-            WebkitBackdropFilter: 'blur(80px)',
-            background: 'linear-gradient(180deg, rgb(26, 26, 26) 0%, rgba(26, 26, 26, 0.84) 99.5%)',
-            borderRight: '1px solid rgba(255, 255, 255, 0.3)',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.3)'
-          }}
+          {cardContent}
+        </a>
+      ) : (
+        <Link
+          to={product.url}
+          className="product-image-wrapper"
+          style={cardStyle}
         >
-          {/* Top wrapper: Title + Description */}
-          <div
-            className="product-info-top"
-            style={{
-              width: '100%',
-              padding: '40px 32px',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              gap: '4px',
-              borderTop: '1px solid rgba(255, 255, 255, 0.3)',
-              borderBottom: '1px solid rgba(255, 255, 255, 0.3)'
-            }}
-          >
-            <h3
-              style={{
-                fontFamily: 'var(--font-heading)',
-                fontSize: 'clamp(30px, 3.4vw, 48px)',
-                fontWeight: 500,
-                letterSpacing: '-0.03em',
-                lineHeight: '1.25',
-                color: 'rgb(243, 244, 246)',
-                margin: 0,
-                textAlign: 'left'
-              }}
-            >
-              {product.title}
-            </h3>
-            <p
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '16px',
-                fontWeight: 400,
-                lineHeight: '24px',
-                color: 'rgb(255, 255, 255)',
-                margin: 0,
-                textAlign: 'left'
-              }}
-            >
-              {product.description}
-            </p>
-          </div>
-
-          {/* Grid 3x: Stats */}
-          <div
-            className="product-stats-grid"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, minmax(50px, 1fr))',
-              width: '100%'
-            }}
-          >
-            {product.stats.map((st, idx) => (
-              <div
-                key={idx}
-                className="product-stat-cell"
-                style={{
-                  padding: '24px 32px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'flex-start',
-                  gap: '2px',
-                  borderRight: '1px solid rgba(255, 255, 255, 0.3)',
-                  width: '100%'
-                }}
-              >
-                <h5
-                  style={{
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: 'clamp(24px, 2.3vw, 32px)',
-                    fontWeight: 500,
-                    letterSpacing: '0.01em',
-                    lineHeight: '40px',
-                    color: 'rgb(249, 250, 251)',
-                    margin: 0,
-                    textAlign: 'left'
-                  }}
-                >
-                  {st.value}
-                </h5>
-                <p
-                  style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '14px',
-                    fontWeight: 400,
-                    lineHeight: '20px',
-                    color: 'rgb(255, 255, 255)',
-                    margin: 0,
-                    textAlign: 'left'
-                  }}
-                >
-                  {st.label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+          {cardContent}
+        </Link>
+      )}
     </div>
   );
 }

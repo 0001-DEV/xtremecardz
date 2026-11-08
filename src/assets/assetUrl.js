@@ -1,4 +1,4 @@
-const assetModules = import.meta.glob('./*.{png,jpg,jpeg,webp,svg}', {
+const assetModules = import.meta.glob('./*.{png,jpg,jpeg,webp,svg,mp4}', {
   eager: true,
   import: 'default'
 });
@@ -49,6 +49,7 @@ const LEGACY_HASH_MAP = {
   'zC4jLN8Gl7PEI1dnMBZtqihqGI.png': 'card-elevate-cta-floating.png',
   'xMdWyxvX8jT2RJqub8GPYlnweA.png': 'qr-code-quote-scanner.png',
   'oUscxluBetLnso5wtiCRMM5TpDE.png': 'card-metal-dark-preview.png',
+  'LuRk2mi9PkL9qpq8u7aAhmN27dM.png': 'icon-identity-bell.png',
   'VfPcVMbua1hRofTVGKZLXlg4k.jpg': 'ring-card-nova.jpg',
   'CUgTBF7cbByxZQwWFMDNfXIz3P0.jpg': 'ring-card-seplat.jpg',
   'J4rNvZKvbrN2dGnk6QWrdshukM.jpg': 'ring-card-invera.jpg',

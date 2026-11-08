@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Sparkles, CheckCircle, Award, Zap, Layers, Building2 } from 'lucide-react';
+import identityBellIcon from '../assets/icon-identity-bell.png';
 
 function CircularProgress({
   size = 80,
@@ -141,21 +143,23 @@ export default function PremiumPackages({ onOpenQuote }) {
       <div className="container" style={{ position: 'relative' }}>
         {/* Two Containers Side by Side */}
         <div
+          className="packages-main-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(460px, 100%), 1fr))',
             gap: '30px',
             alignItems: 'stretch'
           }}
         >
           {/* Container 1 (Left Container): Your corporate card at a glance */}
           <div
+            className="package-card-left"
             style={{
               backgroundColor: '#1a1d1f',
               borderRadius: '26px',
               border: '1px solid rgba(255, 255, 255, 0.08)',
               boxShadow: '0 16px 40px rgba(0, 0, 0, 0.25)',
-              padding: '38px 32px',
+              padding: 'clamp(28px, 3.2vw, 38px) clamp(20px, 2.6vw, 32px)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
@@ -321,46 +325,50 @@ export default function PremiumPackages({ onOpenQuote }) {
               >
                 {/* Deep Gray Glass Container 1: Cards delivered / 10K+ / Organisations equipped */}
                 <div
+                  className="xtreme-stat-box"
                   style={{
                     backgroundColor: 'rgba(28, 31, 33, 0.86)',
                     backdropFilter: 'blur(20px)',
                     WebkitBackdropFilter: 'blur(20px)',
                     borderRadius: '20px',
-                    padding: '22px 22px 20px',
+                    padding: 'clamp(16px, 1.8vw, 20px) clamp(14px, 1.6vw, 18px)',
                     border: '1px solid rgba(255, 255, 255, 0.14)',
                     boxShadow: '0 10px 28px rgba(0, 0, 0, 0.16)',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
-                    minHeight: '144px',
-                    color: '#ffffff'
+                    minHeight: '136px',
+                    color: '#ffffff',
+                    boxSizing: 'border-box'
                   }}
                 >
                   {/* Top Row: Cards delivered on left, 10K+ on right */}
                   <div
                     style={{
                       display: 'flex',
-                      alignItems: 'flex-start',
+                      alignItems: 'baseline',
                       justifyContent: 'space-between',
-                      gap: '10px',
+                      gap: '8px',
                       width: '100%',
-                      marginBottom: '16px'
+                      marginBottom: '12px'
                     }}
                   >
                     <div
                       style={{
-                        fontSize: '15px',
+                        fontSize: 'clamp(13px, 1.1vw, 15px)',
                         fontWeight: 500,
                         color: '#ffffff',
-                        lineHeight: 1.3,
-                        fontFamily: 'var(--font-heading)'
+                        lineHeight: 1.25,
+                        fontFamily: 'var(--font-heading)',
+                        minWidth: 0,
+                        overflowWrap: 'break-word'
                       }}
                     >
                       Cards delivered
                     </div>
                     <div
                       style={{
-                        fontSize: 'clamp(24px, 2.4vw, 30px)',
+                        fontSize: 'clamp(20px, 1.8vw, 28px)',
                         fontWeight: 700,
                         color: '#ffffff',
                         letterSpacing: '-0.02em',
@@ -376,9 +384,9 @@ export default function PremiumPackages({ onOpenQuote }) {
                   {/* Bottom Row: Organisations equipped */}
                   <div
                     style={{
-                      fontSize: '13.5px',
-                      color: 'rgba(255, 255, 255, 0.68)',
-                      lineHeight: 1.4,
+                      fontSize: 'clamp(12px, 1vw, 13px)',
+                      color: 'rgba(255, 255, 255, 0.72)',
+                      lineHeight: 1.35,
                       fontFamily: 'var(--font-body)'
                     }}
                   >
@@ -388,46 +396,50 @@ export default function PremiumPackages({ onOpenQuote }) {
 
                 {/* Deep Gray Glass Container 2: Premium / 100% / Connect & identify */}
                 <div
+                  className="xtreme-stat-box"
                   style={{
                     backgroundColor: 'rgba(28, 31, 33, 0.86)',
                     backdropFilter: 'blur(20px)',
                     WebkitBackdropFilter: 'blur(20px)',
                     borderRadius: '20px',
-                    padding: '22px 22px 20px',
+                    padding: 'clamp(16px, 1.8vw, 20px) clamp(14px, 1.6vw, 18px)',
                     border: '1px solid rgba(255, 255, 255, 0.14)',
                     boxShadow: '0 10px 28px rgba(0, 0, 0, 0.16)',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
-                    minHeight: '144px',
-                    color: '#ffffff'
+                    minHeight: '136px',
+                    color: '#ffffff',
+                    boxSizing: 'border-box'
                   }}
                 >
                   {/* Top Row: Premium on left, 100% on right */}
                   <div
                     style={{
                       display: 'flex',
-                      alignItems: 'flex-start',
+                      alignItems: 'baseline',
                       justifyContent: 'space-between',
-                      gap: '10px',
+                      gap: '8px',
                       width: '100%',
-                      marginBottom: '16px'
+                      marginBottom: '12px'
                     }}
                   >
                     <div
                       style={{
-                        fontSize: '15px',
+                        fontSize: 'clamp(13px, 1.1vw, 15px)',
                         fontWeight: 500,
                         color: '#ffffff',
-                        lineHeight: 1.3,
-                        fontFamily: 'var(--font-heading)'
+                        lineHeight: 1.25,
+                        fontFamily: 'var(--font-heading)',
+                        minWidth: 0,
+                        overflowWrap: 'break-word'
                       }}
                     >
                       Premium
                     </div>
                     <div
                       style={{
-                        fontSize: 'clamp(24px, 2.4vw, 30px)',
+                        fontSize: 'clamp(20px, 1.8vw, 28px)',
                         fontWeight: 700,
                         color: '#ffffff',
                         letterSpacing: '-0.02em',
@@ -443,9 +455,9 @@ export default function PremiumPackages({ onOpenQuote }) {
                   {/* Bottom Row: Connect & identify */}
                   <div
                     style={{
-                      fontSize: '13.5px',
-                      color: 'rgba(255, 255, 255, 0.68)',
-                      lineHeight: 1.4,
+                      fontSize: 'clamp(12px, 1vw, 13px)',
+                      color: 'rgba(255, 255, 255, 0.72)',
+                      lineHeight: 1.35,
                       fontFamily: 'var(--font-body)'
                     }}
                   >
@@ -458,12 +470,13 @@ export default function PremiumPackages({ onOpenQuote }) {
 
           {/* Container 2 (Right Container Beside It): Identity, done differently. */}
           <div
+            className="package-card-right"
             style={{
               backgroundColor: '#1a1d1f',
               borderRadius: '26px',
               border: '1px solid rgba(255, 255, 255, 0.08)',
               boxShadow: '0 16px 40px rgba(0, 0, 0, 0.25)',
-              padding: '38px 32px',
+              padding: 'clamp(28px, 3.2vw, 38px) clamp(20px, 2.6vw, 32px)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
@@ -511,7 +524,7 @@ export default function PremiumPackages({ onOpenQuote }) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                padding: '28px 20px'
+                padding: '52px clamp(16px, 2.5vw, 26px)'
               }}
             >
               {/* Background Two Moving Rows of Text Containers */}
@@ -522,46 +535,117 @@ export default function PremiumPackages({ onOpenQuote }) {
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'center',
-                  gap: '22px',
+                  gap: '20px',
                   pointerEvents: 'none',
                   zIndex: 1,
-                  opacity: 0.55
+                  opacity: 0.65
                 }}
               >
                 {/* Row 1: Moving Right */}
                 <div style={{ overflow: 'hidden', width: '100%' }}>
                   <div className="identity-marquee-track identity-marquee-right">
                     {[
-                      'Executive Metal Cards',
-                      '24K Gold Finish',
-                      'Smart NFC Tap',
-                      'Laser Engraving',
-                      'Custom Brand Identity',
-                      'VIP Access Pass',
-                      'Brushed Titanium',
-                      'Executive Metal Cards',
-                      '24K Gold Finish',
-                      'Smart NFC Tap',
-                      'Laser Engraving',
-                      'Custom Brand Identity',
-                      'VIP Access Pass',
-                      'Brushed Titanium'
-                    ].map((txt, idx) => (
+                      {
+                        title: 'IDENTITY, DONE DIFFERENTLY',
+                        desc: 'Premium cards designed around your organization',
+                        color: '#cfa34b',
+                        glow: 'rgba(207, 163, 75, 0.45)',
+                        Icon: Sparkles
+                      },
+                      {
+                        title: 'READY WHEN YOU ARE',
+                        desc: 'Your organization deserves an identity that looks the part.',
+                        color: 'rgb(18, 167, 10)',
+                        glow: 'rgba(18, 167, 10, 0.45)',
+                        Icon: CheckCircle
+                      },
+                      {
+                        title: 'A BETTER FIRST IMPRESSION',
+                        desc: 'Because your ID card is part of your brand.',
+                        color: 'rgb(144, 0, 255)',
+                        glow: 'rgba(144, 0, 255, 0.45)',
+                        Icon: Award
+                      },
+                      {
+                        title: 'IDENTITY, DONE DIFFERENTLY',
+                        desc: 'Premium cards designed around your organization',
+                        color: '#cfa34b',
+                        glow: 'rgba(207, 163, 75, 0.45)',
+                        Icon: Sparkles
+                      },
+                      {
+                        title: 'READY WHEN YOU ARE',
+                        desc: 'Your organization deserves an identity that looks the part.',
+                        color: 'rgb(18, 167, 10)',
+                        glow: 'rgba(18, 167, 10, 0.45)',
+                        Icon: CheckCircle
+                      },
+                      {
+                        title: 'A BETTER FIRST IMPRESSION',
+                        desc: 'Because your ID card is part of your brand.',
+                        color: 'rgb(144, 0, 255)',
+                        glow: 'rgba(144, 0, 255, 0.45)',
+                        Icon: Award
+                      }
+                    ].map((item, idx) => (
                       <div
                         key={`r1-${idx}`}
                         style={{
-                          padding: '14px 22px',
-                          borderRadius: '14px',
+                          padding: '14px 18px',
+                          borderRadius: '16px',
                           backgroundColor: 'rgba(255, 255, 255, 0.06)',
-                          border: '1px solid rgba(255, 255, 255, 0.1)',
-                          color: 'rgba(255, 255, 255, 0.78)',
-                          fontSize: '13.5px',
-                          fontWeight: 500,
-                          whiteSpace: 'nowrap',
-                          flexShrink: 0
+                          border: '1px solid rgba(255, 255, 255, 0.12)',
+                          backdropFilter: 'blur(10px)',
+                          WebkitBackdropFilter: 'blur(10px)',
+                          width: '300px',
+                          minWidth: '300px',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'flex-start',
+                          gap: '6px',
+                          flexShrink: 0,
+                          textAlign: 'left',
+                          boxSizing: 'border-box'
                         }}
                       >
-                        {txt}
+                        <div
+                          style={{
+                            width: '26px',
+                            height: '26px',
+                            borderRadius: '50%',
+                            backgroundColor: item.color,
+                            boxShadow: `0 4px 14px ${item.glow}`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginBottom: '2px'
+                          }}
+                        >
+                          <item.Icon size={14} color="#0c0e0e" strokeWidth={2.5} />
+                        </div>
+                        <div
+                          style={{
+                            fontSize: '13px',
+                            fontWeight: 700,
+                            color: '#ffffff',
+                            letterSpacing: '0.02em',
+                            textTransform: 'uppercase',
+                            lineHeight: 1.25,
+                            fontFamily: 'var(--font-heading)'
+                          }}
+                        >
+                          {item.title}
+                        </div>
+                        <div
+                          style={{
+                            fontSize: '12px',
+                            color: 'rgba(255, 255, 255, 0.72)',
+                            lineHeight: 1.4,
+                            fontFamily: 'var(--font-body)'
+                          }}
+                        >
+                          {item.desc}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -571,36 +655,107 @@ export default function PremiumPackages({ onOpenQuote }) {
                 <div style={{ overflow: 'hidden', width: '100%' }}>
                   <div className="identity-marquee-track identity-marquee-left">
                     {[
-                      'Contactless Sharing',
-                      'Precision Cutouts',
-                      'Matte Stealth Black',
-                      'Corporate Prestige',
-                      'Encrypted Credentials',
-                      'Signature Luster',
-                      'Hybrid Smart Pass',
-                      'Contactless Sharing',
-                      'Precision Cutouts',
-                      'Matte Stealth Black',
-                      'Corporate Prestige',
-                      'Encrypted Credentials',
-                      'Signature Luster',
-                      'Hybrid Smart Pass'
-                    ].map((txt, idx) => (
+                      {
+                        title: 'YOUR ID. NOW SMARTER.',
+                        desc: 'More than identification. A smarter way to connect, verify and represent your organization.',
+                        color: 'rgb(2, 131, 167)',
+                        glow: 'rgba(2, 131, 167, 0.45)',
+                        Icon: Zap
+                      },
+                      {
+                        title: 'FROM IDEA TO ID CARD',
+                        desc: 'We handle the details. You get the finished identity.',
+                        color: 'rgb(255, 76, 0)',
+                        glow: 'rgba(255, 76, 0, 0.45)',
+                        Icon: Layers
+                      },
+                      {
+                        title: 'Built for organizations that take identity seriously.',
+                        desc: 'Corporate IDs · Staff IDs · Access Cards · Membership Cards · Event Badges',
+                        color: '#ffffff',
+                        glow: 'rgba(255, 255, 255, 0.35)',
+                        Icon: Building2
+                      },
+                      {
+                        title: 'YOUR ID. NOW SMARTER.',
+                        desc: 'More than identification. A smarter way to connect, verify and represent your organization.',
+                        color: 'rgb(2, 131, 167)',
+                        glow: 'rgba(2, 131, 167, 0.45)',
+                        Icon: Zap
+                      },
+                      {
+                        title: 'FROM IDEA TO ID CARD',
+                        desc: 'We handle the details. You get the finished identity.',
+                        color: 'rgb(255, 76, 0)',
+                        glow: 'rgba(255, 76, 0, 0.45)',
+                        Icon: Layers
+                      },
+                      {
+                        title: 'Built for organizations that take identity seriously.',
+                        desc: 'Corporate IDs · Staff IDs · Access Cards · Membership Cards · Event Badges',
+                        color: '#ffffff',
+                        glow: 'rgba(255, 255, 255, 0.35)',
+                        Icon: Building2
+                      }
+                    ].map((item, idx) => (
                       <div
                         key={`r2-${idx}`}
                         style={{
-                          padding: '14px 22px',
-                          borderRadius: '14px',
+                          padding: '14px 18px',
+                          borderRadius: '16px',
                           backgroundColor: 'rgba(255, 255, 255, 0.06)',
-                          border: '1px solid rgba(255, 255, 255, 0.1)',
-                          color: 'rgba(255, 255, 255, 0.78)',
-                          fontSize: '13.5px',
-                          fontWeight: 500,
-                          whiteSpace: 'nowrap',
-                          flexShrink: 0
+                          border: '1px solid rgba(255, 255, 255, 0.12)',
+                          backdropFilter: 'blur(10px)',
+                          WebkitBackdropFilter: 'blur(10px)',
+                          width: '320px',
+                          minWidth: '320px',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'flex-start',
+                          gap: '6px',
+                          flexShrink: 0,
+                          textAlign: 'left',
+                          boxSizing: 'border-box'
                         }}
                       >
-                        {txt}
+                        <div
+                          style={{
+                            width: '26px',
+                            height: '26px',
+                            borderRadius: '50%',
+                            backgroundColor: item.color,
+                            boxShadow: `0 4px 14px ${item.glow}`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginBottom: '2px'
+                          }}
+                        >
+                          <item.Icon size={14} color="#0c0e0e" strokeWidth={2.5} />
+                        </div>
+                        <div
+                          style={{
+                            fontSize: '13px',
+                            fontWeight: 700,
+                            color: '#ffffff',
+                            letterSpacing: '0.02em',
+                            textTransform: item.title.startsWith('Built') ? 'none' : 'uppercase',
+                            lineHeight: 1.25,
+                            fontFamily: 'var(--font-heading)'
+                          }}
+                        >
+                          {item.title}
+                        </div>
+                        <div
+                          style={{
+                            fontSize: '12px',
+                            color: 'rgba(255, 255, 255, 0.72)',
+                            lineHeight: 1.4,
+                            fontFamily: 'var(--font-body)'
+                          }}
+                        >
+                          {item.desc}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -609,6 +764,7 @@ export default function PremiumPackages({ onOpenQuote }) {
 
               {/* Foreground Centered Dark Glassmorphism Card */}
               <div
+                className="identity-upgrade-card"
                 style={{
                   position: 'relative',
                   zIndex: 2,
@@ -620,13 +776,40 @@ export default function PremiumPackages({ onOpenQuote }) {
                   borderRadius: '22px',
                   border: '1px solid rgba(255, 255, 255, 0.14)',
                   boxShadow: '0 20px 45px rgba(0, 0, 0, 0.45)',
-                  padding: '32px 26px',
+                  padding: '34px 26px',
                   textAlign: 'center',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center'
                 }}
               >
+                {/* 3D Bell Sticker Icon at Top-Left */}
+                <div
+                  className="identity-bell-sticker"
+                  style={{
+                    position: 'absolute',
+                    top: '-36px',
+                    left: '-18px',
+                    height: '62px',
+                    width: 'auto',
+                    aspectRatio: '1.306',
+                    zIndex: 10,
+                    pointerEvents: 'none',
+                    filter: 'drop-shadow(0 10px 18px rgba(0, 0, 0, 0.4))'
+                  }}
+                >
+                  <img
+                    src={identityBellIcon}
+                    alt="Identity notification bell sticker"
+                    style={{
+                      display: 'block',
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'contain'
+                    }}
+                  />
+                </div>
+
                 <span
                   style={{
                     fontSize: '11.5px',
@@ -750,18 +933,31 @@ export default function PremiumPackages({ onOpenQuote }) {
                 .identity-marquee-left {
                   animation: identityScrollLeft 28s linear infinite;
                 }
+                @media (max-width: 1080px) {
+                  .packages-main-grid {
+                    grid-template-columns: 1fr !important;
+                    gap: 28px !important;
+                  }
+                }
+                @media (max-width: 600px) {
+                  .identity-bell-sticker {
+                    height: 46px !important;
+                    top: -24px !important;
+                    left: -8px !important;
+                  }
+                }
+                @media (max-width: 580px) {
+                  .xtreme-stats-grid {
+                    grid-template-columns: 1fr !important;
+                    gap: 12px !important;
+                  }
+                }
                 @media (max-width: 400px) {
                   .xtreme-circles-row {
                     gap: 6px !important;
                     transform: scale(0.85);
                     transform-origin: center;
                     margin: -10px 0;
-                  }
-                }
-                @media (max-width: 480px) {
-                  .xtreme-stats-grid {
-                    grid-template-columns: 1fr !important;
-                    gap: 12px !important;
                   }
                 }
               `}</style>

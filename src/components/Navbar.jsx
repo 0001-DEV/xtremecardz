@@ -243,9 +243,8 @@ export default function Navbar({ onOpenQuote }) {
                   transform: isRevealed ? 'translateY(0)' : 'translateY(-24px)',
                   opacity: isRevealed ? 1 : 0,
                   transition: isRevealed
-                    ? 'color 0.3s ease, text-decoration-color 0.3s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease'
-                    : 'none',
-                  transitionDelay: isRevealed ? `${idx * 0.07}s` : '0s'
+                    ? `color 0.3s ease, text-decoration-color 0.3s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) ${idx * 0.07}s, opacity 0.45s ease ${idx * 0.07}s`
+                    : 'none'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.color = '#131515';

@@ -10,7 +10,7 @@ const STATS = [
   { value: '300,000+', label: 'Luxury cards delivered globally', desc: 'Manufactured and shipped to clients worldwide.' },
   { value: '98%', label: 'Premium brand retention rate', desc: 'Clients who continue with annual card upgrades.' },
   { value: '3x', label: 'Faster turnaround timeline', desc: 'From digital proof to physical express courier delivery.' },
-  { value: '51+', label: 'Countries worldwide', desc: 'Active professionals representing their brands with Xtreme cards.' }
+  { value: '51+', label: 'Countries worldwide', desc: 'Active professionals representing their brands with Xtreme Cardz.' }
 ];
 
 export default function WhatMakesItXtreme({ onOpenQuote }) {

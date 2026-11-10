@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, CheckCircle, Sparkles, Send } from 'lucide-react';
+import { X, CheckCircle, Sparkles, Send, Phone, MessageCircle } from 'lucide-react';
 
 export default function QuoteModal({ isOpen, onClose, initialCardType = 'Metal Business Card' }) {
   const [formData, setFormData] = useState({
@@ -18,13 +18,8 @@ export default function QuoteModal({ isOpen, onClose, initialCardType = 'Metal B
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-    setTimeout(() => {
-      // Auto close after 3s on success
-      setTimeout(() => {
-        setSubmitted(false);
-        onClose();
-      }, 2500);
-    }, 400);
+    // Lead directly to the contact number of Xtreme Cardz
+    window.location.href = 'tel:+2348078009654';
   };
 
   return (
@@ -101,7 +96,7 @@ export default function QuoteModal({ isOpen, onClose, initialCardType = 'Metal B
         </button>
 
         {submitted ? (
-          <div style={{ textAlign: 'center', padding: '40px 10px' }}>
+          <div style={{ textAlign: 'center', padding: '24px 8px' }}>
             <div
               style={{
                 width: '64px',
@@ -112,15 +107,99 @@ export default function QuoteModal({ isOpen, onClose, initialCardType = 'Metal B
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                margin: '0 auto 20px'
+                margin: '0 auto 16px'
               }}
             >
               <CheckCircle size={36} />
             </div>
-            <h3 style={{ fontSize: '26px', marginBottom: '12px' }}>Request Received!</h3>
-            <p style={{ color: '#595e5e', fontSize: '15px', lineHeight: 1.6 }}>
-              Thank you, <strong>{formData.name || 'there'}</strong>. An Xtreme cards brand specialist will review your request and get back to you with custom digital proofs and quotation shortly.
+            <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#131515', marginBottom: '8px' }}>
+              Connecting to Xtreme Cardz
+            </h3>
+            <p style={{ color: '#595e5e', fontSize: '14.5px', lineHeight: 1.55, maxWidth: '440px', margin: '0 auto 20px' }}>
+              Thank you, <strong>{formData.name || 'there'}</strong>. We are directing you to our direct contact line. You can also reach our team immediately below:
             </p>
+
+            {/* Prominent Contact Number Card */}
+            <div
+              style={{
+                backgroundColor: '#f8f8f7',
+                border: '1px solid rgba(19, 21, 21, 0.08)',
+                borderRadius: '16px',
+                padding: '20px',
+                marginBottom: '20px'
+              }}
+            >
+              <span style={{ fontSize: '12px', fontWeight: 600, color: '#828787', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                Xtreme Cardz Direct Line
+              </span>
+              <a
+                href="tel:+2348078009654"
+                style={{
+                  display: 'block',
+                  fontSize: '24px',
+                  fontWeight: 700,
+                  color: '#131515',
+                  textDecoration: 'none',
+                  margin: '6px 0 14px'
+                }}
+              >
+                +234 807 800 9654
+              </a>
+
+              <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                <a
+                  href="tel:+2348078009654"
+                  className="btn-primary"
+                  style={{
+                    padding: '10px 22px',
+                    fontSize: '14px',
+                    textDecoration: 'none',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}
+                >
+                  <Phone size={15} />
+                  <span>Call Now</span>
+                </a>
+                <a
+                  href={`https://wa.me/2348078009654?text=${encodeURIComponent(
+                    `Hello Xtreme Cardz, I'm ${formData.name || 'a client'} requesting a quote for ${formData.cardType} (${formData.quantity}).`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    padding: '10px 22px',
+                    fontSize: '14px',
+                    textDecoration: 'none',
+                    borderRadius: '50px',
+                    backgroundColor: '#25D366',
+                    color: '#ffffff',
+                    fontWeight: 600,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}
+                >
+                  <MessageCircle size={15} />
+                  <span>Chat on WhatsApp</span>
+                </a>
+              </div>
+            </div>
+
+            <button
+              onClick={onClose}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: '#6c7171',
+                fontSize: '13.5px',
+                cursor: 'pointer',
+                textDecoration: 'underline'
+              }}
+            >
+              Close this window
+            </button>
           </div>
         ) : (
           <>

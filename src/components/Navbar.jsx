@@ -11,9 +11,9 @@ export default function Navbar({ onOpenQuote }) {
   const [mounted, setMounted] = useState(false);
 
   // Staged animation state:
-  // 0 = Compact folded pill (410px, contains only Xtreme cards & Make enquiries)
+  // 0 = Compact folded pill (410px, contains only Xtreme Cardz & Make enquiries)
   // 1 = Shifts to the left (left edge aligns with main container)
-  // 2 = Expanded width (871px) with empty middle (only Xtreme cards & Make enquiries visible)
+  // 2 = Expanded width (871px) with empty middle (only Xtreme Cardz & Make enquiries visible)
   // 3 = Expanded width (871px) with features dropping in from above one after the other
   const [navStage, setNavStage] = useState(0);
 
@@ -27,8 +27,8 @@ export default function Navbar({ onOpenQuote }) {
   }, []);
 
   // Trigger the fold sequence:
-  // Starts expanded (871px) with only 'Xtreme cards' and 'Make enquiries' (middle empty),
-  // then folds to 410px so 'Make enquiries' moves toward 'Xtreme cards'.
+  // Starts expanded (871px) with only 'Xtreme Cardz' and 'Make enquiries' (middle empty),
+  // then folds to 410px so 'Make enquiries' moves toward 'Xtreme Cardz'.
   const triggerFoldToTwoHeaders = useCallback(() => {
     clearStageTimers();
     isExpandedRef.current = false;
@@ -114,7 +114,7 @@ export default function Navbar({ onOpenQuote }) {
     e.preventDefault();
     setMobileMenuOpen(false);
 
-    // Fold the top bar down to the two headers (Xtreme cards & Make enquiries) on feature click
+    // Fold the top bar down to the two headers (Xtreme Cardz & Make enquiries) on feature click
     triggerFoldToTwoHeaders();
 
     if (href.startsWith('/')) {
@@ -185,7 +185,7 @@ export default function Navbar({ onOpenQuote }) {
             pointerEvents: 'auto'
           }}
         >
-          {/* Brand Logo: Xtreme cards */}
+          {/* Brand Logo: Xtreme Cardz */}
           <a
             href="/"
             onClick={(e) => handleNavClick(e, '/')}
@@ -208,7 +208,7 @@ export default function Navbar({ onOpenQuote }) {
                 whiteSpace: 'nowrap'
               }}
             >
-              Xtreme cards
+              Xtreme Cardz
             </span>
           </a>
 

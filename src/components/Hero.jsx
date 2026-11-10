@@ -88,7 +88,7 @@ export default function Hero({ onOpenQuote }) {
       <div className="container" style={{ position: 'relative', zIndex: 3 }}>
         {/* Top Tagline Badge */}
         {/* Outer container: glassmorphism transparent color */}
-        {/* Inner text 'Xtreme cards': black bg taking text size, no icon beside it */}
+        {/* Inner text 'Xtreme Cardz': black bg taking text size, no icon beside it */}
         <div className="hero-animate-up" style={{ marginBottom: '24px' }}>
           <div
             style={{
@@ -105,7 +105,7 @@ export default function Hero({ onOpenQuote }) {
               boxShadow: '0 8px 30px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.2)'
             }}
           >
-            {/* Black background taking the size of the text 'Xtreme cards' */}
+            {/* Black background taking the size of the text 'Xtreme Cardz' */}
             <span
               style={{
                 backgroundColor: '#000000',
@@ -119,7 +119,7 @@ export default function Hero({ onOpenQuote }) {
                 display: 'inline-block'
               }}
             >
-              Xtreme cards
+              Xtreme Cardz
             </span>
 
             {/* Subtext 'Cards made to be noticed' */}

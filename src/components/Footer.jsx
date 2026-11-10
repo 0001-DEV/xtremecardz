@@ -135,7 +135,7 @@ export default function Footer({ onOpenQuote }) {
                   color: '#131515'
                 }}
               >
-                Xtreme cards.
+                Xtreme Cardz.
               </span>
             </a>
 
@@ -345,7 +345,7 @@ export default function Footer({ onOpenQuote }) {
               color: '#494d4d'
             }}
           >
-            ©2026 Xtreme cards. All rights reserved
+            ©2026 Xtreme Cardz. All rights reserved
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>

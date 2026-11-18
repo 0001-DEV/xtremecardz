@@ -12,8 +12,7 @@ const CARDS = [
   { id: 6, title: 'Herloom', img: getAsset('ring-card-optiva.jpg') },
   { id: 7, title: 'Herloom', img: getAsset('ring-card-iogc.png') },
   { id: 8, title: 'Herloom', img: getAsset('ring-card-tvc.png') },
-  { id: 9, title: 'Moir', img: getAsset('ring-card-sapetro.jpg') },
-  { id: 10, title: 'FreshBasket', img: getAsset('ring-card-guinness.png') }
+  { id: 9, title: 'Moir', img: getAsset('ring-card-sapetro.jpg') }
 ];
 
 export default function RingCarousel3D({ onSelectCard }) {
@@ -91,8 +90,8 @@ export default function RingCarousel3D({ onSelectCard }) {
 
   // Continuous auto-rotation with GSAP ticker (smooth, lively & frame-rate independent)
   useEffect(() => {
-    // Increased rotation speed: ~18.5 degrees per second (~19.5s for a full orbit)
-    const degreesPerSecond = 18.5;
+    // Increased rotation speed: ~25.5 degrees per second (~14.1s for a full orbit)
+    const degreesPerSecond = 25.5;
 
     const tick = (time, deltaTime) => {
       if (!isDragging.current) {
@@ -362,21 +361,29 @@ export default function RingCarousel3D({ onSelectCard }) {
               </div>
             ) : null}
 
-            {/* Clean Full Card Picture (No text overlay, No arrow button) */}
+            {/* Clean Full Card Picture with seamless, zero-blink transition */}
             <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
-              <img
-                key={activeCard.id}
-                src={activeCard.img}
-                alt={activeCard.title}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  display: 'block',
-                  borderRadius: 0,
-                  animation: 'crossfadeImage 0.45s ease forwards'
-                }}
-              />
+              {CARDS.map((card, idx) => (
+                <img
+                  key={card.id}
+                  src={card.img}
+                  alt={card.title}
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block',
+                    borderRadius: 0,
+                    opacity: idx === activeIndex ? 1 : 0,
+                    transform: idx === activeIndex ? 'scale(1)' : 'scale(1.02)',
+                    transition: 'opacity 0.28s cubic-bezier(0.25, 1, 0.5, 1), transform 0.28s cubic-bezier(0.25, 1, 0.5, 1)',
+                    pointerEvents: 'none',
+                    willChange: 'opacity, transform'
+                  }}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -446,19 +453,6 @@ export default function RingCarousel3D({ onSelectCard }) {
           );
         })}
       </div>
-
-      <style>{`
-        @keyframes crossfadeImage {
-          from {
-            opacity: 0.35;
-            transform: scale(0.98);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-      `}</style>
     </div>
   );
 }

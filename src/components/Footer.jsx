@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { CheckCircle2 } from 'lucide-react';
+import xtremeLogo from '../assets/xtreme-cardz-logo.png';
 
 const InstagramIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -99,42 +100,26 @@ export default function Footer({ onOpenQuote }) {
           {/* Left Column: Brand, Stay on top of your identity & Form      */}
           {/* ------------------------------------------------------------ */}
           <div>
-            {/* Brand Logo & Name */}
+            {/* Official Brand Logo */}
             <Link
               to="/"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '12px',
                 textDecoration: 'none',
-                color: '#131515',
                 marginBottom: '20px'
               }}
             >
-              <div
+              <img
+                src={xtremeLogo}
+                alt="Xtreme Cardz"
                 style={{
-                  width: '36px',
-                  height: '36px',
-                  borderRadius: '10px',
-                  background: 'linear-gradient(135deg, #131515 0%, #2b3030 100%)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  boxShadow: '0 4px 12px rgba(19, 21, 21, 0.15)'
+                  height: 'clamp(54px, 6vw, 68px)',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  display: 'block'
                 }}
-              >
-                <span style={{ color: '#cfa34b', fontWeight: 800, fontSize: '17px' }}>X</span>
-              </div>
-              <span
-                style={{
-                  fontSize: '20px',
-                  fontWeight: 800,
-                  letterSpacing: '-0.02em',
-                  color: '#131515'
-                }}
-              >
-                Xtreme Cardz.
-              </span>
+              />
             </Link>
 
             {/* Stay on top of your identity */}

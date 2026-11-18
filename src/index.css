@@ -5,15 +5,46 @@
 @import 'swiper/css/effect-coverflow';
 
 /* ==========================================================================
-   STRICT TYPOGRAPHY - Inter only, in exactly two weights:
-   1. Inter Medium (500)  - header text (h1-h6, buttons, badges, nav)
-   2. Inter Regular (400) - body copy text
-   Only these two weights are loaded; font-synthesis is disabled, so any other
-   requested weight snaps to the nearest of the two (>=500 Medium, <=400 Regular).
+   TYPOGRAPHY:
+   - Header: Aeonik Pro (Regular 400, Medium 500, Bold 700, Black 900)
+   - Body: Inter (400, 500, 600, 700)
    ========================================================================== */
+
+@font-face {
+  font-family: 'Aeonik Pro';
+  src: url('/fonts/AeonikPro-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aeonik Pro';
+  src: url('/fonts/AeonikPro-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aeonik Pro';
+  src: url('/fonts/AeonikPro-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aeonik Pro';
+  src: url('/fonts/AeonikPro-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --font-heading: 'Inter', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Aeonik Pro', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: var(--font-heading);
   --font-mono: var(--font-body);
 
@@ -117,10 +148,9 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
-/* Typography: Inter Medium (500) for headers, Inter Regular (400) for body copy */
+/* Typography: Aeonik Pro for headers, Inter for body copy */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading) !important;
-  font-weight: 500 !important;
   letter-spacing: -0.025em;
   color: inherit;
   line-height: 1.15;

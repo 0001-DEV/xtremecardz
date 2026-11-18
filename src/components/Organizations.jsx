@@ -20,13 +20,16 @@ export default function Organizations({ onOpenQuote }) {
           style={{
             display: 'inline-flex',
             alignItems: 'center',
+            justifyContent: 'center',
             gap: '8px',
             backgroundColor: '#ffffff',
             padding: '7px 18px',
             borderRadius: '50px',
             border: '1px solid rgba(19, 21, 21, 0.08)',
             boxShadow: '0 4px 12px rgba(19, 21, 21, 0.04)',
-            marginBottom: '22px'
+            marginBottom: '22px',
+            maxWidth: '100%',
+            flexWrap: 'wrap'
           }}
         >
           <Star size={14} fill="#ff9803" color="#ff9803" />

@@ -362,6 +362,20 @@ export default function ElitePassPage() {
           .elitepass-body-18 {
             font-size: 16px !important;
           }
+          .elitepass-image-box {
+            height: 280px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .elitepass-image-box {
+            height: 220px !important;
+          }
+          .elitepass-left-card,
+          .elitepass-right-card {
+            padding: 16px !important;
+            border-radius: 16px !important;
+          }
         }
 
         @media (max-height: 550px) {

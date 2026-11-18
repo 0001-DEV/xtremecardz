@@ -142,6 +142,21 @@ export default function ProductDetailPage({ onOpenQuote }) {
             grid-template-columns: 1fr !important;
           }
         }
+
+        @media (max-width: 480px) {
+          .product-detail-container {
+            padding: 95px 12px 50px !important;
+          }
+          .detail-hero-box {
+            height: 250px !important;
+            border-radius: 18px !important;
+          }
+          .detail-stats-row {
+            padding: 20px 16px !important;
+            border-radius: 16px !important;
+            gap: 16px !important;
+          }
+        }
       `}</style>
 
       <div className="product-detail-container">

@@ -352,6 +352,16 @@ export default function FeaturesBento({ onOpenQuote }) {
               transform: scale(1);
             }
           }
+          @media (max-width: 640px) {
+            .picture-glass-box {
+              bottom: 14px !important;
+              right: 14px !important;
+              left: 14px !important;
+              width: calc(100% - 28px) !important;
+              padding: 16px 18px !important;
+              border-radius: 16px !important;
+            }
+          }
         `}</style>
       </div>
     </section>

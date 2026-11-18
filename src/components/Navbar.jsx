@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 
 export default function Navbar({ onOpenQuote }) {
   const navigate = useNavigate();
@@ -90,24 +90,24 @@ export default function Navbar({ onOpenQuote }) {
       triggerExpandOnScroll();
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('wheel', handleWheelOrTouch, { passive: true });
-    window.addEventListener('touchmove', handleWheelOrTouch, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("wheel", handleWheelOrTouch, { passive: true });
+    window.addEventListener("touchmove", handleWheelOrTouch, { passive: true });
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('wheel', handleWheelOrTouch);
-      window.removeEventListener('touchmove', handleWheelOrTouch);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("wheel", handleWheelOrTouch);
+      window.removeEventListener("touchmove", handleWheelOrTouch);
     };
   }, [triggerExpandOnScroll]);
 
   const navLinks = [
-    { label: 'Home', href: '/' },
-    { label: 'Products', href: '/products' },
-    { label: 'Elite Pass', href: '/elitepass' },
-    { label: 'About us', href: '/about' },
-    { label: 'Contact us', href: '/contact' },
-    { label: 'Blog', href: '/blog' }
+    { label: "Home", href: "/" },
+    { label: "Products", href: "/products" },
+    { label: "Elite Pass", href: "/elitepass" },
+    { label: "About us", href: "/about" },
+    { label: "Contact us", href: "/contact" },
+    { label: "Blog", href: "/blog" },
   ];
 
   const handleNavClick = (e, href) => {
@@ -117,23 +117,23 @@ export default function Navbar({ onOpenQuote }) {
     // Fold the top bar down to the two headers (Xtreme Cardz & Make enquiries) on feature click
     triggerFoldToTwoHeaders();
 
-    if (href.startsWith('/')) {
+    if (href.startsWith("/")) {
       if (location.pathname !== href) {
         navigate(href);
       } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
       return;
     }
 
     // Anchor link fallback
-    if (href.startsWith('#')) {
-      if (location.pathname !== '/') {
-        navigate('/' + href);
+    if (href.startsWith("#")) {
+      if (location.pathname !== "/") {
+        navigate("/" + href);
       } else {
         const elem = document.querySelector(href);
         if (elem) {
-          elem.scrollIntoView({ behavior: 'smooth' });
+          elem.scrollIntoView({ behavior: "smooth" });
         }
       }
     }
@@ -143,69 +143,72 @@ export default function Navbar({ onOpenQuote }) {
   const isRevealed = navStage === 3;
   const isShifted = navStage === 1;
 
-  const currentTransform = isShifted ? 'translateX(-230.5px)' : 'translateX(0)';
-  const currentWidth = isExpanded ? '871px' : '410px';
+  const currentTransform = isShifted ? "translateX(-230.5px)" : "translateX(0)";
+  const currentWidth = isExpanded ? "871px" : "410px";
 
   return (
     <>
       <header
         style={{
-          position: 'fixed',
-          top: 'calc(env(safe-area-inset-top, 0px) + 16px)',
+          position: "fixed",
+          top: "calc(env(safe-area-inset-top, 0px) + 16px)",
           left: 0,
           right: 0,
           zIndex: 1000,
-          display: 'flex',
-          justifyContent: 'center',
-          padding: '0 16px',
-          pointerEvents: 'none',
-          transform: mounted ? 'translateY(0)' : 'translateY(-75px)',
+          display: "flex",
+          justifyContent: "center",
+          padding: "0 16px",
+          pointerEvents: "none",
+          transform: mounted ? "translateY(0)" : "translateY(-75px)",
           opacity: mounted ? 1 : 0,
-          transition: 'transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s ease'
+          transition:
+            "transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s ease",
         }}
       >
         <div
-          className={`nav-pill-container ${isExpanded ? 'nav-expanded' : 'nav-compact'}`}
+          className={`nav-pill-container ${isExpanded ? "nav-expanded" : "nav-compact"}`}
           style={{
-            position: 'relative',
+            position: "relative",
             transform: currentTransform,
             width: currentWidth,
-            maxWidth: 'calc(100vw - 32px)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            backgroundColor: 'rgba(237, 237, 237, 0.75)',
-            backdropFilter: 'blur(16px)',
-            WebkitBackdropFilter: 'blur(16px)',
-            border: '1px solid rgba(255, 255, 255, 0.32)',
-            borderRadius: '24px',
-            padding: '10px 14px 10px 22px',
-            boxShadow: '0px 8px 32px 0px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.35)',
-            transition: 'width 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)',
-            pointerEvents: 'auto'
+            maxWidth: "calc(100vw - 32px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            backgroundColor: "rgba(237, 237, 237, 0.75)",
+            backdropFilter: "blur(16px)",
+            WebkitBackdropFilter: "blur(16px)",
+            border: "1px solid rgba(255, 255, 255, 0.32)",
+            borderRadius: "24px",
+            padding: "10px 14px 10px 22px",
+            boxShadow:
+              "0px 8px 32px 0px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.35)",
+            transition:
+              "width 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.45s cubic-bezier(0.25, 1, 0.5, 1)",
+            pointerEvents: "auto",
           }}
         >
           {/* Brand Logo: Xtreme Cardz */}
           <a
             href="/"
-            onClick={(e) => handleNavClick(e, '/')}
+            onClick={(e) => handleNavClick(e, "/")}
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              textDecoration: 'none',
-              flexShrink: 0
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              textDecoration: "none",
+              flexShrink: 0,
             }}
           >
             <span
               style={{
-                fontFamily: 'var(--font-heading)',
+                fontFamily: "var(--font-heading)",
                 fontWeight: 700,
-                fontSize: 'clamp(17px, 4.5vw, 22px)',
-                color: '#000000',
-                letterSpacing: '-0.03em',
+                fontSize: "clamp(17px, 4.5vw, 22px)",
+                color: "#000000",
+                letterSpacing: "-0.03em",
                 lineHeight: 1,
-                whiteSpace: 'nowrap'
+                whiteSpace: "nowrap",
               }}
             >
               Xtreme Cardz
@@ -215,10 +218,10 @@ export default function Navbar({ onOpenQuote }) {
           {/* Center Desktop Navigation Features (replicated from Framer sample) */}
           <nav
             style={{
-              alignItems: 'center',
-              gap: '24px',
-              margin: '0 16px',
-              pointerEvents: isRevealed ? 'auto' : 'none'
+              alignItems: "center",
+              gap: "24px",
+              margin: "0 16px",
+              pointerEvents: isRevealed ? "auto" : "none",
             }}
             className="desktop-nav"
           >
@@ -229,30 +232,30 @@ export default function Navbar({ onOpenQuote }) {
                 onClick={(e) => handleNavClick(e, link.href)}
                 className="nav-feature-item"
                 style={{
-                  fontSize: '15px',
+                  fontSize: "15px",
                   fontWeight: 500,
-                  fontFamily: 'var(--font-heading)',
-                  color: '#494d4d',
-                  textDecoration: 'underline',
-                  textDecorationColor: 'transparent',
-                  textUnderlineOffset: '4px',
-                  textDecorationThickness: '1.5px',
-                  padding: '4px 2px',
-                  whiteSpace: 'nowrap',
-                  display: 'inline-block',
-                  transform: isRevealed ? 'translateY(0)' : 'translateY(-24px)',
+                  fontFamily: "var(--font-heading)",
+                  color: "#494d4d",
+                  textDecoration: "underline",
+                  textDecorationColor: "transparent",
+                  textUnderlineOffset: "4px",
+                  textDecorationThickness: "1.5px",
+                  padding: "4px 2px",
+                  whiteSpace: "nowrap",
+                  display: "inline-block",
+                  transform: isRevealed ? "translateY(0)" : "translateY(-24px)",
                   opacity: isRevealed ? 1 : 0,
                   transition: isRevealed
                     ? `color 0.3s ease, text-decoration-color 0.3s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) ${idx * 0.07}s, opacity 0.45s ease ${idx * 0.07}s`
-                    : 'none'
+                    : "none",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.color = '#131515';
-                  e.currentTarget.style.textDecorationColor = '#131515';
+                  e.currentTarget.style.color = "#131515";
+                  e.currentTarget.style.textDecorationColor = "#131515";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '#494d4d';
-                  e.currentTarget.style.textDecorationColor = 'transparent';
+                  e.currentTarget.style.color = "#494d4d";
+                  e.currentTarget.style.textDecorationColor = "transparent";
                 }}
               >
                 {link.label}
@@ -261,53 +264,62 @@ export default function Navbar({ onOpenQuote }) {
           </nav>
 
           {/* Right CTA Button & Hamburger */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              flexShrink: 0,
+            }}
+          >
             <button
-              onClick={() => onOpenQuote('Navbar CTA')}
+              onClick={() => onOpenQuote("Navbar CTA")}
               onMouseEnter={() => setBtnHovered(true)}
               onMouseLeave={() => setBtnHovered(false)}
               style={{
                 background: btnHovered
-                  ? 'linear-gradient(90deg, rgb(25, 163, 255) 0%, rgb(215, 64, 223) 51.4991554054054%, rgb(255, 174, 74) 100%)'
-                  : 'linear-gradient(90deg, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 51.4991554054054%, rgb(0, 0, 0) 100%)',
-                color: '#ffffff',
-                padding: '10px 24px 8px',
-                minWidth: '96px',
-                borderRadius: '66px',
-                fontSize: '16px',
+                  ? "linear-gradient(90deg, rgb(25, 163, 255) 0%, rgb(215, 64, 223) 51.4991554054054%, rgb(255, 174, 74) 100%)"
+                  : "linear-gradient(90deg, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 51.4991554054054%, rgb(0, 0, 0) 100%)",
+                color: "#ffffff",
+                padding: "10px 24px 8px",
+                minWidth: "96px",
+                borderRadius: "66px",
+                fontSize: "16px",
                 fontWeight: 500,
-                letterSpacing: '-0.01em',
-                lineHeight: '1.6em',
-                fontFamily: 'var(--font-heading)',
-                display: 'inline-flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'background 0.3s ease, box-shadow 0.3s ease',
-                border: 'none',
-                boxShadow: btnHovered ? '0px 4px 16px 0px rgba(0, 0, 0, 0.12)' : 'none',
-                cursor: 'pointer',
-                whiteSpace: 'nowrap',
-                overflow: 'clip'
+                letterSpacing: "-0.01em",
+                lineHeight: "1.6em",
+                fontFamily: "var(--font-heading)",
+                display: "inline-flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                transition: "background 0.3s ease, box-shadow 0.3s ease",
+                border: "none",
+                boxShadow: btnHovered
+                  ? "0px 4px 16px 0px rgba(0, 0, 0, 0.12)"
+                  : "none",
+                cursor: "pointer",
+                whiteSpace: "nowrap",
+                overflow: "clip",
               }}
             >
-              <span>{btnHovered ? 'Send a message' : 'Make enquiries'}</span>
+              <span>{btnHovered ? "Send a message" : "Make enquiries"}</span>
             </button>
 
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '38px',
-                height: '38px',
-                borderRadius: '50%',
-                backgroundColor: 'rgba(0, 0, 0, 0.06)',
-                border: '1px solid rgba(0, 0, 0, 0.12)',
-                color: '#131515',
-                transition: 'all 0.25s ease'
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "38px",
+                height: "38px",
+                borderRadius: "50%",
+                backgroundColor: "rgba(0, 0, 0, 0.06)",
+                border: "1px solid rgba(0, 0, 0, 0.12)",
+                color: "#131515",
+                transition: "all 0.25s ease",
               }}
               className="mobile-toggle"
               aria-label="Toggle menu"
@@ -325,65 +337,69 @@ export default function Navbar({ onOpenQuote }) {
           <div
             onClick={() => setMobileMenuOpen(false)}
             style={{
-              position: 'fixed',
+              position: "fixed",
               inset: 0,
-              backgroundColor: 'rgba(19, 21, 21, 0.25)',
-              backdropFilter: 'blur(8px)',
-              WebkitBackdropFilter: 'blur(8px)',
+              backgroundColor: "rgba(19, 21, 21, 0.25)",
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
               zIndex: 998,
-              animation: 'fadeIn 0.25s ease'
+              animation: "fadeIn 0.25s ease",
             }}
           />
 
           {/* Crisp White Opened Menu Card */}
           <div
             style={{
-              position: 'fixed',
-              top: 'calc(env(safe-area-inset-top, 0px) + 72px)',
-              left: '16px',
-              right: '16px',
-              maxWidth: '420px',
-              maxHeight: 'calc(100dvh - env(safe-area-inset-top, 0px) - 86px)',
-              overflowY: 'auto',
-              WebkitOverflowScrolling: 'touch',
-              overscrollBehavior: 'contain',
-              margin: '0 auto',
-              backgroundColor: '#ffffff',
-              borderRadius: '20px',
-              padding: '20px',
-              boxShadow: '0 20px 50px rgba(19, 21, 21, 0.18), 0 4px 12px rgba(19, 21, 21, 0.05)',
-              border: '1px solid rgba(19, 21, 21, 0.08)',
+              position: "fixed",
+              top: "calc(env(safe-area-inset-top, 0px) + 72px)",
+              left: "16px",
+              right: "16px",
+              maxWidth: "420px",
+              maxHeight: "calc(100dvh - env(safe-area-inset-top, 0px) - 86px)",
+              overflowY: "auto",
+              WebkitOverflowScrolling: "touch",
+              overscrollBehavior: "contain",
+              margin: "0 auto",
+              backgroundColor: "#ffffff",
+              borderRadius: "20px",
+              padding: "20px",
+              boxShadow:
+                "0 20px 50px rgba(19, 21, 21, 0.18), 0 4px 12px rgba(19, 21, 21, 0.05)",
+              border: "1px solid rgba(19, 21, 21, 0.08)",
               zIndex: 999,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '6px',
-              animation: 'fadeIn 0.25s ease'
+              display: "flex",
+              flexDirection: "column",
+              gap: "6px",
+              animation: "fadeIn 0.25s ease",
             }}
           >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "2px" }}
+            >
               {navLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
                   style={{
-                    fontSize: '15.5px',
+                    fontSize: "15.5px",
                     fontWeight: 500,
-                    fontFamily: 'var(--font-heading)',
-                    color: '#131515',
-                    padding: '11px 14px',
-                    borderRadius: '10px',
-                    textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    transition: 'background-color 0.2s ease, color 0.2s ease'
+                    fontFamily: "var(--font-heading)",
+                    color: "#131515",
+                    padding: "11px 14px",
+                    borderRadius: "10px",
+                    textDecoration: "none",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    transition: "background-color 0.2s ease, color 0.2s ease",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(19, 21, 21, 0.05)';
+                    e.currentTarget.style.backgroundColor =
+                      "rgba(19, 21, 21, 0.05)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'transparent';
+                    e.currentTarget.style.backgroundColor = "transparent";
                   }}
                 >
                   <span>{link.label}</span>
@@ -392,28 +408,34 @@ export default function Navbar({ onOpenQuote }) {
               ))}
             </div>
 
-            <div style={{ marginTop: '12px', paddingTop: '12px', borderTop: '1px solid rgba(19, 21, 21, 0.06)' }}>
+            <div
+              style={{
+                marginTop: "12px",
+                paddingTop: "12px",
+                borderTop: "1px solid rgba(19, 21, 21, 0.06)",
+              }}
+            >
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  onOpenQuote('Mobile Menu Enquiry');
+                  onOpenQuote("Mobile Menu Enquiry");
                 }}
                 style={{
-                  width: '100%',
-                  padding: '13px',
-                  backgroundColor: '#000000',
-                  color: '#ffffff',
-                  borderRadius: '50px',
+                  width: "100%",
+                  padding: "13px",
+                  backgroundColor: "#000000",
+                  color: "#ffffff",
+                  borderRadius: "50px",
                   fontWeight: 600,
-                  fontSize: '14.5px',
-                  fontFamily: 'var(--font-heading)',
-                  border: 'none',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '8px',
-                  boxShadow: '0 4px 14px rgba(0, 0, 0, 0.15)'
+                  fontSize: "14.5px",
+                  fontFamily: "var(--font-heading)",
+                  border: "none",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "8px",
+                  boxShadow: "0 4px 14px rgba(0, 0, 0, 0.15)",
                 }}
               >
                 <span>Make enquiries</span>

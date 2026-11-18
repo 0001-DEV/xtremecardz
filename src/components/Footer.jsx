@@ -100,10 +100,8 @@ export default function Footer({ onOpenQuote }) {
           {/* ------------------------------------------------------------ */}
           <div>
             {/* Brand Logo & Name */}
-            <a
-              href="https://xtremecrdss.framer.website/"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -137,7 +135,7 @@ export default function Footer({ onOpenQuote }) {
               >
                 Xtreme Cardz.
               </span>
-            </a>
+            </Link>
 
             {/* Stay on top of your identity */}
             <h3

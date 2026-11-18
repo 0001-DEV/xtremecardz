@@ -16,7 +16,7 @@ const PRESET_ANSWERS = {
   'Book a demo':
     "We provide physical luxury sample kits delivered straight to corporate offices worldwide. You can feel the exact weight, laser etching depth, and tap the instant NFC functionality in person.",
   'Talk to a human':
-    "Our senior card specialists are on standby! You can reach us instantly via WhatsApp or book a direct telephone consultation for your bespoke executive order."
+    "Our senior card specialists are on standby! You can reach us instantly via WhatsApp at 09030001851 (+234 903 000 1851) or click to chat directly: https://wa.me/2349030001851"
 };
 
 export default function GtAiAssistant({ onOpenQuote }) {

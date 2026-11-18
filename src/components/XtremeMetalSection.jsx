@@ -87,9 +87,9 @@ export default function XtremeMetalSection() {
               your brand with a premium access solution.
             </p>
 
-            {/* Button with black bg: Make enquiries */}
+            {/* Button with black bg: Make enquiries -> WhatsApp */}
             <a
-              href="https://xtremecrdss.framer.website/"
+              href="https://wa.me/2349030001851?text=Hello%20Xtreme%20Cardz%2C%20I%20would%20like%20to%20make%20enquiries%20about%20Xtreme%20Metal%20Business%20Cards."
               target="_blank"
               rel="noopener noreferrer"
               style={{

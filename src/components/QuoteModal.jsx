@@ -18,8 +18,11 @@ export default function QuoteModal({ isOpen, onClose, initialCardType = 'Metal B
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-    // Lead directly to the contact number of Xtreme Cardz
-    window.location.href = 'tel:+2348078009654';
+    // Lead directly to WhatsApp line of Xtreme Cardz (09030001851)
+    const waText = encodeURIComponent(
+      `Hello Xtreme Cardz, I'm ${formData.name || 'a client'} requesting a quote for ${formData.cardType} (${formData.quantity}). Company: ${formData.company || 'N/A'}, Phone: ${formData.phone || 'N/A'}`
+    );
+    window.open(`https://wa.me/2349030001851?text=${waText}`, '_blank');
   };
 
   return (
@@ -130,10 +133,12 @@ export default function QuoteModal({ isOpen, onClose, initialCardType = 'Metal B
               }}
             >
               <span style={{ fontSize: '12px', fontWeight: 600, color: '#828787', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-                Xtreme Cardz Direct Line
+                Xtreme Cardz WhatsApp & Direct Line
               </span>
               <a
-                href="tel:+2348078009654"
+                href="https://wa.me/2349030001851"
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   display: 'block',
                   fontSize: '24px',
@@ -143,27 +148,12 @@ export default function QuoteModal({ isOpen, onClose, initialCardType = 'Metal B
                   margin: '6px 0 14px'
                 }}
               >
-                +234 807 800 9654
+                +234 903 000 1851
               </a>
 
               <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap' }}>
                 <a
-                  href="tel:+2348078009654"
-                  className="btn-primary"
-                  style={{
-                    padding: '10px 22px',
-                    fontSize: '14px',
-                    textDecoration: 'none',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px'
-                  }}
-                >
-                  <Phone size={15} />
-                  <span>Call Now</span>
-                </a>
-                <a
-                  href={`https://wa.me/2348078009654?text=${encodeURIComponent(
+                  href={`https://wa.me/2349030001851?text=${encodeURIComponent(
                     `Hello Xtreme Cardz, I'm ${formData.name || 'a client'} requesting a quote for ${formData.cardType} (${formData.quantity}).`
                   )}`}
                   target="_blank"
@@ -183,6 +173,21 @@ export default function QuoteModal({ isOpen, onClose, initialCardType = 'Metal B
                 >
                   <MessageCircle size={15} />
                   <span>Chat on WhatsApp</span>
+                </a>
+                <a
+                  href="tel:+2349030001851"
+                  className="btn-primary"
+                  style={{
+                    padding: '10px 22px',
+                    fontSize: '14px',
+                    textDecoration: 'none',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}
+                >
+                  <Phone size={15} />
+                  <span>Call Now</span>
                 </a>
               </div>
             </div>

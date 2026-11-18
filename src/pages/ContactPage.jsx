@@ -810,13 +810,18 @@ export default function ContactPage() {
                 <div className="xc-contact-reach-icon-circle blue">
                   <img
                     src={getAsset('icon-whatsapp-contact.svg')}
-                    alt=""
+                    alt="WhatsApp"
                   />
                 </div>
                 <div className="xc-contact-reach-info">
-                  <h2 className="xc-contact-reach-title">Support phone number</h2>
-                  <a href="tel:+2348078009654" className="xc-contact-reach-link">
-                    +234 807 800 9654
+                  <h2 className="xc-contact-reach-title">WhatsApp & Phone Support</h2>
+                  <a
+                    href="https://wa.me/2349030001851?text=Hello%20Xtreme%20Cardz%2C%20I%20would%20like%20to%20reach%20support"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="xc-contact-reach-link"
+                  >
+                    +234 903 000 1851
                   </a>
                 </div>
               </div>

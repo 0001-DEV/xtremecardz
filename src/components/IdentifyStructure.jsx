@@ -12,7 +12,7 @@ const DELIVERY_STEPS = [
 ];
 
 const FORMULA_ITEMS = ['Material', 'Design', 'Finish', 'Identity', 'Security', 'Smart', 'Experience'];
-const FORMULA_ROW_HEIGHT = 60;
+const FORMULA_ROW_HEIGHT = 48;
 
 export default function IdentifyStructure({ onOpenQuote }) {
   const [stepIndex, setStepIndex] = useState(0);
@@ -22,7 +22,7 @@ export default function IdentifyStructure({ onOpenQuote }) {
     const interval = setInterval(() => {
       setEnableTransition(true);
       setStepIndex((prev) => prev + 1);
-    }, 2200);
+    }, 1150);
     return () => clearInterval(interval);
   }, []);
 
@@ -31,7 +31,7 @@ export default function IdentifyStructure({ onOpenQuote }) {
       const timeout = setTimeout(() => {
         setEnableTransition(false);
         setStepIndex(0);
-      }, 650);
+      }, 450);
       return () => clearTimeout(timeout);
     }
   }, [stepIndex]);
@@ -144,7 +144,7 @@ export default function IdentifyStructure({ onOpenQuote }) {
               borderRadius: '28px',
               border: '1px solid rgba(19, 21, 21, 0.08)',
               boxShadow: '0 16px 40px rgba(19, 21, 21, 0.05)',
-              padding: '44px 36px',
+              padding: '36px 30px',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
@@ -183,8 +183,8 @@ export default function IdentifyStructure({ onOpenQuote }) {
               style={{
                 backgroundColor: '#f4f5f6',
                 borderRadius: '24px',
-                padding: '64px 28px',
-                minHeight: '320px',
+                padding: '48px 24px',
+                minHeight: '270px',
                 border: '1px solid rgba(19, 21, 21, 0.06)',
                 boxShadow: '0 8px 24px rgba(19, 21, 21, 0.04)',
                 display: 'flex',
@@ -270,11 +270,11 @@ export default function IdentifyStructure({ onOpenQuote }) {
                 'radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.04) 0%, transparent 50%), linear-gradient(145deg, #2d4c2b 0%, #1e351d 55%, #162815 100%)',
               border: '1px solid rgba(255, 255, 255, 0.14)',
               boxShadow: '0 16px 40px rgba(0, 0, 0, 0.18)',
-              padding: '44px 36px',
+              padding: '36px 30px',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'flex-start',
-              gap: '24px',
+              gap: '18px',
               position: 'relative',
               overflow: 'hidden'
             }}
@@ -343,8 +343,8 @@ export default function IdentifyStructure({ onOpenQuote }) {
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '12px',
-                  padding: '18px 24px',
+                  gap: '10px',
+                  padding: '14px 20px',
                   borderBottom: '1px solid rgba(255, 255, 255, 0.12)',
                   position: 'relative',
                   zIndex: 2
@@ -352,8 +352,8 @@ export default function IdentifyStructure({ onOpenQuote }) {
               >
                 <div
                   style={{
-                    width: '42px',
-                    height: '42px',
+                    width: '36px',
+                    height: '36px',
                     borderRadius: '50%',
                     backgroundColor: 'rgba(207, 163, 75, 0.22)',
                     display: 'flex',
@@ -362,11 +362,11 @@ export default function IdentifyStructure({ onOpenQuote }) {
                     flexShrink: 0
                   }}
                 >
-                  <Sparkles size={22} color="#cfa34b" />
+                  <Sparkles size={18} color="#cfa34b" />
                 </div>
                 <span
                   style={{
-                    fontSize: '16px',
+                    fontSize: '15px',
                     fontWeight: 700,
                     color: '#ffffff'
                   }}
@@ -387,7 +387,7 @@ export default function IdentifyStructure({ onOpenQuote }) {
                   style={{
                     transform: `translateY(-${stepIndex * FORMULA_ROW_HEIGHT}px)`,
                     transition: enableTransition
-                      ? 'transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)'
+                      ? 'transform 0.42s cubic-bezier(0.22, 1, 0.36, 1)'
                       : 'none',
                     willChange: 'transform'
                   }}
@@ -401,12 +401,12 @@ export default function IdentifyStructure({ onOpenQuote }) {
                         key={`${item}-${idx}`}
                         style={{
                           height: `${FORMULA_ROW_HEIGHT}px`,
-                          padding: '0 24px',
+                          padding: '0 20px',
                           borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
                           backgroundColor: isActiveUp
                             ? 'rgba(34, 197, 94, 0.24)'
                             : 'transparent',
-                          transition: 'background-color 0.35s ease',
+                          transition: 'background-color 0.3s ease',
                           display: 'flex',
                           alignItems: 'center',
                           gap: '12px',
@@ -417,8 +417,8 @@ export default function IdentifyStructure({ onOpenQuote }) {
                         {/* Solid full-green check circle */}
                         <span
                           style={{
-                            width: '22px',
-                            height: '22px',
+                            width: '20px',
+                            height: '20px',
                             borderRadius: '50%',
                             backgroundColor: '#22c55e',
                             display: 'inline-flex',
@@ -428,9 +428,9 @@ export default function IdentifyStructure({ onOpenQuote }) {
                             boxShadow: '0 2px 8px rgba(34, 197, 94, 0.35)'
                           }}
                         >
-                          <Check size={13} color="#ffffff" strokeWidth={3} />
+                          <Check size={12} color="#ffffff" strokeWidth={3} />
                         </span>
-                        <span style={{ fontSize: '15px', fontWeight: 500 }}>{item}</span>
+                        <span style={{ fontSize: '14.5px', fontWeight: 500 }}>{item}</span>
                       </div>
                     );
                   })}
@@ -475,7 +475,7 @@ export default function IdentifyStructure({ onOpenQuote }) {
           }
           .identify-card {
             width: 100%;
-            min-height: 720px;
+            min-height: 610px;
           }
           @media (max-width: 820px) {
             .identify-header-grid {
@@ -490,13 +490,13 @@ export default function IdentifyStructure({ onOpenQuote }) {
             .identify-card {
               min-height: auto !important;
               height: auto !important;
-              padding: 28px 20px !important;
+              padding: 24px 18px !important;
               border-radius: 22px !important;
             }
             .identify-streak-box {
-              padding: 28px 16px !important;
+              padding: 24px 16px !important;
               min-height: auto !important;
-              margin: 18px 0 !important;
+              margin: 16px 0 !important;
               border-radius: 18px !important;
             }
           }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Star } from 'lucide-react';
-import cloudImg from '../assets/cloud.png';
+import cloudImg from '../assets/cloud.webp';
 
 export default function Organizations({ onOpenQuote }) {
   return (

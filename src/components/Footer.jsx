@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { CheckCircle2 } from 'lucide-react';
-import xtremeLogo from '../assets/xtreme-cardz-logo.png';
+import xtremeLogo from '../assets/xtreme-cardz-logo.webp';
 
 const InstagramIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">

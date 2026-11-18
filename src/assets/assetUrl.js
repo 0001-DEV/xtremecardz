@@ -1,4 +1,4 @@
-const assetModules = import.meta.glob('./*.{png,jpg,jpeg,webp,svg,mp4}', {
+const assetModules = import.meta.glob('./*.{png,jpg,jpeg,webp,svg,mp4,webm}', {
   eager: true,
   import: 'default'
 });
@@ -91,5 +91,22 @@ const LEGACY_HASH_MAP = {
 
 export function getAsset(filename) {
   const resolved = LEGACY_HASH_MAP[filename] || filename;
+
+  // Auto-resolve WebP version for images if available for blazing fast load speeds
+  if (/\.(png|jpe?g)$/i.test(resolved)) {
+    const webpVersion = resolved.replace(/\.(png|jpe?g)$/i, '.webp');
+    if (assetModules[`./${webpVersion}`]) {
+      return assetModules[`./${webpVersion}`];
+    }
+  }
+
+  // Auto-resolve WebM version for videos if available
+  if (/\.mp4$/i.test(resolved)) {
+    const webmVersion = resolved.replace(/\.mp4$/i, '.webm');
+    if (assetModules[`./${webmVersion}`]) {
+      return assetModules[`./${webmVersion}`];
+    }
+  }
+
   return assetModules[`./${resolved}`] || `/src/assets/${resolved}`;
 }

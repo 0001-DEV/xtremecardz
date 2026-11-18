@@ -1,8 +1,8 @@
 import { getAsset } from '../assets/assetUrl';
 import React, { useState, useEffect, useRef } from 'react';
 import { Star, Sparkles } from 'lucide-react';
-import globeImg from '../assets/globe.png';
-import cloudImg from '../assets/cloud.png';
+import globeImg from '../assets/globe.webp';
+import cloudImg from '../assets/cloud.webp';
 
 // Brand client pairs with real high-resolution brand logos from Framer
 const LOGO_PAIRS = [

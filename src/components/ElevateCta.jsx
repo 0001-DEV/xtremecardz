@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Sparkles, ArrowRight } from 'lucide-react';
 import { getAsset } from '../assets/assetUrl';
-import cloudImg from '../assets/cloud.png';
+import cloudImg from '../assets/cloud.webp';
 
 export default function ElevateCta({ onOpenQuote }) {
   const sectionRef = useRef(null);

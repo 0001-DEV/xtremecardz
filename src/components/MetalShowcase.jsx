@@ -10,40 +10,40 @@ const SHOWCASE_VIDEOS = [
     title: '24K Mirror Gold Metal Card',
     category: 'Prestige Tier',
     desc: 'Real 24K gold electroplated stainless steel with mirror polish and precision laser cutouts.',
-    videoUrl: getAsset('A.mp4'),
-    poster: getAsset('card-24k-mirror-gold.jpg')
+    videoUrl: getAsset('A.webm'),
+    poster: getAsset('card-24k-mirror-gold.webp')
   },
   {
     id: 'video-b',
     title: 'Black Matte Stealth VIP Card',
     category: 'Stealth Series',
     desc: 'Deep anodized matte black metal with tactical anti-fingerprint coating and silver laser accents.',
-    videoUrl: getAsset('B.mp4'),
-    poster: getAsset('card-black-matte-stealth.png')
+    videoUrl: getAsset('B.webm'),
+    poster: getAsset('card-black-matte-stealth.webp')
   },
   {
     id: 'video-c',
     title: 'Gunmetal Titanium Business Card',
     category: 'Industrial Craft',
     desc: 'Brushed titanium gunmetal with dark smoky luster and tactile acid-etched typography.',
-    videoUrl: getAsset('C.mp4'),
-    poster: getAsset('card-gunmetal-titanium.png')
+    videoUrl: getAsset('C.webm'),
+    poster: getAsset('card-gunmetal-titanium.webp')
   },
   {
     id: 'video-d',
     title: 'Dual-Tone Metal VIP Access Pass',
     category: 'Elite Access',
     desc: 'High-frequency RFID & NFC dual-chip embedded smart identity for bespoke executive access.',
-    videoUrl: getAsset('D.mp4'),
-    poster: getAsset('card-metal-vip-access.png')
+    videoUrl: getAsset('D.webm'),
+    poster: getAsset('card-metal-vip-access.webp')
   },
   {
     id: 'video-e',
     title: 'Sub-Millimeter CNC Precision Finish',
     category: 'Master Craft',
     desc: 'Architectural-grade 316L solid stainless steel engineered to leave an indelible impression.',
-    videoUrl: getAsset('E.mp4'),
-    poster: getAsset('card-submillimeter-cnc.png')
+    videoUrl: getAsset('E.webm'),
+    poster: getAsset('card-submillimeter-cnc.webp')
   }
 ];
 

@@ -1,7 +1,7 @@
 import { getAsset } from '../assets/assetUrl';
 import React, { useState } from 'react';
 import { Shield, Sparkles, Users, Key, Award } from 'lucide-react';
-import greenImg from '../assets/green.jpeg';
+import greenImg from '../assets/green.webp';
 
 const CATEGORIES = [
   {

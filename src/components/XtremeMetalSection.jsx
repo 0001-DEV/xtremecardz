@@ -1,5 +1,5 @@
 import React from 'react';
-import bcardImg from '../assets/bcard.jpg';
+import bcardImg from '../assets/bcard.webp';
 
 export default function XtremeMetalSection() {
   return (

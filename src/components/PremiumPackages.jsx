@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Sparkles, CheckCircle, Award, Zap, Layers, Building2 } from 'lucide-react';
-import identityBellIcon from '../assets/icon-identity-bell.png';
+import identityBellIcon from '../assets/icon-identity-bell.webp';
 
 function CircularProgress({
   size = 80,

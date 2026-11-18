@@ -1,5 +1,5 @@
 import React from 'react';
-import woodBg from '../assets/wood.jpg';
+import woodBg from '../assets/wood.webp';
 
 export default function PremiumShowcaseBanner({ onOpenQuote }) {
   return (

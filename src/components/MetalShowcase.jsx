@@ -356,7 +356,7 @@ export default function MetalShowcase({ onOpenQuote }) {
             maxWidth: '1240px',
             margin: '0 auto',
             overflow: 'hidden',
-            padding: '16px 0'
+            padding: '24px 0'
           }}
         >
           <style>{`
@@ -370,10 +370,9 @@ export default function MetalShowcase({ onOpenQuote }) {
               display: flex;
             }
             .metal-video-swiper .swiper-slide {
-              width: clamp(340px, 48vw, 760px) !important;
-              aspect-ratio: 16 / 9 !important;
-              height: auto !important;
-              border-radius: 20px;
+              width: clamp(280px, 32vw, 440px) !important;
+              height: clamp(440px, 46vw, 560px) !important;
+              border-radius: 22px;
               overflow: hidden;
               background-color: #0d0f11;
               border: 1px solid rgba(255, 255, 255, 0.1);
@@ -389,7 +388,7 @@ export default function MetalShowcase({ onOpenQuote }) {
             }
             .metal-video-swiper .swiper-slide-active {
               opacity: 1 !important;
-              transform: scale(1.02) !important;
+              transform: scale(1.03) !important;
               border: 1px solid rgba(207, 163, 75, 0.5) !important;
               box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 35px rgba(207, 163, 75, 0.2) !important;
               cursor: pointer;
@@ -397,9 +396,9 @@ export default function MetalShowcase({ onOpenQuote }) {
             }
             @media (max-width: 640px) {
               .metal-video-swiper .swiper-slide {
-                width: 88vw !important;
-                aspect-ratio: 16 / 9 !important;
-                border-radius: 16px;
+                width: clamp(260px, 72vw, 340px) !important;
+                height: clamp(380px, 58vh, 480px) !important;
+                border-radius: 18px;
                 transform: scale(0.94);
               }
               .metal-video-swiper .swiper-slide-active {

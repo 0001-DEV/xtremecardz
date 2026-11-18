@@ -14,10 +14,8 @@ export default function XtremeMetalSection() {
     >
       <div className="container">
         <div
+          className="xtreme-metal-grid"
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-            gap: 'clamp(16px, 3.5vw, 50px)',
             alignItems: 'stretch'
           }}
         >
@@ -121,13 +119,13 @@ export default function XtremeMetalSection() {
 
           {/* Right Picture Column: Follows the height of the section */}
           <div
+            className="xtreme-metal-img-col"
             style={{
               position: 'relative',
               display: 'flex',
               alignItems: 'stretch',
               justifyContent: 'center',
-              height: '100%',
-              minHeight: '420px'
+              height: '100%'
             }}
           >
             <div
@@ -164,6 +162,27 @@ export default function XtremeMetalSection() {
           </div>
         </div>
       </div>
+
+      <style>{`
+        .xtreme-metal-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: clamp(16px, 3.5vw, 50px);
+        }
+        .xtreme-metal-img-col {
+          min-height: 420px;
+        }
+        @media (max-width: 768px) {
+          .xtreme-metal-grid {
+            grid-template-columns: 1fr !important;
+            gap: 28px !important;
+          }
+          .xtreme-metal-img-col {
+            min-height: 280px !important;
+            height: 280px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

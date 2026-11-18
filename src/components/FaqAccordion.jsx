@@ -70,8 +70,12 @@ export default function FaqAccordion({ onOpenQuote }) {
         }
 
         @media (max-width: 768px) {
+          .faq-split-layout {
+            grid-template-columns: 1fr !important;
+            gap: 28px !important;
+          }
           .faq-left-col {
-            position: static;
+            position: static !important;
           }
         }
       `}</style>

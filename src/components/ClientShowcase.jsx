@@ -178,6 +178,66 @@ export default function ClientShowcase() {
           0% { transform: translateY(-100%); opacity: 0.2; }
           100% { transform: translateY(0%); opacity: 1; }
         }
+
+        .client-globe-wrapper {
+          position: relative;
+          width: 100%;
+          height: clamp(520px, 60vw, 680px);
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justifyContent: flex-start;
+          margin: 20px 0 0;
+          pointer-events: none;
+        }
+        .client-stats-container {
+          text-align: center;
+          margin-top: -160px;
+          position: relative;
+          z-index: 10;
+        }
+        .client-stats-grid {
+          max-width: 1000px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: clamp(10px, 2.4vw, 36px);
+          align-items: start;
+        }
+        .client-top-bar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: clamp(14px, 3vw, 30px);
+          margin-bottom: 46px;
+        }
+        @media (max-width: 768px) {
+          .client-top-bar {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 16px !important;
+            margin-bottom: 28px !important;
+          }
+          .client-globe-wrapper {
+            height: 300px !important;
+            margin-top: 10px !important;
+          }
+          .client-globe-wrapper > div:first-child > div {
+            width: clamp(280px, 80vw, 340px) !important;
+            height: clamp(280px, 80vw, 340px) !important;
+          }
+          .client-stats-container {
+            margin-top: -50px !important;
+          }
+          .client-stats-grid {
+            grid-template-columns: 1fr !important;
+            gap: 28px !important;
+          }
+          .client-stats-grid p {
+            font-size: 16px !important;
+          }
+        }
       `}</style>
 
       <div className="container">
@@ -185,14 +245,7 @@ export default function ClientShowcase() {
         {/* 1. TOP BAR: Left Title vs Right Animated Counter Badge Cluster */}
         {/* ============================================================== */}
         <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'nowrap',
-            gap: 'clamp(14px, 3vw, 30px)',
-            marginBottom: '46px'
-          }}
+          className="client-top-bar"
         >
           {/* Left Hand Side: Our Xtreme clients doing it the Xtreme way */}
           <div style={{ flex: '1 1 380px', maxWidth: '640px' }}>
@@ -600,18 +653,7 @@ export default function ClientShowcase() {
       {/* 4. VERY BIG ROTATING GLOBE WITH FULL-WIDTH CLOUD COVERING HALF */}
       {/* ============================================================== */}
       <div
-        style={{
-          position: 'relative',
-          width: '100%',
-          height: 'clamp(520px, 60vw, 680px)',
-          overflow: 'hidden',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-          margin: '20px 0 0',
-          pointerEvents: 'none'
-        }}
+        className="client-globe-wrapper"
       >
         {/* 3D Spherical Globe rotating West-to-East while keeping a perfectly circular sphere outline */}
         <div
@@ -700,18 +742,10 @@ export default function ClientShowcase() {
       {/* ============================================================== */}
       <div
         ref={statsRef}
-        className="container"
-        style={{ textAlign: 'center', marginTop: '-160px', position: 'relative', zIndex: 10 }}
+        className="container client-stats-container"
       >
         <div
-          style={{
-            maxWidth: '1000px',
-            margin: '0 auto',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-            gap: 'clamp(10px, 2.4vw, 36px)',
-            alignItems: 'start'
-          }}
+          className="client-stats-grid"
         >
           {/* Column 1: 98% with % in red */}
           <div style={{ padding: '12px 10px' }}>

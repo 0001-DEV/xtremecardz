@@ -933,10 +933,14 @@ export default function PremiumPackages({ onOpenQuote }) {
                 .identity-marquee-left {
                   animation: identityScrollLeft 28s linear infinite;
                 }
-                @media (max-width: 1080px) {
+                @media (max-width: 820px) {
                   .packages-main-grid {
-                    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-                    gap: clamp(10px, 2vw, 24px) !important;
+                    grid-template-columns: 1fr !important;
+                    gap: 22px !important;
+                  }
+                  .package-card-left {
+                    padding: 28px 20px !important;
+                    border-radius: 22px !important;
                   }
                 }
                 @media (max-width: 600px) {
@@ -950,14 +954,6 @@ export default function PremiumPackages({ onOpenQuote }) {
                   .xtreme-stats-grid {
                     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
                     gap: 8px !important;
-                  }
-                }
-                @media (max-width: 400px) {
-                  .xtreme-circles-row {
-                    gap: 6px !important;
-                    transform: scale(0.85);
-                    transform-origin: center;
-                    margin: -10px 0;
                   }
                 }
               `}</style>

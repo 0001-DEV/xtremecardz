@@ -14,10 +14,10 @@ export default function PremiumShowcaseBanner({ onOpenQuote }) {
       <div className="container">
         {/* The Picture Showcase Banner (Wood Background) */}
         <div
+          className="premium-banner-wrapper"
           style={{
             position: 'relative',
             width: '100%',
-            minHeight: 'clamp(520px, 56vw, 640px)',
             borderRadius: '28px',
             overflow: 'hidden',
             boxShadow: '0 24px 60px rgba(19, 21, 21, 0.14)',
@@ -146,6 +146,18 @@ export default function PremiumShowcaseBanner({ onOpenQuote }) {
           </div>
         </div>
       </div>
+
+      <style>{`
+        .premium-banner-wrapper {
+          min-height: clamp(520px, 56vw, 640px);
+        }
+        @media (max-width: 768px) {
+          .premium-banner-wrapper {
+            min-height: auto !important;
+            border-radius: 22px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

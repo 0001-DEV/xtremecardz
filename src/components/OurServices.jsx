@@ -66,10 +66,8 @@ export default function OurServices({ onOpenQuote }) {
 
         {/* Four Column Cards Grid */}
         <div
+          className="our-services-grid"
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
-            gap: 'clamp(10px, 1.8vw, 26px)',
             alignItems: 'stretch'
           }}
         >
@@ -154,9 +152,26 @@ export default function OurServices({ onOpenQuote }) {
         </div>
 
         <style>{`
+          .our-services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: clamp(10px, 1.8vw, 26px);
+          }
           .service-card-bold-heading {
             font-weight: 700 !important;
             font-synthesis: weight;
+          }
+          @media (max-width: 992px) {
+            .our-services-grid {
+              grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+              gap: 18px !important;
+            }
+          }
+          @media (max-width: 600px) {
+            .our-services-grid {
+              grid-template-columns: 1fr !important;
+              gap: 16px !important;
+            }
           }
         `}</style>
       </div>

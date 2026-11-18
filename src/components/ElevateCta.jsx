@@ -259,66 +259,81 @@ export default function ElevateCta({ onOpenQuote }) {
           }
         }
 
-        /* Seamless mobile display on all smartphones & iOS/Android:
-           Identical animation sequence (sticky scroll, clouds parting left/right,
-           staggered emergence p1, p2, p3), fully proportioned without clipping */
-        @media (max-width: 768px) {
+        /* Elegant, visually balanced mobile layout */
+        @media (max-width: 820px) {
+          #elevate-cta {
+            height: auto !important;
+            padding: 70px 0 60px 0 !important;
+          }
           .elevate-sticky-viewport {
-            padding: 0 14px;
+            position: relative !important;
+            top: auto !important;
+            height: auto !important;
+            min-height: auto !important;
+            overflow: visible !important;
+            padding: 0 20px !important;
           }
           .elevate-content-grid {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            gap: clamp(10px, 1.8vh, 16px);
-            max-width: 380px;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            text-align: center !important;
+            gap: 36px !important;
+            max-width: 520px !important;
+          }
+          .elevate-content-grid > div {
+            opacity: 1 !important;
+            transform: none !important;
           }
           .elevate-col-text {
-            align-items: flex-start;
-            text-align: left;
+            align-items: center !important;
+            text-align: center !important;
+            width: 100% !important;
           }
           .elevate-col-text h2 {
-            font-size: clamp(13px, 3vw, 22px) !important;
+            font-size: clamp(26px, 6vw, 36px) !important;
             line-height: 1.2 !important;
-            margin-bottom: 4px !important;
+            margin-bottom: 12px !important;
           }
           .elevate-col-text p {
-            font-size: clamp(9px, 2vw, 12px) !important;
-            line-height: 1.35 !important;
-            margin-bottom: 6px !important;
-            max-width: 100% !important;
+            font-size: 15.5px !important;
+            line-height: 1.6 !important;
+            margin-bottom: 20px !important;
+            max-width: 480px !important;
           }
           .elevate-cta-buttons {
-            justify-content: flex-start;
-            gap: 6px;
+            justify-content: center !important;
+            gap: 12px !important;
           }
           .elevate-btn-primary, .elevate-btn-secondary {
-            padding: 8px 16px;
-            font-size: 12.5px;
+            padding: 13px 26px !important;
+            font-size: 14.5px !important;
           }
           .elevate-card-wrap {
-            max-width: clamp(160px, 44vw, 210px);
+            max-width: 320px !important;
+            width: 85% !important;
           }
           .elevate-qr-box {
-            padding: 10px 14px;
-            max-width: 210px;
-            gap: 6px;
-            border-radius: 18px;
+            padding: 24px 20px !important;
+            max-width: 280px !important;
+            gap: 12px !important;
+            border-radius: 22px !important;
           }
           .elevate-qr-box h3 {
-            font-size: 13px !important;
-            line-height: 1.2 !important;
+            font-size: 17px !important;
+            line-height: 1.3 !important;
           }
           .elevate-qr-img-wrap {
-            width: 78px;
-            height: 78px;
-            padding: 5px;
-            border-radius: 10px;
+            width: 120px !important;
+            height: 120px !important;
+            padding: 8px !important;
+            border-radius: 14px !important;
           }
           .elevate-qr-box span {
-            font-size: 11px !important;
+            font-size: 13.5px !important;
+          }
+          .elevate-cloud-layer {
+            display: none !important;
           }
         }
 

@@ -48,11 +48,9 @@ export default function IdentifyStructure({ onOpenQuote }) {
       <div className="container">
         {/* Header Block: Split Left & Right */}
         <div
+          className="identify-header-grid"
           style={{
-            display: 'grid',
-            gridTemplateColumns: '1.15fr 0.85fr',
             alignItems: 'end',
-            gap: 'clamp(14px, 3vw, 36px)',
             marginBottom: '44px'
           }}
         >
@@ -133,10 +131,8 @@ export default function IdentifyStructure({ onOpenQuote }) {
 
         {/* Two Cards Under Them: Left and Right */}
         <div
+          className="identify-cards-grid"
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-            gap: 'clamp(14px, 2.6vw, 36px)',
             alignItems: 'stretch'
           }}
         >
@@ -444,8 +440,18 @@ export default function IdentifyStructure({ onOpenQuote }) {
           </div>
         </div>
 
-        {/* CSS for Gentle Continuous Marquee moving on a single line */}
+        {/* CSS for Gentle Continuous Marquee and Responsive Mobile Sizing */}
         <style>{`
+          .identify-header-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: clamp(14px, 3vw, 36px);
+          }
+          .identify-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: clamp(14px, 2.6vw, 36px);
+          }
           @keyframes deliveryMarquee {
             0% {
               transform: translateX(0);
@@ -469,18 +475,29 @@ export default function IdentifyStructure({ onOpenQuote }) {
           }
           .identify-card {
             width: 100%;
-            min-height: 760px;
+            min-height: 720px;
           }
-          @media (max-width: 991px), (max-height: 750px) {
+          @media (max-width: 820px) {
+            .identify-header-grid {
+              grid-template-columns: 1fr !important;
+              gap: 16px !important;
+              margin-bottom: 24px !important;
+            }
+            .identify-cards-grid {
+              grid-template-columns: 1fr !important;
+              gap: 20px !important;
+            }
             .identify-card {
               min-height: auto !important;
               height: auto !important;
-              padding: clamp(16px, 2.4vw, 32px) clamp(12px, 2vw, 24px) !important;
+              padding: 28px 20px !important;
+              border-radius: 22px !important;
             }
             .identify-streak-box {
-              padding: clamp(18px, 2.8vw, 36px) clamp(12px, 2vw, 20px) !important;
-              min-height: 160px !important;
-              margin: 16px 0 !important;
+              padding: 28px 16px !important;
+              min-height: auto !important;
+              margin: 18px 0 !important;
+              border-radius: 18px !important;
             }
           }
         `}</style>

@@ -43,8 +43,8 @@ export default function FaqAccordion({ onOpenQuote }) {
       <style>{`
         .faq-split-layout {
           display: grid;
-          grid-template-columns: 400px 1fr;
-          gap: 60px;
+          grid-template-columns: minmax(130px, 0.75fr) 1.25fr;
+          gap: clamp(16px, 3.5vw, 60px);
           align-items: start;
         }
 
@@ -69,11 +69,7 @@ export default function FaqAccordion({ onOpenQuote }) {
           }
         }
 
-        @media (max-width: 980px) {
-          .faq-split-layout {
-            grid-template-columns: 1fr;
-            gap: 40px;
-          }
+        @media (max-width: 768px) {
           .faq-left-col {
             position: static;
           }
@@ -109,7 +105,7 @@ export default function FaqAccordion({ onOpenQuote }) {
             <h2
               className="faq-bold-heading"
               style={{
-                fontSize: 'clamp(38px, 4.4vw, 54px)',
+                fontSize: 'clamp(22px, 3.4vw, 54px)',
                 color: '#131515',
                 lineHeight: 1.15,
                 letterSpacing: '-0.025em',
@@ -126,14 +122,14 @@ export default function FaqAccordion({ onOpenQuote }) {
               style={{
                 backgroundColor: '#ffffff',
                 borderRadius: '24px',
-                padding: '28px',
+                padding: 'clamp(14px, 2.2vw, 28px)',
                 border: '1px solid rgba(19, 21, 21, 0.08)',
                 boxShadow: '0 8px 24px rgba(19, 21, 21, 0.04)',
-                marginTop: '32px',
+                marginTop: 'clamp(16px, 2.4vw, 32px)',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'flex-start',
-                gap: '16px'
+                gap: '14px'
               }}
             >
               <div
@@ -229,12 +225,12 @@ export default function FaqAccordion({ onOpenQuote }) {
                     onClick={() => toggle(i)}
                     style={{
                       width: '100%',
-                      padding: '24px 28px',
+                      padding: 'clamp(14px, 2vw, 24px) clamp(14px, 2.2vw, 28px)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
                       textAlign: 'left',
-                      gap: '20px',
+                      gap: '12px',
                       cursor: 'pointer',
                       background: 'transparent',
                       border: 'none'
@@ -243,7 +239,7 @@ export default function FaqAccordion({ onOpenQuote }) {
                   >
                     <span
                       style={{
-                        fontSize: '17px',
+                        fontSize: 'clamp(13px, 1.5vw, 17px)',
                         fontWeight: 700,
                         color: '#131515',
                         fontFamily: 'var(--font-heading)',

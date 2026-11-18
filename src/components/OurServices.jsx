@@ -68,8 +68,8 @@ export default function OurServices({ onOpenQuote }) {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(275px, 1fr))',
-            gap: '26px',
+            gridTemplateColumns: 'repeat(4, minmax(0, 1fr))',
+            gap: 'clamp(10px, 1.8vw, 26px)',
             alignItems: 'stretch'
           }}
         >
@@ -83,8 +83,8 @@ export default function OurServices({ onOpenQuote }) {
                   backgroundColor: '#ffffff',
                   borderRadius: '26px',
                   border: '1px solid rgba(19, 21, 21, 0.08)',
-                  padding: '44px 32px',
-                  minHeight: '300px',
+                  padding: 'clamp(18px, 2.4vw, 44px) clamp(12px, 1.8vw, 32px)',
+                  minHeight: 'clamp(200px, 22vw, 300px)',
                   boxShadow: '0 10px 30px rgba(19, 21, 21, 0.04)',
                   display: 'flex',
                   flexDirection: 'column',

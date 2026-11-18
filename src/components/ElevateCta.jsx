@@ -276,23 +276,23 @@ export default function ElevateCta({ onOpenQuote }) {
             max-width: 380px;
           }
           .elevate-col-text {
-            align-items: center;
-            text-align: center;
+            align-items: flex-start;
+            text-align: left;
           }
           .elevate-col-text h2 {
-            font-size: clamp(20px, 5.2vw, 25px) !important;
+            font-size: clamp(13px, 3vw, 22px) !important;
             line-height: 1.2 !important;
-            margin-bottom: 6px !important;
+            margin-bottom: 4px !important;
           }
           .elevate-col-text p {
-            font-size: clamp(12px, 3.2vw, 13.5px) !important;
-            line-height: 1.4 !important;
-            margin-bottom: 10px !important;
-            max-width: 320px !important;
+            font-size: clamp(9px, 2vw, 12px) !important;
+            line-height: 1.35 !important;
+            margin-bottom: 6px !important;
+            max-width: 100% !important;
           }
           .elevate-cta-buttons {
-            justify-content: center;
-            gap: 8px;
+            justify-content: flex-start;
+            gap: 6px;
           }
           .elevate-btn-primary, .elevate-btn-secondary {
             padding: 8px 16px;
@@ -325,7 +325,11 @@ export default function ElevateCta({ onOpenQuote }) {
         /* Short height screens (e.g. landscape or small phones <= 620px height) */
         @media (max-height: 620px) {
           .elevate-content-grid {
-            gap: 6px !important;
+            display: grid !important;
+            grid-template-columns: 1.15fr 1fr 0.95fr !important;
+            align-items: center;
+            gap: clamp(6px, 1.8vw, 14px);
+            max-width: 100%;
           }
           .elevate-col-text h2 {
             font-size: 18px !important;

@@ -79,15 +79,15 @@ export default function Footer({ onOpenQuote }) {
       <style>{`
         .footer-grid-layout {
           display: grid;
-          grid-template-columns: minmax(320px, 1.8fr) minmax(140px, 1fr) minmax(160px, 1fr);
-          gap: 60px;
+          grid-template-columns: 1.7fr 1fr 1fr;
+          gap: clamp(16px, 3.5vw, 60px);
           margin-bottom: 64px;
         }
 
         @media (max-width: 900px) {
           .footer-grid-layout {
-            grid-template-columns: 1fr;
-            gap: 40px;
+            grid-template-columns: 1.6fr 1fr 1fr;
+            gap: clamp(12px, 2.5vw, 32px);
           }
         }
       `}</style>

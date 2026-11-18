@@ -16,8 +16,8 @@ export default function XtremeMetalSection() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))',
-            gap: '50px',
+            gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+            gap: 'clamp(16px, 3.5vw, 50px)',
             alignItems: 'stretch'
           }}
         >

@@ -146,8 +146,8 @@ export default function PremiumPackages({ onOpenQuote }) {
           className="packages-main-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(460px, 100%), 1fr))',
-            gap: '30px',
+            gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+            gap: 'clamp(14px, 2.4vw, 30px)',
             alignItems: 'stretch'
           }}
         >
@@ -935,8 +935,8 @@ export default function PremiumPackages({ onOpenQuote }) {
                 }
                 @media (max-width: 1080px) {
                   .packages-main-grid {
-                    grid-template-columns: 1fr !important;
-                    gap: 28px !important;
+                    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                    gap: clamp(10px, 2vw, 24px) !important;
                   }
                 }
                 @media (max-width: 600px) {
@@ -948,8 +948,8 @@ export default function PremiumPackages({ onOpenQuote }) {
                 }
                 @media (max-width: 580px) {
                   .xtreme-stats-grid {
-                    grid-template-columns: 1fr !important;
-                    gap: 12px !important;
+                    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                    gap: 8px !important;
                   }
                 }
                 @media (max-width: 400px) {

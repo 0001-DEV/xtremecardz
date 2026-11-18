@@ -49,11 +49,10 @@ export default function IdentifyStructure({ onOpenQuote }) {
         {/* Header Block: Split Left & Right */}
         <div
           style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            alignItems: 'flex-end',
-            justifyContent: 'space-between',
-            gap: '32px',
+            display: 'grid',
+            gridTemplateColumns: '1.15fr 0.85fr',
+            alignItems: 'end',
+            gap: 'clamp(14px, 3vw, 36px)',
             marginBottom: '44px'
           }}
         >
@@ -132,14 +131,13 @@ export default function IdentifyStructure({ onOpenQuote }) {
           </div>
         </div>
 
-        {/* Two Cards Under Them: Left and Right (height: 800px, width: 580px) */}
+        {/* Two Cards Under Them: Left and Right */}
         <div
           style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'stretch',
-            gap: '36px',
-            flexWrap: 'wrap'
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+            gap: 'clamp(14px, 2.6vw, 36px)',
+            alignItems: 'stretch'
           }}
         >
           {/* CARD 1: Delivery Streak Card */}
@@ -470,21 +468,19 @@ export default function IdentifyStructure({ onOpenQuote }) {
             animation-play-state: paused;
           }
           .identify-card {
-            width: 580px;
-            max-width: 100%;
+            width: 100%;
             min-height: 760px;
           }
           @media (max-width: 991px), (max-height: 750px) {
             .identify-card {
-              width: 100% !important;
               min-height: auto !important;
               height: auto !important;
-              padding: 32px 20px !important;
+              padding: clamp(16px, 2.4vw, 32px) clamp(12px, 2vw, 24px) !important;
             }
             .identify-streak-box {
-              padding: 36px 20px !important;
-              min-height: 200px !important;
-              margin: 24px 0 !important;
+              padding: clamp(18px, 2.8vw, 36px) clamp(12px, 2vw, 20px) !important;
+              min-height: 160px !important;
+              margin: 16px 0 !important;
             }
           }
         `}</style>

@@ -47,7 +47,7 @@ const SHOWCASE_VIDEOS = [
   }
 ];
 
-function ShowcaseVideoCard({ video, isActive, isMuted, toggleMute, onSlideClick }) {
+function ShowcaseVideoCard({ video, isActive, inView, isMuted, toggleMute, onSlideClick }) {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -55,17 +55,19 @@ function ShowcaseVideoCard({ video, isActive, isMuted, toggleMute, onSlideClick 
     const el = videoRef.current;
     if (!el) return;
 
-    if (isActive) {
+    if (isActive && inView) {
       el.muted = isMuted;
-      // Pause if not active or if isPlaying is false
-      if (!isPlaying) {
-        el.pause();
+      const playPromise = el.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => setIsPlaying(true))
+          .catch(() => setIsPlaying(false));
       }
     } else {
       el.pause();
       setIsPlaying(false);
     }
-  }, [isActive, isMuted, isPlaying]);
+  }, [isActive, inView, isMuted]);
 
   const handleTogglePlay = (e) => {
     e.stopPropagation();
@@ -91,35 +93,19 @@ function ShowcaseVideoCard({ video, isActive, isMuted, toggleMute, onSlideClick 
         width: '100%',
         height: '100%',
         overflow: 'hidden',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        backgroundColor: '#0a0b0b'
       }}
     >
-      {/* Fallback Poster Image */}
-      <img
-        src={video.poster}
-        alt={video.title}
-        style={{
-          position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          filter: isActive ? 'none' : 'brightness(0.72)',
-          transition: 'filter 0.4s ease',
-          zIndex: 1
-        }}
-      />
-
-      {/* Video Element */}
+      {/* Video Element - Direct video display without placeholder image */}
       <video
         ref={videoRef}
         src={video.videoUrl}
-        poster={video.poster}
         playsInline
         webkit-playsinline="true"
         muted={isMuted}
         loop
-        preload="metadata"
+        preload="auto"
         style={{
           position: 'absolute',
           inset: 0,
@@ -148,33 +134,6 @@ function ShowcaseVideoCard({ video, isActive, isMuted, toggleMute, onSlideClick 
           }}
         />
       )}
-
-      {/* Top Left "VIDEO" badge - visibly confirms every card is a video */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '18px',
-          left: '18px',
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '6px',
-          padding: '6px 14px',
-          borderRadius: '50px',
-          backgroundColor: 'rgba(10, 11, 11, 0.72)',
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
-          border: '1px solid rgba(255, 255, 255, 0.16)',
-          color: '#ffffff',
-          fontSize: '11.5px',
-          fontWeight: 650,
-          zIndex: 4,
-          letterSpacing: '0.06em',
-          boxShadow: '0 4px 14px rgba(0, 0, 0, 0.25)'
-        }}
-      >
-        <Play size={10} fill="#cfa34b" color="#cfa34b" />
-        <span>VIDEO</span>
-      </div>
 
       {/* Top Controls when Active */}
       {isActive && isPlaying && (
@@ -323,7 +282,7 @@ function ShowcaseVideoCard({ video, isActive, isMuted, toggleMute, onSlideClick 
             marginBottom: '4px'
           }}
         >
-          {video.category} • VIDEO
+          {video.category}
         </div>
         <div
           style={{
@@ -343,7 +302,24 @@ function ShowcaseVideoCard({ video, isActive, isMuted, toggleMute, onSlideClick 
 
 export default function MetalShowcase({ onOpenQuote }) {
   const swiperRef = useRef(null);
+  const sectionRef = useRef(null);
+  const [inView, setInView] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const toggleMute = (e) => {
     e.stopPropagation();
@@ -352,6 +328,7 @@ export default function MetalShowcase({ onOpenQuote }) {
 
   return (
     <section
+      ref={sectionRef}
       style={{
         paddingTop: '60px',
         paddingBottom: '80px',
@@ -479,6 +456,7 @@ export default function MetalShowcase({ onOpenQuote }) {
                   <ShowcaseVideoCard
                     video={video}
                     isActive={isActive}
+                    inView={inView}
                     isMuted={isMuted}
                     toggleMute={toggleMute}
                     onSlideClick={() => {

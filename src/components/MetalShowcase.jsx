@@ -94,10 +94,13 @@ function ShowcaseVideoCard({ video, isActive, inView, isMuted, toggleMute, onSli
         height: '100%',
         overflow: 'hidden',
         cursor: 'pointer',
-        backgroundColor: '#0a0b0b'
+        backgroundColor: '#000000',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
       }}
     >
-      {/* Video Element - Direct video display without placeholder image */}
+      {/* Video Element - Direct video display with full content visible */}
       <video
         ref={videoRef}
         src={video.videoUrl}
@@ -111,7 +114,7 @@ function ShowcaseVideoCard({ video, isActive, inView, isMuted, toggleMute, onSli
           inset: 0,
           width: '100%',
           height: '100%',
-          objectFit: 'cover',
+          objectFit: 'contain',
           zIndex: 2,
           filter: isActive ? 'none' : 'brightness(0.72)',
           transition: 'filter 0.4s ease'
@@ -127,7 +130,7 @@ function ShowcaseVideoCard({ video, isActive, inView, isMuted, toggleMute, onSli
             right: '-40px',
             width: '180px',
             height: '180px',
-            background: 'radial-gradient(circle, rgba(207, 163, 75, 0.35) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(207, 163, 75, 0.28) 0%, transparent 70%)',
             filter: 'blur(30px)',
             pointerEvents: 'none',
             zIndex: 3
@@ -140,8 +143,8 @@ function ShowcaseVideoCard({ video, isActive, inView, isMuted, toggleMute, onSli
         <div
           style={{
             position: 'absolute',
-            top: '16px',
-            right: '16px',
+            top: '14px',
+            right: '14px',
             display: 'flex',
             gap: '8px',
             zIndex: 4
@@ -151,11 +154,12 @@ function ShowcaseVideoCard({ video, isActive, inView, isMuted, toggleMute, onSli
             onClick={handleTogglePlay}
             aria-label="Pause video"
             style={{
-              width: '38px',
-              height: '38px',
+              width: '36px',
+              height: '36px',
               borderRadius: '50%',
               backgroundColor: 'rgba(19, 21, 21, 0.82)',
               backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
               border: '1px solid rgba(255, 255, 255, 0.18)',
               color: '#ffffff',
               display: 'flex',
@@ -165,18 +169,19 @@ function ShowcaseVideoCard({ video, isActive, inView, isMuted, toggleMute, onSli
               transition: 'transform 0.2s ease, background-color 0.2s ease'
             }}
           >
-            <Pause size={15} />
+            <Pause size={14} />
           </button>
 
           <button
             onClick={toggleMute}
             aria-label={isMuted ? 'Unmute video' : 'Mute video'}
             style={{
-              width: '38px',
-              height: '38px',
+              width: '36px',
+              height: '36px',
               borderRadius: '50%',
               backgroundColor: 'rgba(19, 21, 21, 0.82)',
               backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
               border: '1px solid rgba(255, 255, 255, 0.18)',
               color: '#ffffff',
               display: 'flex',
@@ -186,7 +191,7 @@ function ShowcaseVideoCard({ video, isActive, inView, isMuted, toggleMute, onSli
               transition: 'transform 0.2s ease, background-color 0.2s ease'
             }}
           >
-            {isMuted ? <VolumeX size={15} /> : <Volume2 size={15} />}
+            {isMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
           </button>
         </div>
       )}
@@ -200,8 +205,8 @@ function ShowcaseVideoCard({ video, isActive, inView, isMuted, toggleMute, onSli
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            width: isActive ? '74px' : '56px',
-            height: isActive ? '74px' : '56px',
+            width: isActive ? '68px' : '50px',
+            height: isActive ? '68px' : '50px',
             borderRadius: '50%',
             backgroundColor: 'rgba(255, 255, 255, 0.92)',
             backdropFilter: 'blur(16px)',
@@ -218,7 +223,7 @@ function ShowcaseVideoCard({ video, isActive, inView, isMuted, toggleMute, onSli
           }}
         >
           <Play
-            size={isActive ? 28 : 22}
+            size={isActive ? 26 : 20}
             fill="#131515"
             color="#131515"
             style={{ marginLeft: isActive ? '4px' : '3px' }}
@@ -233,8 +238,8 @@ function ShowcaseVideoCard({ video, isActive, inView, isMuted, toggleMute, onSli
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            width: '74px',
-            height: '74px',
+            width: '68px',
+            height: '68px',
             borderRadius: '50%',
             backgroundColor: 'rgba(19, 21, 21, 0.7)',
             backdropFilter: 'blur(16px)',
@@ -252,50 +257,9 @@ function ShowcaseVideoCard({ video, isActive, inView, isMuted, toggleMute, onSli
             pointerEvents: 'none'
           }}
         >
-          <Pause size={28} color="#ffffff" />
+          <Pause size={26} color="#ffffff" />
         </div>
       )}
-
-      {/* Bottom Info Gradient Scrim with Card Title & Category */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          padding: '28px 20px 18px',
-          background: 'linear-gradient(to top, rgba(10, 11, 11, 0.92) 0%, rgba(10, 11, 11, 0.5) 55%, transparent 100%)',
-          zIndex: 3,
-          pointerEvents: 'none',
-          transition: 'opacity 0.3s ease',
-          opacity: isActive ? 1 : 0.72
-        }}
-      >
-        <div
-          style={{
-            display: 'inline-block',
-            fontSize: '11px',
-            fontWeight: 600,
-            color: '#cfa34b',
-            textTransform: 'uppercase',
-            letterSpacing: '0.08em',
-            marginBottom: '4px'
-          }}
-        >
-          {video.category}
-        </div>
-        <div
-          style={{
-            fontSize: '15.5px',
-            fontWeight: 600,
-            color: '#ffffff',
-            letterSpacing: '-0.01em',
-            lineHeight: 1.25
-          }}
-        >
-          {video.title}
-        </div>
-      </div>
     </div>
   );
 }
@@ -383,7 +347,7 @@ export default function MetalShowcase({ onOpenQuote }) {
             maxWidth: '1240px',
             margin: '0 auto',
             overflow: 'hidden',
-            padding: '10px 0'
+            padding: '16px 0'
           }}
         >
           <style>{`
@@ -397,45 +361,40 @@ export default function MetalShowcase({ onOpenQuote }) {
               display: flex;
             }
             .metal-video-swiper .swiper-slide {
-              width: clamp(290px, 36vw, 440px) !important;
-              height: 400px;
-              border-radius: 24px;
+              width: clamp(340px, 48vw, 760px) !important;
+              aspect-ratio: 16 / 9 !important;
+              height: auto !important;
+              border-radius: 20px;
               overflow: hidden;
-              background-color: #0a0b0b;
-              border: 1px solid rgba(19, 21, 21, 0.1);
-              transition: height 0.5s cubic-bezier(0.25, 1, 0.5, 1),
-                          transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
-                          opacity 0.5s ease,
-                          box-shadow 0.5s ease !important;
-              opacity: 0.78;
+              background-color: #000000;
+              border: 1px solid rgba(255, 255, 255, 0.08);
+              box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+              transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1),
+                          opacity 0.45s ease,
+                          border-color 0.45s ease,
+                          box-shadow 0.45s ease !important;
+              opacity: 0.65;
               transform: scale(0.92);
               cursor: pointer;
               flex-shrink: 0;
             }
             .metal-video-swiper .swiper-slide-active {
-              height: 500px !important;
               opacity: 1 !important;
-              transform: scale(1) !important;
-              border: 1px solid rgba(255, 255, 255, 0.16) !important;
-              box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35) !important;
+              transform: scale(1.02) !important;
+              border: 1px solid rgba(207, 163, 75, 0.5) !important;
+              box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 35px rgba(207, 163, 75, 0.2) !important;
               cursor: pointer;
               z-index: 10;
             }
             @media (max-width: 640px) {
               .metal-video-swiper .swiper-slide {
-                width: 84vw !important;
-                height: 380px;
+                width: 88vw !important;
+                aspect-ratio: 16 / 9 !important;
+                border-radius: 16px;
+                transform: scale(0.94);
               }
               .metal-video-swiper .swiper-slide-active {
-                height: 440px !important;
-              }
-            }
-            @media (max-height: 520px) {
-              .metal-video-swiper .swiper-slide {
-                height: 250px !important;
-              }
-              .metal-video-swiper .swiper-slide-active {
-                height: 290px !important;
+                transform: scale(1.0) !important;
               }
             }
           `}</style>
@@ -445,7 +404,12 @@ export default function MetalShowcase({ onOpenQuote }) {
             slidesPerView={'auto'}
             centeredSlides={true}
             loop={true}
-            spaceBetween={36}
+            spaceBetween={28}
+            breakpoints={{
+              320: { spaceBetween: 14 },
+              640: { spaceBetween: 24 },
+              1024: { spaceBetween: 36 }
+            }}
             speed={550}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
             className="metal-video-swiper"

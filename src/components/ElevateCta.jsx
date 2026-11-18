@@ -259,31 +259,35 @@ export default function ElevateCta({ onOpenQuote }) {
           }
         }
 
-        /* Elegant, visually balanced mobile layout */
+        /* Seamless, perfectly proportioned animation on all smartphones & iOS/Android:
+           Clouds part open, card floats & shines, sequential emergence p1 -> p2 -> p3 */
         @media (max-width: 820px) {
           #elevate-cta {
-            height: auto !important;
-            padding: 70px 0 60px 0 !important;
+            height: 175vh !important;
+            padding: 0 !important;
           }
           .elevate-sticky-viewport {
-            position: relative !important;
-            top: auto !important;
-            height: auto !important;
-            min-height: auto !important;
-            overflow: visible !important;
-            padding: 0 20px !important;
+            position: sticky !important;
+            top: 0 !important;
+            height: 100vh !important;
+            height: 100dvh !important;
+            padding: 0 16px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            overflow: hidden !important;
           }
           .elevate-content-grid {
             display: flex !important;
             flex-direction: column !important;
             align-items: center !important;
+            justify-content: center !important;
             text-align: center !important;
-            gap: 36px !important;
-            max-width: 520px !important;
-          }
-          .elevate-content-grid > div {
-            opacity: 1 !important;
-            transform: none !important;
+            gap: clamp(8px, 1.8vh, 16px) !important;
+            width: 100% !important;
+            max-width: 440px !important;
+            margin: 0 auto !important;
+            padding: 10px 0 !important;
           }
           .elevate-col-text {
             align-items: center !important;
@@ -291,49 +295,57 @@ export default function ElevateCta({ onOpenQuote }) {
             width: 100% !important;
           }
           .elevate-col-text h2 {
-            font-size: clamp(26px, 6vw, 36px) !important;
-            line-height: 1.2 !important;
-            margin-bottom: 12px !important;
+            font-size: clamp(20px, 5.2vw, 26px) !important;
+            line-height: 1.18 !important;
+            margin-bottom: 6px !important;
           }
           .elevate-col-text p {
-            font-size: 15.5px !important;
-            line-height: 1.6 !important;
-            margin-bottom: 20px !important;
-            max-width: 480px !important;
+            font-size: clamp(12.5px, 3.2vw, 14.5px) !important;
+            line-height: 1.35 !important;
+            margin-bottom: 12px !important;
+            max-width: 360px !important;
           }
           .elevate-cta-buttons {
             justify-content: center !important;
-            gap: 12px !important;
+            gap: 8px !important;
           }
           .elevate-btn-primary, .elevate-btn-secondary {
-            padding: 13px 26px !important;
-            font-size: 14.5px !important;
+            padding: 9px 18px !important;
+            font-size: 13px !important;
           }
           .elevate-card-wrap {
-            max-width: 320px !important;
-            width: 85% !important;
+            max-width: clamp(170px, 46vw, 220px) !important;
+            width: 100% !important;
+            margin: 0 auto !important;
           }
           .elevate-qr-box {
-            padding: 24px 20px !important;
-            max-width: 280px !important;
+            padding: 10px 16px !important;
+            max-width: 270px !important;
             gap: 12px !important;
-            border-radius: 22px !important;
+            border-radius: 18px !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            text-align: left !important;
           }
           .elevate-qr-box h3 {
-            font-size: 17px !important;
-            line-height: 1.3 !important;
-          }
-          .elevate-qr-img-wrap {
-            width: 120px !important;
-            height: 120px !important;
-            padding: 8px !important;
-            border-radius: 14px !important;
+            font-size: 13px !important;
+            line-height: 1.2 !important;
+            margin: 0 0 2px 0 !important;
           }
           .elevate-qr-box span {
-            font-size: 13.5px !important;
+            font-size: 11px !important;
+            line-height: 1.2 !important;
+          }
+          .elevate-qr-img-wrap {
+            width: 58px !important;
+            height: 58px !important;
+            padding: 4px !important;
+            border-radius: 10px !important;
+            flex-shrink: 0 !important;
           }
           .elevate-cloud-layer {
-            display: none !important;
+            display: block !important;
+            opacity: 0.95 !important;
           }
         }
 

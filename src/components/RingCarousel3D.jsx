@@ -3,17 +3,17 @@ import React, { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 
 const CARDS = [
-  { id: 0, title: 'Nova', img: getAsset('ring-card-nova.jpg') },
-  { id: 1, title: 'Seplat', img: getAsset('ring-card-seplat.jpg') },
-  { id: 2, title: 'Invera Energy', img: getAsset('ring-card-invera.jpg') },
-  { id: 3, title: 'Neca', img: getAsset('card-metal-business-front.png') },
-  { id: 4, title: 'Ikeja Electric', img: getAsset('ring-card-ikeja-electric.jpg') },
-  { id: 5, title: 'Rainoil', img: getAsset('ring-card-rainoil.jpg') },
-  { id: 6, title: 'Optiva Capital', img: getAsset('ring-card-optiva.jpg') },
-  { id: 7, title: 'IOGC', img: getAsset('ring-card-iogc.png') },
-  { id: 8, title: 'TVC', img: getAsset('ring-card-tvc.png') },
-  { id: 9, title: 'Sapetro', img: getAsset('ring-card-sapetro.jpg') },
-  { id: 10, title: 'Guinness Nigeria', img: getAsset('ring-card-guinness.png') }
+  { id: 0, title: 'NOVA', img: getAsset('ring-card-nova.jpg') },
+  { id: 1, title: 'NOVA', img: getAsset('ring-card-seplat.jpg') },
+  { id: 2, title: 'NOVA', img: getAsset('ring-card-invera.jpg') },
+  { id: 3, title: 'Optiva Capital', img: getAsset('card-metal-business-front.png') },
+  { id: 4, title: 'Mortana', img: getAsset('ring-card-ikeja-electric.jpg') },
+  { id: 5, title: 'Capri Island', img: getAsset('ring-card-rainoil.jpg') },
+  { id: 6, title: 'Herloom', img: getAsset('ring-card-optiva.jpg') },
+  { id: 7, title: 'Herloom', img: getAsset('ring-card-iogc.png') },
+  { id: 8, title: 'Herloom', img: getAsset('ring-card-tvc.png') },
+  { id: 9, title: 'Moir', img: getAsset('ring-card-sapetro.jpg') },
+  { id: 10, title: 'FreshBasket', img: getAsset('ring-card-guinness.png') }
 ];
 
 export default function RingCarousel3D({ onSelectCard }) {
@@ -91,8 +91,8 @@ export default function RingCarousel3D({ onSelectCard }) {
 
   // Continuous auto-rotation with GSAP ticker (smooth, lively & frame-rate independent)
   useEffect(() => {
-    // Increased speed: ~9.2 degrees per second (~39s for a full orbit)
-    const degreesPerSecond = 9.2;
+    // Increased rotation speed: ~18.5 degrees per second (~19.5s for a full orbit)
+    const degreesPerSecond = 18.5;
 
     const tick = (time, deltaTime) => {
       if (!isDragging.current) {
@@ -330,35 +330,37 @@ export default function RingCarousel3D({ onSelectCard }) {
               e.currentTarget.style.boxShadow = '0 25px 60px -10px rgba(0, 0, 0, 0.25)';
             }}
           >
-            {/* Gray Title Header on Top with 4px height / padding */}
-            <div
-              style={{
-                backgroundColor: '#ededed',
-                padding: '4px 14px',
-                borderRadius: 0,
-                borderBottom: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                flexShrink: 0,
-                zIndex: 2
-              }}
-            >
-              <span
+            {/* Gray Title Header on Top with 4px height / padding (only if card has a company name) */}
+            {activeCard.title ? (
+              <div
                 style={{
-                  fontFamily: 'var(--font-heading)',
-                  fontSize: '14.5px',
-                  fontWeight: 600,
-                  color: '#0c0c0c',
-                  letterSpacing: '-0.02em',
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis'
+                  backgroundColor: '#ededed',
+                  padding: '4px 14px',
+                  borderRadius: 0,
+                  borderBottom: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  flexShrink: 0,
+                  zIndex: 2
                 }}
               >
-                {activeCard.title}
-              </span>
-            </div>
+                <span
+                  style={{
+                    fontFamily: 'var(--font-heading)',
+                    fontSize: '14.5px',
+                    fontWeight: 600,
+                    color: '#0c0c0c',
+                    letterSpacing: '-0.02em',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis'
+                  }}
+                >
+                  {activeCard.title}
+                </span>
+              </div>
+            ) : null}
 
             {/* Clean Full Card Picture (No text overlay, No arrow button) */}
             <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>

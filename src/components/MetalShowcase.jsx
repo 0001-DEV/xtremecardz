@@ -85,6 +85,13 @@ function ShowcaseVideoCard({ video, isActive, inView, isMuted, toggleMute, onSli
     }
   };
 
+  const handleLoadedMetadata = (e) => {
+    // Seek slightly forward to force frame render so it is never a blank box
+    if (e.target && e.target.currentTime === 0) {
+      e.target.currentTime = 0.001;
+    }
+  };
+
   return (
     <div
       onClick={isActive ? handleTogglePlay : onSlideClick}
@@ -94,13 +101,13 @@ function ShowcaseVideoCard({ video, isActive, inView, isMuted, toggleMute, onSli
         height: '100%',
         overflow: 'hidden',
         cursor: 'pointer',
-        backgroundColor: '#000000',
+        backgroundColor: '#0d0f11',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
       }}
     >
-      {/* Video Element - Direct video display with full content visible */}
+      {/* Video Element - Edge-to-edge coverage eliminating any black blank sections */}
       <video
         ref={videoRef}
         src={video.videoUrl}
@@ -109,14 +116,16 @@ function ShowcaseVideoCard({ video, isActive, inView, isMuted, toggleMute, onSli
         muted={isMuted}
         loop
         preload="auto"
+        onLoadedMetadata={handleLoadedMetadata}
         style={{
           position: 'absolute',
           inset: 0,
           width: '100%',
           height: '100%',
-          objectFit: 'contain',
+          objectFit: 'cover',
+          objectPosition: 'center',
           zIndex: 2,
-          filter: isActive ? 'none' : 'brightness(0.72)',
+          filter: isActive ? 'none' : 'brightness(0.85)',
           transition: 'filter 0.4s ease'
         }}
       />
@@ -366,14 +375,14 @@ export default function MetalShowcase({ onOpenQuote }) {
               height: auto !important;
               border-radius: 20px;
               overflow: hidden;
-              background-color: #000000;
-              border: 1px solid rgba(255, 255, 255, 0.08);
+              background-color: #0d0f11;
+              border: 1px solid rgba(255, 255, 255, 0.1);
               box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
               transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1),
                           opacity 0.45s ease,
                           border-color 0.45s ease,
                           box-shadow 0.45s ease !important;
-              opacity: 0.65;
+              opacity: 0.8;
               transform: scale(0.92);
               cursor: pointer;
               flex-shrink: 0;

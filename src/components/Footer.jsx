@@ -81,14 +81,54 @@ export default function Footer({ onOpenQuote }) {
         .footer-grid-layout {
           display: grid;
           grid-template-columns: 1.7fr 1fr 1fr;
-          gap: clamp(16px, 3.5vw, 60px);
+          gap: clamp(24px, 3.5vw, 60px);
           margin-bottom: 64px;
         }
 
-        @media (max-width: 900px) {
+        .footer-links-group {
+          display: contents;
+        }
+
+        .footer-form {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          max-width: 420px;
+          width: 100%;
+        }
+
+        @media (max-width: 820px) {
           .footer-grid-layout {
-            grid-template-columns: 1.6fr 1fr 1fr;
-            gap: clamp(12px, 2.5vw, 32px);
+            grid-template-columns: 1fr !important;
+            gap: 36px !important;
+            margin-bottom: 40px !important;
+          }
+          .footer-links-group {
+            display: grid !important;
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 24px !important;
+          }
+          .footer-bottom-bar {
+            flex-direction: column-reverse !important;
+            align-items: center !important;
+            text-align: center !important;
+            gap: 16px !important;
+            padding-top: 22px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .footer-form {
+            flex-direction: column !important;
+            align-items: stretch !important;
+          }
+          .footer-form input {
+            width: 100% !important;
+            box-sizing: border-box !important;
+          }
+          .footer-form button {
+            width: 100% !important;
+            box-sizing: border-box !important;
           }
         }
       `}</style>
@@ -171,13 +211,7 @@ export default function Footer({ onOpenQuote }) {
             ) : (
               <form
                 onSubmit={handleSubscribe}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  maxWidth: '400px',
-                  width: '100%'
-                }}
+                className="footer-form"
               >
                 <input
                   type="email"
@@ -236,74 +270,75 @@ export default function Footer({ onOpenQuote }) {
           </div>
 
           {/* ------------------------------------------------------------ */}
-          {/* Middle Column: Quick links                                   */}
+          {/* Middle & Right Columns: Quick links & Support                */}
           {/* ------------------------------------------------------------ */}
-          <div>
-            <h4
-              style={{
-                fontSize: '14px',
-                fontWeight: 700,
-                color: '#131515',
-                margin: '0 0 20px 0',
-                letterSpacing: '-0.01em'
-              }}
-            >
-              Quick links
-            </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              {quickLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  style={{
-                    fontSize: '14.5px',
-                    color: '#494d4d',
-                    textDecoration: 'none',
-                    transition: 'color 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = '#131515')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = '#494d4d')}
-                >
-                  {link.label}
-                </Link>
-              ))}
+          <div className="footer-links-group">
+            {/* Quick links */}
+            <div>
+              <h4
+                style={{
+                  fontSize: '14px',
+                  fontWeight: 700,
+                  color: '#131515',
+                  margin: '0 0 20px 0',
+                  letterSpacing: '-0.01em'
+                }}
+              >
+                Quick links
+              </h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                {quickLinks.map((link) => (
+                  <Link
+                    key={link.label}
+                    to={link.href}
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    style={{
+                      fontSize: '14.5px',
+                      color: '#494d4d',
+                      textDecoration: 'none',
+                      transition: 'color 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = '#131515')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = '#494d4d')}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* ------------------------------------------------------------ */}
-          {/* Right Column: Support                                        */}
-          {/* ------------------------------------------------------------ */}
-          <div>
-            <h4
-              style={{
-                fontSize: '14px',
-                fontWeight: 700,
-                color: '#131515',
-                margin: '0 0 20px 0',
-                letterSpacing: '-0.01em'
-              }}
-            >
-              Support
-            </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              {supportLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  style={{
-                    fontSize: '14.5px',
-                    color: '#494d4d',
-                    textDecoration: 'none',
-                    transition: 'color 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = '#131515')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = '#494d4d')}
-                >
-                  {link.label}
-                </Link>
-              ))}
+            {/* Support */}
+            <div>
+              <h4
+                style={{
+                  fontSize: '14px',
+                  fontWeight: 700,
+                  color: '#131515',
+                  margin: '0 0 20px 0',
+                  letterSpacing: '-0.01em'
+                }}
+              >
+                Support
+              </h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                {supportLinks.map((link) => (
+                  <Link
+                    key={link.label}
+                    to={link.href}
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    style={{
+                      fontSize: '14.5px',
+                      color: '#494d4d',
+                      textDecoration: 'none',
+                      transition: 'color 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = '#131515')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = '#494d4d')}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -312,6 +347,7 @@ export default function Footer({ onOpenQuote }) {
         {/* Bottom Bar: Copyright & Socials                             */}
         {/* ------------------------------------------------------------ */}
         <div
+          className="footer-bottom-bar"
           style={{
             borderTop: '1px solid rgba(19, 21, 21, 0.08)',
             paddingTop: '28px',

@@ -209,15 +209,27 @@ export default function ClientShowcase() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          gap: clamp(14px, 3vw, 30px);
-          margin-bottom: 46px;
+          gap: clamp(16px, 3vw, 40px);
+          max-width: 1060px;
+          margin: 0 auto 32px auto;
         }
-        @media (max-width: 768px) {
+        .client-counter-cluster {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 4px;
+          flex-shrink: 0;
+        }
+        @media (max-width: 820px) {
           .client-top-bar {
             flex-direction: column !important;
             align-items: flex-start !important;
-            gap: 16px !important;
-            margin-bottom: 28px !important;
+            gap: 12px !important;
+            margin-bottom: 20px !important;
+          }
+          .client-counter-cluster {
+            align-items: flex-start !important;
+            gap: 4px !important;
           }
           .client-globe-wrapper {
             height: 300px !important;
@@ -265,12 +277,7 @@ export default function ClientShowcase() {
 
           {/* Right Hand Side: +50(0-9) counter, 5 gold Stars, Trusted worldwide */}
           <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-end',
-              gap: '8px'
-            }}
+            className="client-counter-cluster"
           >
             {/* Unboxed Overlapping Circles Cluster (3 Avatars + Circular +50..54 Counter) */}
             <div
@@ -448,24 +455,25 @@ export default function ClientShowcase() {
                 </div>
               </div>
             </div>
-            {/* Under it: 5 gold Stars (Increased size) */}
-            <div style={{ display: 'flex', gap: '4px', color: '#ff9803', marginTop: '4px' }}>
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} size={20} fill="#ff9803" color="#ff9803" />
-              ))}
+            {/* 5 gold Stars + Trusted worldwide on one compact, cohesive row */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '6px' }}>
+              <div style={{ display: 'flex', gap: '3px', color: '#ff9803' }}>
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={16} fill="#ff9803" color="#ff9803" />
+                ))}
+              </div>
+              <span
+                style={{
+                  fontSize: '14.5px',
+                  fontWeight: 600,
+                  color: '#595e5e',
+                  letterSpacing: '0.01em',
+                  whiteSpace: 'nowrap'
+                }}
+              >
+                Trusted worldwide
+              </span>
             </div>
-
-            {/* Under this: Trusted worldwide (Increased size) */}
-            <span
-              style={{
-                fontSize: '17px',
-                fontWeight: 600,
-                color: '#595e5e',
-                letterSpacing: '0.01em'
-              }}
-            >
-              Trusted worldwide
-            </span>
           </div>
         </div>
       </div>
@@ -473,7 +481,7 @@ export default function ClientShowcase() {
       {/* ============================================================== */}
       {/* 2. THE CLIENT LOGOS MOVING ON A STRAIGHT LINE (WITH TWIST)      */}
       {/* ============================================================== */}
-      <div className="container" style={{ position: 'relative', marginBottom: '56px' }}>
+      <div className="container" style={{ position: 'relative', marginBottom: '38px' }}>
         <div
           style={{
             width: '100%',

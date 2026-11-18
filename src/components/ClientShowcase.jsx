@@ -213,6 +213,18 @@ export default function ClientShowcase() {
           max-width: 1060px;
           margin: 0 auto 32px auto;
         }
+        .client-title-wrap {
+          flex: 1 1 auto;
+          max-width: 640px;
+        }
+        .client-title-wrap h2 {
+          font-size: clamp(28px, 3.8vw, 44px);
+          font-weight: 800;
+          color: #131515;
+          line-height: 1.2;
+          letter-spacing: -0.025em;
+          margin: 0;
+        }
         .client-counter-cluster {
           display: flex;
           flex-direction: column;
@@ -221,33 +233,50 @@ export default function ClientShowcase() {
           flex-shrink: 0;
         }
         @media (max-width: 820px) {
+          #clients {
+            padding-top: 36px !important;
+            padding-bottom: 48px !important;
+          }
           .client-top-bar {
             flex-direction: column !important;
             align-items: flex-start !important;
             gap: 12px !important;
             margin-bottom: 20px !important;
           }
+          .client-title-wrap {
+            flex: none !important;
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+          .client-title-wrap h2 {
+            font-size: clamp(22px, 5.2vw, 30px) !important;
+            line-height: 1.2 !important;
+          }
           .client-counter-cluster {
             align-items: flex-start !important;
-            gap: 4px !important;
+            gap: 6px !important;
+            margin-top: 2px !important;
+          }
+          .client-marquee-container {
+            margin-bottom: 22px !important;
           }
           .client-globe-wrapper {
-            height: 300px !important;
+            height: 280px !important;
             margin-top: 10px !important;
           }
           .client-globe-wrapper > div:first-child > div {
-            width: clamp(280px, 80vw, 340px) !important;
-            height: clamp(280px, 80vw, 340px) !important;
+            width: clamp(260px, 78vw, 320px) !important;
+            height: clamp(260px, 78vw, 320px) !important;
           }
           .client-stats-container {
-            margin-top: -50px !important;
+            margin-top: -40px !important;
           }
           .client-stats-grid {
             grid-template-columns: 1fr !important;
-            gap: 28px !important;
+            gap: 22px !important;
           }
           .client-stats-grid p {
-            font-size: 16px !important;
+            font-size: 15px !important;
           }
         }
       `}</style>
@@ -260,17 +289,8 @@ export default function ClientShowcase() {
           className="client-top-bar"
         >
           {/* Left Hand Side: Our Xtreme clients doing it the Xtreme way */}
-          <div style={{ flex: '1 1 380px', maxWidth: '640px' }}>
-            <h2
-              style={{
-                fontSize: 'clamp(28px, 3.8vw, 44px)',
-                fontWeight: 800,
-                color: '#131515',
-                lineHeight: 1.2,
-                letterSpacing: '-0.025em',
-                margin: 0
-              }}
-            >
+          <div className="client-title-wrap">
+            <h2>
               Our Xtreme clients doing it the Xtreme way
             </h2>
           </div>
@@ -481,7 +501,7 @@ export default function ClientShowcase() {
       {/* ============================================================== */}
       {/* 2. THE CLIENT LOGOS MOVING ON A STRAIGHT LINE (WITH TWIST)      */}
       {/* ============================================================== */}
-      <div className="container" style={{ position: 'relative', marginBottom: '38px' }}>
+      <div className="container client-marquee-container" style={{ position: 'relative', marginBottom: '38px' }}>
         <div
           style={{
             width: '100%',

@@ -2,6 +2,8 @@ import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import RingCarousel3D from './RingCarousel3D';
 import heroWebp from '../assets/hero.webp';
+import heroWebm from '../assets/hero-section.webm';
+import heroMp4 from '../assets/hero-section.mp4';
 
 export default function Hero({ onOpenQuote }) {
   const heroRef = useRef(null);
@@ -56,10 +58,14 @@ export default function Hero({ onOpenQuote }) {
           maskImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 84%, rgba(0, 0, 0, 0) 100%)'
         }}
       >
-        {/* Full-width continuous moving WebP visual */}
-        <img
-          src={heroWebp}
-          alt="Continuous moving hero visual"
+        {/* Full-width continuous looping gradient video with WebP fallback poster */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          webkit-playsinline="true"
+          poster={heroWebp}
           style={{
             position: 'absolute',
             top: 0,
@@ -68,11 +74,14 @@ export default function Hero({ onOpenQuote }) {
             height: '100%',
             objectFit: 'cover',
             objectPosition: 'center 25%',
-            opacity: 0.92,
+            opacity: 0.94,
             zIndex: 0,
             pointerEvents: 'none'
           }}
-        />
+        >
+          <source src={heroWebm} type="video/webm" />
+          <source src={heroMp4} type="video/mp4" />
+        </video>
 
         {/* Ambient readability overlay so white text & glassmorphism badge pop */}
         <div

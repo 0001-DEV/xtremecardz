@@ -214,27 +214,27 @@ export default function ElevateCta({ onOpenQuote }) {
         .elevate-qr-box {
           background-color: #ffffff;
           border-radius: 24px;
-          padding: clamp(18px, 2.2vw, 28px);
+          padding: clamp(20px, 2.4vw, 30px);
           text-align: center;
-          max-width: 290px;
+          max-width: 335px;
           width: 100%;
           border: 1px solid rgba(19, 21, 21, 0.08);
           box-shadow: 0 16px 40px rgba(19, 21, 21, 0.06), 0 4px 14px rgba(0,0,0,0.03);
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 12px;
+          gap: 15px;
           box-sizing: border-box;
         }
 
         .elevate-qr-img-wrap {
           background-color: #ffffff;
-          border-radius: 16px;
-          padding: 10px;
+          border-radius: 18px;
+          padding: 12px;
           border: 1px solid rgba(19, 21, 21, 0.06);
-          box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-          width: clamp(110px, 13vw, 150px);
-          height: clamp(110px, 13vw, 150px);
+          box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+          width: clamp(135px, 15vw, 170px);
+          height: clamp(135px, 15vw, 170px);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -243,19 +243,19 @@ export default function ElevateCta({ onOpenQuote }) {
         /* Medium screens / Tablets (769px - 1024px) */
         @media (min-width: 769px) and (max-width: 1024px) {
           .elevate-content-grid {
-            grid-template-columns: 1.1fr 1fr 0.9fr;
+            grid-template-columns: 1.1fr 1fr 0.95fr;
             gap: 16px;
           }
           .elevate-card-wrap {
             max-width: 300px;
           }
           .elevate-qr-box {
-            max-width: 235px;
-            padding: 16px 12px;
+            max-width: 260px;
+            padding: 18px 14px;
           }
           .elevate-qr-img-wrap {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
           }
         }
 
@@ -319,28 +319,28 @@ export default function ElevateCta({ onOpenQuote }) {
             margin: 0 auto !important;
           }
           .elevate-qr-box {
-            padding: 10px 16px !important;
-            max-width: 270px !important;
-            gap: 12px !important;
-            border-radius: 18px !important;
+            padding: 12px 18px !important;
+            max-width: 310px !important;
+            gap: 14px !important;
+            border-radius: 20px !important;
             flex-direction: row !important;
             align-items: center !important;
             text-align: left !important;
           }
           .elevate-qr-box h3 {
-            font-size: 13px !important;
-            line-height: 1.2 !important;
-            margin: 0 0 2px 0 !important;
+            font-size: 14.5px !important;
+            line-height: 1.25 !important;
+            margin: 0 0 4px 0 !important;
           }
           .elevate-qr-box span {
-            font-size: 11px !important;
+            font-size: 12px !important;
             line-height: 1.2 !important;
           }
           .elevate-qr-img-wrap {
-            width: 58px !important;
-            height: 58px !important;
-            padding: 4px !important;
-            border-radius: 10px !important;
+            width: 68px !important;
+            height: 68px !important;
+            padding: 5px !important;
+            border-radius: 12px !important;
             flex-shrink: 0 !important;
           }
           .elevate-cloud-layer {
@@ -504,8 +504,8 @@ export default function ElevateCta({ onOpenQuote }) {
             className="elevate-part elevate-part-1"
             style={{
               opacity: p1,
-              transform: `translateY(${(1 - p1) * 70}px) scale(${0.94 + p1 * 0.06})`,
-              transition: 'transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease',
+              transform: `translateX(${(1 - p1) * -80}px) scale(${0.94 + p1 * 0.06})`,
+              transition: 'transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.18s ease',
               willChange: 'transform, opacity'
             }}
           >
@@ -572,14 +572,14 @@ export default function ElevateCta({ onOpenQuote }) {
 
           {/* ------------------------------------------------------------ */}
           {/* 2ND CONTENT: Floating 3D Metal Card Graphic                  */}
-          {/* Emerges second                                               */}
+          {/* Emerges second with depth & horizontal breath                 */}
           {/* ------------------------------------------------------------ */}
           <div
             className="elevate-part elevate-part-2"
             style={{
               opacity: p2,
-              transform: `translateY(${(1 - p2) * 75}px) scale(${0.92 + p2 * 0.08})`,
-              transition: 'transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease',
+              transform: `scale(${0.88 + p2 * 0.12})`,
+              transition: 'transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.18s ease',
               display: 'flex',
               justifyContent: 'center',
               willChange: 'transform, opacity'
@@ -608,14 +608,14 @@ export default function ElevateCta({ onOpenQuote }) {
 
           {/* ------------------------------------------------------------ */}
           {/* 3RD CONTENT: Get Your Custom Quote Instantly + QR Code Box   */}
-          {/* Emerges third                                                */}
+          {/* Emerges third from right side horizontally                   */}
           {/* ------------------------------------------------------------ */}
           <div
             className="elevate-part elevate-part-3"
             style={{
               opacity: p3,
-              transform: `translateY(${(1 - p3) * 70}px) scale(${0.94 + p3 * 0.06})`,
-              transition: 'transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease',
+              transform: `translateX(${(1 - p3) * 80}px) scale(${0.94 + p3 * 0.06})`,
+              transition: 'transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.18s ease',
               display: 'flex',
               justifyContent: 'center',
               willChange: 'transform, opacity'
@@ -625,7 +625,7 @@ export default function ElevateCta({ onOpenQuote }) {
               <div className="elevate-qr-box">
                 <h3
                   style={{
-                    fontSize: 'clamp(17px, 1.6vw, 21px)',
+                    fontSize: 'clamp(18px, 1.8vw, 22px)',
                     fontWeight: 700,
                     color: '#131515',
                     lineHeight: 1.25,
@@ -652,7 +652,7 @@ export default function ElevateCta({ onOpenQuote }) {
 
                 <span
                   style={{
-                    fontSize: '12.5px',
+                    fontSize: '13.5px',
                     color: '#595e5e',
                     fontWeight: 500,
                     fontFamily: 'var(--font-body)'
